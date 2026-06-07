@@ -167,7 +167,15 @@ a { color: var(--accent-deep); text-underline-offset: 3px; }
   background: var(--mat); border-radius: 3px 0 0 3px;
 }
 .card:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); border-color: var(--ink); }
-.card__name { font-family: var(--display); font-weight: 600; font-size: 15px; line-height: 1.25; padding-left: 6px; }
+.card__top { display: flex; align-items: center; gap: 10px; padding-left: 6px; }
+.card__logo {
+  width: 36px; height: 36px; flex: none; border-radius: 7px;
+  background: var(--paper-2); border: 1px solid var(--line);
+  display: grid; place-items: center; overflow: hidden;
+}
+.card__logo img { width: 21px; height: 21px; filter: grayscale(1); opacity: .82; }
+.card__logo--ph { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
+.card__name { font-family: var(--display); font-weight: 600; font-size: 15px; line-height: 1.2; flex: 1; }
 .card__desc { font-size: 13.5px; color: var(--ink-soft); flex: 1; padding-left: 6px; }
 .card__meta { display: flex; flex-wrap: wrap; gap: 6px; padding-left: 6px; }
 
@@ -196,8 +204,18 @@ a { color: var(--accent-deep); text-underline-offset: 3px; }
 }
 .detail::backdrop { background: rgba(28,26,22,.45); }
 .detail__body { padding: 28px clamp(20px, 4vw, 34px) 30px; }
-.detail h2 { font-family: var(--display); font-weight: 800; font-size: 26px; margin: 0 0 4px; letter-spacing: -.01em; }
-.detail__sub { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); margin: 0 0 18px; letter-spacing: .04em; }
+.detail__head { display: flex; align-items: center; gap: 15px; margin: 0 0 18px; }
+.detail__logo {
+  width: 50px; height: 50px; flex: none; border-radius: 10px;
+  background: var(--paper-2); border: 1px solid var(--line);
+  display: grid; place-items: center; overflow: hidden;
+}
+.detail__logo img { width: 30px; height: 30px; filter: grayscale(1); opacity: .85; }
+.detail__logo--ph { font-family: var(--mono); font-size: 14px; color: var(--ink-soft); }
+.detail h2 { font-family: var(--display); font-weight: 800; font-size: 24px; margin: 0 0 2px; letter-spacing: -.01em; line-height: 1.1; }
+.detail__sub { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); margin: 0; letter-spacing: .04em; }
+.detail__list { margin: 0; padding-left: 18px; }
+.detail__list li { margin-bottom: 4px; font-size: 14.5px; }
 .detail__meta { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 18px; }
 .detail__row { margin: 0 0 16px; }
 .detail__row h3 {

@@ -123,6 +123,33 @@
     $("#count").textContent = `${visible.length} из ${D.items.length} инструментов`;
     const active = AXES.some(a => state[a].size) || query;
     $("#reset").hidden = !active;
+    writeUrl();
+  }
+
+  // ── Состояние в URL (шаринг) ──────────────
+  function writeUrl() {
+    const params = new URLSearchParams();
+    AXES.forEach(a => { if (state[a].size) params.set(a, [...state[a]].join(",")); });
+    if (query) params.set("q", query);
+    const qs = params.toString();
+    history.replaceState(null, "", qs ? "?" + qs : location.pathname);
+  }
+  function readUrl() {
+    const params = new URLSearchParams(location.search);
+    AXES.forEach(a => {
+      const raw = params.get(a);
+      if (!raw) return;
+      const allowed = D.axes[a].values;
+      raw.split(",").forEach(v => { if (allowed.includes(v)) state[a].add(v); });
+    });
+    const q = params.get("q");
+    if (q) { query = q.toLowerCase(); $("#search").value = q; }
+  }
+
+  function logoMarkup(i, cls) {
+    return i.logo
+      ? `<span class="${cls}"><img src="logos/${i.logo}" alt="" loading="lazy"></span>`
+      : `<span class="${cls} ${cls}--ph">1С</span>`;
   }
 
   function card(i) {
@@ -130,7 +157,10 @@
     el.className = "card";
     el.dataset.mat = i.maturity;
     el.innerHTML = `
-      <div class="card__name">${i.name}</div>
+      <div class="card__top">
+        ${logoMarkup(i, "card__logo")}
+        <div class="card__name">${i.name}</div>
+      </div>
       <div class="card__desc">${i.description}</div>
       <div class="card__meta">
         <span class="badge badge--mat">${i.maturity}</span>
@@ -149,18 +179,29 @@
       i.repo ? `<a href="${i.repo}" target="_blank" rel="noopener">Репозиторий ↗</a>` : ""
     ].filter(Boolean).join("");
     const tags = arr => arr.map(v => `<span class="badge badge--ghost">${v}</span>`).join("");
+    const startBlock = (i.start && i.start.length)
+      ? `<div class="detail__row"><h3>С чего начать</h3><ul class="detail__list">${
+          i.start.map(s => `<li><a href="${s.url}" target="_blank" rel="noopener">${s.label} ↗</a></li>`).join("")
+        }</ul></div>`
+      : "";
     dlg.querySelector(".detail__body").innerHTML = `
       <button class="detail__close" aria-label="Закрыть">✕</button>
-      <h2>${i.name}</h2>
-      <p class="detail__sub">${i.category} · ${i.subcategory}</p>
+      <div class="detail__head">
+        ${logoMarkup(i, "detail__logo")}
+        <div>
+          <h2>${i.name}</h2>
+          <p class="detail__sub">${i.category} · ${i.subcategory}</p>
+        </div>
+      </div>
       <div class="detail__meta">
         <span class="badge badge--mat" data-mat="${i.maturity}" style="--mat:var(--m-${matKey(i.maturity)})">${i.maturity}</span>
         ${tags([i.origin, i.license])}
       </div>
       <div class="detail__row"><h3>Зачем нужно</h3><p>${i.why}</p></div>
+      ${startBlock}
       <div class="detail__row"><h3>Роль</h3><div class="detail__meta">${tags(i.roles)}</div></div>
       <div class="detail__row"><h3>Контекст работы</h3><div class="detail__meta">${tags(i.contexts)}</div></div>
-      <div class="detail__links">${links}</div>`;
+      <div class="detail__row"><h3>Подробнее</h3><div class="detail__links">${links || "—"}</div></div>`;
     dlg.querySelector(".detail__close").addEventListener("click", () => dlg.close());
     dlg.showModal();
   }
@@ -180,5 +221,7 @@
   // ── Старт ─────────────────────────────────
   renderFilters();
   renderKits();
+  readUrl();
+  syncControls();
   apply();
 })();
