@@ -311,8 +311,7 @@ window.LANDSCAPE = {
       "availability": "доступен",
       "roles": [
         "разработчик",
-        "администратор",
-        "аналитик"
+        "администратор"
       ],
       "contexts": [
         "франчайзи",
@@ -648,8 +647,8 @@ window.LANDSCAPE = {
         "разработчик"
       ],
       "contexts": [
+        "продукты",
         "проекты",
-        "франчайзи",
         "инхаус"
       ],
       "depends": [
@@ -688,7 +687,8 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "продукты",
-        "проекты"
+        "проекты",
+        "инхаус"
       ],
       "depends": [
         "1C:Enterprise Development Tools (EDT)"
@@ -859,7 +859,6 @@ window.LANDSCAPE = {
       "license": "проприетарное",
       "availability": "доступен",
       "roles": [
-        "администратор",
         "разработчик"
       ],
       "contexts": [
@@ -975,7 +974,6 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "инхаус",
-        "продукты",
         "проекты"
       ],
       "analogs": [
@@ -1002,7 +1000,7 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "инхаус",
-        "продукты"
+        "проекты"
       ],
       "analogs": [
         "Microsoft SQLServer",
@@ -1028,7 +1026,7 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "инхаус",
-        "продукты"
+        "проекты"
       ],
       "analogs": [
         "Oracle Database",
@@ -1226,7 +1224,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
-      "availability": "доступен",
+      "availability": "ограничен",
       "roles": [
         "разработчик",
         "администратор"
@@ -1258,7 +1256,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "проприетарное",
-      "availability": "доступен",
+      "availability": "ограничен",
       "roles": [
         "аналитик"
       ],
@@ -1604,8 +1602,7 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "инхаус",
-        "продукты",
-        "проекты"
+        "продукты"
       ]
     },
     {
@@ -1951,7 +1948,8 @@ window.LANDSCAPE = {
       "availability": "доступен",
       "roles": [
         "администратор",
-        "тестировщик"
+        "тестировщик",
+        "разработчик"
       ],
       "contexts": [
         "инхаус",
@@ -2013,7 +2011,6 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "инхаус",
-        "продукты",
         "проекты"
       ],
       "analogs": [
@@ -2099,7 +2096,8 @@ window.LANDSCAPE = {
       "license": "open-source",
       "availability": "доступен",
       "roles": [
-        "администратор"
+        "администратор",
+        "разработчик"
       ],
       "contexts": [
         "инхаус",
@@ -2137,7 +2135,8 @@ window.LANDSCAPE = {
       "license": "open-source",
       "availability": "доступен",
       "roles": [
-        "тестировщик"
+        "тестировщик",
+        "разработчик"
       ],
       "contexts": [
         "инхаус",
@@ -2169,6 +2168,7 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "франчайзи",
+        "инхаус",
         "проекты"
       ],
       "depends": [
@@ -2199,8 +2199,9 @@ window.LANDSCAPE = {
         "аналитик"
       ],
       "contexts": [
-        "проекты",
-        "франчайзи"
+        "франчайзи",
+        "инхаус",
+        "проекты"
       ],
       "depends": [
         "1С:Конвертация данных"
@@ -2659,7 +2660,8 @@ window.LANDSCAPE = {
       "license": "open-source",
       "availability": "доступен",
       "roles": [
-        "разработчик"
+        "разработчик",
+        "тестировщик"
       ],
       "contexts": [
         "инхаус",
@@ -2692,6 +2694,7 @@ window.LANDSCAPE = {
       "availability": "доступен",
       "roles": [
         "разработчик",
+        "тестировщик",
         "администратор"
       ],
       "contexts": [
@@ -3819,6 +3822,7 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "инхаус",
+        "франчайзи",
         "продукты",
         "проекты"
       ],
@@ -3851,6 +3855,7 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "франчайзи",
+        "продукты",
         "проекты"
       ],
       "analogs": [
