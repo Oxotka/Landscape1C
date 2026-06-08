@@ -12,6 +12,7 @@
   ];
 
   const escH = s => String(s ?? "").replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+  const wbr = s => escH(s).replace(/([.:/])/g, "$1<wbr>");   // точки переноса в длинных именах
   const escA = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
   // ── Автосохранение в браузере ─────────────
@@ -84,7 +85,7 @@
     el.innerHTML = `
       <div class="card__top">
         <span class="card__logo card__logo--ph">1С</span>
-        <div class="card__name">${escH(i.name)}</div>
+        <div class="card__name">${wbr(i.name)}</div>
       </div>
       <div class="card__desc">${escH(i.description).slice(0, 120)}</div>
       <div class="card__meta">${labels || '<span class="badge badge--ghost">нет меток</span>'}</div>

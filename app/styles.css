@@ -175,7 +175,7 @@ a { color: var(--accent-deep); text-underline-offset: 3px; }
 }
 .card__logo img { width: 21px; height: 21px; filter: grayscale(1); opacity: .82; }
 .card__logo--ph { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
-.card__name { font-family: var(--display); font-weight: 600; font-size: 15px; line-height: 1.2; flex: 1; }
+.card__name { font-family: var(--display); font-weight: 600; font-size: 15px; line-height: 1.2; flex: 1; min-width: 0; overflow-wrap: break-word; }
 .card__desc { font-size: 13.5px; color: var(--ink-soft); flex: 1; padding-left: 6px; }
 .card__meta { display: flex; flex-wrap: wrap; gap: 6px; padding-left: 6px; }
 
@@ -212,7 +212,7 @@ a { color: var(--accent-deep); text-underline-offset: 3px; }
 }
 .detail__logo img { width: 30px; height: 30px; filter: grayscale(1); opacity: .85; }
 .detail__logo--ph { font-family: var(--mono); font-size: 14px; color: var(--ink-soft); }
-.detail h2 { font-family: var(--display); font-weight: 800; font-size: 24px; margin: 0 0 2px; letter-spacing: -.01em; line-height: 1.1; }
+.detail h2 { font-family: var(--display); font-weight: 800; font-size: 24px; margin: 0 0 2px; letter-spacing: -.01em; line-height: 1.1; overflow-wrap: break-word; }
 .detail__sub { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); margin: 0; letter-spacing: .04em; }
 .detail__list { margin: 0; padding-left: 18px; }
 .detail__list li { margin-bottom: 4px; font-size: 14.5px; }

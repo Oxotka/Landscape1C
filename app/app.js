@@ -11,6 +11,8 @@
 
   const $ = sel => document.querySelector(sel);
   const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+  // Точки переноса в длинных именах без пробелов: «1С:Предприятие.Элемент».
+  const wbr = s => s.replace(/([.:/])/g, "$1<wbr>");
 
   // ── Рендер фильтров ───────────────────────
   function renderFilters() {
@@ -159,7 +161,7 @@
     el.innerHTML = `
       <div class="card__top">
         ${logoMarkup(i, "card__logo")}
-        <div class="card__name">${i.name}</div>
+        <div class="card__name">${wbr(i.name)}</div>
       </div>
       <div class="card__desc">${i.description}</div>
       <div class="card__meta">
@@ -189,7 +191,7 @@
       <div class="detail__head">
         ${logoMarkup(i, "detail__logo")}
         <div>
-          <h2>${i.name}</h2>
+          <h2>${wbr(i.name)}</h2>
           <p class="detail__sub">${i.subcategory ? `${i.category} · ${i.subcategory}` : i.category}</p>
         </div>
       </div>
