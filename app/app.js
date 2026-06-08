@@ -159,15 +159,15 @@
     el.className = "card";
     el.dataset.mat = i.maturity;
     el.innerHTML = `
-      <div class="card__top">
-        ${logoMarkup(i, "card__logo")}
+      <div class="card__media">${logoMarkup(i, "card__logo")}</div>
+      <div class="card__body">
         <div class="card__name">${wbr(i.name)}</div>
-      </div>
-      <div class="card__desc">${i.description}</div>
-      <div class="card__meta">
-        <span class="badge badge--mat">${i.maturity}</span>
-        <span class="badge badge--ghost">${i.origin}</span>
-        <span class="badge badge--ghost">${i.license}</span>
+        <div class="card__desc">${i.description}</div>
+        <div class="card__meta">
+          <span class="badge badge--mat">${i.maturity}</span>
+          <span class="badge badge--ghost">${i.origin}</span>
+          <span class="badge badge--ghost">${i.license}</span>
+        </div>
       </div>`;
     el.addEventListener("click", () => openDetail(i));
     return el;
