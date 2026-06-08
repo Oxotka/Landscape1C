@@ -53,9 +53,11 @@
   }
 
   function selectKit(ctx) {
-    // Набор = выбрать только этот контекст, прочие оси сбросить
+    // Набор = выбрать только этот контекст, прочие оси сбросить.
+    // Повторный клик по активному набору — сброс (ничего не выбрано).
+    const isActive = state.context.has(ctx) && state.context.size === 1;
     AXES.forEach(a => state[a].clear());
-    state.context.add(ctx);
+    if (!isActive) state.context.add(ctx);
     syncControls();
     apply();
   }
@@ -121,11 +123,32 @@
       board.appendChild(cat);
     });
 
-    $("#empty").hidden = visible.length > 0;
+    const noResults = visible.length === 0;
+    $("#empty").hidden = !noResults;
+    if (noResults) updateEmptyMail();
     $("#count").textContent = `${visible.length} из ${D.items.length} инструментов`;
     const active = AXES.some(a => state[a].size) || query;
     $("#reset").hidden = !active;
     writeUrl();
+  }
+
+  // Письмо «не нашёл инструмент» — с подставленными фильтрами
+  function updateEmptyMail() {
+    const lines = [];
+    AXES.forEach(a => {
+      if (state[a].size) lines.push(`— ${D.axes[a].label}: ${[...state[a]].join(", ")}`);
+    });
+    if (query) lines.push(`— Поиск: ${query}`);
+    const filters = lines.length ? lines.join("\n") : "— (фильтры не выбраны)";
+    const subject = "Ландшафт технологий 1С: не нашёл нужный инструмент";
+    const body =
+      "Здравствуйте!\n\n" +
+      "Я выбрал такие фильтры на «Ландшафте технологий 1С», но ничего не нашлось:\n" +
+      filters + "\n\n" +
+      "А на самом деле я использую:\n— \n\n" +
+      "Спасибо!";
+    $("#empty-mail").href =
+      `mailto:aripovn@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
   // ── Состояние в URL (шаринг) ──────────────
@@ -180,12 +203,20 @@
       i.homepage ? `<a href="${i.homepage}" target="_blank" rel="noopener">Сайт ↗</a>` : "",
       i.repo ? `<a href="${i.repo}" target="_blank" rel="noopener">Репозиторий ↗</a>` : ""
     ].filter(Boolean).join("");
-    const tags = arr => arr.map(v => `<span class="badge badge--ghost">${v}</span>`).join("");
-    const startBlock = (i.start && i.start.length)
-      ? `<div class="detail__row"><h3>С чего начать</h3><ul class="detail__list">${
+    const tags = arr => (arr || []).filter(Boolean).map(v => `<span class="badge badge--ghost">${v}</span>`).join("");
+    // Блок раздела рендерится только если есть содержимое
+    const row = (title, inner) => inner ? `<div class="detail__row"><h3>${title}</h3>${inner}</div>` : "";
+
+    const metaInner = [
+      i.maturity ? `<span class="badge badge--mat" data-mat="${i.maturity}" style="--mat:var(--m-${matKey(i.maturity)})">${i.maturity}</span>` : "",
+      tags([i.origin, i.license])
+    ].join("");
+    const startInner = (i.start && i.start.length)
+      ? `<ul class="detail__list">${
           i.start.map(s => `<li><a href="${s.url}" target="_blank" rel="noopener">${s.label} ↗</a></li>`).join("")
-        }</ul></div>`
+        }</ul>`
       : "";
+
     dlg.querySelector(".detail__body").innerHTML = `
       <button class="detail__close" aria-label="Закрыть">✕</button>
       <div class="detail__head">
@@ -195,15 +226,12 @@
           <p class="detail__sub">${i.subcategory ? `${i.category} · ${i.subcategory}` : i.category}</p>
         </div>
       </div>
-      <div class="detail__meta">
-        <span class="badge badge--mat" data-mat="${i.maturity}" style="--mat:var(--m-${matKey(i.maturity)})">${i.maturity}</span>
-        ${tags([i.origin, i.license])}
-      </div>
-      <div class="detail__row"><h3>Зачем нужно</h3><p>${i.why}</p></div>
-      ${startBlock}
-      <div class="detail__row"><h3>Роль</h3><div class="detail__meta">${tags(i.roles)}</div></div>
-      <div class="detail__row"><h3>Контекст работы</h3><div class="detail__meta">${tags(i.contexts)}</div></div>
-      <div class="detail__row"><h3>Подробнее</h3><div class="detail__links">${links || "—"}</div></div>`;
+      ${metaInner.trim() ? `<div class="detail__meta">${metaInner}</div>` : ""}
+      ${row("Зачем нужно", i.why ? `<p>${i.why}</p>` : "")}
+      ${row("С чего начать", startInner)}
+      ${row("Роль", i.roles && i.roles.length ? `<div class="detail__meta">${tags(i.roles)}</div>` : "")}
+      ${row("Контекст работы", i.contexts && i.contexts.length ? `<div class="detail__meta">${tags(i.contexts)}</div>` : "")}
+      ${row("Подробнее", links ? `<div class="detail__links">${links}</div>` : "")}`;
     dlg.querySelector(".detail__close").addEventListener("click", () => dlg.close());
     dlg.showModal();
   }

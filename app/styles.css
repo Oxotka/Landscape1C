@@ -230,7 +230,7 @@ a { color: var(--ink); text-underline-offset: 3px; }
     display: flex; align-items: baseline; gap: 6px 12px; flex-wrap: wrap;
     padding: 9px clamp(16px, 3vw, 24px);
   }
-  .fgroup__head { margin: 0; padding: 0; flex: 0 0 auto; }
+  .fgroup__head { display: none; }
   .chips { flex: 1 1 0; min-width: 0; display: flex; flex-wrap: wrap; gap: 6px; }
   .chip {
     display: inline-block; width: auto;
@@ -354,7 +354,20 @@ a { color: var(--ink); text-underline-offset: 3px; }
 [data-mat="нишевое"]    { --mat: var(--m-niche); }
 [data-mat="устаревает"] { --mat: var(--m-legacy); }
 
-.empty { padding: 40px clamp(16px, 3vw, 24px); color: #999; font-size: 13px; }
+.empty { padding: 48px clamp(16px, 3vw, 24px); max-width: 560px; }
+.empty__title {
+  font-family: var(--display); font-weight: 700; font-size: 18px;
+  margin: 0 0 8px; color: var(--ink);
+}
+.empty__text { font-size: 13px; color: var(--ink-soft); line-height: 1.55; margin: 0 0 18px; }
+.empty__btn {
+  display: inline-block; font-family: var(--body); font-weight: 600;
+  font-size: 12px; letter-spacing: .5px;
+  padding: 9px 16px; border: 1.5px solid var(--ink); border-radius: 0;
+  color: var(--ink); text-decoration: none;
+  transition: background .12s ease, color .12s ease;
+}
+.empty__btn:hover { background: var(--ink); color: var(--paper); }
 
 /* ── Модалка карточки ────────────────────── */
 .detail {

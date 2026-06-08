@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=17">
+  <link rel="stylesheet" href="styles.css?v=20">
 </head>
 <body>
   <div class="topbar" id="topbar">
@@ -61,7 +61,11 @@
         <button id="reset" class="reset" hidden>Сбросить ✕</button>
       </div>
       <div id="board" class="board"></div>
-      <p id="empty" class="empty" hidden>Под выбранные фильтры ничего не подошло.</p>
+      <div id="empty" class="empty" hidden>
+        <p class="empty__title">Мы не нашли таких инструментов.</p>
+        <p class="empty__text">Расскажите, чем пользуетесь сами — это поможет дополнить ландшафт. Письмо уже частично заполнено: остаётся вписать ваши инструменты.</p>
+        <a id="empty-mail" class="empty__btn" href="mailto:aripovn@gmail.com">Написать на aripovn@gmail.com</a>
+      </div>
     </main>
   </div>
 
@@ -73,8 +77,8 @@
     <div class="detail__body"></div>
   </dialog>
 
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="data.js?v=20"></script>
+  <script src="app.js?v=20"></script>
   <script>
     // ── Переключение темы (обе кнопки) ──
     document.querySelectorAll(".theme-toggle").forEach(function (btn) {
