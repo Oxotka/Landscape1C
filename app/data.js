@@ -216,14 +216,17 @@ window.LANDSCAPE = {
           "url": "https://wonderland.v8.1c.ru/blog/1c-ispolnitel/"
         }
       ],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
         "разработчик",
         "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "продукты",
+        "проекты"
+      ]
     },
     {
       "name": "OneScript",
@@ -263,7 +266,11 @@ window.LANDSCAPE = {
         "разработчик",
         "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "франчайзи",
+        "фриланс",
+        "проекты"
+      ]
     },
     {
       "name": "Конфигуратор",
@@ -280,13 +287,21 @@ window.LANDSCAPE = {
           "url": "https://курсы-по-1с.рф/articles/приемы-работы-в-конфигураторе/"
         }
       ],
-      "maturity": "базовое",
+      "maturity": "устаревает",
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
-        "разработчик"
+        "разработчик",
+        "администратор",
+        "аналитик"
       ],
-      "contexts": []
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "продукты",
+        "проекты",
+        "фриланс"
+      ]
     },
     {
       "name": "1C:Enterprise Development Tools (EDT)",
@@ -325,7 +340,11 @@ window.LANDSCAPE = {
       "roles": [
         "разработчик"
       ],
-      "contexts": []
+      "contexts": [
+        "проекты",
+        "продукты",
+        "инхаус"
+      ]
     },
     {
       "name": "Visual Studio Code (VSCode)",
@@ -353,7 +372,10 @@ window.LANDSCAPE = {
         "разработчик",
         "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "фриланс",
+        "проекты"
+      ]
     },
     {
       "name": "TurboConf",
@@ -657,7 +679,10 @@ window.LANDSCAPE = {
       "roles": [
         "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "проекты",
+        "инхаус"
+      ]
     },
     {
       "name": "Microsoft SQLServer",
@@ -682,13 +707,16 @@ window.LANDSCAPE = {
           "url": "https://www.1c-uc3.ru/our-courses/all-courses/dlya-administratorov/ms/"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "устаревает",
       "origin": "зарубежное",
       "license": "проприетарное",
       "roles": [
         "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ]
     },
     {
       "name": "Хранилище",
@@ -719,7 +747,12 @@ window.LANDSCAPE = {
       "roles": [
         "разработчик"
       ],
-      "contexts": []
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "продукты",
+        "проекты"
+      ]
     },
     {
       "name": "git",
@@ -744,14 +777,19 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/1c/articles/310640/"
         }
       ],
-      "maturity": "базовое",
+      "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
         "разработчик",
         "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты",
+        "фриланс"
+      ]
     },
     {
       "name": "MAKER-STUDIO",
@@ -1096,11 +1134,17 @@ window.LANDSCAPE = {
       ],
       "maturity": "базовое",
       "origin": "отечественное",
-      "license": "",
+      "license": "бесплатное",
       "roles": [
         "разработчик"
       ],
-      "contexts": []
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "продукты",
+        "проекты",
+        "фриланс"
+      ]
     },
     {
       "name": "Jenkins",
@@ -1844,11 +1888,16 @@ window.LANDSCAPE = {
       "homepage": "https://1c-tc.ru",
       "repo": null,
       "start": [],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "отечественное",
-      "license": "",
-      "roles": [],
-      "contexts": []
+      "license": "проприетарное",
+      "roles": [
+        "разработчик"
+      ],
+      "contexts": [
+        "франчайзи",
+        "проекты"
+      ]
     },
     {
       "name": "Сертификация от Госуслуг",
@@ -1860,11 +1909,19 @@ window.LANDSCAPE = {
       "homepage": "https://www.gosuslugi.ru/itskills",
       "repo": null,
       "start": [],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "отечественное",
-      "license": "",
-      "roles": [],
-      "contexts": []
+      "license": "бесплатное",
+      "roles": [
+        "разработчик",
+        "администратор",
+        "тестировщик"
+      ],
+      "contexts": [
+        "франчайзи",
+        "продукты",
+        "проекты"
+      ]
     }
   ]
 };
