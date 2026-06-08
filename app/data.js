@@ -8,6 +8,9 @@ window.LANDSCAPE = {
     "Повышение качества",
     "CI/CD",
     "Интеграции",
+    "Мониторинг",
+    "Анализ логов",
+    "Задачи",
     "Прочие технологии и полезные ссылки",
     "Сертификация"
   ],
@@ -84,7 +87,8 @@ window.LANDSCAPE = {
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
-        "разработчик"
+        "разработчик",
+        "аналитик"
       ],
       "contexts": [
         "франчайзи",
@@ -301,6 +305,14 @@ window.LANDSCAPE = {
         "продукты",
         "проекты",
         "фриланс"
+      ],
+      "analogs": [
+        "1C:Enterprise Development Tools (EDT)",
+        "Visual Studio Code (VSCode)"
+      ],
+      "depends": [
+        "Хранилище",
+        "Плагин для конфигуратора PhoenixBSL"
       ]
     },
     {
@@ -344,6 +356,14 @@ window.LANDSCAPE = {
         "проекты",
         "продукты",
         "инхаус"
+      ],
+      "analogs": [
+        "Конфигуратор",
+        "Visual Studio Code (VSCode)"
+      ],
+      "depends": [
+        "git",
+        "Плагины для 1С:EDT"
       ]
     },
     {
@@ -370,11 +390,20 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "разработчик",
-        "администратор"
+        "администратор",
+        "аналитик"
       ],
       "contexts": [
         "фриланс",
         "проекты"
+      ],
+      "analogs": [
+        "Конфигуратор",
+        "1C:Enterprise Development Tools (EDT)"
+      ],
+      "depends": [
+        "Плагин для VSCode «1C: Platform Tools»",
+        "Vanessa-Automation"
       ]
     },
     {
@@ -419,7 +448,8 @@ window.LANDSCAPE = {
       "origin": "отечественное",
       "license": "бесплатное",
       "roles": [
-        "разработчик"
+        "разработчик",
+        "аналитик"
       ],
       "contexts": []
     },
@@ -442,7 +472,8 @@ window.LANDSCAPE = {
       "origin": "отечественное",
       "license": "бесплатное",
       "roles": [
-        "разработчик"
+        "разработчик",
+        "аналитик"
       ],
       "contexts": []
     },
@@ -469,7 +500,8 @@ window.LANDSCAPE = {
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
-        "разработчик"
+        "разработчик",
+        "аналитик"
       ],
       "contexts": []
     },
@@ -494,7 +526,10 @@ window.LANDSCAPE = {
       "roles": [
         "разработчик"
       ],
-      "contexts": []
+      "contexts": [],
+      "depends": [
+        "Конфигуратор"
+      ]
     },
     {
       "name": "Плагин 1С:Напарник",
@@ -544,7 +579,10 @@ window.LANDSCAPE = {
       "roles": [
         "разработчик"
       ],
-      "contexts": []
+      "contexts": [],
+      "depends": [
+        "Visual Studio Code (VSCode)"
+      ]
     },
     {
       "name": "Плагины для 1С:EDT",
@@ -575,7 +613,10 @@ window.LANDSCAPE = {
       "roles": [
         "разработчик"
       ],
-      "contexts": []
+      "contexts": [],
+      "depends": [
+        "1C:Enterprise Development Tools (EDT)"
+      ]
     },
     {
       "name": "Библиотеки для OneScript",
@@ -644,7 +685,11 @@ window.LANDSCAPE = {
         "администратор",
         "разработчик"
       ],
-      "contexts": []
+      "contexts": [],
+      "analogs": [
+        "PostgreSQL",
+        "Microsoft SQLServer"
+      ]
     },
     {
       "name": "PostgreSQL",
@@ -682,6 +727,10 @@ window.LANDSCAPE = {
       "contexts": [
         "проекты",
         "инхаус"
+      ],
+      "analogs": [
+        "Файловая СУБД",
+        "Microsoft SQLServer"
       ]
     },
     {
@@ -716,6 +765,10 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "проекты"
+      ],
+      "analogs": [
+        "Файловая СУБД",
+        "PostgreSQL"
       ]
     },
     {
@@ -752,6 +805,9 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты",
         "проекты"
+      ],
+      "depends": [
+        "Конфигуратор"
       ]
     },
     {
@@ -789,6 +845,9 @@ window.LANDSCAPE = {
         "продукты",
         "проекты",
         "фриланс"
+      ],
+      "depends": [
+        "1C:Enterprise Development Tools (EDT)"
       ]
     },
     {
@@ -813,7 +872,10 @@ window.LANDSCAPE = {
         "аналитик",
         "разработчик"
       ],
-      "contexts": []
+      "contexts": [],
+      "analogs": [
+        "Накидка"
+      ]
     },
     {
       "name": "Накидка",
@@ -841,15 +903,41 @@ window.LANDSCAPE = {
         "аналитик",
         "разработчик"
       ],
-      "contexts": []
+      "contexts": [],
+      "analogs": [
+        "MAKER-STUDIO"
+      ]
     },
     {
-      "name": "1С:Тестировщик и 1С:Сценарное тестирование",
+      "name": "1С:Тестировщик",
       "category": "Повышение качества",
       "subcategory": "Автоматизированное тестирование",
       "logo": "1c.png",
-      "description": "Инструменты 1С для автоматизированного тестирования конфигураций.",
-      "why": "Используется для разработки и запуска автоматизированных тестов, чтобы вручную не проверять одни и те же сценарии.",
+      "description": "Инструмент 1С для автоматизации функционального тестирования.",
+      "why": "Автоматизирует функциональное тестирование конфигураций при обновлениях.",
+      "homepage": "https://v8.1c.ru/tekhnologii/tekhnologii-krupnykh-vnedreniy/korporativnyy-instrumentalnyy-paket/",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "roles": [
+        "тестировщик",
+        "аналитик"
+      ],
+      "contexts": [],
+      "analogs": [
+        "1С:Сценарное тестирование",
+        "Vanessa-Automation"
+      ]
+    },
+    {
+      "name": "1С:Сценарное тестирование",
+      "category": "Повышение качества",
+      "subcategory": "Автоматизированное тестирование",
+      "logo": "1c.png",
+      "description": "Проверка функциональности через сценарии без программирования.",
+      "why": "Позволяет описывать и прогонять сценарные тесты решений 1С.",
       "homepage": "https://v8.1c.ru/tekhnologii/tekhnologii-krupnykh-vnedreniy/korporativnyy-instrumentalnyy-paket/1c-stsenarnoe-testirovanie/",
       "repo": null,
       "start": [
@@ -858,7 +946,7 @@ window.LANDSCAPE = {
           "url": "https://www.youtube.com/channel/UCbdRui0PGMp9lqhvnVJcRzA"
         },
         {
-          "label": "\"1С:Сценарное тестирование 3.0. Примеры\"",
+          "label": "1С:Сценарное тестирование 3.0. Примеры",
           "url": "https://www.youtube.com/watch?v=9LppwC6gQTA"
         }
       ],
@@ -866,17 +954,22 @@ window.LANDSCAPE = {
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
-        "тестировщик"
+        "тестировщик",
+        "аналитик"
       ],
-      "contexts": []
+      "contexts": [],
+      "analogs": [
+        "1С:Тестировщик",
+        "Vanessa-Automation"
+      ]
     },
     {
-      "name": "Vanessa-Automation и Vanessa-ADD",
+      "name": "Vanessa-Automation",
       "category": "Повышение качества",
       "subcategory": "Автоматизированное тестирование",
       "logo": null,
-      "description": "Инструменты BDD-тестирования решений на платформе 1С.",
-      "why": "Позволяет разрабатывать и запускать тесты, автоматически подготавливает инструкции и документацию.",
+      "description": "BDD-тестирование решений 1С на языке Gherkin.",
+      "why": "Описывает и запускает сценарии на Gherkin, готовит инструкции и документацию.",
       "homepage": "https://pr-mex.github.io/vanessa-automation/",
       "repo": "https://github.com/Pr-Mex/vanessa-automation",
       "start": [
@@ -887,10 +980,6 @@ window.LANDSCAPE = {
         {
           "label": "Разработка и сценарное тестирование с Vanessa",
           "url": "https://infostart.ru/1c/articles/969637/"
-        },
-        {
-          "label": "https://t.me/testspro1c",
-          "url": "https://t.me/testspro1c"
         }
       ],
       "maturity": "продвинутое",
@@ -898,9 +987,40 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "тестировщик",
-        "администратор"
+        "администратор",
+        "аналитик"
       ],
-      "contexts": []
+      "contexts": [],
+      "analogs": [
+        "1С:Тестировщик",
+        "1С:Сценарное тестирование",
+        "Vanessa-ADD"
+      ],
+      "depends": [
+        "Visual Studio Code (VSCode)"
+      ]
+    },
+    {
+      "name": "Vanessa-ADD",
+      "category": "Повышение качества",
+      "subcategory": "Автоматизированное тестирование",
+      "logo": null,
+      "description": "Набор инструментов автотестирования (предшественник Vanessa-Automation).",
+      "why": "Ранний набор инструментов сценарного и поведенческого тестирования 1С.",
+      "homepage": null,
+      "repo": "https://github.com/vanessa-opensource/add",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "roles": [
+        "тестировщик",
+        "разработчик"
+      ],
+      "contexts": [],
+      "analogs": [
+        "Vanessa-Automation"
+      ]
     },
     {
       "name": "Тестер",
@@ -1177,7 +1297,8 @@ window.LANDSCAPE = {
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
-        "администратор"
+        "администратор",
+        "аналитик"
       ],
       "contexts": []
     },
@@ -1318,24 +1439,45 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "администратор",
-        "тестировщик"
+        "тестировщик",
+        "аналитик"
       ],
       "contexts": []
     },
     {
-      "name": "1С:Конвертация данных и EnterpriseData",
+      "name": "1С:Конвертация данных",
       "category": "Интеграции",
       "subcategory": null,
       "logo": "1c.png",
-      "description": "Разработка обменов через универсальный формат EnterpriseData.",
-      "why": "Конфигурация \"Конвертация данных\" позволяет создать правила обмена между различными системами в универсальном бизнес-ориентированном формате EnterpriseData.",
+      "description": "Создание правил обмена между конфигурациями 1С.",
+      "why": "Визуально описывает правила конвертации и обмена данными между системами.",
       "homepage": "https://its.1c.ru/db/metod8dev/content/5846/hdoc",
       "repo": null,
       "start": [
         {
           "label": "1С:Конвертация данных 3. Инструкции и примеры.",
           "url": "https://infostart.ru/1c/articles/695523/"
-        },
+        }
+      ],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "roles": [
+        "разработчик",
+        "аналитик"
+      ],
+      "contexts": []
+    },
+    {
+      "name": "EnterpriseData",
+      "category": "Интеграции",
+      "subcategory": null,
+      "logo": "1c.png",
+      "description": "Универсальный формат обмена данными между системами.",
+      "why": "Бизнес-ориентированный формат для обменов между 1С и внешними системами.",
+      "homepage": "https://its.1c.ru/db/metod8dev/content/5846/hdoc",
+      "repo": null,
+      "start": [
         {
           "label": "Новый подход к обмену данными EnterpriseData",
           "url": "https://infostart.ru/1c/articles/963164/"
@@ -1370,7 +1512,8 @@ window.LANDSCAPE = {
       "license": "проприетарное",
       "roles": [
         "разработчик",
-        "администратор"
+        "администратор",
+        "аналитик"
       ],
       "contexts": []
     },
@@ -1451,14 +1594,14 @@ window.LANDSCAPE = {
       "contexts": []
     },
     {
-      "name": "Брокеры сообщений (RabbitMQ, Kafka и другие)",
+      "name": "RabbitMQ",
       "category": "Интеграции",
       "subcategory": null,
-      "logo": "kafka.svg",
-      "description": "Посредники асинхронного обмена сообщениями (RabbitMQ, Kafka и др.).",
-      "why": "Позволяет быстро получать сообщения из разных источников, быстро перенаправлять сообщения в одну или несколько очередей согласно правилам маршрутизации, и обеспечивать быстрое чтение очередей по методу FIFO. Не нужно переживать, что сообщение не дошло.",
+      "logo": "rabbitmq.svg",
+      "description": "Брокер сообщений для асинхронного обмена.",
+      "why": "Очереди и маршрутизация сообщений между 1С и внешними системами по AMQP.",
       "homepage": "https://www.rabbitmq.com",
-      "repo": null,
+      "repo": "https://github.com/rabbitmq/rabbitmq-server",
       "start": [
         {
           "label": "Учимся готовить кроликов с редиской",
@@ -1467,26 +1610,6 @@ window.LANDSCAPE = {
         {
           "label": "RabbitMQ + Конвертация Данных 3.0",
           "url": "https://infostart.ru/1c/articles/692798/"
-        },
-        {
-          "label": "1c + kafka.apache",
-          "url": "https://infostart.ru/1c/articles/990211/"
-        },
-        {
-          "label": "Kafka для начинающих: откуда такой спрос и зачем нужна эта технология",
-          "url": "https://habr.com/ru/articles/957824/"
-        },
-        {
-          "label": "Apache Kafka: Основы технологии",
-          "url": "https://habr.com/ru/company/southbridge/blog/550934/"
-        },
-        {
-          "label": "RabbitMQ или Apache Kafka",
-          "url": "https://zen.yandex.ru/media/mcs/rabbitmq-ili-apache-kafka-kakoi-broker-soobscenii-podoidet-dlia-vashego-proekta-601d6fab86f4e22208be5ff6"
-        },
-        {
-          "label": "RabbitMQ против Kafka",
-          "url": "https://habr.com/ru/companies/itsumma/articles/416629/"
         }
       ],
       "maturity": "продвинутое",
@@ -1494,9 +1617,45 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "разработчик",
-        "администратор"
+        "администратор",
+        "аналитик"
       ],
-      "contexts": []
+      "contexts": [],
+      "analogs": [
+        "Kafka"
+      ]
+    },
+    {
+      "name": "Kafka",
+      "category": "Интеграции",
+      "subcategory": null,
+      "logo": "kafka.svg",
+      "description": "Потоковая платформа обмена сообщениями.",
+      "why": "Высоконагруженный поток событий и интеграций для 1С и внешних систем.",
+      "homepage": "https://kafka.apache.org",
+      "repo": "https://github.com/apache/kafka",
+      "start": [
+        {
+          "label": "1c + kafka.apache",
+          "url": "https://infostart.ru/1c/articles/990211/"
+        },
+        {
+          "label": "Apache Kafka: Основы технологии",
+          "url": "https://habr.com/ru/company/southbridge/blog/550934/"
+        }
+      ],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "разработчик",
+        "администратор",
+        "аналитик"
+      ],
+      "contexts": [],
+      "analogs": [
+        "RabbitMQ"
+      ]
     },
     {
       "name": "Объектное хранилище S3",
@@ -1686,7 +1845,10 @@ window.LANDSCAPE = {
       "roles": [
         "аналитик"
       ],
-      "contexts": []
+      "contexts": [],
+      "analogs": [
+        "Microsoft Power BI"
+      ]
     },
     {
       "name": "Microsoft Power BI",
@@ -1717,7 +1879,10 @@ window.LANDSCAPE = {
       "roles": [
         "аналитик"
       ],
-      "contexts": []
+      "contexts": [],
+      "analogs": [
+        "1С:Аналитика"
+      ]
     },
     {
       "name": "Кластер серверов 1С:Предприятие",
@@ -1922,6 +2087,229 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ]
+    },
+    {
+      "name": "Zabbix",
+      "category": "Мониторинг",
+      "subcategory": null,
+      "logo": "zabbix.svg",
+      "description": "Мониторинг серверов, сервисов и инфраструктуры 1С.",
+      "why": "Следит за доступностью и нагрузкой серверов 1С, шлёт алерты при проблемах.",
+      "homepage": "https://www.zabbix.com/",
+      "repo": "https://github.com/zabbix/zabbix",
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [],
+      "analogs": [
+        "Prometheus"
+      ]
+    },
+    {
+      "name": "Grafana",
+      "category": "Мониторинг",
+      "subcategory": null,
+      "logo": "grafana.svg",
+      "description": "Дашборды и визуализация метрик из разных источников.",
+      "why": "Собирает метрики 1С и инфраструктуры в наглядные дашборды.",
+      "homepage": "https://grafana.com/",
+      "repo": "https://github.com/grafana/grafana",
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [],
+      "depends": [
+        "Prometheus"
+      ]
+    },
+    {
+      "name": "Prometheus",
+      "category": "Мониторинг",
+      "subcategory": null,
+      "logo": "prometheus.svg",
+      "description": "Сбор и хранение метрик с алертингом.",
+      "why": "Собирает метрики серверов и сервисов 1С, питает Grafana и алерты.",
+      "homepage": "https://prometheus.io/",
+      "repo": "https://github.com/prometheus/prometheus",
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [],
+      "analogs": [
+        "Zabbix"
+      ],
+      "depends": [
+        "Grafana"
+      ]
+    },
+    {
+      "name": "Elasticsearch",
+      "category": "Анализ логов",
+      "subcategory": null,
+      "logo": "elasticsearch.svg",
+      "description": "Поисковый движок для хранения и анализа логов.",
+      "why": "Хранит и индексирует логи 1С для быстрого поиска и анализа.",
+      "homepage": "https://www.elastic.co/elasticsearch",
+      "repo": "https://github.com/elastic/elasticsearch",
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "администратор",
+        "разработчик"
+      ],
+      "contexts": [],
+      "analogs": [
+        "ClickHouse"
+      ],
+      "depends": [
+        "Kibana",
+        "Logstash"
+      ]
+    },
+    {
+      "name": "Kibana",
+      "category": "Анализ логов",
+      "subcategory": null,
+      "logo": "kibana.svg",
+      "description": "Визуализация и поиск по логам из Elasticsearch.",
+      "why": "Веб-интерфейс для анализа логов 1С, хранящихся в Elasticsearch.",
+      "homepage": "https://www.elastic.co/kibana",
+      "repo": "https://github.com/elastic/kibana",
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "администратор",
+        "разработчик"
+      ],
+      "contexts": [],
+      "depends": [
+        "Elasticsearch"
+      ]
+    },
+    {
+      "name": "Logstash",
+      "category": "Анализ логов",
+      "subcategory": null,
+      "logo": "logstash.svg",
+      "description": "Сбор, преобразование и доставка логов.",
+      "why": "Собирает логи 1С из разных источников и нормализует перед отправкой.",
+      "homepage": "https://www.elastic.co/logstash",
+      "repo": "https://github.com/elastic/logstash",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [],
+      "depends": [
+        "Elasticsearch"
+      ]
+    },
+    {
+      "name": "ClickHouse",
+      "category": "Анализ логов",
+      "subcategory": null,
+      "logo": "clickhouse.svg",
+      "description": "Колоночная СУБД для аналитики больших логов.",
+      "why": "Быстро хранит и агрегирует огромные объёмы логов и событий 1С.",
+      "homepage": "https://clickhouse.com/",
+      "repo": "https://github.com/ClickHouse/ClickHouse",
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "roles": [
+        "администратор",
+        "разработчик"
+      ],
+      "contexts": [],
+      "analogs": [
+        "Elasticsearch"
+      ]
+    },
+    {
+      "name": "Jira",
+      "category": "Задачи",
+      "subcategory": null,
+      "logo": "jira.svg",
+      "description": "Трекер задач и управление разработкой.",
+      "why": "Ведёт задачи, баги и спринты команды 1С-разработки.",
+      "homepage": "https://www.atlassian.com/software/jira",
+      "repo": null,
+      "start": [],
+      "maturity": "базовое",
+      "origin": "зарубежное",
+      "license": "проприетарное",
+      "roles": [
+        "разработчик",
+        "аналитик",
+        "тестировщик",
+        "администратор"
+      ],
+      "contexts": [],
+      "analogs": [
+        "Trello"
+      ]
+    },
+    {
+      "name": "Trello",
+      "category": "Задачи",
+      "subcategory": null,
+      "logo": "trello.svg",
+      "description": "Канбан-доски для простого ведения задач.",
+      "why": "Лёгкое управление задачами небольших команд и проектов на 1С.",
+      "homepage": "https://trello.com/",
+      "repo": null,
+      "start": [],
+      "maturity": "базовое",
+      "origin": "зарубежное",
+      "license": "проприетарное",
+      "roles": [
+        "разработчик",
+        "аналитик",
+        "тестировщик",
+        "администратор"
+      ],
+      "contexts": [],
+      "analogs": [
+        "Jira"
+      ]
+    },
+    {
+      "name": "Kubernetes",
+      "category": "CI/CD",
+      "subcategory": "Контейнеризация",
+      "logo": "kubernetes.svg",
+      "description": "Оркестрация контейнеров для развёртывания сервисов.",
+      "why": "Управляет контейнерами вокруг 1С: масштабирование, обновления, отказоустойчивость.",
+      "homepage": "https://kubernetes.io/",
+      "repo": "https://github.com/kubernetes/kubernetes",
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": []
     }
   ]
 };
