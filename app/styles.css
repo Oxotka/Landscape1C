@@ -154,6 +154,23 @@ a { color: var(--ink); text-underline-offset: 3px; }
 .chip:hover { background: #faf8f2; }
 .chip[aria-pressed="true"] { border-left-color: var(--ink); font-weight: 700; }
 
+/* На узком экране сайдбар уезжает наверх — фильтры горизонтально, чипы тегами. */
+@media (max-width: 720px) {
+  .fgroup { padding: 12px clamp(16px, 3vw, 24px); }
+  .fgroup__head { padding: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    display: inline-block; width: auto;
+    padding: 5px 11px;
+    border: 1px solid var(--line-strong); border-left: 1px solid var(--line-strong);
+    border-radius: 0;
+  }
+  .chip:hover { background: var(--paper-2); }
+  .chip[aria-pressed="true"] {
+    background: var(--ink); color: #fff; border-color: var(--ink); font-weight: 600;
+  }
+}
+
 /* ── Контент ─────────────────────────────── */
 .content { flex: 1; min-width: 0; background: var(--paper); }
 
@@ -197,7 +214,7 @@ a { color: var(--ink); text-underline-offset: 3px; }
 .card {
   display: flex; flex-direction: column; gap: 10px;
   text-align: left; font-family: var(--body); color: var(--ink);
-  background: var(--paper); cursor: pointer;
+  background: var(--card); cursor: pointer;          /* белая карточка на тёплом фоне сетки */
   border: none;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -205,7 +222,7 @@ a { color: var(--ink); text-underline-offset: 3px; }
   transition: background .12s ease;
 }
 .card:nth-child(3n) { border-right: none; }
-.card:hover { background: var(--card); }
+.card:hover { background: #faf8f3; }
 
 .card__top { display: flex; align-items: center; gap: 10px; }
 .card__logo {
