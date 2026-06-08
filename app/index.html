@@ -6,40 +6,40 @@
   <title>Ландшафт технологий 1С</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="grain" aria-hidden="true"></div>
-
   <header class="masthead">
-    <div class="masthead__inner">
-      <p class="kicker">СТЕК · 1С · ИНТЕРАКТИВНАЯ КАРТА</p>
-      <h1 class="title">Ландшафт<br><span>технологий&nbsp;1С</span></h1>
+    <div class="masthead__main">
+      <p class="kicker">Интерактивная карта · стек 1С</p>
+      <h1 class="title">Ландшафт технологий 1С</h1>
       <p class="lede">Не просто список, а навигация: фильтруй по&nbsp;<b>роли</b> и&nbsp;<b>контексту работы</b>, смотри зрелость и&nbsp;происхождение каждого инструмента.</p>
       <div class="search">
         <input id="search" type="search" placeholder="Поиск инструмента…" autocomplete="off" spellcheck="false">
       </div>
     </div>
+    <!-- Декоративный счётчик. Статичный: app.js обновляет только #count в строке ниже. -->
+    <div class="masthead__num" aria-hidden="true">63</div>
   </header>
 
   <section class="kits" aria-label="Стартовые наборы по контексту">
-    <span class="kits__label">Стартовый набор:</span>
+    <span class="kits__label">Старт</span>
     <div id="kits" class="kits__row"></div>
   </section>
 
-  <main class="layout">
+  <div class="body">
     <aside class="filters" id="filters" aria-label="Фильтры"></aside>
 
-    <div class="content">
+    <main class="content">
       <div class="content__bar">
         <span id="count" class="count"></span>
-        <button id="reset" class="reset" hidden>Сбросить фильтры ✕</button>
+        <button id="reset" class="reset" hidden>Сбросить ✕</button>
       </div>
       <div id="board" class="board"></div>
       <p id="empty" class="empty" hidden>Под выбранные фильтры ничего не подошло.</p>
-    </div>
-  </main>
+    </main>
+  </div>
 
   <footer class="foot">
     <span>Прототип · Вариант B</span>
