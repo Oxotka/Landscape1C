@@ -157,10 +157,6 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты",
         "проекты"
-      ],
-      "depends": [
-        "YAxUnit",
-        "Стандарты разработки"
       ]
     },
     {
@@ -199,9 +195,6 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты",
         "проекты"
-      ],
-      "depends": [
-        "Стандарты разработки"
       ]
     },
     {
@@ -266,6 +259,9 @@ window.LANDSCAPE = {
       "contexts": [
         "продукты",
         "проекты"
+      ],
+      "depends": [
+        "Встроенный язык программирования 1С:Предприятия"
       ]
     },
     {
@@ -334,6 +330,9 @@ window.LANDSCAPE = {
       "contexts": [
         "продукты",
         "проекты"
+      ],
+      "depends": [
+        "1С:Предприятие.Элемент"
       ]
     },
     {
@@ -379,10 +378,6 @@ window.LANDSCAPE = {
         "продукты",
         "проекты",
         "инхаус"
-      ],
-      "depends": [
-        "Библиотеки для OneScript",
-        "Autumn (ОСень)"
       ]
     },
     {
@@ -419,10 +414,7 @@ window.LANDSCAPE = {
         "Visual Studio Code (VSCode)"
       ],
       "depends": [
-        "Хранилище",
-        "Плагин для конфигуратора PhoenixBSL",
-        "TurboConf",
-        "Синтаксическая проверка конфигурации"
+        "Хранилище"
       ]
     },
     {
@@ -473,10 +465,7 @@ window.LANDSCAPE = {
         "Visual Studio Code (VSCode)"
       ],
       "depends": [
-        "git",
-        "Плагины для 1С:EDT",
-        "Плагин 1С:Напарник",
-        "Синтаксическая проверка конфигурации"
+        "git"
       ]
     },
     {
@@ -517,8 +506,7 @@ window.LANDSCAPE = {
         "Cursor"
       ],
       "depends": [
-        "Плагин для VSCode «1C: Platform Tools»",
-        "Vanessa-Automation"
+        "git"
       ]
     },
     {
@@ -617,6 +605,9 @@ window.LANDSCAPE = {
       "analogs": [
         "Подсистема \"Универсальные инструменты 1С для управляемых форм\"",
         "Infostart Toolkit"
+      ],
+      "depends": [
+        "Встроенный язык программирования 1С:Предприятия"
       ]
     },
     {
@@ -649,6 +640,9 @@ window.LANDSCAPE = {
       "analogs": [
         "Подсистема \"Инструменты разработчика\"",
         "Infostart Toolkit"
+      ],
+      "depends": [
+        "Встроенный язык программирования 1С:Предприятия"
       ]
     },
     {
@@ -686,13 +680,16 @@ window.LANDSCAPE = {
       "analogs": [
         "Подсистема \"Инструменты разработчика\"",
         "Подсистема \"Универсальные инструменты 1С для управляемых форм\""
+      ],
+      "depends": [
+        "Конфигуратор"
       ]
     },
     {
       "name": "Плагин для конфигуратора PhoenixBSL",
       "category": "Плагины и библиотеки",
       "subcategory": null,
-      "logo": null,
+      "logo": "phoenixbsl.png",
       "description": "Анализ и форматирование кода 1С в Конфигураторе на базе BSL LS.",
       "why": "Быстрая проверка на соответствие стандарта кода в конфигураторе.",
       "homepage": null,
@@ -783,6 +780,9 @@ window.LANDSCAPE = {
       "analogs": [
         "Плагин 1С:Напарник",
         "GitHub Copilot"
+      ],
+      "depends": [
+        "Visual Studio Code (VSCode)"
       ]
     },
     {
@@ -825,7 +825,16 @@ window.LANDSCAPE = {
       "why": "Понимает проект целиком и вносит изменения по запросу на естественном языке. С задачами на 1С работает хорошо при достаточном контексте. Доступ из РФ ограничен.",
       "homepage": "https://cursor.com",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "[1С + ИИ] ИИ сделал внешнюю обработку за 19 минут. За сколько сделаешь ты?",
+          "url": "https://infostart.ru/1c/articles/2708708/"
+        },
+        {
+          "label": "[1С + ИИ] Вайбкодинг на 1С — Проще простого! Быстрый старт!",
+          "url": "https://infostart.ru/1c/articles/2624937/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
@@ -877,7 +886,16 @@ window.LANDSCAPE = {
       "why": "Агент, который выполняет задачи разработки в терминале и в облаке. Применим и к проектам на 1С и OneScript. Доступ из РФ ограничен.",
       "homepage": "https://openai.com/codex/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "[1С + ИИ] ИИ сделал внешнюю обработку за 19 минут. За сколько сделаешь ты?",
+          "url": "https://infostart.ru/1c/articles/2708708/"
+        },
+        {
+          "label": "[1С + ИИ] Вайбкодинг на 1С — Проще простого! Быстрый старт!",
+          "url": "https://infostart.ru/1c/articles/2624937/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
@@ -1112,6 +1130,9 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Язык запросов"
+      ],
+      "depends": [
+        "Язык запросов"
       ]
     },
     {
@@ -1231,7 +1252,7 @@ window.LANDSCAPE = {
       "name": "Postgres Pro",
       "category": "Системы управления базами данных (СУБД)",
       "subcategory": null,
-      "logo": "postgresql.svg",
+      "logo": "postgrespro.svg",
       "description": "Российская СУБД на базе PostgreSQL с поддержкой и сертификацией для 1С.",
       "why": "Отечественная замена PostgreSQL/MS SQL для продуктива 1С: входит в реестр ПО, оптимизирована под нагрузку 1С.",
       "homepage": "https://postgrespro.ru/",
@@ -1254,6 +1275,9 @@ window.LANDSCAPE = {
         "Файловая СУБД",
         "IBM Db2",
         "Oracle Database"
+      ],
+      "depends": [
+        "PostgreSQL"
       ]
     },
     {
@@ -1346,9 +1370,6 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты",
         "проекты"
-      ],
-      "depends": [
-        "Конфигуратор"
       ]
     },
     {
@@ -1386,13 +1407,6 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты",
         "проекты"
-      ],
-      "depends": [
-        "1C:Enterprise Development Tools (EDT)",
-        "Gitlab CI",
-        "SonarQube",
-        "Crucible",
-        "Review Board"
       ]
     },
     {
@@ -1457,8 +1471,7 @@ window.LANDSCAPE = {
         "Bitbucket"
       ],
       "depends": [
-        "git",
-        "GitHub Copilot"
+        "git"
       ]
     },
     {
@@ -1810,6 +1823,9 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Vanessa-Automation"
+      ],
+      "depends": [
+        "OneScript"
       ]
     },
     {
@@ -1959,6 +1975,9 @@ window.LANDSCAPE = {
       "analogs": [
         "SonarQube",
         "Синтаксическая проверка конфигурации"
+      ],
+      "depends": [
+        "Стандарты разработки"
       ]
     },
     {
@@ -2071,10 +2090,6 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты",
         "проекты"
-      ],
-      "depends": [
-        "Встроенный язык программирования 1С:Предприятия",
-        "Язык запросов"
       ]
     },
     {
@@ -2159,6 +2174,9 @@ window.LANDSCAPE = {
       "analogs": [
         "Crucible",
         "Review Board"
+      ],
+      "depends": [
+        "git"
       ]
     },
     {
@@ -2266,6 +2284,9 @@ window.LANDSCAPE = {
         "GitHub Actions",
         "Travis CI",
         "TeamCity"
+      ],
+      "depends": [
+        "git"
       ]
     },
     {
@@ -2312,9 +2333,7 @@ window.LANDSCAPE = {
         "TeamCity"
       ],
       "depends": [
-        "git",
-        "CodeRabbit",
-        "ai-review"
+        "git"
       ]
     },
     {
@@ -2348,9 +2367,7 @@ window.LANDSCAPE = {
         "TeamCity"
       ],
       "depends": [
-        "git",
-        "CodeRabbit",
-        "ai-review"
+        "git"
       ]
     },
     {
@@ -2444,6 +2461,9 @@ window.LANDSCAPE = {
         "Gitlab CI",
         "GitHub Actions",
         "Travis CI"
+      ],
+      "depends": [
+        "git"
       ]
     },
     {
@@ -2556,9 +2576,6 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "продукты"
-      ],
-      "depends": [
-        "Kubernetes"
       ]
     },
     {
@@ -2659,9 +2676,6 @@ window.LANDSCAPE = {
         "франчайзи",
         "инхаус",
         "проекты"
-      ],
-      "depends": [
-        "1С:Конвертация данных"
       ]
     },
     {
@@ -3349,6 +3363,9 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "RAC/RAS"
+      ],
+      "depends": [
+        "Кластер серверов 1С:Предприятие"
       ]
     },
     {
@@ -3449,6 +3466,13 @@ window.LANDSCAPE = {
       "contexts": [
         "проекты",
         "инхаус"
+      ],
+      "depends": [
+        "PostgreSQL",
+        "Microsoft SQLServer",
+        "Postgres Pro",
+        "Oracle Database",
+        "IBM Db2"
       ]
     },
     {
@@ -3805,7 +3829,8 @@ window.LANDSCAPE = {
         "Allure"
       ],
       "depends": [
-        "Prometheus"
+        "Prometheus",
+        "ClickHouse"
       ]
     },
     {
@@ -3831,9 +3856,6 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Zabbix"
-      ],
-      "depends": [
-        "Grafana"
       ]
     },
     {
@@ -3939,6 +3961,9 @@ window.LANDSCAPE = {
       "analogs": [
         "Анализ технологического журнала",
         "1С:ЦКК (Центр контроля качества)"
+      ],
+      "depends": [
+        "Анализ технологического журнала"
       ]
     },
     {
@@ -4041,10 +4066,6 @@ window.LANDSCAPE = {
       "analogs": [
         "ClickHouse",
         "OneSwiss"
-      ],
-      "depends": [
-        "Kibana",
-        "Logstash"
       ]
     },
     {
