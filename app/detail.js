@@ -51,18 +51,24 @@
           ${badges.trim() ? `<div class="detail__badges">${badges}</div>` : ""}
         </div>
       </header>
-      <div class="detail__content">
-        ${row("Зачем нужно", i.why ? `<p>${i.why}</p>` : "")}
-        ${row("С чего начать", startInner)}
-        ${row("Аналоги", analogsInner ? `<div class="detail__rels">${analogsInner}</div>` : "")}
-        ${row("Зависимости", dependsInner ? `<div class="detail__rels">${dependsInner}</div>` : "")}
-        ${row("Роль", i.roles && i.roles.length ? `<div class="detail__tags">${tags(i.roles)}</div>` : "")}
-        ${row("Контекст", i.contexts && i.contexts.length ? `<div class="detail__tags">${tags(i.contexts)}</div>` : "")}
-      </div>
-      ${links ? `<footer class="detail__foot">${links}</footer>` : ""}`;
+      <div class="detail__scroll">
+        <div class="detail__content">
+          ${row("Зачем нужно", i.why ? `<p>${i.why}</p>` : "")}
+          ${row("С чего начать", startInner)}
+          ${row("Аналоги", analogsInner ? `<div class="detail__rels">${analogsInner}</div>` : "")}
+          ${row("Зависимости", dependsInner ? `<div class="detail__rels">${dependsInner}</div>` : "")}
+          ${row("Роль", i.roles && i.roles.length ? `<div class="detail__tags">${tags(i.roles)}</div>` : "")}
+          ${row("Контекст", i.contexts && i.contexts.length ? `<div class="detail__tags">${tags(i.contexts)}</div>` : "")}
+        </div>
+        ${links ? `<footer class="detail__foot">${links}</footer>` : ""}
+      </div>`;
     dlg.querySelector(".detail__close").addEventListener("click", () => dlg.close());
     dlg.querySelectorAll(".detail__rel").forEach(btn =>
       btn.addEventListener("click", () => openDetail(D.items[+btn.dataset.i])));
+    // Шапка схлопывается, как только середина прокручена
+    const scroll = dlg.querySelector(".detail__scroll");
+    const head = dlg.querySelector(".detail__head");
+    scroll.addEventListener("scroll", () => head.classList.toggle("is-compact", scroll.scrollTop > 4));
     if (!dlg.open) dlg.showModal();
   }
 

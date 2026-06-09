@@ -493,7 +493,8 @@ window.LANDSCAPE = {
       "availability": "доступен",
       "roles": [
         "разработчик",
-        "администратор"
+        "администратор",
+        "тестировщик"
       ],
       "contexts": [
         "продукты",
@@ -669,7 +670,8 @@ window.LANDSCAPE = {
       "license": "проприетарное",
       "availability": "доступен",
       "roles": [
-        "разработчик"
+        "разработчик",
+        "тестировщик"
       ],
       "contexts": [
         "франчайзи",
@@ -921,7 +923,7 @@ window.LANDSCAPE = {
       "logo": "vscode.svg",
       "description": "Расширение VSCode с инструментами разработки на платформе 1С.",
       "why": "Позволяет работать с около-1Сными проектами прямо в VSCode: запуск команд `vanessa-runner`, навигация по проектам, дерево метаданных, ER-диаграммы, отладка 1С и интеграция с AI-агентами через MCP — в одной панели.",
-      "homepage": "https://github.com/yellow-hammer/vscode-1c-platform-tools",
+      "homepage": null,
       "repo": "https://github.com/yellow-hammer/vscode-1c-platform-tools",
       "start": [
         {
@@ -991,7 +993,7 @@ window.LANDSCAPE = {
       "logo": "oscript-library.png",
       "description": "Готовые библиотеки сообщества для экосистемы OneScript.",
       "why": "Не писать инфраструктуру с нуля: HTTP-клиенты, работа с JSON и архивами, CI-обвязка и тесты берутся готовыми пакетами.",
-      "homepage": "https://github.com/oscript-library",
+      "homepage": null,
       "repo": "https://github.com/oscript-library",
       "start": [
         {
@@ -1084,7 +1086,7 @@ window.LANDSCAPE = {
       "logo": "oscript-library.png",
       "description": "Выгрузка истории Хранилища конфигурации 1С в git (и Mercurial).",
       "why": "Переносит коммиты из Хранилища 1С в git с сохранением авторов и комментариев — мост к нормальному версионированию.",
-      "homepage": "https://github.com/oscript-library/gitsync",
+      "homepage": null,
       "repo": "https://github.com/oscript-library/gitsync",
       "start": [],
       "maturity": "продвинутое",
@@ -1160,7 +1162,8 @@ window.LANDSCAPE = {
       "availability": "доступен",
       "roles": [
         "аналитик",
-        "разработчик"
+        "разработчик",
+        "тестировщик"
       ],
       "contexts": [
         "франчайзи",
@@ -1895,6 +1898,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "availability": "доступен",
       "roles": [
+        "тестировщик",
         "разработчик"
       ],
       "contexts": [
@@ -1947,6 +1951,95 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "Встроенный язык программирования 1С:Предприятия"
+      ]
+    },
+    {
+      "name": "Coverage41C",
+      "category": "Повышение качества",
+      "subcategory": "Автоматизированное тестирование",
+      "logo": "coverage41c.png",
+      "description": "Измерение покрытия кода 1С автотестами через протокол отладчика.",
+      "why": "Показывает, какие строки кода реально проверяются тестами, а какие нет, — помогает находить непокрытые участки и оценивать качество тестовой базы. Результат выгружается в SonarQube.",
+      "homepage": null,
+      "repo": "https://github.com/1c-syntax/Coverage41C",
+      "start": [
+        {
+          "label": "Расчет покрытия кода 1С тестами",
+          "url": "https://42clouds.com/ru-ru/techdocs/raschyot-pokrytiya-koda-1c-testami/"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "тестировщик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты"
+      ],
+      "depends": [
+        "SonarQube"
+      ]
+    },
+    {
+      "name": "ibcmdrunner",
+      "category": "Повышение качества",
+      "subcategory": "Автоматизированное тестирование",
+      "logo": "oscript-library.png",
+      "description": "OneScript-обертка над утилитой ibcmd для управления информационной базой из скриптов.",
+      "why": "Автоматизирует операции с базой (создание, выгрузка, загрузка, обновление) в CI и тестовых сценариях — без ручного запуска ibcmd.",
+      "homepage": null,
+      "repo": "https://github.com/oscript-library/ibcmdrunner",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты"
+      ],
+      "analogs": [
+        "vanessa-runner"
+      ],
+      "depends": [
+        "OneScript"
+      ]
+    },
+    {
+      "name": "1testrunner",
+      "category": "Повышение качества",
+      "subcategory": "Автоматизированное тестирование",
+      "logo": "oscript-library.png",
+      "description": "Среда запуска юнит-тестов на OneScript.",
+      "why": "Находит и прогоняет тесты, написанные на OneScript, и формирует отчет — основа автотестов для скриптовой части проектов 1С.",
+      "homepage": null,
+      "repo": "https://github.com/oscript-library/1testrunner",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "тестировщик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты"
+      ],
+      "analogs": [
+        "vanessa-runner"
+      ],
+      "depends": [
+        "OneScript"
       ]
     },
     {
@@ -2055,7 +2148,8 @@ window.LANDSCAPE = {
         "1С:Автоматизированная проверка конфигураций (АПК)"
       ],
       "depends": [
-        "git"
+        "git",
+        "Coverage41C"
       ]
     },
     {
@@ -2087,7 +2181,8 @@ window.LANDSCAPE = {
       "availability": "доступен",
       "roles": [
         "аналитик",
-        "разработчик"
+        "разработчик",
+        "тестировщик"
       ],
       "contexts": [
         "продукты",
@@ -2254,7 +2349,7 @@ window.LANDSCAPE = {
       "logo": "ai-review.png",
       "description": "Открытый ИИ-ревьюер кода: запускается в любой CI/CD с любым LLM-провайдером.",
       "why": "Гоняет ревью кода в любом пайплайне (GitHub Actions, GitLab CI, Jenkins) с любой моделью, включая локальные через Ollama/LM Studio — то есть работает и в закрытом контуре. Промпты — обычные markdown-файлы, поэтому правила легко адаптировать под стек 1С-команды.",
-      "homepage": "https://github.com/Nikita-Filonov/ai-review",
+      "homepage": null,
       "repo": "https://github.com/Nikita-Filonov/ai-review",
       "start": [],
       "maturity": "нишевое",
@@ -2449,7 +2544,7 @@ window.LANDSCAPE = {
       "logo": "vanessa.png",
       "description": "OneScript-оркестратор сборки, тестов и проверок 1С в CI.",
       "why": "Стандартный инструмент CI для 1С: создает и обновляет базы, запускает Vanessa-Automation, замеряет покрытие и выгружает конфигурацию — одной командой в пайплайне.",
-      "homepage": "https://github.com/vanessa-opensource/vanessa-runner",
+      "homepage": null,
       "repo": "https://github.com/vanessa-opensource/vanessa-runner",
       "start": [],
       "maturity": "продвинутое",
@@ -2465,6 +2560,10 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты",
         "проекты"
+      ],
+      "analogs": [
+        "ibcmdrunner",
+        "1testrunner"
       ],
       "depends": [
         "OneScript",
@@ -3078,7 +3177,7 @@ window.LANDSCAPE = {
       "logo": "karate.svg",
       "description": "Фреймворк автотестов API с человекочитаемым синтаксисом на базе Gherkin.",
       "why": "Автоматизация тестирования HTTP-сервисов 1С декларативными сценариями — без написания кода на Java.",
-      "homepage": "https://github.com/karatelabs/karate",
+      "homepage": null,
       "repo": "https://github.com/karatelabs/karate",
       "start": [],
       "maturity": "нишевое",
@@ -3151,7 +3250,7 @@ window.LANDSCAPE = {
       "logo": "swagger.svg",
       "description": "Интерактивная документация к REST API (бывший Swagger).",
       "why": "Наглядно описывает контракты REST-сервисов 1С и позволяет интеграторам пробовать запросы прямо из браузера.",
-      "homepage": "https://github.com/swagger-api/swagger-ui",
+      "homepage": null,
       "repo": "https://github.com/swagger-api/swagger-ui",
       "start": [
         {
@@ -3591,7 +3690,9 @@ window.LANDSCAPE = {
       "license": "проприетарное",
       "availability": "ограничен",
       "roles": [
-        "аналитик"
+        "аналитик",
+        "тестировщик",
+        "разработчик"
       ],
       "contexts": [
         "инхаус",
@@ -3618,7 +3719,9 @@ window.LANDSCAPE = {
       "license": "проприетарное",
       "availability": "доступен",
       "roles": [
-        "аналитик"
+        "аналитик",
+        "разработчик",
+        "тестировщик"
       ],
       "contexts": [
         "инхаус",
@@ -3647,7 +3750,8 @@ window.LANDSCAPE = {
       "availability": "доступен",
       "roles": [
         "разработчик",
-        "аналитик"
+        "аналитик",
+        "тестировщик"
       ],
       "contexts": [
         "франчайзи",

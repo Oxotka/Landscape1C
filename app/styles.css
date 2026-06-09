@@ -130,6 +130,8 @@ a { color: var(--ink); text-underline-offset: 3px; }
   margin: 0 0 18px;
   color: var(--ink);
 }
+/* На телефонах «технологий» не влезает — заголовок сокращается до «Ландшафт 1С». */
+@media (max-width: 430px) { .title__mid { display: none; } }
 
 .search input {
   width: min(420px, 100%);
@@ -363,18 +365,28 @@ a { color: var(--ink); text-underline-offset: 3px; }
 .detail {
   border: 1.5px solid var(--ink); border-radius: 0; padding: 0;
   max-width: 720px; width: calc(100% - 32px);
+  max-height: calc(100dvh - 32px); overflow: hidden;   /* высота ограничена — скроллит внутренний контент */
   background: var(--card); color: var(--ink);
 }
 .detail::backdrop { background: rgba(26, 26, 22, .4); }
-.detail__body { position: relative; }
+/* Колонка: шапка и подвал зафиксированы, середина прокручивается */
+.detail__body {
+  position: relative; display: flex; flex-direction: column;
+  max-height: calc(100dvh - 32px);
+}
 
-/* Шапка */
+/* Шапка — закреплена сверху; при скролле схлопывается (класс is-compact) */
 .detail__head {
+  flex: none;
   display: flex; align-items: center; gap: 16px;
   padding: 26px clamp(20px, 4vw, 32px) 20px;
   border-bottom: 1px solid var(--line);
+  transition: padding .15s ease;
 }
-.detail__logo { width: 52px; height: 52px; flex: none; display: grid; place-items: center; }
+.detail__logo {
+  width: 52px; height: 52px; flex: none; display: grid; place-items: center;
+  transition: width .15s ease, height .15s ease;
+}
 .detail__logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .detail__logo--ph {
   width: 52px; height: 52px; border-radius: 2px; border: 1px solid var(--line);
@@ -382,7 +394,7 @@ a { color: var(--ink); text-underline-offset: 3px; }
 }
 .detail__headtext { min-width: 0; }
 .detail__title {
-  font-family: var(--display); font-weight: 900; font-size: 22px;
+  font-family: var(--display); font-weight: 900; font-size: 19px;
   text-transform: uppercase; letter-spacing: -.5px;
   margin: 0 0 4px; line-height: 1.05; overflow-wrap: break-word;
 }
@@ -391,7 +403,16 @@ a { color: var(--ink); text-underline-offset: 3px; }
 }
 .detail__badges { display: flex; flex-wrap: wrap; gap: 6px; }
 
-/* Одна колонка */
+/* Узкая закрепленная шапка при прокрутке: мелкое лого, без подзаголовка, чипсы остаются */
+.detail__head.is-compact { padding-top: 13px; padding-bottom: 12px; }
+.detail__head.is-compact .detail__logo,
+.detail__head.is-compact .detail__logo--ph { width: 34px; height: 34px; }
+.detail__head.is-compact .detail__logo--ph { font-size: 12px; }
+.detail__head.is-compact .detail__sub { display: none; }
+.detail__head.is-compact .detail__title { font-size: 16px; margin-bottom: 6px; }
+
+/* Прокручиваемая середина: контент + подвал (шапка остается закрепленной) */
+.detail__scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
 .detail__content { padding: 22px clamp(20px, 4vw, 32px); }
 
 .detail__row { margin: 0 0 18px; }
@@ -461,7 +482,7 @@ a { color: var(--ink); text-underline-offset: 3px; }
 .kicker .back { color: #999; text-decoration: none; }
 .kicker .back:hover { color: var(--ink-soft); }
 .page { max-width: 860px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
-.doc { padding: 36px 0 64px; }
+.doc { padding-block: 36px 64px; }
 .doc .lead {
   font-size: clamp(15px, 1.7vw, 19px); line-height: 1.55;
   margin: 0 0 32px; max-width: 64ch;
@@ -484,12 +505,16 @@ a { color: var(--ink); text-underline-offset: 3px; }
 .axis__desc { color: var(--ink); }
 
 /* Экспертный совет — карточки кураторов */
-.council { padding: 30px 0 72px; }
+/* Совет шире текстовых страниц (860) — чтобы 3 колонки были просторными. */
+.council { max-width: 1080px; padding-block: 30px 72px; }
+.council .lead { max-width: 60ch; }
+/* Кураторы — сетка в 3 колонки; автор (.exp--lead) во всю ширину под ними.
+   На узком экране — одна колонка. */
 .exp-grid {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(20px, 3.5vw, 36px); margin-top: 34px;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px; margin-top: 34px;
 }
-@media (max-width: 600px) { .exp-grid { grid-template-columns: 1fr; } }
+@media (max-width: 720px) { .exp-grid { grid-template-columns: 1fr; } }
 
 .exp {
   display: flex; flex-direction: column;
@@ -516,6 +541,7 @@ a { color: var(--ink); text-underline-offset: 3px; }
   font-family: var(--display); font-weight: 700;
   font-size: clamp(19px, 2.3vw, 26px); letter-spacing: -.5px;
   line-height: 1.05; color: var(--ink); margin: 0;
+  overflow-wrap: break-word;
 }
 .exp__bio {
   font-size: 14px; line-height: 1.6; color: var(--ink-soft); margin: 0;
@@ -606,10 +632,9 @@ a { color: var(--ink); text-underline-offset: 3px; }
     margin: 12px 12px 0;
   }
   .graph-filters { margin: 14px 12px 0; gap: 6px 14px; }
+  .graph-flabel { display: none; }              /* только чипы, без подписей «Роль»/«Зрелость» */
   .graph__legend { top: 8px; left: 8px; padding: 7px 9px; font-size: 10px; max-width: 44%; }
   .graph__legend li { margin: 3px 0; }
   .graph__hint { display: none; }
-  .graph__zoom { left: auto; right: 8px; bottom: 8px; }
-  .graph__zoom button { width: 40px; height: 40px; }
-  .graph__zoom svg { width: 20px; height: 20px; }
+  .graph__zoom { display: none; }               /* на тач-экране зум пинчем, кнопки не нужны */
 }
