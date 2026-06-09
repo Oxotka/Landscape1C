@@ -12,7 +12,6 @@ const DIST = path.join(ROOT, "dist");
 // Не нужно на публичном хостинге (только локальная разработка / артефакты).
 const EXCLUDE = new Set([
   "editor.html", "editor.js", "editor.css",   // редактор разметки — пишет в data.js, только локально
-  "data.generated.js",                        // промежуточный артефакт конвейера, на него нет ссылок
   ".DS_Store",
 ]);
 
