@@ -78,8 +78,10 @@
   }
 
   // ── Рендер доски ──────────────────────────
-  // Порядок сортировки карточек внутри раздела по зрелости
+  // Порядок сортировки карточек внутри раздела: зрелость → происхождение → лицензия
   const MAT_ORDER = { "базовое": 0, "продвинутое": 1, "нишевое": 2 };
+  const ORIGIN_ORDER = { "отечественное": 0, "зарубежное": 1 };
+  const LICENSE_ORDER = { "open-source": 0, "проприетарное": 1, "бесплатное": 2 };
 
   function apply() {
     const board = $("#board");
@@ -88,10 +90,12 @@
 
     const renderCat = (catName, blockName) => {
       const items = visible.filter(i => i.category === catName)
-        // Сначала доступные в РФ, ограниченные — в конец; внутри групп — по зрелости
+        // Доступные в РФ раньше; внутри — по зрелости, затем отечественные, затем по лицензии
         .sort((a, b) =>
           (a.availability === "ограничен") - (b.availability === "ограничен")
-          || (MAT_ORDER[a.maturity] ?? 99) - (MAT_ORDER[b.maturity] ?? 99));
+          || (MAT_ORDER[a.maturity] ?? 99) - (MAT_ORDER[b.maturity] ?? 99)
+          || (ORIGIN_ORDER[a.origin] ?? 99) - (ORIGIN_ORDER[b.origin] ?? 99)
+          || (LICENSE_ORDER[a.license] ?? 99) - (LICENSE_ORDER[b.license] ?? 99));
       if (!items.length) return;
       const cat = document.createElement("section");
       cat.className = "cat";

@@ -808,8 +808,8 @@ window.LANDSCAPE = {
         "инхаус"
       ],
       "analogs": [
-        "GigaCode",
-        "Плагин 1С:Напарник"
+        "Плагин 1С:Напарник",
+        "GigaCode"
       ],
       "depends": [
         "GitHub"
@@ -848,6 +848,7 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Visual Studio Code (VSCode)",
+        "Claude Code",
         "Codex"
       ]
     },
@@ -873,6 +874,7 @@ window.LANDSCAPE = {
         "инхаус"
       ],
       "analogs": [
+        "Cursor",
         "Codex"
       ]
     },
@@ -1098,10 +1100,48 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "analogs": [
+        "1С:ГитКонвертер"
+      ],
       "depends": [
         "Хранилище",
         "git",
         "OneScript"
+      ]
+    },
+    {
+      "name": "1С:ГитКонвертер",
+      "category": "Плагины и библиотеки",
+      "subcategory": null,
+      "logo": "1c.png",
+      "description": "Односторонняя синхронизация хранилища конфигурации 1С с репозиторием Git и переход на разработку в 1С:EDT с сохранением истории.",
+      "why": "Мост между классическим хранилищем 1С и git-процессом: переносит историю из хранилища в Git и позволяет перейти на разработку в 1С:EDT.",
+      "homepage": null,
+      "repo": "https://github.com/1C-Company/GitConverter",
+      "start": [
+        {
+          "label": "Документация 1С:ГитКонвертер",
+          "url": "https://its.1c.ru/db/metod8dev#content:5937:hdoc"
+        }
+      ],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "администратор"
+      ],
+      "contexts": [
+        "продукты",
+        "инхаус"
+      ],
+      "analogs": [
+        "gitsync"
+      ],
+      "depends": [
+        "git",
+        "Хранилище"
       ]
     },
     {
@@ -1127,9 +1167,6 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты",
         "проекты"
-      ],
-      "analogs": [
-        "Язык запросов"
       ],
       "depends": [
         "Язык запросов"
@@ -1157,11 +1194,6 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты",
         "проекты"
-      ],
-      "analogs": [
-        "PostgreSQL",
-        "Microsoft SQLServer",
-        "Postgres Pro"
       ]
     },
     {
@@ -1203,9 +1235,10 @@ window.LANDSCAPE = {
         "инхаус"
       ],
       "analogs": [
-        "Файловая СУБД",
         "Microsoft SQLServer",
-        "Postgres Pro"
+        "Postgres Pro",
+        "Oracle Database",
+        "IBM Db2"
       ]
     },
     {
@@ -1243,9 +1276,10 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Файловая СУБД",
         "PostgreSQL",
-        "Postgres Pro"
+        "Postgres Pro",
+        "Oracle Database",
+        "IBM Db2"
       ]
     },
     {
@@ -1272,9 +1306,8 @@ window.LANDSCAPE = {
       "analogs": [
         "PostgreSQL",
         "Microsoft SQLServer",
-        "Файловая СУБД",
-        "IBM Db2",
-        "Oracle Database"
+        "Oracle Database",
+        "IBM Db2"
       ],
       "depends": [
         "PostgreSQL"
@@ -1302,9 +1335,10 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Microsoft SQLServer",
         "PostgreSQL",
-        "Postgres Pro"
+        "Microsoft SQLServer",
+        "Postgres Pro",
+        "IBM Db2"
       ]
     },
     {
@@ -1329,9 +1363,10 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Oracle Database",
+        "PostgreSQL",
         "Microsoft SQLServer",
-        "Postgres Pro"
+        "Postgres Pro",
+        "Oracle Database"
       ]
     },
     {
@@ -1370,6 +1405,9 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты",
         "проекты"
+      ],
+      "analogs": [
+        "git"
       ]
     },
     {
@@ -1407,6 +1445,9 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты",
         "проекты"
+      ],
+      "analogs": [
+        "Хранилище"
       ]
     },
     {
@@ -1561,9 +1602,7 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "MAKER-STUDIO",
-        "Mockplus",
-        "Balsamiq"
+        "Mockplus"
       ]
     },
     {
@@ -1589,9 +1628,7 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Figma",
-        "Balsamiq",
-        "MAKER-STUDIO"
+        "Figma"
       ]
     },
     {
@@ -1617,9 +1654,8 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Figma",
-        "Mockplus",
-        "MAKER-STUDIO"
+        "MAKER-STUDIO",
+        "Накидка"
       ]
     },
     {
@@ -1651,10 +1687,8 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Накидка",
-        "Figma",
-        "Mockplus",
-        "Balsamiq"
+        "Balsamiq",
+        "Накидка"
       ]
     },
     {
@@ -1690,6 +1724,7 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
+        "Balsamiq",
         "MAKER-STUDIO"
       ]
     },
@@ -1938,8 +1973,8 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "SonarQube",
-        "1С:Автоматизированная проверка конфигураций (АПК)"
+        "1С:Автоматизированная проверка конфигураций (АПК)",
+        "SonarQube"
       ],
       "depends": [
         "Конфигуратор",
@@ -1973,8 +2008,8 @@ window.LANDSCAPE = {
         "инхаус"
       ],
       "analogs": [
-        "SonarQube",
-        "Синтаксическая проверка конфигурации"
+        "Синтаксическая проверка конфигурации",
+        "SonarQube"
       ],
       "depends": [
         "Стандарты разработки"
@@ -2016,8 +2051,8 @@ window.LANDSCAPE = {
         "инхаус"
       ],
       "analogs": [
-        "1С:Автоматизированная проверка конфигураций (АПК)",
-        "Синтаксическая проверка конфигурации"
+        "Синтаксическая проверка конфигурации",
+        "1С:Автоматизированная проверка конфигураций (АПК)"
       ],
       "depends": [
         "git"
@@ -2060,7 +2095,11 @@ window.LANDSCAPE = {
         "инхаус"
       ],
       "analogs": [
-        "Jira"
+        "Jira",
+        "Яндекс Трекер",
+        "YouTrack",
+        "Redmine",
+        "Битрикс24"
       ]
     },
     {
@@ -2114,8 +2153,8 @@ window.LANDSCAPE = {
         "инхаус"
       ],
       "analogs": [
-        "Collaborator",
-        "Review Board"
+        "Review Board",
+        "Collaborator"
       ],
       "depends": [
         "git"
@@ -2528,6 +2567,9 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "проекты"
+      ],
+      "analogs": [
+        "Ansible"
       ]
     },
     {
@@ -2706,8 +2748,8 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Kafka",
-        "RabbitMQ"
+        "RabbitMQ",
+        "Kafka"
       ]
     },
     {
@@ -2833,8 +2875,8 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Kafka",
-        "1С:Шина"
+        "1С:Шина",
+        "Kafka"
       ]
     },
     {
@@ -2870,8 +2912,8 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "RabbitMQ",
-        "1С:Шина"
+        "1С:Шина",
+        "RabbitMQ"
       ]
     },
     {
@@ -2963,8 +3005,10 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Postman",
-        "Insomnia"
+        "Insomnia",
+        "SoapUI",
+        "Karate",
+        "Postman"
       ]
     },
     {
@@ -2991,8 +3035,10 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Postman",
-        "Bruno"
+        "Bruno",
+        "SoapUI",
+        "Karate",
+        "Postman"
       ]
     },
     {
@@ -3019,6 +3065,9 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
+        "Bruno",
+        "Insomnia",
+        "Karate",
         "Postman"
       ]
     },
@@ -3046,8 +3095,10 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Postman",
-        "SoapUI"
+        "Bruno",
+        "Insomnia",
+        "SoapUI",
+        "Postman"
       ]
     },
     {
@@ -3200,7 +3251,7 @@ window.LANDSCAPE = {
           "url": "https://v8.1c.ru/metod/books/135703.htm"
         }
       ],
-      "maturity": "нишевое",
+      "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
       "availability": "доступен",
@@ -3279,8 +3330,8 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Microsoft Power BI",
         "1С:Аналитика",
+        "Microsoft Power BI",
         "Visiology"
       ]
     },
@@ -3306,9 +3357,9 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
+        "1С:Аналитика",
         "Microsoft Power BI",
-        "Yandex DataLens",
-        "1С:Аналитика"
+        "Yandex DataLens"
       ]
     },
     {
@@ -3393,7 +3444,8 @@ window.LANDSCAPE = {
         "RAC/RAS"
       ],
       "depends": [
-        "Кластер серверов 1С:Предприятие"
+        "Кластер серверов 1С:Предприятие",
+        "1С:Эксперт по технологическим вопросам"
       ]
     },
     {
@@ -3547,7 +3599,8 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Teamly"
+        "Teamly",
+        "Wiki репозитория"
       ]
     },
     {
@@ -3573,7 +3626,41 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Confluence"
+        "Confluence",
+        "Wiki репозитория"
+      ]
+    },
+    {
+      "name": "Wiki репозитория",
+      "category": "Моделирование и документация",
+      "subcategory": null,
+      "logo": "wiki.svg",
+      "logoInvert": true,
+      "description": "Встроенная вики git-хостинга: статьи в Markdown рядом с кодом, без отдельного сервиса.",
+      "why": "Базовый способ вести проектную документацию команды, когда не нужен отдельный Confluence: вики GitLab/GitHub/GitVerse хранится в git и правится в Markdown.",
+      "homepage": null,
+      "repo": null,
+      "start": [],
+      "maturity": "базовое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "аналитик"
+      ],
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Confluence",
+        "Teamly"
+      ],
+      "depends": [
+        "git"
       ]
     },
     {
@@ -3605,8 +3692,8 @@ window.LANDSCAPE = {
       "analogs": [
         "1С:Специалист‑консультант",
         "1С:Специалист",
-        "Сертификация от 1С-ТестЦентр",
-        "Сертификация от Госуслуг"
+        "1С:Эксперт по технологическим вопросам",
+        "1С:Эксплуататор"
       ]
     },
     {
@@ -3634,9 +3721,9 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "1С:Профессионал",
-        "Сертификация от 1С-ТестЦентр",
-        "Сертификация от Госуслуг",
-        "1С:Специалист"
+        "1С:Специалист",
+        "1С:Эксперт по технологическим вопросам",
+        "1С:Эксплуататор"
       ]
     },
     {
@@ -3665,8 +3752,8 @@ window.LANDSCAPE = {
       "analogs": [
         "1С:Профессионал",
         "1С:Специалист‑консультант",
-        "Сертификация от 1С-ТестЦентр",
-        "Сертификация от Госуслуг"
+        "1С:Эксперт по технологическим вопросам",
+        "1С:Эксплуататор"
       ]
     },
     {
@@ -3691,6 +3778,16 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты",
         "продукты"
+      ],
+      "analogs": [
+        "1С:Профессионал",
+        "1С:Специалист‑консультант",
+        "1С:Специалист",
+        "1С:Эксплуататор"
+      ],
+      "depends": [
+        "1С:Эксплуататор",
+        "Консоль администрирования серверов 1С"
       ]
     },
     {
@@ -3719,6 +3816,15 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты",
         "продукты"
+      ],
+      "analogs": [
+        "1С:Профессионал",
+        "1С:Специалист‑консультант",
+        "1С:Специалист",
+        "1С:Эксперт по технологическим вопросам"
+      ],
+      "depends": [
+        "1С:Эксперт по технологическим вопросам"
       ]
     },
     {
@@ -3743,10 +3849,7 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "1С:Профессионал",
-        "1С:Специалист‑консультант",
-        "Сертификация от Госуслуг",
-        "1С:Специалист"
+        "Сертификация от Госуслуг"
       ]
     },
     {
@@ -3773,10 +3876,7 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "1С:Профессионал",
-        "1С:Специалист‑консультант",
-        "Сертификация от 1С-ТестЦентр",
-        "1С:Специалист"
+        "Сертификация от 1С-ТестЦентр"
       ]
     },
     {
@@ -3959,8 +4059,8 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Анализ технологического журнала",
-        "1С:ЦКК (Центр контроля качества)"
+        "1С:ЦКК (Центр контроля качества)",
+        "Анализ технологического журнала"
       ],
       "depends": [
         "Анализ технологического журнала"
@@ -3986,9 +4086,6 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "проекты"
-      ],
-      "analogs": [
-        "1С:ЦКК (Центр контроля качества)"
       ]
     },
     {
@@ -4064,8 +4161,8 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "ClickHouse",
-        "OneSwiss"
+        "OneSwiss",
+        "ClickHouse"
       ]
     },
     {
@@ -4142,8 +4239,8 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Elasticsearch",
-        "OneSwiss"
+        "OneSwiss",
+        "Elasticsearch"
       ]
     },
     {
@@ -4172,9 +4269,11 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Trello",
+        "1С:СППР",
         "Яндекс Трекер",
-        "1С:СППР"
+        "YouTrack",
+        "Redmine",
+        "Битрикс24"
       ]
     },
     {
@@ -4202,8 +4301,8 @@ window.LANDSCAPE = {
         "инхаус"
       ],
       "analogs": [
-        "Jira",
-        "Яндекс Трекер"
+        "Kaiten",
+        "WEEEK"
       ]
     },
     {
@@ -4232,8 +4331,10 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
+        "1С:СППР",
         "Jira",
-        "Trello",
+        "YouTrack",
+        "Redmine",
         "Битрикс24"
       ]
     },
@@ -4263,8 +4364,11 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
+        "1С:СППР",
         "Jira",
-        "Яндекс Трекер"
+        "Яндекс Трекер",
+        "Redmine",
+        "Битрикс24"
       ]
     },
     {
@@ -4293,8 +4397,11 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
+        "1С:СППР",
         "Jira",
-        "Trello"
+        "Яндекс Трекер",
+        "YouTrack",
+        "Битрикс24"
       ]
     },
     {
@@ -4325,9 +4432,7 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Trello",
-        "Jira",
-        "Яндекс Трекер",
-        "Битрикс24"
+        "WEEEK"
       ]
     },
     {
@@ -4358,8 +4463,7 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Trello",
-        "Kaiten",
-        "Яндекс Трекер"
+        "Kaiten"
       ]
     },
     {
@@ -4389,9 +4493,11 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Kaiten",
+        "1С:СППР",
+        "Jira",
         "Яндекс Трекер",
-        "Jira"
+        "YouTrack",
+        "Redmine"
       ]
     },
     {
