@@ -63,6 +63,7 @@ body {
   background: var(--paper);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  padding-bottom: 48px;           /* место под фиксированный подвал */
 }
 
 a { color: var(--ink); text-underline-offset: 3px; }
@@ -472,11 +473,54 @@ a { color: var(--ink); text-underline-offset: 3px; }
 .detail__close:focus { outline: none; }              /* не подсвечивать при авто-фокусе на открытии */
 
 
-/* ── Подвал ──────────────────────────────── */
+/* ── Подвал (фиксирован тонкой полосой внизу) ── */
 .foot {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 25;
   border-top: 2px solid var(--ink);
-  padding: 18px clamp(20px, 4vw, 40px);
-  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
-  font-size: 11px; color: #999; letter-spacing: .5px; text-transform: uppercase;
+  background: var(--paper);
+  padding: 8px clamp(20px, 4vw, 40px);
+  display: flex; justify-content: center;
+  font-size: 10px; color: #999; letter-spacing: .5px; text-transform: uppercase;
+  transition: font-size .15s ease, padding .15s ease;
 }
-.foot a { color: var(--ink); }
+.foot a { color: var(--ink); text-decoration: none; }
+.foot__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 22px; }
+/* долистали до конца — раскрываем: подчёркивание и чуть крупнее */
+.foot.is-full { font-size: 12px; padding: 12px clamp(20px, 4vw, 40px); }
+.foot.is-full a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ── Отдельные страницы (Методология, Экспертный совет) ── */
+.kicker .back { color: #999; text-decoration: none; }
+.kicker .back:hover { color: var(--ink-soft); }
+.page { max-width: 860px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
+.doc { padding: 36px 0 64px; }
+.doc .lead {
+  font-size: clamp(15px, 1.7vw, 19px); line-height: 1.55;
+  margin: 0 0 32px; max-width: 64ch;
+}
+.doc h2 {
+  font-family: var(--display); font-weight: 700;
+  font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
+  margin: 36px 0 12px; padding-top: 20px; border-top: 1px solid var(--line);
+}
+.doc section:first-child h2 { border-top: none; padding-top: 0; margin-top: 0; }
+.doc p { margin: 0 0 12px; max-width: 64ch; }
+.doc ul { margin: 0 0 14px; padding-left: 20px; max-width: 64ch; }
+.doc li { margin: 0 0 7px; }
+.doc strong { font-weight: 600; }
+
+/* Экспертный совет — сетка персон с плейсхолдерами */
+.council { padding: 30px 0 64px; }
+.council__grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 30px 24px; margin-top: 26px;
+}
+.person { text-align: center; }
+.person__photo {
+  width: 100%; aspect-ratio: 1; background: var(--paper-2);
+  border: 1px solid var(--card-line);
+  display: grid; place-items: center;
+  color: #b3a89c; font-family: var(--display); font-weight: 700; font-size: 26px;
+}
+.person__name { font-weight: 600; margin: 12px 0 3px; }
+.person__role { font-size: 13px; color: var(--ink-soft); line-height: 1.4; }

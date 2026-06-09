@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Методология · Ландшафт технологий 1С</title>
+  <script>
+    // Тема до отрисовки — чтобы не мигало.
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=34">
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <span class="topbar__brand"><a href="index.html" style="text-decoration:none;color:inherit">Ландшафт</a></span>
+    <span class="topbar__search" style="font-size:13px;color:#999">Методология</span>
+    <button class="theme-toggle" type="button" aria-label="Переключить тему">
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+    </button>
+  </div>
+
+  <header class="masthead">
+    <div class="masthead__main">
+      <p class="kicker"><a href="index.html" class="back">← Ландшафт</a></p>
+      <h1 class="title">Методология</h1>
+    </div>
+    <button class="theme-toggle" type="button" aria-label="Переключить тему">
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+    </button>
+  </header>
+
+  <main class="page doc">
+    <p class="lead">Ландшафт — не просто список инструментов, а карта с мнением: для каждого инструмента указано, кто с ним работает, насколько он зрелый в мире 1С, какая у него лицензия и в каком контексте он нужен. Чтобы этим меткам можно было доверять, мы проставляем их по понятным правилам. Ниже — эти правила коротко.</p>
+
+    <section>
+      <h2>Роль</h2>
+      <p>Ставим роль, если человек в этом кресле <strong>реально работает руками</strong> в инструменте, а не просто иногда смотрит его вывод. Пересечения нормальны — один и тот же git нужен и разработчику, и администратору.</p>
+      <ul>
+        <li><strong>Разработчик</strong> — пишет код (BSL) и запросы, конфигурации и расширения, отлаживает, версионирует, пишет юнит-тесты, кодит интеграции.</li>
+        <li><strong>Администратор</strong> (включая DevOps и эксплуатацию) — ставит и настраивает платформу, кластер, публикацию и СУБД; бэкапы и обновления; CI-инфраструктуру и контейнеры; мониторинг и производительность.</li>
+        <li><strong>Тестировщик</strong> — функционально тестирует, пишет автотесты (1С:Сценарное тестирование, Vanessa), прогоняет их на CI, ведёт баги.</li>
+        <li><strong>Аналитик</strong> — собирает требования и пишет ТЗ, моделирует процессы, делает прототипы, настраивает типовые решения, строит отчёты.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Зрелость</h2>
+      <p>Насколько инструмент укоренён <strong>в экосистеме 1С</strong> — а не его общесофтовая популярность. Свойство самого инструмента: одна метка, роль не учитываем. Рыночные тренды («растёт / угасает») не измеряем.</p>
+      <ul>
+        <li><strong>базовое</strong> — фундамент, который знает каждый в профессии; точка входа.</li>
+        <li><strong>продвинутое</strong> — зрелый профессиональный мейнстрим, требует опыта.</li>
+        <li><strong>нишевое</strong> — для узких задач или узкого круга команд; сюда же новые продукты, ещё не ставшие стандартом, и технически вытесненные.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Происхождение</h2>
+      <p><strong>Отечественное</strong> или <strong>зарубежное</strong> — по стране, где технология родилась (сообщество и вендор), а не по текущей юрисдикции компании. Например, ClickHouse считаем отечественным (родом из Яндекса), хотя компания сейчас в США.</p>
+    </section>
+
+    <section>
+      <h2>Лицензия</h2>
+      <ul>
+        <li><strong>open-source</strong> — открытый исходный код (по основному продукту, даже если есть платные редакции).</li>
+        <li><strong>бесплатное</strong> — бесплатно в использовании, но код закрыт.</li>
+        <li><strong>проприетарное</strong> — платный закрытый продукт.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Доступность</h2>
+      <p>Можно ли свободно купить и использовать инструмент в России сегодня: <strong>доступен</strong> или <strong>ограничен</strong> (вендор ушёл из РФ или ограничил продажи, лицензии, облако). Вынесли отдельной осью, чтобы не путать уход с рынка с технической зрелостью — это разные вещи: PostgreSQL зарубежный, но доступен.</p>
+    </section>
+
+    <section>
+      <h2>Контекст работы</h2>
+      <p>В каком сеттинге инструмент реально нужен. Главный различитель — масштаб, современность практик и нужна ли эксплуатация. Инструмент может относиться к нескольким контекстам.</p>
+      <ul>
+        <li><strong>Франчайзи</strong> — точечные доработки по месту; важны простота и скорость.</li>
+        <li><strong>Продукт</strong> — разработка тиражной конфигурации; максимум современных практик (EDT, git, CI/CD, тесты).</li>
+        <li><strong>Проект</strong> — масштабное внедрение: обследование, моделирование, миграция, нагрузочное тестирование, интеграции.</li>
+        <li><strong>Инхаус</strong> — сопровождение и доработка конфигурации у себя; самый широкий профиль.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Категории и блоки</h2>
+      <p>Инструменты сгруппированы в <strong>категории</strong>, а категории — в шесть <strong>блоков</strong> по этапам работы: Проектирование, Разработка, Качество, Инфраструктура и эксплуатация, Данные и интеграции, Управление и компетенции. Внутри категории карточки идут от доступных в РФ к ограниченным и от базовой зрелости к нишевой.</p>
+    </section>
+
+    <section id="expert-council">
+      <h2>Экспертный совет</h2>
+      <p>Текущая разметка — <strong>черновик одного куратора</strong>. Достоверность обеспечит экспертный совет: ключевые лидеры сообщества 1С, каждый выверяет свою область. Состав — на <a href="council.html">отдельной странице</a>.</p>
+    </section>
+
+    <section>
+      <h2>Актуализация</h2>
+      <p>Метки протухают: инструменты взрослеют, вендоры уходят, фирма «1С» меняет курс. Пересматриваем разметку <strong>раз в год</strong> силами куратора и экспертного совета; при крупных сдвигах рынка — внепланово.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <nav class="foot__links">
+      <a href="methodology.html">Методология</a>
+      <a href="council.html">Экспертный совет</a>
+      <a href="https://boosty.to/1cnik/purchase/3363092?ssource=DIRECT&share=subscription_link" target="_blank" rel="noopener">Поддержать</a>
+      <a href="https://t.me/AriN1C" target="_blank" rel="noopener">Telegram</a>
+    </nav>
+  </footer>
+
+  <script>
+    document.querySelectorAll(".theme-toggle").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (e) {}
+      });
+    });
+    var topbar = document.getElementById("topbar");
+    var mast = document.querySelector(".masthead");
+    var foot = document.querySelector(".foot");
+    function onScroll() {
+      topbar.classList.toggle("is-visible", window.scrollY > mast.offsetHeight - 10);
+      foot.classList.toggle("is-full", window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2);
+    }
+    addEventListener("scroll", onScroll, { passive: true });
+    addEventListener("resize", onScroll);
+    onScroll();
+  </script>
+</body>
+</html>
