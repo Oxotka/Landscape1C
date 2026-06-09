@@ -58,10 +58,12 @@
   // ── Фильтрация ────────────────────────────
   function matches(item) {
     if (query) {
-      // Ищем по имени, описанию, разделу и меткам ролей/контекста, плюс «зачем»
+      // Ищем по имени, описанию, разделу, меткам ролей/контекста, «зачем»
+      // и скрытым синонимам (aliases — русские транслитерации англ. названий и пр.)
       const hay = [
         item.name, item.description, item.category, item.subcategory, item.why,
-        (item.roles || []).join(" "), (item.contexts || []).join(" ")
+        (item.roles || []).join(" "), (item.contexts || []).join(" "),
+        (item.aliases || []).join(" ")
       ].filter(Boolean).join(" ").toLowerCase();
       if (!hay.includes(query)) return false;
     }

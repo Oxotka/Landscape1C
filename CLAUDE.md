@@ -26,7 +26,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Источник данных
 
-Единственный источник — `app/data.js` (`window.LANDSCAPE`, поля `roles/contexts/maturity/origin/license/availability/why/start/analogs/depends/...`). Правки контента вносить сюда — вручную или через редактор (`app/editor.html`, см. ниже).
+Единственный источник — `app/data.js` (`window.LANDSCAPE`, поля `roles/contexts/maturity/origin/license/availability/why/start/analogs/depends/aliases/...`). Правки контента вносить сюда — вручную или через редактор (`app/editor.html`, см. ниже).
+
+**`aliases`** — скрытый от пользователя массив поисковых синонимов (русские транслитерации англоязычных названий и пр.: `git`→`гит`, `SonarQube`→`сонаркуб`). Не отображается на карточке, участвует только в поиске (`app.js` → `matches()` подмешивает его в строку поиска). Редактируется в форме редактора (поле «Синонимы для поиска», через запятую).
 
 ## Команды
 

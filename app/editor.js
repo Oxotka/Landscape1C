@@ -136,10 +136,11 @@
           ${selectRow("Категория", "category", i.category, D.categories)}
           ${textRow("Подкатегория", "subcategory", i.subcategory || "")}
         </div>
-        <button id="texttoggle" type="button" class="lnkbtn">✎ Описание и «зачем нужно»</button>
+        <button id="texttoggle" type="button" class="lnkbtn">✎ Описание, «зачем нужно», синонимы</button>
         <div id="textbox" hidden>
           ${areaRow("Описание", "description", i.description)}
           ${areaRow("Зачем нужно", "why", i.why)}
+          <label class="edit__field"><span>Синонимы для поиска (через запятую, скрыто от пользователя)</span><textarea id="aliasesinput" rows="2">${escH((i.aliases || []).join(", "))}</textarea></label>
         </div>
         <div class="edit__grid2">
           ${textRow("Сайт", "homepage", i.homepage || "")}
@@ -171,6 +172,12 @@
     dlg.querySelector("#texttoggle").addEventListener("click", () => {
       const box = dlg.querySelector("#textbox");
       box.hidden = !box.hidden;
+    });
+
+    // Синонимы для поиска — строка через запятую → массив
+    dlg.querySelector("#aliasesinput").addEventListener("input", e => {
+      i.aliases = e.target.value.split(",").map(s => s.trim()).filter(Boolean);
+      save();
     });
 
     const ax = dlg.querySelector("#axisbox");
@@ -318,7 +325,7 @@
       name: "Новый инструмент", category: D.categories[0], subcategory: null, logo: null,
       description: "", why: "", homepage: null, repo: null, start: [],
       maturity: "", origin: "", license: "", availability: "", roles: [], contexts: [],
-      analogs: [], depends: [], umbrella: false,
+      analogs: [], depends: [], aliases: [], umbrella: false,
     };
   }
 
@@ -330,6 +337,7 @@
       it.contexts = it.contexts || [];
       it.analogs = it.analogs || [];
       it.depends = it.depends || [];
+      it.aliases = it.aliases || [];
     });
   }
 
