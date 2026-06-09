@@ -85,12 +85,16 @@
 
   // ── Камера ────────────────────────────────
   const view = { x: 0, y: 0, scale: 0.78 };
-  let W = 0, H = 0, dpr = 1;
+  let W = 0, H = 0, dpr = 1, fitted = false;
   function resize() {
     dpr = window.devicePixelRatio || 1;
     W = wrap.clientWidth; H = wrap.clientHeight;
     canvas.width = W * dpr; canvas.height = H * dpr;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
+    if (!fitted) {                                 // на узких экранах сразу вписываем весь граф
+      fitted = true;
+      if (W < 640) view.scale = Math.min(0.6, Math.max(0.32, W / 760));
+    }
   }
 
   // ── Физика ────────────────────────────────
@@ -131,10 +135,11 @@
   function theme() {
     const dark = document.documentElement.dataset.theme === "dark";
     return {
-      edge: dark ? "rgba(200,184,154,0.16)" : "rgba(26,26,26,0.12)",
-      edgeHot: dark ? "rgba(220,208,188,0.7)" : "rgba(26,26,26,0.55)",
+      dark,
+      edge: dark ? "rgba(200,184,154,0.32)" : "rgba(26,26,26,0.12)",
+      edgeHot: dark ? "rgba(220,208,188,0.78)" : "rgba(26,26,26,0.55)",
       label: dark ? "#dcd0bc" : "#1a1a1a",
-      nodeFill: "#f5f2ec",
+      nodeFill: dark ? "#28211e" : "#f5f2ec",
       placeholder: "#a89e90",
     };
   }
@@ -169,6 +174,7 @@
       if (n.img && n.img.complete && n.img.naturalWidth) {
         ctx.save();
         ctx.beginPath(); ctx.arc(n.x, n.y, n.r - 3.5, 0, 7); ctx.clip();
+        if (t.dark && n.item.logoInvert) ctx.filter = "invert(1)";   // монохромные лого на тёмном диске
         const s = (n.r - 3.5) * 2 * 0.82;
         ctx.drawImage(n.img, n.x - s / 2, n.y - s / 2, s, s);
         ctx.restore();
@@ -224,9 +230,8 @@
     else { drag.panning = true; drag.lx = p.x; drag.ly = p.y; }
   });
   window.addEventListener("mouseup", (e) => {
-    if (drag.node && drag.moved < 4) {
-      const hp = drag.node.item.homepage;
-      if (hp) window.open(hp, "_blank", "noopener");
+    if (drag.node && drag.moved < 4 && window.openDetail) {
+      window.openDetail(drag.node.item);
     }
     drag.node = null; drag.panning = false;
   });
@@ -239,6 +244,44 @@
     view.x = p.x - W / 2 - w.x * view.scale;
     view.y = p.y - H / 2 - w.y * view.scale;
   }, { passive: false });
+
+  // ── Тач: один палец — драг узла / пан / тап; два пальца — пинч-зум ──
+  let pinch = null;
+  const tpos = (t) => { const r = canvas.getBoundingClientRect(); return { x: t.clientX - r.left, y: t.clientY - r.top }; };
+  canvas.addEventListener("touchstart", (e) => {
+    if (e.touches.length === 1) {
+      pinch = null;
+      const p = tpos(e.touches[0]); drag.moved = 0;
+      const n = nodeAt(p.x, p.y);
+      if (n) { drag.node = n; hover = n; }
+      else { drag.panning = true; drag.lx = p.x; drag.ly = p.y; }
+    } else if (e.touches.length === 2) {
+      drag.node = null; drag.panning = false;
+      const a = tpos(e.touches[0]), b = tpos(e.touches[1]);
+      pinch = { dist: Math.hypot(a.x - b.x, a.y - b.y) };
+    }
+    e.preventDefault();
+  }, { passive: false });
+  canvas.addEventListener("touchmove", (e) => {
+    if (pinch && e.touches.length === 2) {
+      const a = tpos(e.touches[0]), b = tpos(e.touches[1]);
+      const dist = Math.hypot(a.x - b.x, a.y - b.y);
+      const cx = (a.x + b.x) / 2, cy = (a.y + b.y) / 2, w = toWorld(cx, cy);
+      view.scale = Math.min(5, Math.max(0.3, view.scale * dist / (pinch.dist || dist)));
+      view.x = cx - W / 2 - w.x * view.scale; view.y = cy - H / 2 - w.y * view.scale;
+      pinch.dist = dist;
+    } else if (e.touches.length === 1) {
+      const p = tpos(e.touches[0]);
+      if (drag.node) { const w = toWorld(p.x, p.y); drag.node.x = w.x; drag.node.y = w.y; alpha = Math.max(alpha, 0.4); drag.moved++; }
+      else if (drag.panning) { view.x += p.x - drag.lx; view.y += p.y - drag.ly; drag.lx = p.x; drag.ly = p.y; drag.moved++; }
+    }
+    e.preventDefault();
+  }, { passive: false });
+  canvas.addEventListener("touchend", (e) => {
+    if (drag.node && drag.moved < 4 && window.openDetail) window.openDetail(drag.node.item);
+    drag.node = null; drag.panning = false;
+    if (e.touches.length === 0) { pinch = null; hover = null; }
+  });
 
   // Кнопки зума: масштабируем вокруг центра холста
   function zoomBy(k) {

@@ -161,28 +161,6 @@ a { color: var(--ink); text-underline-offset: 3px; }
   .masthead__num { display: none; }
 }
 
-/* ── Стартовые наборы ────────────────────── */
-.kits {
-  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-  padding: 12px clamp(20px, 4vw, 40px);
-  background: var(--card);
-  border-bottom: 1px solid var(--line);
-}
-.kits__label {
-  font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #999;
-}
-.kits__row { display: flex; gap: 8px; flex-wrap: wrap; }
-.kit {
-  font-family: var(--body); font-weight: 600;
-  font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
-  padding: 7px 14px; border-radius: 0;
-  border: 1.5px solid var(--ink); background: transparent;
-  color: var(--ink); cursor: pointer;
-  transition: background .12s ease, color .12s ease;
-}
-.kit:hover { background: var(--paper-2); }
-.kit[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
-
 /* ── Тело: сайдбар + контент ─────────────── */
 .body { display: flex; align-items: stretch; }
 
@@ -222,9 +200,8 @@ a { color: var(--ink); text-underline-offset: 3px; }
 .chip[aria-pressed="true"] { border-left-color: var(--ink); font-weight: 700; }
 
 /* На узком экране сайдбар уезжает наверх — фильтры горизонтально, чипы тегами.
-   Метка оси встаёт в одну строку с чипами; «Старт» прячем — он дублирует «Контекст работы». */
+   Метка оси встаёт в одну строку с чипами. */
 @media (max-width: 720px) {
-  .kits { display: none; }
   .fgroup {
     display: flex; align-items: baseline; gap: 6px 12px; flex-wrap: wrap;
     padding: 9px clamp(16px, 3vw, 24px);
@@ -621,3 +598,18 @@ a { color: var(--ink); text-underline-offset: 3px; }
 }
 .graph__zoom button:hover { background: var(--hover); }
 .graph__zoom svg { width: 16px; height: 16px; display: block; }
+
+/* Граф на узких экранах: больше холста, компактная легенда, крупнее тап-зоны */
+@media (max-width: 600px) {
+  .graph {
+    height: calc(100dvh - 220px); min-height: 360px;
+    margin: 12px 12px 0;
+  }
+  .graph-filters { margin: 14px 12px 0; gap: 6px 14px; }
+  .graph__legend { top: 8px; left: 8px; padding: 7px 9px; font-size: 10px; max-width: 44%; }
+  .graph__legend li { margin: 3px 0; }
+  .graph__hint { display: none; }
+  .graph__zoom { left: auto; right: 8px; bottom: 8px; }
+  .graph__zoom button { width: 40px; height: 40px; }
+  .graph__zoom svg { width: 20px; height: 20px; }
+}

@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=40">
+  <link rel="stylesheet" href="styles.css?v=45">
 </head>
 <body>
   <div class="topbar" id="topbar">
@@ -46,11 +46,6 @@
     <!-- Декоративный счетчик. Статичный: app.js обновляет только #count в строке ниже. -->
     <div class="masthead__num" aria-hidden="true">130</div>
   </header>
-
-  <section class="kits" aria-label="Стартовые наборы по контексту">
-    <span class="kits__label">Старт</span>
-    <div id="kits" class="kits__row"></div>
-  </section>
 
   <div class="body">
     <aside class="filters" id="filters" aria-label="Фильтры"></aside>
@@ -84,8 +79,9 @@
     <div class="detail__body"></div>
   </dialog>
 
-  <script src="data.js?v=74"></script>
-  <script src="app.js?v=33"></script>
+  <script src="data.js?v=75"></script>
+  <script src="detail.js?v=1"></script>
+  <script src="app.js?v=35"></script>
   <script>
     // ── Переключение темы (обе кнопки) ──
     document.querySelectorAll(".theme-toggle").forEach(function (btn) {
