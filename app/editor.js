@@ -4,19 +4,24 @@
 
   // Оси разметки: multi — массив значений, single — одно значение.
   const AXES = [
-    { key: "role",     field: "roles",    multi: true },
-    { key: "context",  field: "contexts", multi: true },
-    { key: "maturity", field: "maturity", multi: false },
-    { key: "origin",   field: "origin",   multi: false },
-    { key: "license",  field: "license",  multi: false },
+    { key: "role",         field: "roles",        multi: true },
+    { key: "context",      field: "contexts",     multi: true },
+    { key: "maturity",     field: "maturity",     multi: false },
+    { key: "origin",       field: "origin",       multi: false },
+    { key: "license",      field: "license",      multi: false },
+    { key: "availability", field: "availability", multi: false },
   ];
+
+  // Дата актуализации в формате data.js, например «9 июня 2026». Без буквы «ё».
+  const MONTHS = ["января", "февраля", "марта", "апреля", "мая", "июня",
+    "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+  const ruDate = (d = new Date()) => `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
 
   const escH = s => String(s ?? "").replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
   const wbr = s => escH(s).replace(/([.:/])/g, "$1<wbr>");   // точки переноса в длинных именах
   const escA = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-  // ── Запись прямо в файл (File System Access API) ──
-  let fileHandle = null;
+  // ── Запись прямо в файл (POST /save → scripts/serve.py пишет app/data.js) ──
   function markDirty() {
     const el = $("#saved");
     if (el) { el.textContent = "● не сохранено"; el.classList.add("dirty"); }
@@ -27,40 +32,17 @@
   }
   const save = markDirty;   // правки помечают «не сохранено»; запись — по кнопке «Сохранить»
 
-  function loadFromText(t) {
-    const obj = JSON.parse(t.slice(t.indexOf("{"), t.lastIndexOf("}") + 1));
-    D.categories = obj.categories; D.axes = obj.axes;
-    D.items = obj.items.map(it => ({ umbrella: false, ...it }));
-    normalize();
-    query = ""; const s = $("#search"); if (s) s.value = "";
-    render();
-  }
-  async function openFile() {
-    try {
-      const [h] = await window.showOpenFilePicker({
-        types: [{ description: "data.js", accept: { "text/javascript": [".js", ".json"] } }],
-      });
-      fileHandle = h;
-      loadFromText(await (await h.getFile()).text());
-      markSaved("открыт " + h.name);
-      toast("Открыт " + h.name + " — «Сохранить» пишет прямо в него");
-    } catch { /* отменили выбор файла */ }
-  }
   async function saveFile() {
-    if (!window.showSaveFilePicker) return downloadData();   // браузер без FS API — скачиваем копию
+    D.updated = ruDate();   // правка data.js = новая дата актуализации
     try {
-      if (!fileHandle) {
-        fileHandle = await window.showSaveFilePicker({
-          suggestedName: "data.js",
-          types: [{ description: "data.js", accept: { "text/javascript": [".js"] } }],
-        });
-      }
-      const w = await fileHandle.createWritable();
-      await w.write(dataJS());
-      await w.close();
-      markSaved("✓ сохранено в " + fileHandle.name + " · " + new Date().toLocaleTimeString("ru-RU"));
-      toast("Сохранено в " + fileHandle.name);
-    } catch (e) { toast("Не сохранено: " + (e.message || e)); }
+      const res = await fetch("/save", { method: "POST", body: dataJS() });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      markSaved();
+      toast("Сохранено в data.js");
+    } catch (e) {
+      toast("Сервер записи недоступен (запустите scripts/serve.py) — скачиваю копию");
+      downloadData();
+    }
   }
   function downloadData() {
     const blob = new Blob([dataJS()], { type: "text/javascript" });
@@ -71,7 +53,7 @@
   }
 
   // Карточка размечена, если заполнены все обязательные метки.
-  const isMarked = i => i.maturity && i.origin && i.license && i.roles.length && i.contexts.length;
+  const isMarked = i => i.maturity && i.origin && i.license && i.availability && i.roles.length && i.contexts.length;
 
   let query = "";
 
@@ -316,7 +298,7 @@
       if (depends && depends.length) o.depends = depends;
       return o;
     });
-    return { categories: D.categories, axes: D.axes, items };
+    return { updated: D.updated, categories: D.categories, blocks: D.blocks, axes: D.axes, items };
   }
   function dataJS() {
     return "// Данные ландшафта (Вариант B). Сгенерировано редактором разметки (editor.html).\n"
@@ -335,7 +317,7 @@
     return {
       name: "Новый инструмент", category: D.categories[0], subcategory: null, logo: null,
       description: "", why: "", homepage: null, repo: null, start: [],
-      maturity: "", origin: "", license: "", roles: [], contexts: [],
+      maturity: "", origin: "", license: "", availability: "", roles: [], contexts: [],
       analogs: [], depends: [], umbrella: false,
     };
   }
@@ -354,10 +336,8 @@
   $("#add").addEventListener("click", () => { const it = blankItem(); D.items.unshift(it); save(); openEdit(it); });
   $("#search").addEventListener("input", e => { query = e.target.value.trim().toLowerCase(); render(); });
 
-  $("#open").addEventListener("click", openFile);
   $("#save").addEventListener("click", saveFile);
   $("#export").addEventListener("click", downloadData);
-  if (!window.showOpenFilePicker) $("#open").hidden = true;   // браузер без File System Access API
 
   // ── Старт ─────────────────────────────────
   normalize();
