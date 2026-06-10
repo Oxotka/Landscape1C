@@ -570,13 +570,13 @@ a { color: var(--ink); text-underline-offset: 3px; }
 .axis__desc { color: var(--ink); }
 
 /* Экспертный совет — карточки кураторов */
-/* Совет шире текстовых страниц (860) — чтобы 3 колонки были просторными. */
+/* Совет шире текстовых страниц (860) — чтобы 2 колонки были просторными. */
 .council { max-width: 1080px; padding-block: 30px 72px; }
 .council .lead { max-width: 60ch; }
-/* Кураторы — сетка в 3 колонки; автор (.exp--lead) во всю ширину под ними.
+/* Кураторы — сетка в 2 колонки; автор (.exp--lead) во всю ширину под ними.
    На узком экране — одна колонка. */
 .exp-grid {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px; margin-top: 34px;
 }
 @media (max-width: 720px) { .exp-grid { grid-template-columns: 1fr; } }
