@@ -176,7 +176,8 @@
         ctx.beginPath(); ctx.arc(n.x, n.y, n.r - 3.5, 0, 7); ctx.clip();
         if (t.dark && n.item.logoInvert) ctx.filter = "invert(1)";   // монохромные лого на тёмном диске
         const s = (n.r - 3.5) * 2 * 0.82;
-        ctx.drawImage(n.img, n.x - s / 2, n.y - s / 2, s, s);
+        const w = s, h = s * (n.img.naturalHeight / n.img.naturalWidth); // ширина — s, высота пропорционально (лого не всегда квадратные)
+        ctx.drawImage(n.img, n.x - w / 2, n.y - h / 2, w, h);
         ctx.restore();
       } else {
         ctx.fillStyle = t.placeholder;

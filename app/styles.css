@@ -31,6 +31,10 @@
   --display: "Unbounded", sans-serif;
   --body: "Inter", sans-serif;
   --mono: "Inter", sans-serif;
+
+  /* Единый «рамочный» отступ страницы графа: вокруг холста со всех сторон
+     (бок, низ) одинаковый. Меняем в одном месте — едет везде. */
+  --frame-gap: clamp(16px, 3vw, 24px);
 }
 
 /* ── Тёмная тема (data-theme="dark" на <html>) ──── */
@@ -73,15 +77,15 @@ a { color: var(--ink); text-underline-offset: 3px; }
   grid-template-columns: 1fr auto;
   align-items: end;
   gap: 24px;
-  padding: 40px clamp(20px, 4vw, 40px) 28px;
+  padding: 20px clamp(20px, 4vw, 40px) 28px;
   border-bottom: 2px solid var(--ink);
   background: var(--paper);
 }
 
 /* ── Переключатель темы ──────────────────── */
 .theme-toggle, .menu-toggle {
-  /* по вертикали — на строке кикера (надзаголовка): паддинг шапки 40px + центр кикера */
-  position: absolute; top: 30px;
+  /* по вертикали — на строке кикера (надзаголовка): паддинг шапки 20px + центр кикера */
+  position: absolute; top: 10px;
   width: 34px; height: 34px; display: grid; place-items: center; padding: 0;
   background: transparent; border: none; border-radius: 0;
   color: var(--ink); cursor: pointer;
@@ -109,6 +113,7 @@ a { color: var(--ink); text-underline-offset: 3px; }
 .topbar__brand {
   font-family: var(--display); font-weight: 900; text-transform: uppercase;
   letter-spacing: -1px; font-size: 18px; flex: none;
+  cursor: pointer; user-select: none;
 }
 .topbar__search { flex: 1; min-width: 0; }
 .topbar__search input {
@@ -172,9 +177,13 @@ a { color: var(--ink); text-underline-offset: 3px; }
   white-space: nowrap;
   font-size: clamp(22px, 4.6vw, 52px);
   line-height: 1;
-  margin: 0 0 18px;
+  margin: 0;
   color: var(--ink);
 }
+/* Отступ под заголовком «принадлежит» поиску, а не заголовку: где поиска нет
+   (граф, методология, совет), заголовок отстоит от линии шапки ровно на её
+   padding-bottom — одинаково на всех страницах. */
+.search { margin-top: 18px; }
 /* На телефонах «технологий» не влезает — заголовок сокращается до «Ландшафт 1С». */
 @media (max-width: 430px) { .title__mid { display: none; } }
 
@@ -659,7 +668,7 @@ a { color: var(--ink); text-underline-offset: 3px; }
 /* ── Граф связей ──────────────────────────── */
 .graph-filters {
   display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px;
-  margin: 16px clamp(16px, 3vw, 24px) 0;
+  margin: 16px var(--frame-gap) 0;
 }
 .graph-fgroup { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .graph-flabel {
@@ -700,10 +709,15 @@ a { color: var(--ink); text-underline-offset: 3px; }
 .is-immersive .graph__expand .i-expand { display: none; }
 .is-immersive .graph__expand .i-collapse { display: block; }
 
+/* Десктоп: страница графа — флекс-колонка во весь экран, подвал в потоке снизу.
+   Граф растягивается (flex:1), снизу остаётся такой же отступ, как по бокам. */
+.page-graph { display: flex; flex-direction: column; min-height: 100vh; padding-bottom: 0; }
+.page-graph .foot { position: static; }
+
 .graph {
   position: relative; overflow: hidden;
-  height: calc(100vh - 300px); min-height: 440px;
-  margin: 14px clamp(16px, 3vw, 24px) 0;
+  flex: 1 1 auto; min-height: 440px;
+  margin: 14px var(--frame-gap) var(--frame-gap);   /* верх 14, бока и низ — равный отступ */
   border: 2px solid var(--ink); background: var(--paper);
 }
 .graph canvas { display: block; width: 100%; height: 100%; cursor: grab; touch-action: none; }
@@ -744,6 +758,7 @@ a { color: var(--ink); text-underline-offset: 3px; }
   .page-graph .foot { display: none; }          /* без навигации в подвале */
 
   .graph {
+    flex: none;                         /* на мобильном высота фиксированная, не тянем */
     height: calc(100dvh - 78px); min-height: 320px;
     margin: calc(52px + 10px) 12px 0;   /* под фиксированную верхнюю строку */
   }

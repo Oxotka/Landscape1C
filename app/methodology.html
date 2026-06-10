@@ -23,7 +23,7 @@
             href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap"
             rel="stylesheet"
         />
-        <link rel="stylesheet" href="styles.css?v=70" />
+        <link rel="stylesheet" href="styles.css?v=74" />
     </head>
     <body>
         <div class="topbar" id="topbar">
@@ -34,7 +34,7 @@
                     >Ландшафт</a
                 ></span
             >
-            <span class="topbar__search" style="font-size: 13px; color: #999"
+            <span class="topbar__search" style="font-size: 13px; color: #999; cursor: pointer"
                 >Методология</span
             >
             <button
@@ -293,6 +293,13 @@
             addEventListener("scroll", onScroll, { passive: true });
             addEventListener("resize", onScroll);
             onScroll();
+
+            // Клик по названию страницы в слепленной строке — плавно наверх
+            document
+                .querySelector(".topbar__search")
+                .addEventListener("click", function () {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                });
         </script>
     </body>
 </html>

@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=70">
+  <link rel="stylesheet" href="styles.css?v=74">
 </head>
 <body>
   <div class="topbar" id="topbar">
@@ -60,8 +60,8 @@
       <p id="fallback-note" class="note" hidden>С выбранными отборами ничего не нашлось — показываем подходящие без отборов</p>
       <div id="board" class="board"></div>
       <div id="empty" class="empty" hidden>
-        <p class="empty__title">Мы не нашли таких инструментов</p>
-        <p class="empty__text">Расскажите, чем пользуетесь сами — это поможет дополнить ландшафт. Письмо уже частично заполнено: остается вписать ваши инструменты</p>
+        <p class="empty__title">Не нашлось таких инструментов</p>
+        <p class="empty__text">Расскажите, что ожидали увидеть — это поможет дополнить ландшафт. Письмо уже частично заполнено: остается вписать нужный инструмент</p>
         <a id="empty-mail" class="empty__btn" href="mailto:aripovn@gmail.com">Написать на aripovn@gmail.com</a>
       </div>
     </main>
@@ -100,6 +100,11 @@
     addEventListener("scroll", onScroll, { passive: true });
     addEventListener("resize", onScroll);
     onScroll();
+
+    // ── Клик по бренду в свернутой строке — плавно наверх (отборы не трогаем) ──
+    document.querySelector(".topbar__brand").addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 
     // ── Два поля поиска синхронизированы; фильтрацию ведет app.js (#search) ──
     var s1 = document.getElementById("search");

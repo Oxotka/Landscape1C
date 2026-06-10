@@ -16,12 +16,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=70">
+  <link rel="stylesheet" href="styles.css?v=74">
 </head>
 <body class="page-graph">
   <div class="topbar" id="topbar">
     <span class="topbar__brand"><a href="index.html" style="text-decoration:none;color:inherit">Ландшафт</a></span>
-    <span class="topbar__search" style="font-size:13px;color:#999">Граф</span>
+    <span class="topbar__search" style="font-size:13px;color:#999;cursor:pointer">Граф</span>
     <button class="graph-ftrigger" type="button" aria-expanded="false" aria-controls="graph-filters">Отборы</button>
     <button class="theme-toggle" type="button" aria-label="Переключить тему">
       <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
@@ -77,7 +77,7 @@
   <script src="data.js?v=95"></script>
   <script src="detail.js?v=4"></script>
   <script src="nav.js?v=3"></script>
-  <script src="graph.js?v=10"></script>
+  <script src="graph.js?v=11"></script>
   <script>
     document.querySelectorAll(".theme-toggle").forEach(function (btn) {
       btn.addEventListener("click", function () {
@@ -96,6 +96,11 @@
     addEventListener("scroll", onScroll, { passive: true });
     addEventListener("resize", onScroll);
     onScroll();
+
+    // Клик по названию страницы в слепленной строке — плавно наверх
+    document.querySelector(".topbar__search").addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   </script>
 </body>
 </html>
