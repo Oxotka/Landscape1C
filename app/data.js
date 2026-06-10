@@ -5,7 +5,8 @@ window.LANDSCAPE = {
     "Прототипирование",
     "Моделирование и документация",
     "Разработка",
-    "Плагины и библиотеки",
+    "Библиотеки и инструменты",
+    "Плагины и расширения",
     "ИИ-ассистенты",
     "Системы хранения версий",
     "CI/CD",
@@ -34,7 +35,8 @@ window.LANDSCAPE = {
       "name": "Разработка",
       "categories": [
         "Разработка",
-        "Плагины и библиотеки",
+        "Библиотеки и инструменты",
+        "Плагины и расширения",
         "ИИ-ассистенты",
         "Системы хранения версий",
         "CI/CD"
@@ -577,7 +579,7 @@ window.LANDSCAPE = {
     },
     {
       "name": "Библиотека стандартных подсистем (БСП)",
-      "category": "Плагины и библиотеки",
+      "category": "Библиотеки и инструменты",
       "subcategory": null,
       "logo": "1c.png",
       "description": "Набор готовых подсистем и стандартных механизмов от 1С — основа для разработки прикладных решений",
@@ -616,7 +618,7 @@ window.LANDSCAPE = {
     },
     {
       "name": "TurboConf",
-      "category": "Плагины и библиотеки",
+      "category": "Плагины и расширения",
       "subcategory": null,
       "logo": "turboconf.png",
       "description": "Расширение Конфигуратора, автоматизирующее рутину разработки",
@@ -654,7 +656,7 @@ window.LANDSCAPE = {
     },
     {
       "name": "Подсистема \"Инструменты разработчика\"",
-      "category": "Плагины и библиотеки",
+      "category": "Библиотеки и инструменты",
       "subcategory": null,
       "logo": "devtools.png",
       "description": "Набор внутренних инструментов разработчика: консоли запросов, кода, СКД",
@@ -694,7 +696,7 @@ window.LANDSCAPE = {
     },
     {
       "name": "Подсистема \"Универсальные инструменты 1С для управляемых форм\"",
-      "category": "Плагины и библиотеки",
+      "category": "Библиотеки и инструменты",
       "subcategory": null,
       "logo": "universal-tools.png",
       "description": "Набор инструментов разработчика для управляемых форм",
@@ -733,7 +735,7 @@ window.LANDSCAPE = {
     },
     {
       "name": "Infostart Toolkit",
-      "category": "Плагины и библиотеки",
+      "category": "Библиотеки и инструменты",
       "subcategory": null,
       "logo": "infostart-toolkit.png",
       "description": "Набор инструментов для анализа и обработки данных в базе 1С",
@@ -780,7 +782,7 @@ window.LANDSCAPE = {
     },
     {
       "name": "Плагин для конфигуратора PhoenixBSL",
-      "category": "Плагины и библиотеки",
+      "category": "Плагины и расширения",
       "subcategory": null,
       "logo": "phoenixbsl.png",
       "description": "Анализ и форматирование кода 1С в Конфигураторе на базе BSL LS",
@@ -1048,7 +1050,7 @@ window.LANDSCAPE = {
     },
     {
       "name": "Плагин для VSCode «1C: Platform Tools»",
-      "category": "Плагины и библиотеки",
+      "category": "Плагины и расширения",
       "subcategory": null,
       "logo": "vscode.svg",
       "description": "Расширение VSCode с инструментами разработки на платформе 1С",
@@ -1084,7 +1086,7 @@ window.LANDSCAPE = {
     },
     {
       "name": "Плагины для 1С:EDT",
-      "category": "Плагины и библиотеки",
+      "category": "Плагины и расширения",
       "subcategory": null,
       "logo": "1c.png",
       "description": "Официальные и сторонние плагины, расширяющие 1С:EDT",
@@ -1128,7 +1130,7 @@ window.LANDSCAPE = {
     },
     {
       "name": "Библиотеки для OneScript",
-      "category": "Плагины и библиотеки",
+      "category": "Библиотеки и инструменты",
       "subcategory": null,
       "logo": "oscript-library.png",
       "description": "Готовые библиотеки сообщества для экосистемы OneScript",
@@ -1174,7 +1176,7 @@ window.LANDSCAPE = {
     },
     {
       "name": "Autumn (ОСень)",
-      "category": "Плагины и библиотеки",
+      "category": "Библиотеки и инструменты",
       "subcategory": null,
       "logo": "autumn.png",
       "description": "Фреймворк компонентных приложений для OneScript (DI/IoC)",
@@ -1205,7 +1207,7 @@ window.LANDSCAPE = {
     },
     {
       "name": "BSL Language Server",
-      "category": "Плагины и библиотеки",
+      "category": "Плагины и расширения",
       "subcategory": null,
       "logo": "bsl-language-server.png",
       "description": "Языковой сервер для кода 1С (BSL): диагностики, автодополнение, форматирование",
@@ -1238,8 +1240,169 @@ window.LANDSCAPE = {
       ]
     },
     {
+      "name": "OneScript Debug (BSL)",
+      "category": "Плагины и расширения",
+      "subcategory": null,
+      "logo": "vscode.svg",
+      "description": "Отладка скриптов OneScript прямо в VSCode",
+      "why": "Дает точки останова и пошаговую отладку OneScript-скриптов в редакторе — без внешних средств",
+      "homepage": null,
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик"
+      ],
+      "contexts": [
+        "продукты",
+        "проекты",
+        "инхаус"
+      ],
+      "aliases": [
+        "onescript debug",
+        "ванскрипт дебаг",
+        "отладчик onescript"
+      ],
+      "depends": [
+        "Visual Studio Code (VSCode)",
+        "OneScript"
+      ]
+    },
+    {
+      "name": "Language 1C (BSL)",
+      "category": "Плагины и расширения",
+      "subcategory": null,
+      "logo": "vscode.svg",
+      "description": "Подсветка синтаксиса, автодополнение и навигация по коду 1С (BSL) в VSCode",
+      "why": "Превращает VSCode в полноценный редактор кода 1С: подсветка, автодополнение и переход к определению",
+      "homepage": null,
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик"
+      ],
+      "contexts": [
+        "продукты",
+        "проекты",
+        "инхаус"
+      ],
+      "aliases": [
+        "language 1c",
+        "язык 1с bsl",
+        "bsl vscode",
+        "лэнгвич 1с"
+      ],
+      "depends": [
+        "Visual Studio Code (VSCode)"
+      ]
+    },
+    {
+      "name": "Cucumber (Gherkin) Full Support",
+      "category": "Плагины и расширения",
+      "subcategory": null,
+      "logo": "vscode.svg",
+      "description": "Автодополнение и подсветка Gherkin для feature-файлов (BDD, Vanessa-Automation)",
+      "why": "Помогает писать BDD-сценарии: автодополнение шагов, подсветка и переход к определениям в feature-файлах",
+      "homepage": null,
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "тестировщик",
+        "разработчик"
+      ],
+      "contexts": [
+        "продукты",
+        "проекты",
+        "инхаус"
+      ],
+      "aliases": [
+        "cucumber",
+        "gherkin",
+        "геркин",
+        "кукумбер"
+      ],
+      "depends": [
+        "Visual Studio Code (VSCode)"
+      ]
+    },
+    {
+      "name": "Gherkin Table Align",
+      "category": "Плагины и расширения",
+      "subcategory": null,
+      "logo": "vscode.svg",
+      "description": "Выравнивание таблиц в Gherkin-сценариях",
+      "why": "Автоматически выравнивает столбцы таблиц в feature-файлах — сценарии читать и поддерживать проще",
+      "homepage": null,
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "тестировщик",
+        "разработчик"
+      ],
+      "contexts": [
+        "продукты",
+        "проекты",
+        "инхаус"
+      ],
+      "aliases": [
+        "gherkin table align",
+        "выравнивание таблиц gherkin",
+        "геркин"
+      ],
+      "depends": [
+        "Visual Studio Code (VSCode)"
+      ]
+    },
+    {
+      "name": "Allure Support",
+      "category": "Плагины и расширения",
+      "subcategory": null,
+      "logo": "vscode.svg",
+      "description": "Поддержка Allure в VSCode: подсказки и навигация по разметке тестов",
+      "why": "Упрощает работу с Allure прямо в редакторе — подсказки и переходы по разметке отчетов",
+      "homepage": null,
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "тестировщик",
+        "разработчик"
+      ],
+      "contexts": [
+        "продукты",
+        "проекты",
+        "инхаус"
+      ],
+      "aliases": [
+        "allure support",
+        "аллюр vscode",
+        "аллюр"
+      ],
+      "depends": [
+        "Visual Studio Code (VSCode)"
+      ]
+    },
+    {
       "name": "gitsync",
-      "category": "Плагины и библиотеки",
+      "category": "Системы хранения версий",
       "subcategory": null,
       "logo": "oscript-library.png",
       "description": "Выгрузка истории Хранилища конфигурации 1С в git (и Mercurial)",
@@ -1276,7 +1439,7 @@ window.LANDSCAPE = {
     },
     {
       "name": "1С:ГитКонвертер",
-      "category": "Плагины и библиотеки",
+      "category": "Системы хранения версий",
       "subcategory": null,
       "logo": "1c.png",
       "description": "Односторонняя синхронизация хранилища конфигурации 1С с репозиторием Git и переход на разработку в 1С:EDT с сохранением истории",
@@ -1317,7 +1480,7 @@ window.LANDSCAPE = {
     },
     {
       "name": "Консоль запросов",
-      "category": "Плагины и библиотеки",
+      "category": "Библиотеки и инструменты",
       "subcategory": null,
       "logo": "1c.png",
       "description": "Внешняя обработка для выполнения произвольных запросов на языке запросов 1С",
@@ -3144,6 +3307,10 @@ window.LANDSCAPE = {
         {
           "label": "Allure-Framework. Работа с кодом",
           "url": "https://habr.com/ru/company/sberbank/blog/359302/"
+        },
+        {
+          "label": "Русскоязычное сообщество Allure (Telegram)",
+          "url": "https://t.me/allure_ru"
         }
       ],
       "maturity": "нишевое",
@@ -3164,7 +3331,50 @@ window.LANDSCAPE = {
         "allure"
       ],
       "analogs": [
-        "Grafana"
+        "Grafana",
+        "ТестОпс"
+      ]
+    },
+    {
+      "name": "ТестОпс",
+      "category": "Автоматизированное тестирование",
+      "subcategory": null,
+      "logo": "testops.png",
+      "description": "Платформа управления тестированием поверх Allure: запуск автотестов, аналитика и живые отчеты",
+      "why": "Объединяет ручные и автоматические тесты, хранит историю прогонов и показывает аналитику качества — единый центр тест-менеджмента поверх отчетов Allure",
+      "homepage": "https://qatools.ru",
+      "repo": null,
+      "start": [
+        {
+          "label": "Документация и быстрый старт",
+          "url": "https://docs.qatools.ru"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "availability": "доступен",
+      "roles": [
+        "тестировщик",
+        "разработчик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "тестопс",
+        "тест опс",
+        "testops",
+        "allure testops",
+        "qatools"
+      ],
+      "analogs": [
+        "Allure"
+      ],
+      "depends": [
+        "Jenkins"
       ]
     },
     {
