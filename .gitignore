@@ -3,3 +3,6 @@
 
 # OS
 .DS_Store
+
+# Локальные настройки Claude Code (абсолютные пути, разрешения — не публикуем)
+.claude/settings.local.json
