@@ -1,47 +1,76 @@
 // Детальная модалка инструмента. Общая для index.html и graph.html.
 // Открывается через window.openDetail(item); разметка диалога — <dialog id="detail"> в HTML.
 (() => {
-  const D = window.LANDSCAPE;
-  const $ = sel => document.querySelector(sel);
-  const wbr = s => s.replace(/([.:/])/g, "$1<wbr>");
-  const byName = n => D.items.find(x => x.name === n);
-  const matKey = m => ({ "базовое": "base", "продвинутое": "adv", "нишевое": "niche" }[m]);
-  const logoMarkup = (i, cls) => i.logo
-    ? `<span class="${cls}"><img class="${i.logoInvert ? "is-invert" : ""}" src="logos/${i.logo}" alt="" loading="lazy"></span>`
-    : `<span class="${cls} ${cls}--ph">1С</span>`;
+    const D = window.LANDSCAPE;
+    const $ = (sel) => document.querySelector(sel);
+    const wbr = (s) => s.replace(/([.:/])/g, "$1<wbr>");
+    const byName = (n) => D.items.find((x) => x.name === n);
+    const matKey = (m) =>
+        ({ базовое: "base", продвинутое: "adv", нишевое: "niche" })[m];
+    const logoMarkup = (i, cls) =>
+        i.logo
+            ? `<span class="${cls}"><img class="${i.logoInvert ? "is-invert" : ""}" src="logos/${i.logo}" alt="" loading="lazy"></span>`
+            : `<span class="${cls} ${cls}--ph">1С</span>`;
 
-  function openDetail(i) {
-    const dlg = $("#detail");
-    const links = [
-      i.homepage ? `<a href="${i.homepage}" target="_blank" rel="noopener">Сайт ↗︎</a>` : "",
-      i.repo ? `<a href="${i.repo}" target="_blank" rel="noopener">Репозиторий ↗︎</a>` : ""
-    ].filter(Boolean).join("");
-    const tags = arr => (arr || []).filter(Boolean).map(v => `<span class="badge badge--ghost">${v}</span>`).join("");
-    // Блок раздела рендерится только если есть содержимое
-    const row = (title, inner) => inner ? `<div class="detail__row"><h3>${title}</h3>${inner}</div>` : "";
+    function openDetail(i) {
+        const dlg = $("#detail");
+        const links = [
+            i.homepage
+                ? `<a href="${i.homepage}" target="_blank" rel="noopener">Сайт ↗︎</a>`
+                : "",
+            i.repo
+                ? `<a href="${i.repo}" target="_blank" rel="noopener">Репозиторий ↗︎</a>`
+                : "",
+        ]
+            .filter(Boolean)
+            .join("");
+        const tags = (arr) =>
+            (arr || [])
+                .filter(Boolean)
+                .map((v) => `<span class="badge badge--ghost">${v}</span>`)
+                .join("");
+        // Блок раздела рендерится только если есть содержимое
+        const row = (title, inner) =>
+            inner
+                ? `<div class="detail__row"><h3>${title}</h3>${inner}</div>`
+                : "";
 
-    const badges = [
-      i.maturity ? `<span class="badge badge--mat" data-mat="${i.maturity}" style="--mat:var(--m-${matKey(i.maturity)})">${i.maturity}</span>` : "",
-      tags([i.origin, i.license, i.availability === "ограничен" ? "ограничен" : ""])
-    ].join("");
-    const startInner = (i.start && i.start.length)
-      ? `<ul class="detail__list">${
-          i.start.map(s => `<li><a href="${s.url}" target="_blank" rel="noopener">${s.label} ↗︎</a></li>`).join("")
-        }</ul>`
-      : "";
-    // Связанные карточки — квадратные кнопки с лого, открывают свою модалку
-    const relLinks = names => (names || []).map(n => {
-      const t = byName(n);
-      if (!t) return "";
-      const logo = t.logo
-        ? `<img class="detail__rel-logo${t.logoInvert ? " is-invert" : ""}" src="logos/${t.logo}" alt="">`
-        : `<span class="detail__rel-logo detail__rel-logo--ph">1С</span>`;
-      return `<button type="button" class="detail__rel" data-i="${D.items.indexOf(t)}">${logo}<span>${t.name}</span></button>`;
-    }).filter(Boolean).join("");
-    const analogsInner = relLinks(i.analogs);
-    const dependsInner = relLinks(i.depends);
+        const badges = [
+            i.maturity
+                ? `<span class="badge badge--mat" data-mat="${i.maturity}" style="--mat:var(--m-${matKey(i.maturity)})">${i.maturity}</span>`
+                : "",
+            tags([
+                i.origin,
+                i.license,
+                i.availability === "ограничен" ? "ограничен" : "",
+            ]),
+        ].join("");
+        const startInner =
+            i.start && i.start.length
+                ? `<ul class="detail__list">${i.start
+                      .map(
+                          (s) =>
+                              `<li><a href="${s.url}" target="_blank" rel="noopener">${s.label} ↗︎</a></li>`,
+                      )
+                      .join("")}</ul>`
+                : "";
+        // Связанные карточки — квадратные кнопки с лого, открывают свою модалку
+        const relLinks = (names) =>
+            (names || [])
+                .map((n) => {
+                    const t = byName(n);
+                    if (!t) return "";
+                    const logo = t.logo
+                        ? `<img class="detail__rel-logo${t.logoInvert ? " is-invert" : ""}" src="logos/${t.logo}" alt="">`
+                        : `<span class="detail__rel-logo detail__rel-logo--ph">1С</span>`;
+                    return `<button type="button" class="detail__rel" data-i="${D.items.indexOf(t)}">${logo}<span>${t.name}</span></button>`;
+                })
+                .filter(Boolean)
+                .join("");
+        const analogsInner = relLinks(i.analogs);
+        const dependsInner = relLinks(i.depends);
 
-    dlg.querySelector(".detail__body").innerHTML = `
+        dlg.querySelector(".detail__body").innerHTML = `
       <button class="detail__close" aria-label="Закрыть">✕</button>
       <header class="detail__head">
         ${logoMarkup(i, "detail__logo")}
@@ -62,19 +91,29 @@
         </div>
         ${links ? `<footer class="detail__foot">${links}</footer>` : ""}
       </div>`;
-    dlg.querySelector(".detail__close").addEventListener("click", () => dlg.close());
-    dlg.querySelectorAll(".detail__rel").forEach(btn =>
-      btn.addEventListener("click", () => openDetail(D.items[+btn.dataset.i])));
-    // Шапка схлопывается, как только середина прокручена
-    const scroll = dlg.querySelector(".detail__scroll");
-    const head = dlg.querySelector(".detail__head");
-    scroll.addEventListener("scroll", () => head.classList.toggle("is-compact", scroll.scrollTop > 4));
-    if (!dlg.open) dlg.showModal();
-  }
+        dlg.querySelector(".detail__close").addEventListener("click", () =>
+            dlg.close(),
+        );
+        dlg.querySelectorAll(".detail__rel").forEach((btn) =>
+            btn.addEventListener("click", () =>
+                openDetail(D.items[+btn.dataset.i]),
+            ),
+        );
+        // Шапка схлопывается, как только середина прокручена
+        const scroll = dlg.querySelector(".detail__scroll");
+        const head = dlg.querySelector(".detail__head");
+        scroll.addEventListener("scroll", () =>
+            head.classList.toggle("is-compact", scroll.scrollTop > 4),
+        );
+        if (!dlg.open) dlg.showModal();
+    }
 
-  window.openDetail = openDetail;
+    window.openDetail = openDetail;
 
-  // Закрытие по клику на подложку
-  const dlg = $("#detail");
-  if (dlg) dlg.addEventListener("click", e => { if (e.target.id === "detail") dlg.close(); });
+    // Закрытие по клику на подложку
+    const dlg = $("#detail");
+    if (dlg)
+        dlg.addEventListener("click", (e) => {
+            if (e.target.id === "detail") dlg.close();
+        });
 })();

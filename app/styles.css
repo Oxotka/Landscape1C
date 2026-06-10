@@ -4,799 +4,1639 @@
    (и editor.css переиспользует эти же переменные). */
 
 :root {
-  --paper: #f7f5f0;      /* фон страницы */
-  --paper-2: #e8e4dc;    /* светлый фон / разделитель */
-  --card: #ffffff;       /* белый: сайдбар, шапки, модалка */
-  --ink: #1a1a1a;        /* текст и жирные рамки */
-  --ink-soft: #666666;   /* приглушённый текст */
-  --line: #e8e4dc;       /* тонкие разделители */
-  --line-strong: #1a1a1a;
-  --card-line: #d4cfc7;  /* граница карточек */
-  --edge: #c8c3bb;       /* усиленные края: сайдбар, гост-бейджи */
-  --num: #e0dbd0;        /* декоративные крупные цифры */
-  --hover: #faf8f3;      /* фон при наведении (карточки, чипы) */
-  --sidebar: #f7f5f0;    /* фон сайдбара */
+    --paper: #f7f5f0; /* фон страницы */
+    --paper-2: #e8e4dc; /* светлый фон / разделитель */
+    --card: #ffffff; /* белый: сайдбар, шапки, модалка */
+    --ink: #1a1a1a; /* текст и жирные рамки */
+    --ink-soft: #666666; /* приглушённый текст */
+    --line: #e8e4dc; /* тонкие разделители */
+    --line-strong: #1a1a1a;
+    --card-line: #d4cfc7; /* граница карточек */
+    --edge: #c8c3bb; /* усиленные края: сайдбар, гост-бейджи */
+    --num: #e0dbd0; /* декоративные крупные цифры */
+    --hover: #faf8f3; /* фон при наведении (карточки, чипы) */
+    --sidebar: #f7f5f0; /* фон сайдбара */
 
-  /* акцент в Swiss-стиле не нужен — иерархия через вес и размер.
+    /* акцент в Swiss-стиле не нужен — иерархия через вес и размер.
      Переменные сохранены для совместимости с editor.css. */
-  --accent: #1a1a1a;
-  --accent-deep: #1a1a1a;
-  --accent-soft: #e8e4dc;
+    --accent: #1a1a1a;
+    --accent-deep: #1a1a1a;
+    --accent-soft: #e8e4dc;
 
-  /* зрелость — только цвет текста/рамки бейджа */
-  --m-base: #2d6e22;     /* базовое */
-  --m-adv: #1a4f8a;      /* продвинутое */
-  --m-niche: #a83e18;    /* нишевое */
+    /* зрелость — только цвет текста/рамки бейджа */
+    --m-base: #2d6e22; /* базовое */
+    --m-adv: #1a4f8a; /* продвинутое */
+    --m-niche: #a83e18; /* нишевое */
 
-  --display: "Unbounded", sans-serif;
-  --body: "Inter", sans-serif;
-  --mono: "Inter", sans-serif;
+    --display: "Unbounded", sans-serif;
+    --body: "Inter", sans-serif;
+    --mono: "Inter", sans-serif;
 
-  /* Единый «рамочный» отступ страницы графа: вокруг холста со всех сторон
+    /* Единый «рамочный» отступ страницы графа: вокруг холста со всех сторон
      (бок, низ) одинаковый. Меняем в одном месте — едет везде. */
-  --frame-gap: clamp(16px, 3vw, 24px);
+    --frame-gap: clamp(16px, 3vw, 24px);
 }
 
 /* ── Тёмная тема (data-theme="dark" на <html>) ──── */
 :root[data-theme="dark"] {
-  --paper: #1c1917;      /* фон страницы */
-  --paper-2: #322a26;    /* светлый фон / разделитель */
-  --card: #28211e;       /* карточки, шапки категорий, модалка */
-  --sidebar: #211c19;    /* фон сайдбара */
-  --ink: #dcd0bc;        /* основной текст — молочный, не бело-белый */
-  --ink-soft: #8a7f76;   /* приглушённый текст */
-  --line: #3a312c;       /* тонкие разделители */
-  --line-strong: #c8b89a;/* сильные границы (тёплый светлый) */
-  --card-line: #3a312c;  /* границы карточек */
-  --edge: #3a312c;       /* края сайдбара, гост-бейджи */
-  --num: #2e2520;        /* декоративная цифра «63» */
-  --hover: #322a26;      /* фон при наведении */
-  --m-base: #5aaa40;     /* базовое */
-  --m-adv: #4a8acc;      /* продвинутое */
-  --m-niche: #e06030;    /* нишевое */
+    --paper: #1c1917; /* фон страницы */
+    --paper-2: #322a26; /* светлый фон / разделитель */
+    --card: #28211e; /* карточки, шапки категорий, модалка */
+    --sidebar: #211c19; /* фон сайдбара */
+    --ink: #dcd0bc; /* основной текст — молочный, не бело-белый */
+    --ink-soft: #8a7f76; /* приглушённый текст */
+    --line: #3a312c; /* тонкие разделители */
+    --line-strong: #c8b89a; /* сильные границы (тёплый светлый) */
+    --card-line: #3a312c; /* границы карточек */
+    --edge: #3a312c; /* края сайдбара, гост-бейджи */
+    --num: #2e2520; /* декоративная цифра «63» */
+    --hover: #322a26; /* фон при наведении */
+    --m-base: #5aaa40; /* базовое */
+    --m-adv: #4a8acc; /* продвинутое */
+    --m-niche: #e06030; /* нишевое */
 }
 
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
 body {
-  margin: 0;
-  font-family: var(--body);
-  color: var(--ink);
-  background: var(--paper);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  padding-bottom: 48px;           /* место под фиксированный подвал */
+    margin: 0;
+    font-family: var(--body);
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 48px; /* место под фиксированный подвал */
 }
 
-a { color: var(--ink); text-underline-offset: 3px; }
+a {
+    color: var(--ink);
+    text-underline-offset: 3px;
+}
 
 /* ── Хедер ───────────────────────────────── */
 .masthead {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: end;
-  gap: 24px;
-  padding: 20px clamp(20px, 4vw, 40px) 28px;
-  border-bottom: 2px solid var(--ink);
-  background: var(--paper);
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 24px;
+    padding: 20px clamp(20px, 4vw, 40px) 28px;
+    border-bottom: 2px solid var(--ink);
+    background: var(--paper);
 }
 
 /* ── Переключатель темы ──────────────────── */
-.theme-toggle, .menu-toggle {
-  /* по вертикали — на строке кикера (надзаголовка): паддинг шапки 20px + центр кикера */
-  position: absolute; top: 10px;
-  width: 34px; height: 34px; display: grid; place-items: center; padding: 0;
-  background: transparent; border: none; border-radius: 0;
-  color: var(--ink); cursor: pointer;
-  transition: color .12s ease;
+.theme-toggle,
+.menu-toggle {
+    /* по вертикали — на строке кикера (надзаголовка): паддинг шапки 20px + центр кикера */
+    position: absolute;
+    top: 10px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    color: var(--ink);
+    cursor: pointer;
+    transition: color 0.12s ease;
 }
-.menu-toggle  { right: clamp(20px, 4vw, 40px); }                /* крайний справа */
-.theme-toggle { right: calc(clamp(20px, 4vw, 40px) + 40px); }   /* левее бургера */
-.theme-toggle:hover, .menu-toggle:hover { color: var(--ink-soft); }
-.theme-toggle svg { width: 16px; height: 16px; display: block; }
-.menu-toggle svg { width: 22px; height: 22px; display: block; }
-.theme-toggle .i-sun { display: none; }
-:root[data-theme="dark"] .theme-toggle .i-moon { display: none; }
-:root[data-theme="dark"] .theme-toggle .i-sun { display: block; }
+.menu-toggle {
+    right: clamp(20px, 4vw, 40px);
+} /* крайний справа */
+.theme-toggle {
+    right: calc(clamp(20px, 4vw, 40px) + 40px);
+} /* левее бургера */
+.theme-toggle:hover,
+.menu-toggle:hover {
+    color: var(--ink-soft);
+}
+.theme-toggle svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+.menu-toggle svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+.theme-toggle .i-sun {
+    display: none;
+}
+:root[data-theme="dark"] .theme-toggle .i-moon {
+    display: none;
+}
+:root[data-theme="dark"] .theme-toggle .i-sun {
+    display: block;
+}
 
 /* ── Свёрнутая верхняя строка (появляется при прокрутке) ── */
 .topbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 30;
-  height: 52px; display: flex; align-items: center; gap: 16px;
-  padding: 0 clamp(20px, 4vw, 40px);
-  background: var(--paper); border-bottom: 2px solid var(--ink);
-  transform: translateY(-100%);
-  transition: transform .18s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 30;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 clamp(20px, 4vw, 40px);
+    background: var(--paper);
+    border-bottom: 2px solid var(--ink);
+    transform: translateY(-100%);
+    transition: transform 0.18s ease;
 }
-.topbar.is-visible { transform: translateY(0); }
+.topbar.is-visible {
+    transform: translateY(0);
+}
 .topbar__brand {
-  font-family: var(--display); font-weight: 900; text-transform: uppercase;
-  letter-spacing: -1px; font-size: 18px; flex: none;
-  cursor: pointer; user-select: none;
+    font-family: var(--display);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    font-size: 18px;
+    flex: none;
+    cursor: pointer;
+    user-select: none;
 }
-.topbar__search { flex: 1; min-width: 0; }
+.topbar__search {
+    flex: 1;
+    min-width: 0;
+}
 .topbar__search input {
-  width: min(420px, 100%); font-family: var(--body); font-size: 13px;
-  padding: 7px 12px; background: transparent;
-  border: 1.5px solid var(--ink); border-radius: 0; color: var(--ink);
+    width: min(420px, 100%);
+    font-family: var(--body);
+    font-size: 13px;
+    padding: 7px 12px;
+    background: transparent;
+    border: 1.5px solid var(--ink);
+    border-radius: 0;
+    color: var(--ink);
 }
-.topbar__search input:focus { outline: none; }
-.topbar .theme-toggle, .topbar .menu-toggle { position: static; flex: none; }
+.topbar__search input:focus {
+    outline: none;
+}
+.topbar .theme-toggle,
+.topbar .menu-toggle {
+    position: static;
+    flex: none;
+}
 
 /* ── Меню-бургер ──────────────────────────── */
 .menu {
-  position: fixed; top: 54px; right: clamp(12px, 4vw, 40px); z-index: 40;
-  display: none;
+    position: fixed;
+    top: 54px;
+    right: clamp(12px, 4vw, 40px);
+    z-index: 40;
+    display: none;
 }
-.menu.is-open { display: block; }
+.menu.is-open {
+    display: block;
+}
 .menu__panel {
-  min-width: 232px; padding: 8px;
-  background: var(--card); border: 1.5px solid var(--ink);
-  box-shadow: 4px 4px 0 var(--ink);
-  display: flex; flex-direction: column; gap: 1px;
+    min-width: 232px;
+    padding: 8px;
+    background: var(--card);
+    border: 1.5px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
 }
 /* строки меню — ссылки, поле темы и пункты списка темы выглядят одинаково */
 .menu__panel a,
 .menu__theme-head,
 .menu__theme-list button {
-  font-family: var(--body); font-size: 14px; font-weight: 600;
-  color: var(--ink); text-decoration: none; text-align: left;
-  padding: 9px 12px; background: transparent; border: none; cursor: pointer;
-  width: 100%;
+    font-family: var(--body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    text-align: left;
+    padding: 9px 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 100%;
 }
 .menu__panel a:hover,
 .menu__theme-head:hover,
-.menu__theme-list button:hover { background: var(--hover); }
-.menu__sep { height: 1px; background: var(--line); margin: 6px 4px; }
+.menu__theme-list button:hover {
+    background: var(--hover);
+}
+.menu__sep {
+    height: 1px;
+    background: var(--line);
+    margin: 6px 4px;
+}
 
 /* Поле выбора темы — раскрывается списком из 3 вариантов */
-.menu__theme-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.menu__theme-cur { margin-left: auto; color: var(--ink-soft); font-weight: 500; font-size: 13px; }
-.menu__theme-head::after {
-  content: "▾"; font-size: 11px; color: var(--ink-soft); transition: transform .15s ease;
+.menu__theme-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
-.menu__theme-head[aria-expanded="true"]::after { transform: rotate(180deg); }
-.menu__theme-list { display: flex; flex-direction: column; }
-.menu__theme-list[hidden] { display: none; }
-.menu__theme-list button { font-size: 13px; color: var(--ink-soft); padding-left: 24px; }
-.menu__theme-list button[aria-pressed="true"] { color: var(--ink); }
-.menu__theme-list button[aria-pressed="true"]::after { content: " ✓"; }
+.menu__theme-cur {
+    margin-left: auto;
+    color: var(--ink-soft);
+    font-weight: 500;
+    font-size: 13px;
+}
+.menu__theme-head::after {
+    content: "▾";
+    font-size: 11px;
+    color: var(--ink-soft);
+    transition: transform 0.15s ease;
+}
+.menu__theme-head[aria-expanded="true"]::after {
+    transform: rotate(180deg);
+}
+.menu__theme-list {
+    display: flex;
+    flex-direction: column;
+}
+.menu__theme-list[hidden] {
+    display: none;
+}
+.menu__theme-list button {
+    font-size: 13px;
+    color: var(--ink-soft);
+    padding-left: 24px;
+}
+.menu__theme-list button[aria-pressed="true"] {
+    color: var(--ink);
+}
+.menu__theme-list button[aria-pressed="true"]::after {
+    content: " ✓";
+}
 /* На мобильном отдельную кнопку темы прячем — тему меняем через бургер-меню */
-@media (max-width: 600px) { .theme-toggle { display: none; } }
-.masthead__main { min-width: 0; }
+@media (max-width: 600px) {
+    .theme-toggle {
+        display: none;
+    }
+}
+.masthead__main {
+    min-width: 0;
+}
 .kicker {
-  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-  color: #999; margin: 0 0 14px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #999;
+    margin: 0 0 14px;
 }
 .title {
-  font-family: var(--display);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  white-space: nowrap;
-  font-size: clamp(22px, 4.6vw, 52px);
-  line-height: 1;
-  margin: 0;
-  color: var(--ink);
+    font-family: var(--display);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    white-space: nowrap;
+    font-size: clamp(22px, 4.6vw, 52px);
+    line-height: 1;
+    margin: 0;
+    color: var(--ink);
 }
 /* Отступ под заголовком «принадлежит» поиску, а не заголовку: где поиска нет
    (граф, методология, совет), заголовок отстоит от линии шапки ровно на её
    padding-bottom — одинаково на всех страницах. */
-.search { margin-top: 18px; }
+.search {
+    margin-top: 18px;
+}
 /* На телефонах «технологий» не влезает — заголовок сокращается до «Ландшафт 1С». */
-@media (max-width: 430px) { .title__mid { display: none; } }
+@media (max-width: 430px) {
+    .title__mid {
+        display: none;
+    }
+}
 
 .search input {
-  width: min(420px, 100%);
-  font-family: var(--body); font-size: 13px;
-  padding: 10px 14px;
-  background: transparent;
-  border: 1.5px solid var(--ink);
-  border-radius: 0;
-  color: var(--ink);
-  transition: box-shadow .12s ease, transform .12s ease;
+    width: min(420px, 100%);
+    font-family: var(--body);
+    font-size: 13px;
+    padding: 10px 14px;
+    background: transparent;
+    border: 1.5px solid var(--ink);
+    border-radius: 0;
+    color: var(--ink);
+    transition:
+        box-shadow 0.12s ease,
+        transform 0.12s ease;
 }
 .search input:focus {
-  outline: none;
-  box-shadow: 4px 4px 0 var(--ink);
-  transform: translate(-2px, -2px);
+    outline: none;
+    box-shadow: 4px 4px 0 var(--ink);
+    transform: translate(-2px, -2px);
 }
 
 .masthead__num {
-  font-family: var(--display);
-  font-weight: 900;
-  font-size: clamp(56px, 9vw, 96px);
-  line-height: .8;
-  color: var(--num);
-  align-self: end;
-  user-select: none;
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(56px, 9vw, 96px);
+    line-height: 0.8;
+    color: var(--num);
+    align-self: end;
+    user-select: none;
 }
 @media (max-width: 560px) {
-  .masthead { grid-template-columns: 1fr; }
-  .masthead__num { display: none; }
+    .masthead {
+        grid-template-columns: 1fr;
+    }
+    .masthead__num {
+        display: none;
+    }
 }
 
 /* ── Тело: сайдбар + контент ─────────────── */
-.body { display: flex; align-items: stretch; }
+.body {
+    display: flex;
+    align-items: stretch;
+}
 
 .filters {
-  width: 180px; flex: none;
-  background: var(--sidebar);
-  border-right: 1.5px solid var(--edge);
-  position: sticky; top: 52px;                      /* под свёрнутой верхней строкой */
-  align-self: flex-start;
-  max-height: calc(100vh - 52px); overflow-y: auto;
+    width: 180px;
+    flex: none;
+    background: var(--sidebar);
+    border-right: 1.5px solid var(--edge);
+    position: sticky;
+    top: 52px; /* под свёрнутой верхней строкой */
+    align-self: flex-start;
+    max-height: calc(100vh - 52px);
+    overflow-y: auto;
 }
 @media (max-width: 720px) {
-  .body { flex-direction: column; }
-  .filters {
-    width: 100%; border-right: none; border-bottom: 1.5px solid var(--ink);
-    position: static; max-height: none; overflow: visible;
-  }
+    .body {
+        flex-direction: column;
+    }
+    .filters {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1.5px solid var(--ink);
+        position: static;
+        max-height: none;
+        overflow: visible;
+    }
 }
 
 /* ── Сайдбар: фильтры строками ────────────── */
-.fgroup { padding: 14px 0; border-bottom: 1px solid var(--line); }
-.fgroup:last-child { border-bottom: none; }
+.fgroup {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+}
+.fgroup:last-child {
+    border-bottom: none;
+}
 .fgroup__head {
-  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
-  color: #999; margin: 0 0 8px; padding: 0 16px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #999;
+    margin: 0 0 8px;
+    padding: 0 16px;
 }
-.chips { display: block; }
+.chips {
+    display: block;
+}
 .chip {
-  position: relative;
-  display: block; width: 100%; text-align: left;
-  font-family: var(--body); font-size: 12px; font-weight: 500;
-  padding: 6px 16px 6px 16px;
-  background: none; border: none;
-  color: var(--ink); cursor: pointer;
-  transition: background .1s ease;
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-family: var(--body);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 16px 6px 16px;
+    background: none;
+    border: none;
+    color: var(--ink);
+    cursor: pointer;
+    transition: background 0.1s ease;
 }
-.chip:hover { background: var(--hover); }
-.chip[aria-pressed="true"] { font-weight: 700; padding-right: 30px; }
+.chip:hover {
+    background: var(--hover);
+}
+.chip[aria-pressed="true"] {
+    font-weight: 700;
+    padding-right: 30px;
+}
 /* индикатор выбранного: вертикальная черта (отступив от края) + крестик-сброс справа */
 .chip[aria-pressed="true"]::before {
-  content: ""; position: absolute; left: 7px; top: 5px; bottom: 5px;
-  width: 2px; background: var(--ink);
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 5px;
+    bottom: 5px;
+    width: 2px;
+    background: var(--ink);
 }
 .chip[aria-pressed="true"]::after {
-  content: "✕"; position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-  font-size: 10px; line-height: 1; color: var(--ink-soft);
+    content: "✕";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+    line-height: 1;
+    color: var(--ink-soft);
 }
-.chip[aria-pressed="true"]:hover::after { color: var(--ink); }
+.chip[aria-pressed="true"]:hover::after {
+    color: var(--ink);
+}
 
 /* На узком экране сайдбар уезжает наверх — фильтры горизонтально, чипы тегами.
    Метка оси встаёт в одну строку с чипами. */
 @media (max-width: 720px) {
-  .fgroup {
-    display: flex; align-items: baseline; gap: 6px 12px; flex-wrap: wrap;
-    padding: 9px clamp(16px, 3vw, 24px);
-  }
-  .fgroup__head { display: none; }
-  .chips { flex: 1 1 0; min-width: 0; display: flex; flex-wrap: wrap; gap: 6px; }
-  .chip {
-    display: inline-block; width: auto;
-    padding: 5px 11px;
-    border: 1px solid var(--line-strong); border-left: 1px solid var(--line-strong);
-    border-radius: 0;
-  }
-  .chip:hover { background: var(--paper-2); }
-  .chip[aria-pressed="true"] {
-    background: var(--ink); color: var(--paper); border-color: var(--ink); font-weight: 600;
-    padding: 5px 11px;                                  /* перебить десктопный отступ под крестик */
-  }
-  .chip[aria-pressed="true"]::before,
-  .chip[aria-pressed="true"]::after { content: none; }  /* на мобильном — закрашенный тег без черты/крестика */
+    .fgroup {
+        display: flex;
+        align-items: baseline;
+        gap: 6px 12px;
+        flex-wrap: wrap;
+        padding: 9px clamp(16px, 3vw, 24px);
+    }
+    .fgroup__head {
+        display: none;
+    }
+    .chips {
+        flex: 1 1 0;
+        min-width: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .chip {
+        display: inline-block;
+        width: auto;
+        padding: 5px 11px;
+        border: 1px solid var(--line-strong);
+        border-left: 1px solid var(--line-strong);
+        border-radius: 0;
+    }
+    .chip:hover {
+        background: var(--paper-2);
+    }
+    .chip[aria-pressed="true"] {
+        background: var(--ink);
+        color: var(--paper);
+        border-color: var(--ink);
+        font-weight: 600;
+        padding: 5px 11px; /* перебить десктопный отступ под крестик */
+    }
+    .chip[aria-pressed="true"]::before,
+    .chip[aria-pressed="true"]::after {
+        content: none;
+    } /* на мобильном — закрашенный тег без черты/крестика */
 }
 
 /* ── Контент ─────────────────────────────── */
-.content { flex: 1; min-width: 0; background: var(--paper); }
+.content {
+    flex: 1;
+    min-width: 0;
+    background: var(--paper);
+}
 
 .content__bar {
-  display: flex; align-items: center; gap: 16px;
-  padding: 13px clamp(16px, 3vw, 24px); min-height: 46px;
-  border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 13px clamp(16px, 3vw, 24px);
+    min-height: 46px;
+    border-bottom: 1px solid var(--line);
 }
 /* Строка-пояснение над доской (показ результатов без отборов) */
 .note {
-  margin: 0; padding: 12px clamp(16px, 3vw, 24px) 0;
-  font-size: 13px; color: var(--ink-soft);
+    margin: 0;
+    padding: 12px clamp(16px, 3vw, 24px) 0;
+    font-size: 13px;
+    color: var(--ink-soft);
 }
-.note[hidden] { display: none; }
+.note[hidden] {
+    display: none;
+}
 .count {
-  font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #999;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #999;
 }
 .reset {
-  font-size: 11px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
-  background: none; border: none; color: var(--ink);
-  text-decoration: underline; text-underline-offset: 3px; padding: 0;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    padding: 0;
 }
 /* Счётчик и сброс, продублированные в прилипающей верхней строке */
-.topbar .count, .topbar .reset { flex: none; white-space: nowrap; }
-.topbar .count { letter-spacing: .5px; }
-@media (max-width: 600px) { .topbar .count, .topbar .reset { display: none; } }  /* на мобильном дубль не показываем */
+.topbar .count,
+.topbar .reset {
+    flex: none;
+    white-space: nowrap;
+}
+.topbar .count {
+    letter-spacing: 0.5px;
+}
+@media (max-width: 600px) {
+    .topbar .count,
+    .topbar .reset {
+        display: none;
+    }
+} /* на мобильном дубль не показываем */
 
 /* ── Блоки (группы категорий) ────────────── */
 .block__head {
-  padding: 34px clamp(16px, 3vw, 24px) 10px;
+    padding: 34px clamp(16px, 3vw, 24px) 10px;
 }
-.board > .block__head:first-child { padding-top: 6px; }
+.board > .block__head:first-child {
+    padding-top: 6px;
+}
 .block__name {
-  font-family: var(--display); font-weight: 900;
-  font-size: clamp(20px, 2.6vw, 28px); letter-spacing: 0.5px;
-  color: var(--ink);
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(20px, 2.6vw, 28px);
+    letter-spacing: 0.5px;
+    color: var(--ink);
 }
 
 /* ── Категории ───────────────────────────── */
-.board { counter-reset: cat; }
-.cat { counter-increment: cat; }
-.cat:not(:last-child) { margin-bottom: 14px; }   /* отступ между разделами (фон сетки) */
+.board {
+    counter-reset: cat;
+}
+.cat {
+    counter-increment: cat;
+}
+.cat:not(:last-child) {
+    margin-bottom: 14px;
+} /* отступ между разделами (фон сетки) */
 .cat__head {
-  display: flex; align-items: center; gap: 16px;
-  padding: 14px clamp(16px, 3vw, 24px);
-  background: var(--card);
-  border-bottom: 2px solid var(--ink);             /* категория читается как блок */
-  position: sticky; top: 52px; z-index: 3;         /* под свёрнутой верхней строкой */
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px clamp(16px, 3vw, 24px);
+    background: var(--card);
+    border-bottom: 2px solid var(--ink); /* категория читается как блок */
+    position: sticky;
+    top: 52px;
+    z-index: 3; /* под свёрнутой верхней строкой */
 }
 .cat__head::before {
-  content: counter(cat, decimal-leading-zero);
-  font-family: var(--display); font-weight: 900; font-size: 32px;
-  color: #888; line-height: 1; flex: none;        /* как текст описания — виден в обеих темах */
+    content: counter(cat, decimal-leading-zero);
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 32px;
+    color: #888;
+    line-height: 1;
+    flex: none; /* как текст описания — виден в обеих темах */
 }
-.cat__title { display: flex; flex-direction: column; gap: 3px; }
-.cat__block {                                       /* блок — виден в залипшей шапке при прокрутке */
-  font-family: var(--display); font-weight: 700;
-  font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px;
-  color: #999; line-height: 1;
+.cat__title {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.cat__block {
+    /* блок — виден в залипшей шапке при прокрутке */
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #999;
+    line-height: 1;
 }
 .cat__name {
-  font-family: var(--display); font-weight: 700;
-  font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
-  margin: 0;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
 }
-.cat__num { margin-left: auto; font-size: 11px; color: #999; }
+.cat__num {
+    margin-left: auto;
+    font-size: 11px;
+    color: #999;
+}
 
 /* ── Сетка карточек: 3 колонки ───────────── */
-.cards { display: grid; grid-template-columns: repeat(3, 1fr); }
-.card {
-  display: flex; align-items: flex-start; gap: 16px;
-  text-align: left; font-family: var(--body); color: var(--ink);
-  background: var(--card); cursor: pointer;          /* белая карточка на тёплом фоне сетки */
-  border: none;
-  border-right: 1px solid var(--card-line);
-  border-bottom: 1px solid var(--card-line);
-  padding: 18px;
-  transition: background .12s ease;
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
-.card:nth-child(3n) { border-right: none; }
-.card:hover { background: var(--hover); }
+.card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    text-align: left;
+    font-family: var(--body);
+    color: var(--ink);
+    background: var(--card);
+    cursor: pointer; /* белая карточка на тёплом фоне сетки */
+    border: none;
+    border-right: 1px solid var(--card-line);
+    border-bottom: 1px solid var(--card-line);
+    padding: 18px;
+    transition: background 0.12s ease;
+}
+.card:nth-child(3n) {
+    border-right: none;
+}
+.card:hover {
+    background: var(--hover);
+}
 
 /* левая колонка — крупный логотип без подложки */
-.card__media { flex: none; }
-.card__logo {
-  width: 48px; height: 48px; display: grid; place-items: center;
+.card__media {
+    flex: none;
 }
-.card__logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.card__logo {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+}
+.card__logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
 /* монохромные (чёрные) лого: в тёмной теме инвертируем по флагу logoInvert в data.js */
-:root[data-theme="dark"] img.is-invert { filter: invert(1); }
+:root[data-theme="dark"] img.is-invert {
+    filter: invert(1);
+}
 .card__logo--ph {
-  width: 48px; height: 48px; border-radius: 2px; border: 1px solid var(--line);
-  font-size: 14px; font-weight: 700; color: #bbb;
+    width: 48px;
+    height: 48px;
+    border-radius: 2px;
+    border: 1px solid var(--line);
+    font-size: 14px;
+    font-weight: 700;
+    color: #bbb;
 }
 
 /* правая колонка — название, описание, бейджи */
-.card__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
-.card__name {
-  font-family: var(--body); font-weight: 700; font-size: 13px; line-height: 1.25;
-  min-width: 0; overflow-wrap: break-word;
+.card__body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
-.card__desc { font-size: 11px; color: #888; line-height: 1.5; }
-.card__meta { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }
+.card__name {
+    font-family: var(--body);
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 1.25;
+    min-width: 0;
+    overflow-wrap: break-word;
+}
+.card__desc {
+    font-size: 11px;
+    color: #888;
+    line-height: 1.5;
+}
+.card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 2px;
+}
 
 @media (max-width: 1040px) {
-  .cards { grid-template-columns: repeat(2, 1fr); }
-  .card:nth-child(3n) { border-right: 1px solid var(--card-line); }
-  .card:nth-child(2n) { border-right: none; }
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .card:nth-child(3n) {
+        border-right: 1px solid var(--card-line);
+    }
+    .card:nth-child(2n) {
+        border-right: none;
+    }
 }
 @media (max-width: 560px) {
-  .cards { grid-template-columns: 1fr; }
-  .card, .card:nth-child(3n), .card:nth-child(2n) { border-right: none; }
+    .cards {
+        grid-template-columns: 1fr;
+    }
+    .card,
+    .card:nth-child(3n),
+    .card:nth-child(2n) {
+        border-right: none;
+    }
 }
 
 /* ── Бейджи: только рамка ────────────────── */
 .badge {
-  display: inline-block;
-  font-family: var(--body); font-size: 9px; font-weight: 700;
-  letter-spacing: .5px; text-transform: uppercase;
-  padding: 2px 6px; border-radius: 2px;
-  border: 1px solid transparent;
+    display: inline-block;
+    font-family: var(--body);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 2px;
+    border: 1px solid transparent;
 }
-.badge:empty { display: none; }
-.badge--mat {                              /* зрелость — рамка с цветом, без заливки */
-  background: transparent; color: var(--mat, var(--ink)); border-color: var(--mat, var(--ink));
+.badge:empty {
+    display: none;
 }
-.badge--ghost {                            /* происхождение/лицензия/роли/контекст — только рамка */
-  background: transparent; color: #888; border-color: var(--edge);
+.badge--mat {
+    /* зрелость — рамка с цветом, без заливки */
+    background: transparent;
+    color: var(--mat, var(--ink));
+    border-color: var(--mat, var(--ink));
+}
+.badge--ghost {
+    /* происхождение/лицензия/роли/контекст — только рамка */
+    background: transparent;
+    color: #888;
+    border-color: var(--edge);
 }
 
-[data-mat="базовое"]    { --mat: var(--m-base); }
-[data-mat="продвинутое"]{ --mat: var(--m-adv); }
-[data-mat="нишевое"]    { --mat: var(--m-niche); }
+[data-mat="базовое"] {
+    --mat: var(--m-base);
+}
+[data-mat="продвинутое"] {
+    --mat: var(--m-adv);
+}
+[data-mat="нишевое"] {
+    --mat: var(--m-niche);
+}
 
-.empty { padding: 48px clamp(16px, 3vw, 24px); max-width: 560px; }
+.empty {
+    padding: 48px clamp(16px, 3vw, 24px);
+    max-width: 560px;
+}
 .empty__title {
-  font-family: var(--display); font-weight: 700; font-size: 18px;
-  margin: 0 0 8px; color: var(--ink);
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 18px;
+    margin: 0 0 8px;
+    color: var(--ink);
 }
-.empty__text { font-size: 13px; color: var(--ink-soft); line-height: 1.55; margin: 0 0 18px; }
+.empty__text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin: 0 0 18px;
+}
 .empty__btn {
-  display: inline-block; font-family: var(--body); font-weight: 600;
-  font-size: 12px; letter-spacing: .5px;
-  padding: 9px 16px; border: 1.5px solid var(--ink); border-radius: 0;
-  color: var(--ink); text-decoration: none;
-  transition: background .12s ease, color .12s ease;
+    display: inline-block;
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    padding: 9px 16px;
+    border: 1.5px solid var(--ink);
+    border-radius: 0;
+    color: var(--ink);
+    text-decoration: none;
+    transition:
+        background 0.12s ease,
+        color 0.12s ease;
 }
-.empty__btn:hover { background: var(--ink); color: var(--paper); }
+.empty__btn:hover {
+    background: var(--ink);
+    color: var(--paper);
+}
 
 /* ── Модалка карточки ────────────────────── */
 .detail {
-  border: 1.5px solid var(--ink); border-radius: 0; padding: 0;
-  max-width: 720px; width: calc(100% - 32px);
-  max-height: calc(100dvh - 32px); overflow: hidden;   /* высота ограничена — скроллит внутренний контент */
-  background: var(--card); color: var(--ink);
-  box-shadow: 8px 8px 0 var(--ink);                    /* фирменная жёсткая тень, как у поиска/бургера */
+    border: 1.5px solid var(--ink);
+    border-radius: 0;
+    padding: 0;
+    max-width: 720px;
+    width: calc(100% - 32px);
+    max-height: calc(100dvh - 32px);
+    overflow: hidden; /* высота ограничена — скроллит внутренний контент */
+    background: var(--card);
+    color: var(--ink);
+    box-shadow: 8px 8px 0 var(--ink); /* фирменная жёсткая тень, как у поиска/бургера */
 }
 /* плавное появление модалки и затемнения */
-.detail[open] { animation: detail-in .16s ease both; }
-.detail[open]::backdrop { animation: backdrop-in .16s ease both; }
-@keyframes detail-in {
-  from { opacity: 0; transform: translateY(8px) scale(.98); }
-  to   { opacity: 1; transform: none; }
+.detail[open] {
+    animation: detail-in 0.16s ease both;
 }
-@keyframes backdrop-in { from { opacity: 0; } to { opacity: 1; } }
-.detail::backdrop { background: rgba(26, 26, 22, .4); }
+.detail[open]::backdrop {
+    animation: backdrop-in 0.16s ease both;
+}
+@keyframes detail-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+@keyframes backdrop-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.detail::backdrop {
+    background: rgba(26, 26, 22, 0.4);
+}
 /* Колонка: шапка и подвал зафиксированы, середина прокручивается */
 .detail__body {
-  position: relative; display: flex; flex-direction: column;
-  max-height: calc(100dvh - 32px);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100dvh - 32px);
 }
 
 /* Шапка — закреплена сверху; при скролле схлопывается (класс is-compact) */
 .detail__head {
-  flex: none;
-  display: flex; align-items: center; gap: 16px;
-  padding: 26px clamp(20px, 4vw, 32px) 20px;
-  border-bottom: 1px solid var(--line);
-  transition: padding .15s ease;
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 26px clamp(20px, 4vw, 32px) 20px;
+    border-bottom: 1px solid var(--line);
+    transition: padding 0.15s ease;
 }
 .detail__logo {
-  width: 52px; height: 52px; flex: none; display: grid; place-items: center;
-  transition: width .15s ease, height .15s ease;
+    width: 52px;
+    height: 52px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    transition:
+        width 0.15s ease,
+        height 0.15s ease;
 }
-.detail__logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.detail__logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
 .detail__logo--ph {
-  width: 52px; height: 52px; border-radius: 2px; border: 1px solid var(--line);
-  font-size: 15px; font-weight: 700; color: #bbb;
+    width: 52px;
+    height: 52px;
+    border-radius: 2px;
+    border: 1px solid var(--line);
+    font-size: 15px;
+    font-weight: 700;
+    color: #bbb;
 }
-.detail__headtext { min-width: 0; }
+.detail__headtext {
+    min-width: 0;
+}
 .detail__title {
-  font-family: var(--display); font-weight: 900; font-size: 19px;
-  text-transform: uppercase; letter-spacing: -.5px;
-  margin: 0 0 4px; line-height: 1.05; overflow-wrap: break-word;
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 19px;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    margin: 0 0 4px;
+    line-height: 1.05;
+    overflow-wrap: break-word;
 }
 .detail__sub {
-  font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px;
+    font-size: 11px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 10px;
 }
-.detail__badges { display: flex; flex-wrap: wrap; gap: 6px; }
+.detail__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
 
 /* Узкая закрепленная шапка при прокрутке: мелкое лого, без подзаголовка, чипсы остаются */
-.detail__head.is-compact { padding-top: 13px; padding-bottom: 12px; }
+.detail__head.is-compact {
+    padding-top: 13px;
+    padding-bottom: 12px;
+}
 .detail__head.is-compact .detail__logo,
-.detail__head.is-compact .detail__logo--ph { width: 34px; height: 34px; }
-.detail__head.is-compact .detail__logo--ph { font-size: 12px; }
-.detail__head.is-compact .detail__sub { display: none; }
-.detail__head.is-compact .detail__title { font-size: 16px; margin-bottom: 6px; }
+.detail__head.is-compact .detail__logo--ph {
+    width: 34px;
+    height: 34px;
+}
+.detail__head.is-compact .detail__logo--ph {
+    font-size: 12px;
+}
+.detail__head.is-compact .detail__sub {
+    display: none;
+}
+.detail__head.is-compact .detail__title {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
 
 /* Прокручиваемая середина: контент + подвал (шапка остается закрепленной) */
-.detail__scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
-.detail__content { padding: 22px clamp(20px, 4vw, 32px); }
-
-.detail__row { margin: 0 0 18px; }
-.detail__row:last-child { margin-bottom: 0; }
-.detail__row h3 {
-  font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin: 0 0 7px;
+.detail__scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
 }
-.detail__row p { margin: 0; font-size: 14px; line-height: 1.55; }
-.detail__list { margin: 0; padding-left: 18px; }
-.detail__list li { margin-bottom: 6px; font-size: 13.5px; }
-.detail__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.detail__content {
+    padding: 22px clamp(20px, 4vw, 32px);
+}
+
+.detail__row {
+    margin: 0 0 18px;
+}
+.detail__row:last-child {
+    margin-bottom: 0;
+}
+.detail__row h3 {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #999;
+    margin: 0 0 7px;
+}
+.detail__row p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+}
+.detail__list {
+    margin: 0;
+    padding-left: 18px;
+}
+.detail__list li {
+    margin-bottom: 6px;
+    font-size: 13.5px;
+}
+.detail__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
 
 /* Связанные карточки — квадратные кнопки с лого */
-.detail__rels { display: flex; flex-wrap: wrap; gap: 7px; }
+.detail__rels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
 .detail__rel {
-  display: inline-flex; align-items: center; gap: 7px;
-  font-family: var(--body); font-size: 12px; font-weight: 600;
-  padding: 6px 11px; border: 1px solid var(--card-line); border-radius: 0;
-  background: #f0ede8; color: var(--ink); cursor: pointer;
-  transition: background .12s ease, color .12s ease, border-color .12s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--body);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 11px;
+    border: 1px solid var(--card-line);
+    border-radius: 0;
+    background: #f0ede8;
+    color: var(--ink);
+    cursor: pointer;
+    transition:
+        background 0.12s ease,
+        color 0.12s ease,
+        border-color 0.12s ease;
 }
 .detail__rel-logo {
-  width: 18px; height: 18px; flex: none; object-fit: contain;   /* лого — на самом img, сохраняем пропорции */
-  display: grid; place-items: center;
+    width: 18px;
+    height: 18px;
+    flex: none;
+    object-fit: contain; /* лого — на самом img, сохраняем пропорции */
+    display: grid;
+    place-items: center;
 }
-.detail__rel-logo--ph { font-size: 8px; font-weight: 700; color: #bbb; }
-.detail__rel::after { content: "\2197\FE0E"; opacity: .5; }
-.detail__rel:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-:root[data-theme="dark"] .detail__rel { background: #2e2520; border-color: var(--edge); }
-:root[data-theme="dark"] .detail__rel:hover { background: #3a2f28; color: #fff; border-color: var(--edge); }
+.detail__rel-logo--ph {
+    font-size: 8px;
+    font-weight: 700;
+    color: #bbb;
+}
+.detail__rel::after {
+    content: "\2197\FE0E";
+    opacity: 0.5;
+}
+.detail__rel:hover {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+}
+:root[data-theme="dark"] .detail__rel {
+    background: #2e2520;
+    border-color: var(--edge);
+}
+:root[data-theme="dark"] .detail__rel:hover {
+    background: #3a2f28;
+    color: #fff;
+    border-color: var(--edge);
+}
 
 /* Подвал — ссылки */
 .detail__foot {
-  display: flex; gap: 18px; flex-wrap: wrap;
-  padding: 18px clamp(20px, 4vw, 32px);
-  border-top: 1px solid var(--line); font-size: 13px;
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    padding: 18px clamp(20px, 4vw, 32px);
+    border-top: 1px solid var(--line);
+    font-size: 13px;
 }
 
 /* Крестик */
 .detail__close {
-  position: absolute; top: 14px; right: 16px;
-  font-size: 18px; line-height: 1; cursor: pointer; z-index: 1;
-  background: none; border: none; color: #bbb;       /* вторичный — не основной элемент */
-  transition: color .12s ease;
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 1;
+    background: none;
+    border: none;
+    color: #bbb; /* вторичный — не основной элемент */
+    transition: color 0.12s ease;
 }
-.detail__close:hover { color: var(--ink); }
-.detail__close:focus { outline: none; }              /* не подсвечивать при авто-фокусе на открытии */
-
+.detail__close:hover {
+    color: var(--ink);
+}
+.detail__close:focus {
+    outline: none;
+} /* не подсвечивать при авто-фокусе на открытии */
 
 /* ── Подвал (фиксирован тонкой полосой внизу) ── */
 .foot {
-  position: fixed; left: 0; right: 0; bottom: 0; z-index: 25;
-  border-top: 2px solid var(--ink);
-  background: var(--paper);
-  padding: 8px clamp(20px, 4vw, 40px);
-  display: flex; justify-content: center;
-  font-size: 10px; color: #999; letter-spacing: .5px; text-transform: uppercase;
-  transition: font-size .15s ease, padding .15s ease;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 25;
+    border-top: 2px solid var(--ink);
+    background: var(--paper);
+    padding: 8px clamp(20px, 4vw, 40px);
+    display: flex;
+    justify-content: center;
+    font-size: 10px;
+    color: #999;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition:
+        font-size 0.15s ease,
+        padding 0.15s ease;
 }
-.foot a { color: var(--ink); text-decoration: none; }
-.foot__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 22px; }
+.foot a {
+    color: var(--ink);
+    text-decoration: none;
+}
+.foot__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 22px;
+}
 /* долистали до конца — раскрываем: подчёркивание и чуть крупнее */
-.foot.is-full { font-size: 12px; padding: 12px clamp(20px, 4vw, 40px); }
-.foot.is-full a { text-decoration: underline; text-underline-offset: 3px; }
+.foot.is-full {
+    font-size: 12px;
+    padding: 12px clamp(20px, 4vw, 40px);
+}
+.foot.is-full a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
 /* На телефоне подвал не фиксируем: на узком экране ссылки переносятся в 2 строки,
    полосой внизу это выглядит плохо — пусть просто стоит в конце страницы. */
-@media (max-width: 600px) { .foot { position: static; } }
+@media (max-width: 600px) {
+    .foot {
+        position: static;
+    }
+}
 
 /* ── Отдельные страницы (Методология, Экспертный совет) ── */
-.kicker .back { color: #999; text-decoration: none; }
-.kicker .back:hover { color: var(--ink-soft); }
-.page { max-width: 860px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
-.doc { padding-block: 36px 64px; }
+.kicker .back {
+    color: #999;
+    text-decoration: none;
+}
+.kicker .back:hover {
+    color: var(--ink-soft);
+}
+.page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 40px);
+}
+.doc {
+    padding-block: 36px 64px;
+}
 .doc .lead {
-  font-size: clamp(15px, 1.7vw, 19px); line-height: 1.55;
-  margin: 0 0 32px; max-width: 64ch;
+    font-size: clamp(15px, 1.7vw, 19px);
+    line-height: 1.55;
+    margin: 0 0 32px;
+    max-width: 64ch;
 }
 .doc h2 {
-  font-family: var(--display); font-weight: 700;
-  font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
-  /* при прокрутке подзаголовок секции закрепляется под верхней строкой (topbar 52px) */
-  position: sticky; top: 52px; z-index: 5; background: var(--paper);
-  margin: 36px 0 0; padding: 20px 0 12px; border-top: 1px solid var(--line);
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    /* при прокрутке подзаголовок секции закрепляется под верхней строкой (topbar 52px) */
+    position: sticky;
+    top: 52px;
+    z-index: 5;
+    background: var(--paper);
+    margin: 36px 0 0;
+    padding: 20px 0 12px;
+    border-top: 1px solid var(--line);
 }
-.doc section:first-child h2 { border-top: none; padding-top: 0; margin-top: 0; }
-.doc p { margin: 0 0 12px; max-width: 64ch; }
-.doc ul { margin: 0 0 14px; padding-left: 20px; max-width: 64ch; }
-.doc li { margin: 0 0 7px; }
-.doc strong { font-weight: 600; }
+.doc section:first-child h2 {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+}
+.doc p {
+    margin: 0 0 12px;
+    max-width: 64ch;
+}
+.doc ul {
+    margin: 0 0 14px;
+    padding-left: 20px;
+    max-width: 64ch;
+}
+.doc li {
+    margin: 0 0 7px;
+}
+.doc strong {
+    font-weight: 600;
+}
 /* Метки осей — те же бейджи, что и в ландшафте; бейдж играет роль маркера */
-.axis { display: grid; grid-template-columns: max-content 1fr; gap: 11px 14px; align-items: baseline; margin: 0 0 8px; max-width: 64ch; }
-.axis .badge { justify-self: start; }
+.axis {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 11px 14px;
+    align-items: baseline;
+    margin: 0 0 8px;
+    max-width: 64ch;
+}
+.axis .badge {
+    justify-self: start;
+}
 /* на странице методологии метки читаемые — черные (зрелость остается цветной) */
-.axis .badge--ghost { color: var(--ink); border-color: var(--ink); }
-.axis__desc { color: var(--ink); }
+.axis .badge--ghost {
+    color: var(--ink);
+    border-color: var(--ink);
+}
+.axis__desc {
+    color: var(--ink);
+}
 
 /* Экспертный совет — карточки кураторов */
 /* Совет шире текстовых страниц (860) — чтобы 2 колонки были просторными. */
-.council { max-width: 1080px; padding-block: 30px 72px; }
+.council {
+    max-width: 1080px;
+    padding-block: 30px 72px;
+}
 /* Вводный текст — элемент сетки во всю ширину: левый/правый край ровно по карточкам */
 .council .lead {
-  grid-column: 1 / -1;
-  font-size: clamp(15px, 1.7vw, 19px); line-height: 1.55;
-  margin: 0 0 20px; max-width: none;
+    grid-column: 1 / -1;
+    font-size: clamp(15px, 1.7vw, 19px);
+    line-height: 1.55;
+    margin: 0 0 20px;
+    max-width: none;
 }
 /* Кураторы — сетка в 2 колонки; автор (.exp--lead) во всю ширину под ними.
    На узком экране — одна колонка. */
 .exp-grid {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px; margin-top: 34px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 34px;
 }
-@media (max-width: 720px) { .exp-grid { grid-template-columns: 1fr; } }
+@media (max-width: 720px) {
+    .exp-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
 .exp {
-  display: flex; flex-direction: column;
-  background: var(--card); border: 1.5px solid var(--ink);
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border: 1.5px solid var(--ink);
 }
 .exp__photo {
-  aspect-ratio: 1; overflow: hidden;
-  background: var(--paper-2); border-bottom: 1.5px solid var(--ink);
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: var(--paper-2);
+    border-bottom: 1.5px solid var(--ink);
 }
 .exp__photo img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .exp__body {
-  flex: 1; display: flex; flex-direction: column; align-items: flex-start;
-  gap: 12px; padding: clamp(18px, 2.4vw, 26px);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: clamp(18px, 2.4vw, 26px);
 }
 .exp__tag {
-  font-family: var(--display); font-size: 10px; font-weight: 700;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  padding: 5px 10px; border: 1.5px solid var(--ink);
+    font-family: var(--display);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1.5px solid var(--ink);
 }
 .exp__name {
-  font-family: var(--display); font-weight: 700;
-  font-size: clamp(19px, 2.3vw, 26px); letter-spacing: -.5px;
-  line-height: 1.05; color: var(--ink); margin: 0;
-  overflow-wrap: break-word;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(19px, 2.3vw, 26px);
+    letter-spacing: -0.5px;
+    line-height: 1.05;
+    color: var(--ink);
+    margin: 0;
+    overflow-wrap: break-word;
 }
 .exp__bio {
-  font-size: 14px; line-height: 1.6; color: var(--ink-soft); margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
 }
 .exp__link {
-  margin-top: auto; display: inline-flex; align-items: baseline; gap: 6px;
-  font-weight: 600; font-size: 13px; color: var(--ink);
-  text-decoration: none; border-bottom: 1.5px solid var(--ink);
-  padding-bottom: 1px;
+    margin-top: auto;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 1px;
 }
-.exp__link:hover { color: var(--ink-soft); border-color: var(--ink-soft); }
-.exp__link span { font-size: 11px; }
+.exp__link:hover {
+    color: var(--ink-soft);
+    border-color: var(--ink-soft);
+}
+.exp__link span {
+    font-size: 11px;
+}
 
 /* Автор проекта — акцентная карточка во всю ширину, фото сбоку */
-.exp--lead { grid-column: 1 / -1; }
+.exp--lead {
+    grid-column: 1 / -1;
+}
 @media (min-width: 600px) {
-  .exp--lead { flex-direction: row; }
-  .exp--lead .exp__photo {
-    flex: none; width: clamp(200px, 34%, 300px);
-    border-bottom: none; border-right: 1.5px solid var(--ink);
-  }
-  .exp--lead .exp__body { justify-content: center; gap: 14px; }
-  .exp--lead .exp__name { font-size: clamp(24px, 3vw, 32px); }
-  .exp--lead .exp__bio { font-size: 15px; max-width: 46ch; }
+    .exp--lead {
+        flex-direction: row;
+    }
+    .exp--lead .exp__photo {
+        flex: none;
+        width: clamp(200px, 34%, 300px);
+        border-bottom: none;
+        border-right: 1.5px solid var(--ink);
+    }
+    .exp--lead .exp__body {
+        justify-content: center;
+        gap: 14px;
+    }
+    .exp--lead .exp__name {
+        font-size: clamp(24px, 3vw, 32px);
+    }
+    .exp--lead .exp__bio {
+        font-size: 15px;
+        max-width: 46ch;
+    }
 }
 
 /* ── Граф связей ──────────────────────────── */
 .graph-filters {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px;
-  margin: 16px var(--frame-gap) 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 22px;
+    margin: 16px var(--frame-gap) 0;
 }
-.graph-fgroup { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.graph-fgroup {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
 .graph-flabel {
-  font-family: var(--display); font-weight: 700;
-  font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: #999;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #999;
 }
-.graph-filters .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.graph-filters .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
 .graph-filters .chip {
-  display: inline-block; width: auto; text-align: center;
-  padding: 5px 11px; border: 1px solid var(--edge); border-left: 1px solid var(--edge);
-  border-radius: 2px; font-size: 12px;
+    display: inline-block;
+    width: auto;
+    text-align: center;
+    padding: 5px 11px;
+    border: 1px solid var(--edge);
+    border-left: 1px solid var(--edge);
+    border-radius: 2px;
+    font-size: 12px;
 }
-.graph-filters .chip:hover { background: var(--hover); }
+.graph-filters .chip:hover {
+    background: var(--hover);
+}
 .graph-filters .chip[aria-pressed="true"] {
-  border-color: var(--ink); background: var(--ink); color: var(--paper); font-weight: 700;
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+    font-weight: 700;
 }
 /* Кнопка отборов в верхней строке (видна в компактном/полноэкранном режиме) */
 .graph-ftrigger {
-  display: none; align-items: center; gap: 5px; flex: none;
-  padding: 4px 6px; background: transparent; border: none; cursor: pointer;
-  font-family: var(--body); font-size: 12px; color: #999;
+    display: none;
+    align-items: center;
+    gap: 5px;
+    flex: none;
+    padding: 4px 6px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: var(--body);
+    font-size: 12px;
+    color: #999;
 }
-.graph-ftrigger::after { content: "▾"; font-size: 10px; transition: transform .15s ease; }
-.graph-ftrigger[aria-expanded="true"] { color: var(--ink); }
-.graph-ftrigger[aria-expanded="true"]::after { transform: rotate(180deg); }
+.graph-ftrigger::after {
+    content: "▾";
+    font-size: 10px;
+    transition: transform 0.15s ease;
+}
+.graph-ftrigger[aria-expanded="true"] {
+    color: var(--ink);
+}
+.graph-ftrigger[aria-expanded="true"]::after {
+    transform: rotate(180deg);
+}
 
 /* Кнопка «развернуть/свернуть» — правый верхний угол графа, чтобы не
    перекрывать подсказку (она в правом нижнем) (десктоп) */
 .graph__expand {
-  position: absolute; right: 12px; top: 12px;
-  width: 32px; height: 32px; display: grid; place-items: center; padding: 0;
-  background: var(--card); border: 1px solid var(--card-line); color: var(--ink);
-  cursor: pointer;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    background: var(--card);
+    border: 1px solid var(--card-line);
+    color: var(--ink);
+    cursor: pointer;
 }
-.graph__expand:hover { background: var(--hover); }
-.graph__expand svg { width: 16px; height: 16px; display: block; }
-.graph__expand .i-collapse { display: none; }
-.is-immersive .graph__expand .i-expand { display: none; }
-.is-immersive .graph__expand .i-collapse { display: block; }
+.graph__expand:hover {
+    background: var(--hover);
+}
+.graph__expand svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+.graph__expand .i-collapse {
+    display: none;
+}
+.is-immersive .graph__expand .i-expand {
+    display: none;
+}
+.is-immersive .graph__expand .i-collapse {
+    display: block;
+}
 
 /* Десктоп: страница графа — флекс-колонка во весь экран, подвал в потоке снизу.
    Граф растягивается (flex:1), снизу остаётся такой же отступ, как по бокам. */
-.page-graph { display: flex; flex-direction: column; min-height: 100vh; padding-bottom: 0; }
-.page-graph .foot { position: static; }
+.page-graph {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-bottom: 0;
+}
+.page-graph .foot {
+    position: static;
+}
 
 .graph {
-  position: relative; overflow: hidden;
-  flex: 1 1 auto; min-height: 440px;
-  margin: 14px var(--frame-gap) var(--frame-gap);   /* верх 14, бока и низ — равный отступ */
-  border: 2px solid var(--ink); background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    flex: 1 1 auto;
+    min-height: 440px;
+    margin: 14px var(--frame-gap) var(--frame-gap); /* верх 14, бока и низ — равный отступ */
+    border: 2px solid var(--ink);
+    background: var(--paper);
 }
-.graph canvas { display: block; width: 100%; height: 100%; cursor: grab; touch-action: none; }
+.graph canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    touch-action: none;
+}
 .graph__legend {
-  position: absolute; top: 12px; left: 12px;
-  background: var(--card); border: 1px solid var(--card-line);
-  padding: 9px 12px; font-size: 11px;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--card);
+    border: 1px solid var(--card-line);
+    padding: 9px 12px;
+    font-size: 11px;
 }
 .graph__legend-title {
-  margin: 0 0 6px; font-family: var(--display); font-weight: 700;
-  font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: #999;
+    margin: 0 0 6px;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #999;
 }
-.graph__legend ul { list-style: none; margin: 0; padding: 0; }
-.graph__legend li { display: flex; align-items: center; gap: 8px; margin: 4px 0; color: var(--ink); }
-.graph__dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.graph__legend ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.graph__legend li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 4px 0;
+    color: var(--ink);
+}
+.graph__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex: none;
+}
 .graph__hint {
-  position: absolute; bottom: 12px; right: 14px;
-  font-size: 11px; color: var(--ink-soft); letter-spacing: .3px;
-  text-transform: uppercase; pointer-events: none;
+    position: absolute;
+    bottom: 12px;
+    right: 14px;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    pointer-events: none;
 }
 .graph__zoom {
-  position: absolute; left: 12px; bottom: 12px;
-  display: flex; flex-direction: column; gap: 6px;
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 .graph__zoom button {
-  width: 32px; height: 32px; display: grid; place-items: center; padding: 0;
-  background: var(--card); border: 1px solid var(--card-line); color: var(--ink);
-  cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    background: var(--card);
+    border: 1px solid var(--card-line);
+    color: var(--ink);
+    cursor: pointer;
 }
-.graph__zoom button:hover { background: var(--hover); }
-.graph__zoom svg { width: 16px; height: 16px; display: block; }
+.graph__zoom button:hover {
+    background: var(--hover);
+}
+.graph__zoom svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+}
 
 /* Граф на узких экранах: компактная верхняя строка вместо большой шапки,
    подвал без навигации, отборы — аккордеон. Холст занимает максимум места. */
 @media (max-width: 600px) {
-  .page-graph .masthead { display: none; }      /* большую шапку прячем */
-  .page-graph .topbar { transform: none; }      /* «слипшаяся» строка видна сразу */
-  .page-graph .foot { display: none; }          /* без навигации в подвале */
+    .page-graph .masthead {
+        display: none;
+    } /* большую шапку прячем */
+    .page-graph .topbar {
+        transform: none;
+    } /* «слипшаяся» строка видна сразу */
+    .page-graph .foot {
+        display: none;
+    } /* без навигации в подвале */
 
-  .graph {
-    flex: none;                         /* на мобильном высота фиксированная, не тянем */
-    height: calc(100dvh - 78px); min-height: 320px;
-    margin: calc(52px + 10px) 12px 0;   /* под фиксированную верхнюю строку */
-  }
-  .graph-ftrigger { display: inline-flex; }     /* кнопка отборов в строке */
-  .graph__expand { display: none; }             /* на мобильном всегда полноэкранно */
-  /* Отборы — выпадающий список под верхней строкой */
-  .graph-filters {
-    position: fixed; top: 52px; right: 12px; z-index: 35;
-    flex-direction: column; align-items: stretch; gap: 6px;
-    margin: 0; padding: 10px; min-width: 210px;
-    background: var(--card); border: 1.5px solid var(--ink); box-shadow: 4px 4px 0 var(--ink);
-    display: none;
-  }
-  .graph-filters.is-open { display: flex; }
-  .graph-fgroup { flex-direction: column; align-items: flex-start; gap: 7px; }
-  .graph-flabel { display: block; }   /* подписи «Роль»/«Зрелость» в списке нужны */
-  .graph__legend { display: none; }   /* легенду блоков на мобильном не показываем */
-  .graph__hint { display: none; }
-  .graph__zoom { display: none; }               /* на тач-экране зум пинчем, кнопки не нужны */
+    .graph {
+        flex: none; /* на мобильном высота фиксированная, не тянем */
+        height: calc(100dvh - 78px);
+        min-height: 320px;
+        margin: calc(52px + 10px) 12px 0; /* под фиксированную верхнюю строку */
+    }
+    .graph-ftrigger {
+        display: inline-flex;
+    } /* кнопка отборов в строке */
+    .graph__expand {
+        display: none;
+    } /* на мобильном всегда полноэкранно */
+    /* Отборы — выпадающий список под верхней строкой */
+    .graph-filters {
+        position: fixed;
+        top: 52px;
+        right: 12px;
+        z-index: 35;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        margin: 0;
+        padding: 10px;
+        min-width: 210px;
+        background: var(--card);
+        border: 1.5px solid var(--ink);
+        box-shadow: 4px 4px 0 var(--ink);
+        display: none;
+    }
+    .graph-filters.is-open {
+        display: flex;
+    }
+    .graph-fgroup {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 7px;
+    }
+    .graph-flabel {
+        display: block;
+    } /* подписи «Роль»/«Зрелость» в списке нужны */
+    .graph__legend {
+        display: none;
+    } /* легенду блоков на мобильном не показываем */
+    .graph__hint {
+        display: none;
+    }
+    .graph__zoom {
+        display: none;
+    } /* на тач-экране зум пинчем, кнопки не нужны */
 }
 
 /* Полноэкранный режим графа на десктопе (кнопка «развернуть») —
    тот же компактный заголовок, отборы в выпадашке, без подвала; легенда и зум остаются */
-.page-graph.is-immersive .masthead { display: none; }
-.page-graph.is-immersive .topbar { transform: none; }
-.page-graph.is-immersive .foot { display: none; }
+.page-graph.is-immersive .masthead {
+    display: none;
+}
+.page-graph.is-immersive .topbar {
+    transform: none;
+}
+.page-graph.is-immersive .foot {
+    display: none;
+}
 .page-graph.is-immersive .graph {
-  position: fixed; inset: 52px 0 0; z-index: 20;
-  height: auto; min-height: 0; margin: 0; border: none;
+    position: fixed;
+    inset: 52px 0 0;
+    z-index: 20;
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    border: none;
 }
-.page-graph.is-immersive .graph-ftrigger { display: inline-flex; }
+.page-graph.is-immersive .graph-ftrigger {
+    display: inline-flex;
+}
 .page-graph.is-immersive .graph-filters {
-  position: fixed; top: 52px; right: 12px; z-index: 35;
-  flex-direction: column; align-items: stretch; gap: 6px;
-  margin: 0; padding: 10px; min-width: 210px;
-  background: var(--card); border: 1.5px solid var(--ink); box-shadow: 4px 4px 0 var(--ink);
-  display: none;
+    position: fixed;
+    top: 52px;
+    right: 12px;
+    z-index: 35;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    margin: 0;
+    padding: 10px;
+    min-width: 210px;
+    background: var(--card);
+    border: 1.5px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    display: none;
 }
-.page-graph.is-immersive .graph-filters.is-open { display: flex; }
-.page-graph.is-immersive .graph-fgroup { flex-direction: column; align-items: flex-start; gap: 7px; }
-.page-graph.is-immersive .graph-flabel { display: block; }
+.page-graph.is-immersive .graph-filters.is-open {
+    display: flex;
+}
+.page-graph.is-immersive .graph-fgroup {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+}
+.page-graph.is-immersive .graph-flabel {
+    display: block;
+}

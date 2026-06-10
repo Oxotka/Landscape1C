@@ -1,45 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru" data-theme="light">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Редактор разметки · Ландшафт технологий 1С</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=74">
-  <link rel="stylesheet" href="editor.css?v=3">
-</head>
-<body>
-  <header class="masthead">
-    <div class="masthead__main">
-      <p class="kicker">Редактор · разметка · локально</p>
-      <h1 class="title">Редактор разметки</h1>
-    </div>
-  </header>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Редактор разметки · Ландшафт технологий 1С</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css?v=74" />
+        <link rel="stylesheet" href="editor.css?v=3" />
+    </head>
+    <body>
+        <header class="masthead">
+            <div class="masthead__main">
+                <p class="kicker">Редактор · разметка · локально</p>
+                <h1 class="title">Редактор разметки</h1>
+            </div>
+        </header>
 
-  <section class="editbar">
-    <div class="editbar__status">
-      <span id="progress" class="count"></span>
-      <span id="saved" class="saved"></span>
-    </div>
-    <div class="editbar__actions">
-      <input id="search" type="search" placeholder="Поиск…" autocomplete="off" spellcheck="false">
-      <button id="add" class="btn">+ Карточка</button>
-      <button id="save" class="btn btn--primary" title="Записать прямо в app/data.js">Сохранить</button>
-      <button id="export" class="btn" title="Скачать копию (запасной путь)">Экспорт</button>
-    </div>
-  </section>
+        <section class="editbar">
+            <div class="editbar__status">
+                <span id="progress" class="count"></span>
+                <span id="saved" class="saved"></span>
+            </div>
+            <div class="editbar__actions">
+                <input
+                    id="search"
+                    type="search"
+                    placeholder="Поиск…"
+                    autocomplete="off"
+                    spellcheck="false"
+                />
+                <button id="add" class="btn">+ Карточка</button>
+                <button
+                    id="save"
+                    class="btn btn--primary"
+                    title="Записать прямо в app/data.js"
+                >
+                    Сохранить
+                </button>
+                <button
+                    id="export"
+                    class="btn"
+                    title="Скачать копию (запасной путь)"
+                >
+                    Экспорт
+                </button>
+            </div>
+        </section>
 
-  <main class="layout layout--editor">
-    <div id="board" class="board"></div>
-    <p id="empty" class="empty" hidden>Ничего не найдено</p>
-  </main>
+        <main class="layout layout--editor">
+            <div id="board" class="board"></div>
+            <p id="empty" class="empty" hidden>Ничего не найдено</p>
+        </main>
 
-  <dialog id="edit" class="detail edit"></dialog>
-  <div id="toast" class="toast" hidden></div>
+        <dialog id="edit" class="detail edit"></dialog>
+        <div id="toast" class="toast" hidden></div>
 
-  <script src="data.js?v=95"></script>
-  <script src="editor.js?v=29"></script>
-</body>
+        <script src="data.js?v=95"></script>
+        <script src="editor.js?v=29"></script>
+    </body>
 </html>
