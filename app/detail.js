@@ -3,14 +3,10 @@
 (() => {
     const D = window.LANDSCAPE;
     const $ = (sel) => document.querySelector(sel);
-    const wbr = (s) => s.replace(/([.:/])/g, "$1<wbr>");
+    const { wbr, logoMarkup } = window.LandscapeUI; // shared.js
     const byName = (n) => D.items.find((x) => x.name === n);
     const matKey = (m) =>
         ({ базовое: "base", продвинутое: "adv", нишевое: "niche" })[m];
-    const logoMarkup = (i, cls) =>
-        i.logo
-            ? `<span class="${cls}"><img class="${i.logoInvert ? "is-invert" : ""}" src="logos/${i.logo}" alt="" loading="lazy"></span>`
-            : `<span class="${cls} ${cls}--ph">1С</span>`;
 
     function openDetail(i) {
         const dlg = $("#detail");

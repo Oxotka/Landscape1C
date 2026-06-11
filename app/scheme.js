@@ -10,16 +10,8 @@
     const togglesBox = document.getElementById("scheme-toggles");
     const ROLES = D.axes.role.values;
 
-    // Сортировка карточек внутри категории — как в списке на главной (app.js):
-    // доступные в РФ раньше → по зрелости → происхождению → лицензии
-    const MAT_ORDER = { базовое: 0, продвинутое: 1, нишевое: 2 };
-    const ORIGIN_ORDER = { отечественное: 0, зарубежное: 1 };
-    const LICENSE_ORDER = { "open-source": 0, проприетарное: 1, бесплатное: 2 };
-    const sortItems = (a, b) =>
-        (a.availability === "ограничен") - (b.availability === "ограничен") ||
-        (MAT_ORDER[a.maturity] ?? 99) - (MAT_ORDER[b.maturity] ?? 99) ||
-        (ORIGIN_ORDER[a.origin] ?? 99) - (ORIGIN_ORDER[b.origin] ?? 99) ||
-        (LICENSE_ORDER[a.license] ?? 99) - (LICENSE_ORDER[b.license] ?? 99);
+    // Сортировка карточек внутри категории — общая с главной (shared.js)
+    const sortItems = window.LandscapeUI.sortItems;
 
     // ── Состояние ─────────────────────────────
     // Пусто = без ограничения по оси (как в графе). Между осями — И, внутри оси — ИЛИ.
@@ -722,17 +714,10 @@
             setFiltersOpen(!togglesBox.classList.contains("is-open"));
         }),
     );
-    document.addEventListener(
-        "pointerdown",
-        (e) => {
-            if (
-                togglesBox.classList.contains("is-open") &&
-                !togglesBox.contains(e.target) &&
-                !e.target.closest(".scheme-ftrigger")
-            )
-                setFiltersOpen(false);
-        },
-        true,
+    NAV.dismissOnOutside(
+        () => togglesBox.classList.contains("is-open"),
+        [togglesBox, ".scheme-ftrigger"],
+        () => setFiltersOpen(false),
     );
     // На десктопе при прокрутке наверх шапка прячется — закрываем попап отборов
     const topbarEl = document.getElementById("topbar");
@@ -749,20 +734,8 @@
         { passive: true },
     );
 
-    // Дубль «Отборы» и «Скачать» в самом верху бургера (запасной путь на узких экранах)
+    // Дубль «Скачать» в самом верху бургера (запасной путь на узких экранах)
     (function injectBurgerActions() {
-        const panel = document.querySelector(".menu__panel");
-        if (!panel) return;
-        const closeBurger = () => {
-            const m = document.getElementById("menu");
-            if (m) m.classList.remove("is-open");
-            document
-                .querySelectorAll(".menu-toggle")
-                .forEach((b) => b.setAttribute("aria-expanded", "false"));
-        };
-        const box = document.createElement("div");
-        box.className = "menu__page-actions";
-
         const head = document.createElement("button");
         head.type = "button";
         head.className = "menu__pa-item menu__pa-head";
@@ -778,7 +751,7 @@
             o.className = "menu__pa-item menu__pa-sub";
             o.textContent = label;
             o.addEventListener("click", () => {
-                closeBurger();
+                NAV.closeMenu();
                 fn();
             });
             list.appendChild(o);
@@ -788,11 +761,7 @@
             list.hidden = !open;
             head.setAttribute("aria-expanded", String(open));
         });
-
-        const sep = document.createElement("div");
-        sep.className = "menu__sep";
-        box.append(head, list, sep);
-        panel.insertBefore(box, panel.firstChild);
+        NAV.pageActions([head, list]);
     })();
 
     // Клик по карточке инструмента → детальная модалка (как в графе)

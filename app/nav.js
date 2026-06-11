@@ -33,17 +33,17 @@
         );
     };
 
-    // ── 1. Бургер-кнопка после каждой кнопки темы ──
+    // ── 1. Бургер-кнопка в обеих шапках (большой и прилепленной) ──
     var burgerSvg =
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>';
-    document.querySelectorAll(".theme-toggle").forEach(function (t) {
+    document.querySelectorAll(".topbar, .masthead").forEach(function (host) {
         var b = document.createElement("button");
         b.className = "menu-toggle";
         b.type = "button";
         b.setAttribute("aria-label", "Меню");
         b.setAttribute("aria-expanded", "false");
         b.innerHTML = burgerSvg;
-        t.after(b);
+        host.appendChild(b);
     });
 
     // ── 2. Панель меню ──
@@ -210,4 +210,87 @@
     } catch (e) {}
 
     syncTheme();
+
+    // ── Прилепленная шапка и подвал (общие для всех страниц) ──
+    var topbar = document.getElementById("topbar");
+    var mast = document.querySelector(".masthead");
+    var foot = document.querySelector(".foot");
+    if (topbar && mast) {
+        var onScroll = function () {
+            topbar.classList.toggle(
+                "is-visible",
+                window.scrollY > mast.offsetHeight - 10,
+            );
+            if (foot)
+                foot.classList.toggle(
+                    "is-full",
+                    window.innerHeight + window.scrollY >=
+                        document.documentElement.scrollHeight - 2,
+                );
+        };
+        addEventListener("scroll", onScroll, { passive: true });
+        addEventListener("resize", onScroll);
+        onScroll();
+        // Клик по бренду/названию страницы в прилепленной строке — плавно наверх.
+        // Элементы со ссылкой или полем поиска внутри пропускаем (у них своя роль).
+        [".topbar__brand", ".topbar__search"].forEach(function (sel) {
+            var el = topbar.querySelector(sel);
+            if (el && !el.querySelector("a, input"))
+                el.addEventListener("click", function () {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+        });
+    }
+
+    // ── API для страничных скриптов (app.js, scheme.js, graph.js) ──
+    window.NAV = {
+        // Закрыть бургер-меню (после выбора страничного пункта)
+        closeMenu: function () {
+            setOpen(false);
+        },
+        // Вставить пункты текущей страницы в начало панели бургера (+ разделитель)
+        pageActions: function (nodes) {
+            var panel = menu.querySelector(".menu__panel");
+            var box = document.createElement("div");
+            box.className = "menu__page-actions";
+            nodes.forEach(function (n) {
+                box.appendChild(n);
+            });
+            var sep = document.createElement("div");
+            sep.className = "menu__sep";
+            box.appendChild(sep);
+            panel.insertBefore(box, panel.firstChild);
+        },
+        // Закрытие попапа по нажатию вне него. keep — элементы/селекторы,
+        // нажатие по которым не закрывает (сам попап и его триггер).
+        // Pointerdown в фазе перехвата — срабатывает и поверх canvas; следующий
+        // click глушится, чтобы не сработала карточка под попапом.
+        dismissOnOutside: function (isOpen, keep, close) {
+            document.addEventListener(
+                "pointerdown",
+                function (e) {
+                    if (!isOpen()) return;
+                    var inside = keep.some(function (k) {
+                        return typeof k === "string"
+                            ? e.target.closest && e.target.closest(k)
+                            : k.contains(e.target);
+                    });
+                    if (inside) return;
+                    close();
+                    var swallow = function (ev) {
+                        ev.stopPropagation();
+                        ev.preventDefault();
+                    };
+                    document.addEventListener("click", swallow, {
+                        capture: true,
+                        once: true,
+                    });
+                    setTimeout(function () {
+                        document.removeEventListener("click", swallow, true);
+                    }, 400);
+                },
+                true,
+            );
+        },
+    };
 })();

@@ -535,19 +535,11 @@
         ftrigger.addEventListener("click", () => {
             setOpen(!fbox.classList.contains("is-open"));
         });
-        // Любое нажатие вне списка и кнопки — закрыть. Фаза перехвата, чтобы
-        // сработало и поверх canvas (он гасит обычные click при перетаскивании).
-        document.addEventListener(
-            "pointerdown",
-            (e) => {
-                if (
-                    fbox.classList.contains("is-open") &&
-                    !fbox.contains(e.target) &&
-                    e.target !== ftrigger
-                )
-                    setOpen(false);
-            },
-            true,
+        // Любое нажатие вне списка и кнопки — закрыть (работает и поверх canvas)
+        NAV.dismissOnOutside(
+            () => fbox.classList.contains("is-open"),
+            [fbox, ftrigger],
+            () => setOpen(false),
         );
     }
 

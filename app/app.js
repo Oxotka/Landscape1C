@@ -24,9 +24,7 @@
     let query = "";
 
     const $ = (sel) => document.querySelector(sel);
-    const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
-    // Точки переноса в длинных именах без пробелов: «1С:Предприятие.Элемент».
-    const wbr = (s) => s.replace(/([.:/])/g, "$1<wbr>");
+    const { wbr, logoMarkup, sortItems } = window.LandscapeUI; // shared.js
 
     // ── Рендер фильтров ───────────────────────
     function renderFilters() {
@@ -117,11 +115,6 @@
     const matches = (item) => matchesQuery(item) && matchesAxes(item);
 
     // ── Рендер доски ──────────────────────────
-    // Порядок сортировки карточек внутри раздела: зрелость → происхождение → лицензия
-    const MAT_ORDER = { базовое: 0, продвинутое: 1, нишевое: 2 };
-    const ORIGIN_ORDER = { отечественное: 0, зарубежное: 1 };
-    const LICENSE_ORDER = { "open-source": 0, проприетарное: 1, бесплатное: 2 };
-
     function apply() {
         const board = $("#board");
         board.innerHTML = "";
@@ -139,18 +132,7 @@
         const renderCat = (catName, blockName) => {
             const items = visible
                 .filter((i) => i.category === catName)
-                // Доступные в РФ раньше; внутри — по зрелости, затем отечественные, затем по лицензии
-                .sort(
-                    (a, b) =>
-                        (a.availability === "ограничен") -
-                            (b.availability === "ограничен") ||
-                        (MAT_ORDER[a.maturity] ?? 99) -
-                            (MAT_ORDER[b.maturity] ?? 99) ||
-                        (ORIGIN_ORDER[a.origin] ?? 99) -
-                            (ORIGIN_ORDER[b.origin] ?? 99) ||
-                        (LICENSE_ORDER[a.license] ?? 99) -
-                            (LICENSE_ORDER[b.license] ?? 99),
-                );
+                .sort(sortItems);
             if (!items.length) return;
             const cat = document.createElement("section");
             cat.className = "cat";
@@ -253,12 +235,6 @@
         }
     }
 
-    function logoMarkup(i, cls) {
-        return i.logo
-            ? `<span class="${cls}"><img class="${i.logoInvert ? "is-invert" : ""}" src="logos/${i.logo}" alt="" loading="lazy"></span>`
-            : `<span class="${cls} ${cls}--ph">1С</span>`;
-    }
-
     function card(i) {
         const el = document.createElement("button");
         el.className = "card";
@@ -302,52 +278,20 @@
     const filtersEl = $("#filters");
     const openFilters = (on) => filtersEl.classList.toggle("is-open", on);
     (function injectBurgerFilters() {
-        const panel = document.querySelector(".menu__panel");
-        if (!panel) return;
-        const box = document.createElement("div");
-        box.className = "menu__page-actions";
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "menu__pa-item";
         btn.textContent = "Отборы";
         btn.addEventListener("click", () => {
-            const m = document.getElementById("menu");
-            if (m) m.classList.remove("is-open");
-            document
-                .querySelectorAll(".menu-toggle")
-                .forEach((b) => b.setAttribute("aria-expanded", "false"));
+            NAV.closeMenu();
             openFilters(true);
         });
-        const sep = document.createElement("div");
-        sep.className = "menu__sep";
-        box.append(btn, sep);
-        panel.insertBefore(box, panel.firstChild);
+        NAV.pageActions([btn]);
     })();
-    document.addEventListener(
-        "pointerdown",
-        (e) => {
-            if (
-                filtersEl.classList.contains("is-open") &&
-                !filtersEl.contains(e.target) &&
-                !(e.target.closest && e.target.closest(".menu__pa-item"))
-            ) {
-                openFilters(false);
-                // Подавляем следующий click, иначе откроется карточка под попапом
-                const swallow = (ev) => {
-                    ev.stopPropagation();
-                    ev.preventDefault();
-                };
-                document.addEventListener("click", swallow, {
-                    capture: true,
-                    once: true,
-                });
-                setTimeout(
-                    () => document.removeEventListener("click", swallow, true),
-                    400,
-                );
-            }
-        },
-        true,
+    NAV.dismissOnOutside(
+        () => filtersEl.classList.contains("is-open"),
+        [filtersEl, ".menu__pa-item"],
+        () => openFilters(false),
     );
 
     // ── Старт ─────────────────────────────────

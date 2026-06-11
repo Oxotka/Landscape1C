@@ -87,12 +87,12 @@ a {
     background: var(--paper);
 }
 
-/* ── Переключатель темы ──────────────────── */
-.theme-toggle,
+/* ── Кнопка меню (бургер) ─────────────────── */
 .menu-toggle {
     /* по вертикали — на строке кикера (надзаголовка): паддинг шапки 20px + центр кикера */
     position: absolute;
     top: 10px;
+    right: clamp(20px, 4vw, 40px); /* крайний справа */
     width: 34px;
     height: 34px;
     display: grid;
@@ -105,38 +105,13 @@ a {
     cursor: pointer;
     transition: color 0.12s ease;
 }
-.menu-toggle {
-    right: clamp(20px, 4vw, 40px);
-} /* крайний справа */
-.theme-toggle {
-    right: calc(clamp(20px, 4vw, 40px) + 40px);
-} /* левее бургера */
-.theme-toggle:hover,
 .menu-toggle:hover {
     color: var(--ink-soft);
-}
-.theme-toggle svg {
-    width: 16px;
-    height: 16px;
-    display: block;
 }
 .menu-toggle svg {
     width: 22px;
     height: 22px;
     display: block;
-}
-.theme-toggle .i-sun {
-    display: none;
-}
-:root[data-theme="dark"] .theme-toggle .i-moon {
-    display: none;
-}
-:root[data-theme="dark"] .theme-toggle .i-sun {
-    display: block;
-}
-/* Иконку темы из навигации убрали — выбор темы только в бургер-меню */
-.theme-toggle {
-    display: none;
 }
 
 /* ── Свёрнутая верхняя строка (появляется при прокрутке) ── */
@@ -186,7 +161,6 @@ a {
 .topbar__search input:focus {
     outline: none;
 }
-.topbar .theme-toggle,
 .topbar .menu-toggle {
     position: static;
     flex: none;
@@ -279,12 +253,6 @@ a {
 }
 .menu__theme-list button[aria-pressed="true"]::after {
     content: " ✓";
-}
-/* На мобильном отдельную кнопку темы прячем — тему меняем через бургер-меню */
-@media (max-width: 600px) {
-    .theme-toggle {
-        display: none;
-    }
 }
 .masthead__main {
     min-width: 0;
