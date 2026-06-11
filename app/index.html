@@ -23,9 +23,9 @@
             href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap"
             rel="stylesheet"
         />
-        <link rel="stylesheet" href="styles.css?v=7164cc3b" />
+        <link rel="stylesheet" href="styles.css?v=09a88a8f" />
     </head>
-    <body>
+    <body class="page-main">
         <div class="topbar" id="topbar">
             <span class="topbar__brand">Ландшафт</span>
             <div class="topbar__search">
@@ -168,7 +168,7 @@
         <script src="data.js?v=115bab68"></script>
         <script src="detail.js?v=da1b58d6"></script>
         <script src="nav.js?v=f500e5a0"></script>
-        <script src="app.js?v=584f5465"></script>
+        <script src="app.js?v=0b6fcad4"></script>
         <script>
             // ── Переключение темы (обе кнопки) ──
             document.querySelectorAll(".theme-toggle").forEach(function (btn) {
@@ -220,6 +220,16 @@
             s1.addEventListener("input", function () {
                 s2.value = s1.value;
             });
+
+            // ── На мобильном поле поиска уже — короткий плейсхолдер ──
+            var mqSearch = matchMedia("(max-width: 720px)");
+            function setSearchPh() {
+                s2.placeholder = mqSearch.matches
+                    ? "Поиск"
+                    : "Поиск инструмента…";
+            }
+            setSearchPh();
+            mqSearch.addEventListener("change", setSearchPh);
         </script>
     </body>
 </html>

@@ -291,6 +291,44 @@
         apply();
     });
 
+    // ── Мобильный: «Отборы» в бургере открывают попап с фильтрами ──
+    const filtersEl = $("#filters");
+    const openFilters = (on) => filtersEl.classList.toggle("is-open", on);
+    (function injectBurgerFilters() {
+        const panel = document.querySelector(".menu__panel");
+        if (!panel) return;
+        const box = document.createElement("div");
+        box.className = "menu__page-actions";
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "menu__pa-item";
+        btn.textContent = "Отборы";
+        btn.addEventListener("click", () => {
+            const m = document.getElementById("menu");
+            if (m) m.classList.remove("is-open");
+            document
+                .querySelectorAll(".menu-toggle")
+                .forEach((b) => b.setAttribute("aria-expanded", "false"));
+            openFilters(true);
+        });
+        const sep = document.createElement("div");
+        sep.className = "menu__sep";
+        box.append(btn, sep);
+        panel.insertBefore(box, panel.firstChild);
+    })();
+    document.addEventListener(
+        "pointerdown",
+        (e) => {
+            if (
+                filtersEl.classList.contains("is-open") &&
+                !filtersEl.contains(e.target) &&
+                !(e.target.closest && e.target.closest(".menu__pa-item"))
+            )
+                openFilters(false);
+        },
+        true,
+    );
+
     // ── Старт ─────────────────────────────────
     const numEl = $(".masthead__num");
     if (numEl) numEl.textContent = D.items.length; // живое число инструментов

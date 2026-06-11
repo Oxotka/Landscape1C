@@ -1947,3 +1947,52 @@ a {
         display: contents;
     }
 }
+
+/* ── Главная на мобильном: компактная шапка + фильтры в попап «Отборы» ── */
+@media (max-width: 720px) {
+    .page-main .masthead {
+        display: none;
+    }
+    .page-main {
+        padding-top: 52px; /* под фиксированный топбар */
+    }
+    .page-main .topbar {
+        transform: none; /* шапка видна сразу */
+        gap: 10px;
+    }
+    /* фильтры уезжают в попап из бургера; инлайн-сайдбар не показываем */
+    .page-main .filters {
+        display: none;
+    }
+    .page-main .filters.is-open {
+        display: block;
+        position: fixed;
+        top: 52px;
+        right: 12px;
+        z-index: 35;
+        width: auto;
+        min-width: 250px;
+        max-width: calc(100vw - 24px);
+        max-height: calc(100vh - 64px);
+        overflow: auto;
+        margin: 0;
+        padding: 4px 14px;
+        background: var(--card);
+        border: 1.5px solid var(--ink);
+        box-shadow: 4px 4px 0 var(--ink);
+    }
+    /* в попапе — оси в столбик с заголовками */
+    .page-main .filters.is-open .fgroup {
+        display: block;
+        padding: 11px 0;
+    }
+    .page-main .filters.is-open .fgroup__head {
+        display: block;
+        margin: 0 0 6px;
+    }
+    .page-main .filters.is-open .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+}
