@@ -312,20 +312,23 @@
         return wrap;
     }
 
-    // ── Связи: аналоги / зависимости (двусторонние) ──
+    // ── Связи: аналоги — взаимные (с обеих сторон), зависимости — односторонние ──
     function addRel(i, type, name) {
         const t = D.items.find((x) => x.name === name);
         if (!t) return;
         i[type] = i[type] || [];
         if (!i[type].includes(name)) i[type].push(name);
-        t[type] = t[type] || [];
-        if (!t[type].includes(i.name)) t[type].push(i.name);
+        if (type === "analogs") {
+            t[type] = t[type] || [];
+            if (!t[type].includes(i.name)) t[type].push(i.name);
+        }
         save();
     }
     function removeRel(i, type, name) {
         const t = D.items.find((x) => x.name === name);
         i[type] = (i[type] || []).filter((n) => n !== name);
-        if (t) t[type] = (t[type] || []).filter((n) => n !== i.name);
+        if (type === "analogs" && t)
+            t[type] = (t[type] || []).filter((n) => n !== i.name);
         save();
     }
     function renderRel(i, type) {
