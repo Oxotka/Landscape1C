@@ -7,6 +7,7 @@
         ["index.html", "Ландшафт"],
         ["scheme.html", "Схема"],
         ["graph.html", "Граф"],
+        ["path.html", "Путь"],
         ["methodology.html", "Методология"],
         ["council.html", "Эксперты"],
     ];
@@ -24,11 +25,6 @@
     var ext = function (suffix) {
         return (
             '<a href="' +
-            PROPOSE +
-            '" target="_blank" rel="noopener">Предложить инструмент' +
-            suffix +
-            "</a>" +
-            '<a href="' +
             BOOSTY +
             '" target="_blank" rel="noopener">Поддержать' +
             suffix +
@@ -40,6 +36,11 @@
             "</a>"
         );
     };
+    // «Предложить инструмент» — только в бургере (в подвале смотрится лишним)
+    var proposeLink =
+        '<a href="' +
+        PROPOSE +
+        '" target="_blank" rel="noopener">Предложить инструмент ↗︎</a>';
 
     // ── 0. Знак проекта («рельеф на осях») в обеих шапках ──
     // Цвета из темы: линии — currentColor (--ink), пик — --m-niche (CSS).
@@ -93,6 +94,7 @@
         '<div class="menu__panel">' +
         navLinks +
         '<div class="menu__sep"></div>' +
+        proposeLink +
         ext(" ↗︎") +
         '<div class="menu__sep"></div>' +
         '<div class="menu__theme">' +

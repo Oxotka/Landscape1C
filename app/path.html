@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Схема · Ландшафт 1С</title>
+        <title>Путь · Ландшафт 1С</title>
         <script>
             (function () {
                 try {
@@ -27,16 +27,16 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
         <meta
             name="description"
-            content="Постер-схема ландшафта технологий 1С: блоки, категории и инструменты — с экспортом в SVG, PNG и PDF"
+            content="Что учить 1С-специалисту: маршрут освоения инструментов по роли — от базы к специализации"
         />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Ландшафт технологий 1С" />
-        <meta property="og:title" content="Схема · Ландшафт технологий 1С" />
+        <meta property="og:title" content="Путь · Ландшафт технологий 1С" />
         <meta
             property="og:description"
-            content="Постер-схема ландшафта технологий 1С: блоки, категории и инструменты — с экспортом в SVG, PNG и PDF"
+            content="Что учить 1С-специалисту: маршрут освоения инструментов по роли — от базы к специализации"
         />
-        <meta property="og:url" content="https://landscape1c.ru/scheme.html" />
+        <meta property="og:url" content="https://landscape1c.ru/path.html" />
         <meta
             property="og:image"
             content="https://landscape1c.ru/og-image.png"
@@ -45,7 +45,7 @@
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
     </head>
-    <body class="page-doc page-scheme">
+    <body class="page-doc">
         <div class="topbar" id="topbar">
             <span class="topbar__brand"
                 ><a
@@ -57,19 +57,12 @@
             <span
                 class="topbar__search"
                 style="font-size: 13px; color: #999; cursor: pointer"
-                >Схема</span
+                >Путь</span
             >
-            <button
-                class="graph-ftrigger scheme-ftrigger"
-                id="topbar-ftrigger"
-                type="button"
-                aria-expanded="false"
-                aria-controls="scheme-toggles"
-            >
-                Отборы
-            </button>
-            <button id="reset2" class="reset" hidden>Сбросить ✕</button>
-            <div class="scheme-dd" id="topbar-dl"></div>
+            <div class="path-bar path-bar--top" aria-hidden="true">
+                <i id="path-fill2"></i>
+            </div>
+            <span id="path-done2" class="count" aria-hidden="true"></span>
         </div>
 
         <header class="masthead">
@@ -77,18 +70,22 @@
                 <p class="kicker">
                     <a href="index.html" class="back">← Ландшафт</a>
                 </p>
-                <h1 class="title">Схема</h1>
+                <h1 class="title">Путь</h1>
             </div>
         </header>
 
-        <div class="scheme-bar">
-            <div class="scheme-toggles" id="scheme-toggles"></div>
-            <div class="scheme-actions">
-                <div class="scheme-dd" id="bar-dl"></div>
+        <main class="page path-page">
+            <div class="path-role">
+                <p class="path-role__head">Роль</p>
+                <div id="path-tabs" class="path-tabs" role="tablist"></div>
             </div>
-        </div>
-
-        <div class="scheme-wrap" id="scheme-wrap"></div>
+            <p class="path-sum">
+                Освоено <b id="path-done">0 из 0</b>
+                <button type="button" id="path-reset" hidden>сбросить</button>
+            </p>
+            <div class="path-bar"><i id="path-fill"></i></div>
+            <div id="path-stages"></div>
+        </main>
 
         <footer class="foot">
             <nav class="foot__links"></nav>
@@ -102,6 +99,6 @@
         <script src="shared.js?v=8fbb4d50"></script>
         <script src="detail.js?v=36e7a22a"></script>
         <script src="nav.js?v=48257bf5"></script>
-        <script src="scheme.js?v=1dfcba56"></script>
+        <script src="path.js?v=2b76469c"></script>
     </body>
 </html>

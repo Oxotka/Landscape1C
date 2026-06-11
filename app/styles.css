@@ -2093,3 +2093,189 @@ a {
 .filters__reset {
     display: none;
 }
+
+/* ── Путь (path.html) ─────────────────────── */
+/* На пути карточки идут в одну колонку — это список-маршрут, не доска */
+.path-page .cards {
+    grid-template-columns: 1fr;
+}
+.path-page .card {
+    border-right: none;
+}
+#path-stages {
+    counter-reset: cat; /* ступени нумеруются как категории главной (01…) */
+}
+/* Блок выбора роли — как группа отборов: мелкий заголовок + чипы */
+.path-role {
+    margin: 26px 0 24px;
+}
+.path-role__head {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #999;
+    margin: 0 0 8px;
+}
+.path-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.path-tab {
+    font-family: var(--body);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 14px;
+    background: none;
+    border: 1.5px solid var(--edge);
+    border-radius: 0;
+    color: var(--ink-soft);
+    cursor: pointer;
+}
+.path-tab[aria-pressed="true"] {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+}
+.path-sum {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 0 0 6px;
+}
+.path-sum b {
+    color: var(--ink);
+}
+.path-sum button {
+    margin-left: 10px;
+    padding: 0;
+    background: none;
+    border: none;
+    font-family: var(--body);
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+.path-sum button:hover {
+    color: var(--ink);
+}
+.path-bar {
+    height: 7px;
+    border: 1.5px solid var(--ink);
+    margin-bottom: 30px;
+}
+.path-bar i {
+    display: block;
+    height: 100%;
+    background: var(--ink);
+    transition: width 0.2s ease;
+}
+/* Компактный дубль прогресса в прилепленной шапке */
+.path-bar--top {
+    flex: none;
+    width: clamp(80px, 22vw, 220px);
+    height: 6px;
+    margin-bottom: 0;
+}
+/* На мобильном полоса прогресса в тексте не нужна — она всегда в шапке */
+@media (max-width: 720px) {
+    .path-page .path-bar {
+        display: none;
+    }
+}
+/* Строка-описание ступени — под липкой шапкой, не липнет */
+.path-stage__desc {
+    margin: 0;
+    padding: 8px clamp(16px, 3vw, 24px);
+    background: var(--card);
+    border-bottom: 1px solid var(--card-line);
+    font-size: 12px;
+    color: var(--ink-soft);
+}
+.path-stage__desc + .subcat__head {
+    margin-top: -1px;
+}
+/* Группа аналогов: «скобка» — левая линейка охватывает строку «На выбор»
+   и все карточки группы; закрытый слот подкрашивается терракотом */
+.path-choicegrp {
+    border-left: 3px solid var(--edge);
+}
+.path-choicegrp.is-done {
+    border-left-color: var(--m-niche);
+}
+.path-choice {
+    margin: 0;
+    padding: 6px clamp(16px, 3vw, 24px);
+    background: var(--card);
+    border-top: 1px solid var(--card-line);
+    border-bottom: 1px solid var(--card-line);
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #999;
+}
+.cards + .path-choicegrp,
+.subcat__head + .path-choicegrp,
+.path-choicegrp + .cards {
+    margin-top: -1px;
+}
+.path-choicegrp.is-done .path-choice::after {
+    content: " — есть ✓";
+    color: var(--m-niche);
+}
+/* Чекбокс «знаю» — в углу карточки; отметка — терракотом (цвет знака) */
+.path-card {
+    position: relative;
+}
+.path-check {
+    /* зона-«квадрат» во всю высоту правого края карточки — нажимать легко */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 52px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    border-left: 1px solid var(--card-line);
+    z-index: 1;
+}
+.path-check:hover {
+    background: var(--hover);
+}
+.path-check input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    cursor: pointer;
+}
+.path-check__box {
+    display: block;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--edge);
+    background: var(--card);
+}
+.path-check:hover .path-check__box {
+    border-color: var(--ink);
+}
+.path-check input:checked + .path-check__box {
+    background: var(--m-niche);
+    border-color: var(--m-niche);
+    box-shadow: inset 0 0 0 3px var(--card);
+}
+.path-card .card__body {
+    padding-right: 48px; /* текст не заезжает под зону чекбокса справа */
+}
+/* Освоенное — приглушаем, чекбокс остается ярким */
+.card.is-known .card__name,
+.card.is-known .card__desc {
+    color: var(--ink-soft);
+}
+.card.is-known .card__media {
+    filter: grayscale(1);
+    opacity: 0.6;
+}
