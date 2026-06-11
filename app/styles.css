@@ -1519,11 +1519,13 @@ a {
         display: none;
     } /* без навигации в подвале */
 
+    /* Без рамки и отступов: сразу под линией шапки, во всю ширину и до низа */
     .graph {
         flex: none; /* на мобильном высота фиксированная, не тянем */
-        height: calc(100dvh - 78px);
+        height: calc(100dvh - 52px);
         min-height: 320px;
-        margin: calc(52px + 10px) 12px 0; /* под фиксированную верхнюю строку */
+        margin: 52px 0 0; /* под фиксированную верхнюю строку */
+        border: none;
     }
     .graph-ftrigger {
         display: inline-flex;
@@ -1878,6 +1880,11 @@ a {
     .page-doc .scheme-actions {
         display: none;
     }
+    /* Постер без рамки и отступов — сразу под линией шапки, во всю ширину */
+    .page-doc .scheme-wrap {
+        margin: 0;
+        border: none;
+    }
     /* Контентные страницы: подвал на мобильном не показываем */
     .page-doc .foot {
         display: none;
@@ -1980,6 +1987,19 @@ a {
         text-align: center;
         margin: 6px 0 2px;
         padding: 8px 0;
+    }
+    /* подвал на мобильном не показываем (как на контентных страницах) */
+    .page-main .foot {
+        display: none;
+    }
+    .page-main {
+        padding-bottom: 0;
+    }
+    /* Шрифт <16px заставляет iOS приближать страницу при фокусе на поле
+       (и обратно не отдаляет) — держим у полей поиска ровно 16px */
+    .topbar__search input,
+    .search input {
+        font-size: 16px;
     }
 }
 /* по умолчанию (десктоп-сайдбар) кнопка сброса в фильтрах не нужна */

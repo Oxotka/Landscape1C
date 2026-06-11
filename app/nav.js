@@ -8,7 +8,7 @@
         ["graph.html", "Граф"],
         ["scheme.html", "Схема"],
         ["methodology.html", "Методология"],
-        ["council.html", "Экспертный совет"],
+        ["council.html", "Эксперты"],
     ];
     var BOOSTY =
         "https://boosty.to/1cnik/purchase/3363092?ssource=DIRECT&share=subscription_link";
