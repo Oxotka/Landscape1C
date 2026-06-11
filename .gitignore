@@ -4,7 +4,9 @@
 # OS
 .DS_Store
 
-# Локальные настройки Claude Code (абсолютные пути, разрешения — не публикуем)
+# Claude Code: скиллы публикуем (глобальный gitignore прячет .claude/ — отменяем),
+# локальные настройки — нет
+!.claude/
 .claude/settings.local.json
 
 # Python-кэш локального сервера
