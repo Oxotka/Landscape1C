@@ -6,3 +6,6 @@
 
 # Локальные настройки Claude Code (абсолютные пути, разрешения — не публикуем)
 .claude/settings.local.json
+
+# Python-кэш локального сервера
+__pycache__/

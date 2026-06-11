@@ -70,6 +70,10 @@
 .btn:hover {
     background: var(--paper-2);
 }
+a.btn {
+    text-decoration: none;
+    display: inline-block;
+}
 .btn--primary {
     background: var(--ink);
     color: #fff;
@@ -106,13 +110,39 @@
 }
 
 /* ── Форма редактирования ───────────────── */
+/* Широкая двухколоночная форма: слева контент (тексты, ссылки),
+   справа разметка (оси, связи). Скролл — внутри тела формы. */
 .edit {
-    max-width: 640px;
+    max-width: 980px;
 }
 .edit__body {
     display: flex;
     flex-direction: column;
+    gap: 18px;
+    padding: 24px 28px;
+    overflow: auto;
+}
+.edit__cols {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 18px 40px;
+    align-items: start;
+}
+.edit__col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+}
+#axisbox {
+    display: flex;
+    flex-direction: column;
     gap: 14px;
+}
+@media (max-width: 860px) {
+    .edit__cols {
+        grid-template-columns: 1fr;
+    }
 }
 .edit__title {
     font-family: var(--display);
@@ -120,7 +150,8 @@
     font-size: 20px;
     text-transform: uppercase;
     letter-spacing: -0.5px;
-    margin: 0 0 4px;
+    margin: 0;
+    padding-right: 40px; /* не лезть под кнопку «✕» */
 }
 .edit__grid2 {
     display: grid;
@@ -131,6 +162,45 @@
     .edit__grid2 {
         grid-template-columns: 1fr;
     }
+}
+
+/* Логотип: поле + квадратик превью; чекбокс инверсии под ним */
+.edit__logo {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: end;
+}
+.edit__logo-preview {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border: 1.4px solid var(--line-strong);
+    background: var(--paper);
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 11px;
+    color: var(--ink-soft);
+    overflow: hidden;
+}
+.edit__logo-preview img {
+    max-width: 80%;
+    max-height: 80%;
+    display: block;
+}
+.edit__check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--body);
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-top: -8px; /* прижат к полю логотипа */
+    cursor: pointer;
+}
+.edit__check input {
+    accent-color: var(--ink);
 }
 
 .edit__field {
@@ -158,7 +228,7 @@
 }
 .edit__field textarea {
     resize: vertical;
-    min-height: 56px;
+    min-height: 64px;
     line-height: 1.4;
 }
 .edit__field input:focus,
@@ -302,8 +372,13 @@
     align-items: center;
     justify-content: space-between;
     border-top: 1px solid var(--line);
-    padding-top: 14px;
-    margin-top: 4px;
+    padding-top: 16px;
+}
+
+/* ── Тост ───────────────────────────────── */
+.toast {
+    max-width: min(560px, calc(100vw - 32px));
+    text-align: center;
 }
 
 /* ── Тост ───────────────────────────────── */

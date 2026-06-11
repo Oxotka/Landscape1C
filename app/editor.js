@@ -44,7 +44,9 @@
         );
 
     // ── Запись прямо в файл (POST /save → scripts/serve.py пишет app/data.js) ──
+    let dirty = false;
     function markDirty() {
+        dirty = true;
         const el = $("#saved");
         if (el) {
             el.textContent = "● не сохранено";
@@ -52,6 +54,7 @@
         }
     }
     function markSaved(msg) {
+        dirty = false;
         const el = $("#saved");
         if (el) {
             el.textContent =
@@ -72,11 +75,34 @@
             if (!res.ok) throw new Error("HTTP " + res.status);
             markSaved();
             toast("Сохранено в data.js");
+            return true;
         } catch (e) {
             toast(
-                "Сервер записи недоступен (запустите scripts/serve.py) — скачиваю копию",
+                "Сервер записи недоступен (запустите start.command) — скачиваю копию",
             );
             downloadData();
+            return false;
+        }
+    }
+
+    // Сборка dist прямо из редактора (POST /build → cachebust + validate + dist)
+    async function buildDist() {
+        const btn = $("#build");
+        if (dirty && !(await saveFile())) return; // сначала пишем правки на диск
+        btn.disabled = true;
+        toast("Собираю dist…");
+        try {
+            const res = await fetch("/build", { method: "POST" });
+            const text = (await res.text()).trim();
+            if (!res.ok) throw new Error(text);
+            toast(text.split("\n").pop(), 3500); // последняя строка: «dist собран: N файлов»
+        } catch (e) {
+            toast(
+                "Сборка не удалась: " + (e.message || "нужен serve.py"),
+                5000,
+            );
+        } finally {
+            btn.disabled = false;
         }
     }
     function downloadData() {
@@ -181,29 +207,37 @@
         dlg.innerHTML = `
       <div class="detail__body edit__body">
         <button class="detail__close" aria-label="Закрыть">✕</button>
-        <h2 class="edit__title">Карточка</h2>
-        ${textRow("Название", "name", i.name)}
-        <div class="edit__grid2">
-          ${selectRow("Категория", "category", i.category, D.categories)}
-          ${textRow("Подкатегория", "subcategory", i.subcategory || "")}
-        </div>
-        <button id="texttoggle" type="button" class="lnkbtn">✎ Описание, «зачем нужно», синонимы</button>
-        <div id="textbox" hidden>
-          ${areaRow("Описание", "description", i.description)}
-          ${areaRow("Зачем нужно", "why", i.why)}
-          <label class="edit__field"><span>Синонимы для поиска (через запятую, скрыто от пользователя)</span><textarea id="aliasesinput" rows="2">${escH((i.aliases || []).join(", "))}</textarea></label>
-        </div>
-        <div class="edit__grid2">
-          ${textRow("Сайт", "homepage", i.homepage || "")}
-          ${textRow("Репозиторий", "repo", i.repo || "")}
-        </div>
-        <div id="axisbox"></div>
-        <div class="edit__row"><h3>Аналоги</h3><div id="analogsbox" class="reledit"></div></div>
-        <div class="edit__row"><h3>Зависимости</h3><div id="dependsbox" class="reledit"></div></div>
-        <div class="edit__row">
-          <h3>С чего начать</h3>
-          <div id="startbox"></div>
-          <button id="startadd" class="lnkbtn">+ ссылка</button>
+        <h2 class="edit__title">${escH(i.name) || "Карточка"}</h2>
+        <div class="edit__cols">
+          <div class="edit__col">
+            ${textRow("Название", "name", i.name)}
+            <div class="edit__grid2">
+              ${selectRow("Категория", "category", i.category, D.categories)}
+              ${textRow("Подкатегория", "subcategory", i.subcategory || "")}
+            </div>
+            <div class="edit__logo">
+              ${textRow("Логотип (файл в logos/)", "logo", i.logo || "")}
+              <span class="edit__logo-preview" id="logopreview"></span>
+            </div>
+            <label class="edit__check"><input type="checkbox" id="logoinvert" ${i.logoInvert ? "checked" : ""}> темный логотип — инвертировать в темной теме</label>
+            ${areaRow("Описание", "description", i.description)}
+            ${areaRow("Зачем нужно", "why", i.why)}
+            <label class="edit__field"><span>Синонимы для поиска (через запятую, скрыто от пользователя)</span><textarea id="aliasesinput" rows="2">${escH((i.aliases || []).join(", "))}</textarea></label>
+            <div class="edit__grid2">
+              ${textRow("Сайт", "homepage", i.homepage || "")}
+              ${textRow("Репозиторий", "repo", i.repo || "")}
+            </div>
+            <div class="edit__row">
+              <h3>С чего начать</h3>
+              <div id="startbox"></div>
+              <button id="startadd" class="lnkbtn">+ ссылка</button>
+            </div>
+          </div>
+          <div class="edit__col">
+            <div id="axisbox"></div>
+            <div class="edit__row"><h3>Аналоги</h3><div id="analogsbox" class="reledit"></div></div>
+            <div class="edit__row"><h3>Зависимости</h3><div id="dependsbox" class="reledit"></div></div>
+          </div>
         </div>
         <div class="edit__foot">
           <button id="del" class="lnkbtn lnkbtn--danger">Удалить карточку</button>
@@ -211,22 +245,36 @@
         </div>
       </div>`;
 
-        // Текстовые поля → пишем сразу в объект. Пустую строку для homepage/repo/subcategory храним как null.
+        // Текстовые поля → пишем сразу в объект. Пустую строку для homepage/repo/subcategory/logo храним как null.
         dlg.querySelectorAll("[data-field]").forEach((inp) => {
             inp.addEventListener("input", () => {
                 const f = inp.dataset.field,
                     v = inp.value;
                 i[f] =
-                    v === "" && ["homepage", "repo", "subcategory"].includes(f)
+                    v === "" &&
+                    ["homepage", "repo", "subcategory", "logo"].includes(f)
                         ? null
                         : v;
+                if (f === "name")
+                    dlg.querySelector(".edit__title").textContent =
+                        v || "Карточка";
+                if (f === "logo") updateLogoPreview();
                 save();
             });
         });
 
-        dlg.querySelector("#texttoggle").addEventListener("click", () => {
-            const box = dlg.querySelector("#textbox");
-            box.hidden = !box.hidden;
+        // Превью логотипа рядом с полем
+        function updateLogoPreview() {
+            const box = dlg.querySelector("#logopreview");
+            box.innerHTML = i.logo
+                ? `<img src="logos/${escA(i.logo)}" alt="" onerror="this.replaceWith('?')">`
+                : "1С";
+        }
+        updateLogoPreview();
+        dlg.querySelector("#logoinvert").addEventListener("change", (e) => {
+            if (e.target.checked) i.logoInvert = true;
+            else delete i.logoInvert;
+            save();
         });
 
         // Синонимы для поиска — строка через запятую → массив
@@ -422,12 +470,12 @@
     }
 
     let toastT;
-    function toast(msg) {
+    function toast(msg, ms = 1800) {
         const t = $("#toast");
         t.textContent = msg;
         t.hidden = false;
         clearTimeout(toastT);
-        toastT = setTimeout(() => (t.hidden = true), 1800);
+        toastT = setTimeout(() => (t.hidden = true), ms);
     }
 
     function blankItem() {
@@ -479,6 +527,12 @@
 
     $("#save").addEventListener("click", saveFile);
     $("#export").addEventListener("click", downloadData);
+    $("#build").addEventListener("click", buildDist);
+
+    // Клик по подложке закрывает форму (правки уже в объекте, ничего не теряется)
+    $("#edit").addEventListener("click", (e) => {
+        if (e.target.id === "edit") e.target.close();
+    });
 
     // ── Старт ─────────────────────────────────
     normalize();
