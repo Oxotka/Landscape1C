@@ -33,6 +33,36 @@
         );
     };
 
+    // ── 0. Знак проекта («рельеф на осях») в обеих шапках ──
+    // Цвета из темы: линии — currentColor (--ink), пик — --m-niche (CSS).
+    // На мобильной прилепленной шапке знак скрыт (media в styles.css).
+    var markSvg = function (cls) {
+        return (
+            '<svg class="logo-mark' +
+            (cls ? " " + cls : "") +
+            '" viewBox="4.25 2.55 17.2 17.2" aria-hidden="true">' +
+            '<path d="M5.2 3.5 V18.8 H20.5" fill="none" stroke="currentColor" stroke-width="1.9"/>' +
+            '<path d="M5.2 16.8 L9.6 9.8 L12.4 12.6 L16.6 5.8 L20.5 11.8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>' +
+            '<circle class="logo-mark__acc" cx="16.6" cy="5.8" r="1.9"/>' +
+            "</svg>"
+        );
+    };
+    var brandEl = document.querySelector(".topbar__brand");
+    if (brandEl) brandEl.insertAdjacentHTML("afterbegin", markSvg(""));
+    var mastEl = document.querySelector(".masthead");
+    if (mastEl) {
+        mastEl.insertAdjacentHTML("afterbegin", markSvg("logo-mark--mast"));
+        mastEl.classList.add("has-mark");
+    }
+    // Клик по знаку: на главной — наверх, с остальных страниц — на главную
+    var onMain = document.body.classList.contains("page-main");
+    document.querySelectorAll(".logo-mark").forEach(function (m) {
+        m.addEventListener("click", function () {
+            if (onMain) window.scrollTo({ top: 0, behavior: "smooth" });
+            else location.href = "index.html";
+        });
+    });
+
     // ── 1. Бургер-кнопка в обеих шапках (большой и прилепленной) ──
     var burgerSvg =
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>';

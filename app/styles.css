@@ -144,6 +144,38 @@ a {
     cursor: pointer;
     user-select: none;
 }
+/* ── Знак проекта (вставляет nav.js) ────── */
+.logo-mark {
+    color: var(--ink);
+    flex: none;
+    cursor: pointer;
+}
+.logo-mark__acc {
+    fill: var(--m-niche);
+}
+.topbar__brand .logo-mark {
+    width: 18px;
+    height: 18px;
+    vertical-align: -2px;
+    margin-right: 9px;
+}
+/* В большой шапке знак — колонкой слева от надписи, во всю ее высоту */
+.masthead.has-mark {
+    grid-template-columns: auto 1fr auto;
+}
+/* Высота знака = кикер (12px + отступ 14px) + заголовок; от верха кикера
+   до низа заголовка. stretch нельзя: ширина auto зацикливает грид-раскладку */
+.logo-mark--mast {
+    align-self: start;
+    height: calc(clamp(22px, 4.6vw, 52px) + 26px);
+    width: auto;
+}
+/* В мобильной прилепленной шапке знаку не хватает места */
+@media (max-width: 720px) {
+    .topbar .logo-mark {
+        display: none;
+    }
+}
 .topbar__search {
     flex: 1;
     min-width: 0;
@@ -275,14 +307,26 @@ a {
     margin: 0;
     color: var(--ink);
 }
-/* Отступ под заголовком «принадлежит» поиску, а не заголовку: где поиска нет
-   (граф, методология, совет), заголовок отстоит от линии шапки ровно на её
-   padding-bottom — одинаково на всех страницах. */
-.search {
-    margin-top: 18px;
+/* Поиск живет в строке над доской (рядом со счетчиком «191 из 191»);
+   на мобильном скрыт — там поиск в прилепленной шапке. Отрицательный отступ
+   слева — на внутренний паддинг и рамку поля, чтобы текст в поле стоял
+   в одну линию с текстом доски под ним. */
+.content__bar .search {
+    flex: 1;
+    margin-left: -13.5px;
 }
-/* На телефонах «технологий» не влезает — заголовок сокращается до «Ландшафт 1С». */
-@media (max-width: 430px) {
+.content__bar .search input {
+    width: min(460px, 100%);
+    padding: 7px 12px;
+}
+@media (max-width: 720px) {
+    .content__bar .search {
+        display: none;
+    }
+}
+/* В узких окнах «технологий» не влезает (знак + счетчик справа) —
+   заголовок сокращается до «Ландшафт 1С». */
+@media (max-width: 1280px) {
     .title__mid {
         display: none;
     }

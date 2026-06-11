@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="4.1 2.4 17.5 17.5">
+    <style>
+        .i { stroke: #1a1a1a; }
+        .a { fill: #a83e18; }
+        @media (prefers-color-scheme: dark) {
+            .i { stroke: #dcd0bc; }
+            .a { fill: #e06030; }
+        }
+    </style>
+    <path class="i" d="M5.2 3.5 V18.8 H20.5" fill="none" stroke-width="2.2"/>
+    <path class="i" d="M5.2 16.8 L9.6 9.8 L12.4 12.6 L16.6 5.8 L20.5 11.8" fill="none" stroke-width="2.2" stroke-linejoin="round"/>
+    <circle class="a" cx="16.6" cy="5.8" r="2.1"/>
+</svg>

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Ландшафт технологий 1С</title>
+        <title>Ландшафт 1С</title>
         <script>
             // Тема до отрисовки — чтобы не мигало. Сохраненный выбор > системная настройка.
             (function () {
@@ -23,7 +23,9 @@
             href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap"
             rel="stylesheet"
         />
-        <link rel="stylesheet" href="styles.css?v=17c9d7b7" />
+        <link rel="stylesheet" href="styles.css?v=d52bd529" />
+        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     </head>
     <body class="page-main">
         <div class="topbar" id="topbar">
@@ -47,15 +49,6 @@
                 <h1 class="title">
                     Ландшафт <span class="title__mid">технологий </span>1С
                 </h1>
-                <div class="search">
-                    <input
-                        id="search"
-                        type="search"
-                        placeholder="Поиск инструмента…"
-                        autocomplete="off"
-                        spellcheck="false"
-                    />
-                </div>
             </div>
             <!-- Декоративный счетчик. Статичный: app.js обновляет только #count в строке ниже. -->
             <div class="masthead__num" aria-hidden="true">130</div>
@@ -66,6 +59,15 @@
 
             <main class="content">
                 <div class="content__bar">
+                    <div class="search">
+                        <input
+                            id="search"
+                            type="search"
+                            placeholder="Поиск инструмента…"
+                            autocomplete="off"
+                            spellcheck="false"
+                        />
+                    </div>
                     <span id="count" class="count"></span>
                     <button id="reset" class="reset" hidden>Сбросить ✕</button>
                 </div>
@@ -99,10 +101,10 @@
             <div class="detail__body"></div>
         </dialog>
 
-        <script src="data.js?v=242cd7b5"></script>
+        <script src="data.js?v=27b7fb02"></script>
         <script src="shared.js?v=8fbb4d50"></script>
         <script src="detail.js?v=2776cb81"></script>
-        <script src="nav.js?v=ab232837"></script>
+        <script src="nav.js?v=940e352f"></script>
         <script src="app.js?v=abc6afde"></script>
         <script>
             // ── Два поля поиска синхронизированы; фильтрацию ведет app.js (#search) ──
