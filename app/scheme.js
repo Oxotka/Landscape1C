@@ -73,28 +73,37 @@
             .getPropertyValue(name)
             .trim();
 
-    // Перенос строки по словам в заданную ширину (макс. maxLines, последняя — с «…»)
+    // Перенос строки по словам в заданную ширину (макс. maxLines, последняя — с «…»).
+    // Внутри слова переносим после . : / - («1С:Предприятие.Элемент»,
+    // «Специалист-Консультант») — как wbr на главной (shared.js)
     function wrapText(text, maxW, weight, size, maxLines) {
-        const words = text.split(/\s+/);
+        const units = [];
+        text.split(/\s+/).forEach((word, wi) => {
+            const parts = word.match(/[^.:/-]*[.:/-]+|[^.:/-]+/g) || [word];
+            parts.forEach((p, pi) =>
+                units.push({ t: p, sp: pi === 0 && wi > 0 }),
+            );
+        });
         const lines = [];
         let cur = "";
         let used = 0;
-        for (let k = 0; k < words.length; k++) {
-            const test = cur ? cur + " " + words[k] : words[k];
+        for (let k = 0; k < units.length; k++) {
+            const u = units[k];
+            const test = cur ? cur + (u.sp ? " " : "") + u.t : u.t;
             if (measure(test, weight, size) <= maxW || !cur) {
                 cur = test;
                 used = k + 1;
             } else {
                 lines.push(cur);
-                cur = words[k];
+                cur = u.t;
                 used = k + 1;
                 if (lines.length === maxLines - 1) break;
             }
         }
         if (lines.length < maxLines && cur) {
             lines.push(cur);
-        } else if (used < words.length) {
-            // остались непоместившиеся слова — добиваем «…» в последнюю строку
+        } else if (used < units.length) {
+            // остались непоместившиеся куски — добиваем «…» в последнюю строку
             cur = (cur ? cur + " " : "") + "…";
             lines[lines.length] = cur;
         }
@@ -149,13 +158,37 @@
         const ser = new XMLSerializer();
         let raw = "";
         root.childNodes.forEach((n) => (raw += ser.serializeToString(n)));
+        // Презентационные атрибуты корня (fill="…" у simpleicons, style, class)
+        // переносим на обертку <g> — вложенный <svg> их теряет, и иконка чернеет
+        const structural = new Set([
+            "viewBox",
+            "width",
+            "height",
+            "preserveAspectRatio",
+            "version",
+            "baseProfile",
+            "role",
+            "id",
+            "x",
+            "y",
+        ]);
+        let rootAttrs = "";
+        Array.from(root.attributes).forEach((a) => {
+            if (
+                structural.has(a.name) ||
+                /^(xmlns|xml:|aria-|data-)/.test(a.name)
+            )
+                return;
+            const v = a.value.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+            rootAttrs += ` ${a.name}="${v}"`;
+        });
         // Обрезаем по viewBox, как браузер при <img> (часть логотипов рисует
         // надпись за границами viewBox — напр. gitflic.svg)
         const [vx, vy, vw, vh] = vb.split(/[\s,]+/).map(Number);
         const clipId = prefix + "clip";
         const inner =
             `<clipPath id="${clipId}"><rect x="${vx}" y="${vy}" width="${vw}" height="${vh}"/></clipPath>` +
-            `<g clip-path="url(#${clipId})">${raw}</g>`;
+            `<g clip-path="url(#${clipId})"${rootAttrs}>${raw}</g>`;
         return { type: "svg", viewBox: vb, inner };
     }
     async function loadLogo(file, idx) {
