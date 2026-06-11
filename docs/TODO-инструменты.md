@@ -60,7 +60,7 @@
 
 ## Осталось (на следующий заход)
 
-- [ ] **Логотипы** для всех 13 новых карточек в `app/logos/` + проставить `logo` в `data.js` (+ `logoInvert` для монохромных).
+- [ ] **Логотипы** (3 из 13 готовы). Проставлены: **Terraform, HashiCorp Vault, Harbor** (стянуты из VectorLogoZone/CNCF). `keycloak.svg` тоже лежит в `app/logos/` про запас. **Нужны логотипы** (нет в публичных CDN — скинуть файлы в `app/logos/`): HAProxy, Angie, КриптоПро, 1С:Управление ландшафтом, 1cFresh, Selectel, Platform V, Оркестратор1С, Алькир, Gramax. Потом проставить `logo` (+ `logoInvert` для монохромных).
 - [ ] **Просмотр куратором** description/«зачем», зрелости и контекстов у новых карточек (черновые формулировки).
 - [ ] **Проверить ссылки:** 1С:Управление ландшафтом (нет homepage), Gramax (repo), Platform V, 1cFresh, Selectel, Оркестратор1С, Алькир.
 - [ ] **Проверить:** поддержка 1С у Platform V; license/availability у Terraform и Vault (BUSL + блок РФ).
