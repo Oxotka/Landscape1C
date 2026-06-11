@@ -52,6 +52,13 @@
             group.appendChild(chips);
             box.appendChild(group);
         });
+        // Кнопка сброса — видна только в мобильном попапе «Отборы» (CSS)
+        const r = document.createElement("button");
+        r.type = "button";
+        r.className = "filters__reset";
+        r.textContent = "Сбросить ✕";
+        r.addEventListener("click", reset);
+        box.appendChild(r);
     }
 
     // ── Стартовые наборы по контексту ─────────
@@ -323,8 +330,22 @@
                 filtersEl.classList.contains("is-open") &&
                 !filtersEl.contains(e.target) &&
                 !(e.target.closest && e.target.closest(".menu__pa-item"))
-            )
+            ) {
                 openFilters(false);
+                // Подавляем следующий click, иначе откроется карточка под попапом
+                const swallow = (ev) => {
+                    ev.stopPropagation();
+                    ev.preventDefault();
+                };
+                document.addEventListener("click", swallow, {
+                    capture: true,
+                    once: true,
+                });
+                setTimeout(
+                    () => document.removeEventListener("click", swallow, true),
+                    400,
+                );
+            }
         },
         true,
     );

@@ -1995,4 +1995,23 @@ a {
         flex-wrap: wrap;
         gap: 6px;
     }
+    .page-main .filters.is-open .filters__reset {
+        display: block;
+        width: 100%;
+        margin: 8px 0 4px;
+        padding: 9px;
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        background: var(--ink);
+        color: var(--paper);
+        border: none;
+        cursor: pointer;
+    }
+}
+/* по умолчанию (десктоп-сайдбар) кнопка сброса в фильтрах не нужна */
+.filters__reset {
+    display: none;
 }
