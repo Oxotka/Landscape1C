@@ -850,6 +850,16 @@ a {
     background: var(--ink);
     color: var(--paper);
 }
+.empty__actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+/* Запасной путь (письмо) — приглушенная рамка */
+.empty__btn--ghost {
+    border-color: var(--edge);
+    color: var(--ink-soft);
+}
 
 /* ── Модалка карточки ────────────────────── */
 .detail {
@@ -1087,6 +1097,11 @@ a {
     padding: 18px clamp(20px, 4vw, 32px);
     border-top: 1px solid var(--line);
     font-size: 13px;
+}
+/* «Заметили неточность?» — приглушенно, прижата вправо */
+.detail__report {
+    margin-left: auto;
+    color: var(--ink-soft);
 }
 
 /* Крестик */

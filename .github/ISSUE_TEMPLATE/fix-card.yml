@@ -1,0 +1,38 @@
+name: Исправить карточку
+description: Неточность в карточке — описание, метки, ссылки, связи, логотип
+title: "Карточка: "
+labels: ["правка"]
+body:
+  - type: input
+    id: tool
+    attributes:
+      label: Инструмент
+      description: Название карточки в ландшафте
+      placeholder: Vanessa-Automation
+    validations:
+      required: true
+  - type: dropdown
+    id: what
+    attributes:
+      label: Что не так
+      options:
+        - Описание или «зачем»
+        - Метка оси (роль, контекст, зрелость, лицензия, происхождение, доступность)
+        - Устаревшая или битая ссылка
+        - Аналоги или зависимости
+        - Логотип
+        - Другое
+    validations:
+      required: true
+  - type: textarea
+    id: how
+    attributes:
+      label: Как должно быть
+      description: Что именно поправить и почему
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Источник
+      description: Ссылка или обоснование, если есть

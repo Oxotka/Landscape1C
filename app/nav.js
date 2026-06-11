@@ -13,6 +13,9 @@
     var BOOSTY =
         "https://boosty.to/1cnik/purchase/3363092?ssource=DIRECT&share=subscription_link";
     var TG = "https://t.me/AriN1C";
+    // Форма «Предложить инструмент» (GitHub issue form; работает после открытия репозитория)
+    var PROPOSE =
+        "https://github.com/Oxotka/Landscape1C/issues/new?template=add-tool.yml";
     var THEME_LABEL = { light: "Светлая", dark: "Темная", system: "Системная" };
 
     var navLinks = NAV.map(function (l) {
@@ -20,6 +23,11 @@
     }).join("");
     var ext = function (suffix) {
         return (
+            '<a href="' +
+            PROPOSE +
+            '" target="_blank" rel="noopener">Предложить инструмент' +
+            suffix +
+            "</a>" +
             '<a href="' +
             BOOSTY +
             '" target="_blank" rel="noopener">Поддержать' +

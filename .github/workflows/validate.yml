@@ -1,0 +1,19 @@
+# Проверка целостности данных (app/data.js): оси, блоки, логотипы, связи,
+# буква «ё», точки в описаниях. Обязательна для PR — валидатор ловит все
+# инварианты модели данных.
+name: Validate data
+
+on:
+  pull_request:
+  push:
+    branches: ["main"]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/validate.js

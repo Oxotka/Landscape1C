@@ -481,6 +481,7 @@
     function blankItem() {
         return {
             name: "Новый инструмент",
+            added: new Date().toISOString().slice(0, 10), // дата добавления в ландшафт
             category: D.categories[0],
             subcategory: null,
             logo: null,

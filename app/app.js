@@ -220,8 +220,14 @@
         subTopsTimer = setTimeout(syncSubTops, 150);
     });
 
-    // Письмо «не нашел инструмент» — с подставленными фильтрами
+    // Кнопки «не нашел инструмент»: issue-форма и письмо — с подставленным запросом
     function updateEmptyMail() {
+        const issue =
+            "https://github.com/Oxotka/Landscape1C/issues/new?template=add-tool.yml" +
+            (query
+                ? `&title=${encodeURIComponent("Инструмент: " + query)}&name=${encodeURIComponent(query)}`
+                : "");
+        $("#empty-issue").href = issue;
         const lines = [];
         AXES.forEach((a) => {
             if (state[a].size)
@@ -250,6 +256,9 @@
             if (state[a].size) params.set(a, [...state[a]].join(","));
         });
         if (query) params.set("q", query);
+        // Открытая карточка живет в том же URL (?tool=…, пишет detail.js) — не затираем
+        const tool = new URLSearchParams(location.search).get("tool");
+        if (tool) params.set("tool", tool);
         const qs = params.toString();
         history.replaceState(null, "", qs ? "?" + qs : location.pathname);
     }

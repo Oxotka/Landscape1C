@@ -1,0 +1,74 @@
+name: Предложить инструмент
+description: Инструмента нет в ландшафте, а он того стоит — расскажите о нем
+title: "Инструмент: "
+labels: ["предложение"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Спасибо, что дополняете ландшафт! Коротко о критериях: инструмент должен
+        **реально применяться в практике 1С** и быть живым (развивается или стабильно
+        используется). Подробнее — в [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md),
+        правила разметки — на странице [«Методология»](https://landscape1c.ru/methodology.html).
+        Заполните, что знаете — разметку по осям выверит куратор.
+  - type: input
+    id: name
+    attributes:
+      label: Название
+      description: Как инструмент называют в сообществе
+      placeholder: Vanessa-Automation
+    validations:
+      required: true
+  - type: input
+    id: homepage
+    attributes:
+      label: Сайт или страница инструмента
+      placeholder: https://…
+  - type: input
+    id: repo
+    attributes:
+      label: Репозиторий (если open-source)
+      placeholder: https://github.com/…
+  - type: textarea
+    id: description
+    attributes:
+      label: Что это
+      description: Одно-два предложения — что инструмент делает
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Зачем 1С-специалисту
+      description: Какую задачу решает, чем полезен именно в работе с 1С
+    validations:
+      required: true
+  - type: dropdown
+    id: roles
+    attributes:
+      label: Кто работает с инструментом
+      multiple: true
+      options:
+        - разработчик
+        - администратор
+        - тестировщик
+        - аналитик
+  - type: dropdown
+    id: license
+    attributes:
+      label: Лицензия
+      options:
+        - open-source
+        - бесплатное (закрытый код)
+        - проприетарное (платное)
+        - не знаю
+  - type: textarea
+    id: usage
+    attributes:
+      label: Используете ли сами?
+      description: Где и как применяете — это помогает оценить распространенность
+  - type: textarea
+    id: analogs
+    attributes:
+      label: Аналоги в ландшафте
+      description: Какие инструменты из ландшафта решают ту же задачу
