@@ -6131,6 +6131,9 @@ window.LANDSCAPE = {
         "vault",
         "hashicorp vault",
         "секреты"
+      ],
+      "analogs": [
+        "Vaultwarden"
       ]
     },
     {
@@ -7040,6 +7043,43 @@ window.LANDSCAPE = {
         "дбивер"
       ],
       "analogs": []
+    },
+    {
+      "name": "Vaultwarden",
+      "category": "Безопасность",
+      "subcategory": "Доступ и секреты",
+      "logo": "vaultwarden.svg",
+      "logoInvert": true,
+      "description": "Легковесный self-hosted сервер паролей, совместимый с клиентами Bitwarden",
+      "why": "Командное хранилище паролей у себя: доступы к базам, серверам и сервисам не разъезжаются по чатам и файлам",
+      "homepage": null,
+      "repo": "https://github.com/dani-garcia/vaultwarden",
+      "start": [
+        {
+          "label": "Wiki по установке и настройке",
+          "url": "https://github.com/dani-garcia/vaultwarden/wiki"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "волтварден",
+        "вольтварден",
+        "битварден",
+        "bitwarden"
+      ],
+      "analogs": [
+        "HashiCorp Vault"
+      ]
     }
   ]
 };
