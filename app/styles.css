@@ -598,6 +598,33 @@ a {
     color: #999;
 }
 
+/* ── Подкатегория: нумерованный подзаголовок 01.1 / 01.2 ── */
+.subcat__head {
+    margin: 0; /* у <p> есть браузерный отступ — он и давал зазоры */
+    padding: 8px clamp(16px, 3vw, 24px);
+    background: var(--card);
+    border-top: 1px solid var(--card-line);
+    border-bottom: 1px solid var(--card-line);
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #777;
+    /* липнет вплотную под шапкой категории (topbar 52 + .cat__head ~62) */
+    position: sticky;
+    top: 114px;
+    z-index: 2;
+}
+/* первый подзаголовок — сразу под чёрной линией категории, своя верхняя не нужна */
+.cat__head + .subcat__head {
+    border-top: none;
+}
+/* после сетки — совмещаем верхнюю линию с нижней рамкой карточек (не двоим) */
+.cards + .subcat__head {
+    margin-top: -1px;
+}
+
 /* ── Сетка карточек: 3 колонки ───────────── */
 .cards {
     display: grid;

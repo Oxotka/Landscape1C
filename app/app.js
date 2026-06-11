@@ -24,7 +24,7 @@
     let query = "";
 
     const $ = (sel) => document.querySelector(sel);
-    const { wbr, logoMarkup, sortItems } = window.LandscapeUI; // shared.js
+    const { wbr, logoMarkup, sortItems, groupBySub } = window.LandscapeUI; // shared.js
 
     // ── Рендер фильтров ───────────────────────
     function renderFilters() {
@@ -129,6 +129,14 @@
             D.items.some(matchesQuery);
         const visible = fallback ? D.items.filter(matchesQuery) : matched;
 
+        // Сетка карточек одной (под)группы — отдельная, чтобы рамки nth-child(3n) считались внутри неё
+        const cardsGrid = (items) => {
+            const cards = document.createElement("div");
+            cards.className = "cards";
+            items.forEach((i) => cards.appendChild(card(i)));
+            return cards;
+        };
+
         const renderCat = (catName, blockName) => {
             const items = visible
                 .filter((i) => i.category === catName)
@@ -137,10 +145,21 @@
             const cat = document.createElement("section");
             cat.className = "cat";
             cat.innerHTML = `<div class="cat__head"><div class="cat__title">${blockName ? `<span class="cat__block">${blockName}</span>` : ""}<h2 class="cat__name">${catName}</h2></div><span class="cat__num">${items.length}</span></div>`;
-            const cards = document.createElement("div");
-            cards.className = "cards";
-            items.forEach((i) => cards.appendChild(card(i)));
-            cat.appendChild(cards);
+            const groups = groupBySub(items);
+            // Категория без подкатегорий — одна плоская сетка (как раньше)
+            if (groups.length === 1 && groups[0].sub === "") {
+                cat.appendChild(cardsGrid(items));
+            } else {
+                groups.forEach(({ sub, items }) => {
+                    if (sub) {
+                        const head = document.createElement("p");
+                        head.className = "subcat__head";
+                        head.textContent = sub;
+                        cat.appendChild(head);
+                    }
+                    cat.appendChild(cardsGrid(items));
+                });
+            }
             board.appendChild(cat);
         };
 
