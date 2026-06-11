@@ -200,9 +200,25 @@
         }
         if (r2) r2.hidden = !active;
         writeUrl();
+        syncSubTops();
         // Высота доски изменилась — пусть фиксированный футер пересчитает «раскрытие»
         dispatchEvent(new Event("scroll"));
     }
+
+    // Липкий подзаголовок подкатегории встает под шапку категории, чья высота
+    // плавает (имя в 1-2 строки) — меряем и кладем офсет в --subtop на .cat
+    function syncSubTops() {
+        document.querySelectorAll(".cat").forEach((cat) => {
+            if (!cat.querySelector(".subcat__head")) return;
+            const h = cat.querySelector(".cat__head").offsetHeight;
+            cat.style.setProperty("--subtop", 52 + h + "px");
+        });
+    }
+    let subTopsTimer;
+    addEventListener("resize", () => {
+        clearTimeout(subTopsTimer);
+        subTopsTimer = setTimeout(syncSubTops, 150);
+    });
 
     // Письмо «не нашел инструмент» — с подставленными фильтрами
     function updateEmptyMail() {
