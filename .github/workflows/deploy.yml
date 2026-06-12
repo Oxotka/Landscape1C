@@ -1,16 +1,10 @@
 # Публикация фронтенда на GitHub Pages.
-#
-# СЕЙЧАС НЕАКТИВЕН: запускается только вручную (workflow_dispatch).
-# Чтобы включить автодеплой после открытия репозитория:
-#   1. Сделать репозиторий публичным.
-#   2. Settings → Pages → Source: GitHub Actions.
-#   3. Раскомментировать блок push ниже (деплой на каждый push в main).
 name: Deploy to GitHub Pages
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches: ["main"]
+  push:
+    branches: ["main"]
 
 permissions:
   contents: read
