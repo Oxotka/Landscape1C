@@ -1,0 +1,296 @@
+# Ландшафт технологий 1С
+
+> Интерактивная карта инструментов экосистемы 1С: 191 инструментов, размеченных по роли (разработчик/администратор/тестировщик/аналитик), контексту работы, зрелости, происхождению, лицензии и доступности в РФ. Связи «аналоги» и «зависимости», маршруты освоения по ролям, экспертная выверка разметки. UI на русском языке.
+
+Данные актуальны на: 11 июня 2026
+
+## Страницы
+
+- [Ландшафт](https://landscape1c.ru/): интерактивная доска инструментов с фильтрами по шести осям
+- [Путь](https://landscape1c.ru/path.html): маршрут освоения инструментов по роли, от базы к специализации
+- [Схема](https://landscape1c.ru/scheme.html): постер-древо ландшафта с экспортом в SVG/PNG/PDF
+- [Граф](https://landscape1c.ru/graph.html): связи инструментов: аналоги и зависимости
+- [Эксперты](https://landscape1c.ru/council.html): кураторы, выверяющие разметку
+- [Методология](https://landscape1c.ru/methodology.html): правила разметки осей
+
+## Инструменты
+
+Ссылка каждого инструмента открывает его карточку (описание, «зачем», «с чего начать», аналоги и зависимости).
+
+### Проектирование
+
+**Прототипирование и диаграммы**
+
+- [Figma](https://landscape1c.ru/?tool=Figma): Облачный редактор интерфейсов и кликабельных прототипов с совместной работой
+- [Mockplus](https://landscape1c.ru/?tool=Mockplus): Инструмент быстрого прототипирования интерфейсов и кликабельных макетов
+- [Balsamiq](https://landscape1c.ru/?tool=Balsamiq): Создание схематичных wireframe-макетов (mockups) интерфейсов
+- [MAKER-STUDIO](https://landscape1c.ru/?tool=MAKER-STUDIO): Онлайн-сервис прототипирования форм и моделирования бизнес-процессов
+- [Накидка](https://landscape1c.ru/?tool=%D0%9D%D0%B0%D0%BA%D0%B8%D0%B4%D0%BA%D0%B0): Быстрое создание форм 1С по текстовому описанию (Markdown-синтаксис)
+- [draw.io (diagrams.net)](https://landscape1c.ru/?tool=draw.io%20(diagrams.net)): Бесплатный редактор диаграмм и схем: блок-схемы, BPMN, ER, архитектура
+- [PlantUML](https://landscape1c.ru/?tool=PlantUML): Инструмент для создания UML- и других диаграмм из текстового описания
+- [Mermaid](https://landscape1c.ru/?tool=Mermaid): Диаграммы как код: блок-схемы, последовательности и Ганты из текста в Markdown
+- [Graphviz](https://landscape1c.ru/?tool=Graphviz): Визуализация графов из текстового описания на языке DOT
+
+**Моделирование и архитектура**
+
+- [1С:СППР](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%A1%D0%9F%D0%9F%D0%A0): Проектирование прикладных решений: требования, архитектура и проектная документация
+- [StormBPMN](https://landscape1c.ru/?tool=StormBPMN): Онлайн-моделирование бизнес-процессов в нотации BPMN
+- [bpmn.io](https://landscape1c.ru/?tool=bpmn.io): Открытая библиотека и онлайн-редактор BPMN-диаграмм
+- [Camunda Modeler](https://landscape1c.ru/?tool=Camunda%20Modeler): Десктопный редактор схем процессов в нотации BPMN
+- [Structurizr](https://landscape1c.ru/?tool=Structurizr): Документирование архитектуры ПО по модели C4
+- [Archi](https://landscape1c.ru/?tool=Archi): Моделирование корпоративной архитектуры в нотации ArchiMate
+- [Modelio](https://landscape1c.ru/?tool=Modelio): Десктопный инструмент моделирования в нотациях UML, BPMN, ArchiMate, SysML
+
+**База знаний**
+
+- [Confluence](https://landscape1c.ru/?tool=Confluence): Корпоративная база знаний и пространство проектной документации от Atlassian
+- [Teamly](https://landscape1c.ru/?tool=Teamly): Отечественная платформа базы знаний и совместной работы с документами
+- [Wiki репозитория](https://landscape1c.ru/?tool=Wiki%20%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D1%8F): Встроенная вики git-хостинга: статьи в Markdown рядом с кодом, без отдельного сервиса
+- [Gramax](https://landscape1c.ru/?tool=Gramax): Инструмент ведения технической документации по принципу docs-as-code
+- [Miro](https://landscape1c.ru/?tool=Miro): Онлайн-доска для совместного моделирования и воркшопов
+- [Excalidraw](https://landscape1c.ru/?tool=Excalidraw): Открытая онлайн-доска для набросков и схем в рисованном стиле
+- [Markdown Editor](https://landscape1c.ru/?tool=Markdown%20Editor): Онлайн-редактор Markdown с мгновенным предпросмотром
+- [NotebookLM](https://landscape1c.ru/?tool=NotebookLM): ИИ-блокнот Google: ответы, конспекты и аудиообзоры по загруженным источникам
+
+
+### Разработка
+
+**Разработка**
+
+- [Встроенный язык программирования 1С:Предприятия](https://landscape1c.ru/?tool=%D0%92%D1%81%D1%82%D1%80%D0%BE%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%8F%D0%B7%D1%8B%D0%BA%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%201%D0%A1%3A%D0%9F%D1%80%D0%B5%D0%B4%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D1%8F): Основной язык разработки прикладных решений на платформе 1С
+- [Язык запросов](https://landscape1c.ru/?tool=%D0%AF%D0%B7%D1%8B%D0%BA%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2): Язык выборки данных из базы 1С на основе SQL, с учетом специфики 1С
+- [Система компоновки данных (СКД)](https://landscape1c.ru/?tool=%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%BE%D0%B2%D0%BA%D0%B8%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20(%D0%A1%D0%9A%D0%94)): Платформенный механизм для построения отчетов и сложной выборки данных без программирования
+- [Платформа для мобильных устройств](https://landscape1c.ru/?tool=%D0%9F%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%BC%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D1%8B%D1%85%20%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2): Разработка мобильных приложений на языке 1С под iOS и Android
+- [1С:Предприятие.Элемент](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%9F%D1%80%D0%B5%D0%B4%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D0%B5.%D0%AD%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82): Технология 1С для веб- и консьюмерских приложений
+- [1C:Предприятие.Элемент Скрипт](https://landscape1c.ru/?tool=1C%3A%D0%9F%D1%80%D0%B5%D0%B4%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D0%B5.%D0%AD%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%20%D0%A1%D0%BA%D1%80%D0%B8%D0%BF%D1%82): Среда выполнения скриптов на языке 1С:Элемент (бывший 1С:Исполнитель)
+- [OneScript](https://landscape1c.ru/?tool=OneScript): Кроссплатформенный движок языка 1С для скриптов без установки платформы
+- [Конфигуратор](https://landscape1c.ru/?tool=%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%82%D0%BE%D1%80): Классическая среда разработки в составе платформы 1С:Предприятие
+- [1C:Enterprise Development Tools (EDT)](https://landscape1c.ru/?tool=1C%3AEnterprise%20Development%20Tools%20(EDT)): Современная среда разработки 1С на базе Eclipse
+- [Visual Studio Code (VSCode)](https://landscape1c.ru/?tool=Visual%20Studio%20Code%20(VSCode)): Легкий кроссплатформенный редактор кода для около-1С разработки
+
+**Библиотеки и инструменты**
+
+- [Библиотека стандартных подсистем (БСП)](https://landscape1c.ru/?tool=%D0%91%D0%B8%D0%B1%D0%BB%D0%B8%D0%BE%D1%82%D0%B5%D0%BA%D0%B0%20%D1%81%D1%82%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%D1%82%D0%BD%D1%8B%D1%85%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%20(%D0%91%D0%A1%D0%9F)): Набор готовых подсистем и стандартных механизмов от 1С — основа для разработки прикладных решений
+- [Подсистема "Инструменты разработчика"](https://landscape1c.ru/?tool=%D0%9F%D0%BE%D0%B4%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%22%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%B0%22): Набор внутренних инструментов разработчика: консоли запросов, кода, СКД
+- [Подсистема "Универсальные инструменты 1С для управляемых форм"](https://landscape1c.ru/?tool=%D0%9F%D0%BE%D0%B4%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%22%D0%A3%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B%201%D0%A1%20%D0%B4%D0%BB%D1%8F%20%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC%D1%8B%D1%85%20%D1%84%D0%BE%D1%80%D0%BC%22): Набор инструментов разработчика для управляемых форм
+- [Infostart Toolkit](https://landscape1c.ru/?tool=Infostart%20Toolkit): Набор инструментов для анализа и обработки данных в базе 1С
+- [Библиотеки для OneScript](https://landscape1c.ru/?tool=%D0%91%D0%B8%D0%B1%D0%BB%D0%B8%D0%BE%D1%82%D0%B5%D0%BA%D0%B8%20%D0%B4%D0%BB%D1%8F%20OneScript): Готовые библиотеки сообщества для экосистемы OneScript
+- [Autumn (ОСень)](https://landscape1c.ru/?tool=Autumn%20(%D0%9E%D0%A1%D0%B5%D0%BD%D1%8C)): Фреймворк компонентных приложений для OneScript (DI/IoC)
+- [Консоль запросов](https://landscape1c.ru/?tool=%D0%9A%D0%BE%D0%BD%D1%81%D0%BE%D0%BB%D1%8C%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2): Внешняя обработка для выполнения произвольных запросов на языке запросов 1С
+
+**Плагины и расширения**
+
+- [TurboConf](https://landscape1c.ru/?tool=TurboConf): Расширение Конфигуратора, автоматизирующее рутину разработки
+- [Плагин для конфигуратора PhoenixBSL](https://landscape1c.ru/?tool=%D0%9F%D0%BB%D0%B0%D0%B3%D0%B8%D0%BD%20%D0%B4%D0%BB%D1%8F%20%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B0%20PhoenixBSL): Анализ и форматирование кода 1С в Конфигураторе на базе BSL LS
+- [Плагин для VSCode «1C:Platform Tools»](https://landscape1c.ru/?tool=%D0%9F%D0%BB%D0%B0%D0%B3%D0%B8%D0%BD%20%D0%B4%D0%BB%D1%8F%20VSCode%20%C2%AB1C%3APlatform%20Tools%C2%BB): Расширение VSCode с инструментами разработки на платформе 1С
+- [Плагины для 1С:EDT](https://landscape1c.ru/?tool=%D0%9F%D0%BB%D0%B0%D0%B3%D0%B8%D0%BD%D1%8B%20%D0%B4%D0%BB%D1%8F%201%D0%A1%3AEDT): Официальные и сторонние плагины, расширяющие 1С:EDT
+- [BSL Language Server](https://landscape1c.ru/?tool=BSL%20Language%20Server): Языковой сервер для кода 1С (BSL): диагностики, автодополнение, форматирование
+- [OneScript Debug (BSL)](https://landscape1c.ru/?tool=OneScript%20Debug%20(BSL)): Отладка скриптов OneScript прямо в VSCode
+- [Language 1C (BSL)](https://landscape1c.ru/?tool=Language%201C%20(BSL)): Подсветка синтаксиса, автодополнение и навигация по коду 1С (BSL) в VSCode
+- [Cucumber (Gherkin) Full Support](https://landscape1c.ru/?tool=Cucumber%20(Gherkin)%20Full%20Support): Автодополнение и подсветка Gherkin для feature-файлов (BDD, Vanessa-Automation)
+- [Gherkin Table Align](https://landscape1c.ru/?tool=Gherkin%20Table%20Align): Выравнивание таблиц в Gherkin-сценариях
+- [Allure Support](https://landscape1c.ru/?tool=Allure%20Support): Поддержка Allure в VSCode: подсказки и навигация по разметке тестов
+- [KOT for 1C](https://landscape1c.ru/?tool=KOT%20for%201C): Расширение VS Code для разработки и поддержки автотестов 1С в YAML-формате (СППР / Vanessa Automation)
+
+**ИИ-ассистенты**
+
+- [Плагин 1С:Напарник](https://landscape1c.ru/?tool=%D0%9F%D0%BB%D0%B0%D0%B3%D0%B8%D0%BD%201%D0%A1%3A%D0%9D%D0%B0%D0%BF%D0%B0%D1%80%D0%BD%D0%B8%D0%BA): ИИ-ассистент разработчика 1С: подсказки, исправления, комментарии
+- [GigaCode](https://landscape1c.ru/?tool=GigaCode): Российский ИИ-ассистент для написания кода от Сбера: автодополнение и генерация в IDE
+- [GitHub Copilot](https://landscape1c.ru/?tool=GitHub%20Copilot): Самый массовый ИИ-ассистент для написания кода прямо в редакторе
+- [Cursor](https://landscape1c.ru/?tool=Cursor): Редактор кода с ИИ-агентом: генерация и рефакторинг по всему проекту в диалоге
+- [Claude Code](https://landscape1c.ru/?tool=Claude%20Code): CLI-агент Anthropic: выполняет задачи разработки в терминале, читая и правя проект
+- [Codex](https://landscape1c.ru/?tool=Codex): CLI-агент OpenAI для автоматизации задач разработки в терминале
+- [Kiro](https://landscape1c.ru/?tool=Kiro): ИИ-среда разработки Amazon со spec-driven подходом (IDE и CLI)
+
+**Системы хранения версий**
+
+- [gitsync](https://landscape1c.ru/?tool=gitsync): Выгрузка истории Хранилища конфигурации 1С в git (и Mercurial)
+- [1С:ГитКонвертер](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%93%D0%B8%D1%82%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80): Односторонняя синхронизация хранилища конфигурации 1С с репозиторием Git и переход на разработку в 1С:EDT с сохранением истории
+- [Хранилище](https://landscape1c.ru/?tool=%D0%A5%D1%80%D0%B0%D0%BD%D0%B8%D0%BB%D0%B8%D1%89%D0%B5): Штатный механизм платформы для коллективной разработки конфигураций
+- [git](https://landscape1c.ru/?tool=git): Распределенная система контроля версий — индустриальный стандарт
+- [GitLab](https://landscape1c.ru/?tool=GitLab): Платформа хостинга git-репозиториев с код-ревью и встроенным CI/CD
+- [GitHub](https://landscape1c.ru/?tool=GitHub): Крупнейший хостинг git-репозиториев с pull request'ами и Actions
+- [GitVerse](https://landscape1c.ru/?tool=GitVerse): Отечественная платформа хостинга git-репозиториев от SberTech
+- [Bitbucket](https://landscape1c.ru/?tool=Bitbucket): Хостинг git-репозиториев от Atlassian с pull request'ами и интеграцией с Jira
+- [GitFlic](https://landscape1c.ru/?tool=GitFlic): Российская платформа для хранения git-репозиториев и совместной разработки
+- [MosHub](https://landscape1c.ru/?tool=MosHub): Российская платформа для хранения git-репозиториев и командной разработки
+
+**CI/CD**
+
+- [ibcmdrunner](https://landscape1c.ru/?tool=ibcmdrunner): OneScript-обертка над утилитой ibcmd для управления информационной базой из скриптов
+- [Jenkins](https://landscape1c.ru/?tool=Jenkins): Сервер автоматизации сборок и CI/CD-пайплайнов
+- [Gitlab CI](https://landscape1c.ru/?tool=Gitlab%20CI): Встроенная в GitLab система непрерывной интеграции
+- [GitHub Actions](https://landscape1c.ru/?tool=GitHub%20Actions): Встроенная в GitHub система CI/CD на основе workflow-файлов
+- [Travis CI](https://landscape1c.ru/?tool=Travis%20CI): Облачный сервис непрерывной интеграции с конфигом в .travis.yml
+- [vanessa-runner](https://landscape1c.ru/?tool=vanessa-runner): OneScript-оркестратор сборки, тестов и проверок 1С в CI
+- [TeamCity](https://landscape1c.ru/?tool=TeamCity): CI/CD-сервер JetBrains для сборок и автотестов
+- [Ansible](https://landscape1c.ru/?tool=Ansible): Система управления конфигурацией и автоматического развертывания
+- [Vagrant](https://landscape1c.ru/?tool=Vagrant): Создание воспроизводимых виртуальных окружений для разработки
+- [Docker](https://landscape1c.ru/?tool=Docker): Контейнеризация приложений и окружений
+- [Kubernetes](https://landscape1c.ru/?tool=Kubernetes): Оркестрация контейнеров для развертывания сервисов
+- [Harbor](https://landscape1c.ru/?tool=Harbor): Реестр контейнерных образов с управлением доступом и сканированием уязвимостей
+
+
+### Качество
+
+**Автоматизированное тестирование**
+
+- [1С:Тестировщик](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D1%89%D0%B8%D0%BA): Инструмент 1С для автоматизации функционального тестирования
+- [1С:Сценарное тестирование](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%A1%D1%86%D0%B5%D0%BD%D0%B0%D1%80%D0%BD%D0%BE%D0%B5%20%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5): Проверка функциональности через сценарии без программирования
+- [Vanessa-Automation](https://landscape1c.ru/?tool=Vanessa-Automation): BDD-тестирование решений 1С на языке Gherkin
+- [Vanessa-ADD](https://landscape1c.ru/?tool=Vanessa-ADD): Набор инструментов автотестирования (предшественник Vanessa-Automation)
+- [Тестер](https://landscape1c.ru/?tool=%D0%A2%D0%B5%D1%81%D1%82%D0%B5%D1%80): Бесплатный инструмент сценарного тестирования решений 1С 8.3
+- [YAxUnit](https://landscape1c.ru/?tool=YAxUnit): Фреймворк юнит-тестирования решений на 1С:Предприятие 8.3
+- [Coverage41C](https://landscape1c.ru/?tool=Coverage41C): Измерение покрытия кода 1С автотестами через протокол отладчика
+- [1testrunner](https://landscape1c.ru/?tool=1testrunner): Среда запуска юнит-тестов на OneScript
+- [Allure](https://landscape1c.ru/?tool=Allure): Наглядные отчеты о результатах автотестов
+- [ТестОпс](https://landscape1c.ru/?tool=%D0%A2%D0%B5%D1%81%D1%82%D0%9E%D0%BF%D1%81): Платформа управления тестированием поверх Allure: запуск автотестов, аналитика и живые отчеты
+
+**Статический анализ кода**
+
+- [Синтаксическая проверка конфигурации](https://landscape1c.ru/?tool=%D0%A1%D0%B8%D0%BD%D1%82%D0%B0%D0%BA%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D0%B8): Встроенная в Конфигуратор и EDT проверка конфигурации
+- [1С:Автоматизированная проверка конфигураций (АПК)](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D0%B9%20(%D0%90%D0%9F%D0%9A)): Проверка конфигураций 1С на соответствие стандартам разработки
+- [SonarQube](https://landscape1c.ru/?tool=SonarQube): Поддержка языка 1С и OneScript в платформе анализа качества SonarQube
+- [Стандарты разработки](https://landscape1c.ru/?tool=%D0%A1%D1%82%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%D1%82%D1%8B%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B8): Система стандартов и методик разработки конфигураций 1С
+
+**Код-ревью**
+
+- [Crucible](https://landscape1c.ru/?tool=Crucible): Инструмент рецензирования кода от Atlassian с интеграцией в репозитории
+- [Review Board](https://landscape1c.ru/?tool=Review%20Board): Open-source платформа для код-ревью с поддержкой pre-commit и post-commit проверок
+- [Collaborator](https://landscape1c.ru/?tool=Collaborator): Инструмент рецензирования кода и документов от SmartBear для распределенных команд
+- [CodeRabbit](https://landscape1c.ru/?tool=CodeRabbit): ИИ-ревьюер пул-реквестов: автоматические замечания и резюме изменений
+- [ai-review](https://landscape1c.ru/?tool=ai-review): Открытый ИИ-ревьюер кода: запускается в любой CI/CD с любым LLM-провайдером
+- [Git Code Review](https://landscape1c.ru/?tool=Git%20Code%20Review): Рецензирование изменений из git-репозитория прямо в 1С (обработка и расширение)
+
+
+### Инфраструктура и эксплуатация
+
+**Администрирование 1С**
+
+- [RAC/RAS](https://landscape1c.ru/?tool=RAC%2FRAS): Серверная утилита (ras) и консольный клиент (rac) администрирования кластера 1С
+- [ibcmd](https://landscape1c.ru/?tool=ibcmd): Консольная утилита управления информационными базами 1С (создание, обновление, выгрузка)
+- [Консоль администрирования серверов 1С](https://landscape1c.ru/?tool=%D0%9A%D0%BE%D0%BD%D1%81%D0%BE%D0%BB%D1%8C%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%BE%D0%B2%201%D0%A1): Графическая консоль (MMC) управления кластером серверов 1С:Предприятие
+- [Кластер серверов 1С:Предприятие](https://landscape1c.ru/?tool=%D0%9A%D0%BB%D0%B0%D1%81%D1%82%D0%B5%D1%80%20%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%BE%D0%B2%201%D0%A1%3A%D0%9F%D1%80%D0%B5%D0%B4%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D0%B5): Объединение рабочих серверов 1С для обслуживания нагрузки
+- [OneSwiss](https://landscape1c.ru/?tool=OneSwiss): Кроссплатформенный комплекс обслуживания и мониторинга баз 1С
+- [ПУСК (Панель управления сервисами и компонентами)](https://landscape1c.ru/?tool=%D0%9F%D0%A3%D0%A1%D0%9A%20(%D0%9F%D0%B0%D0%BD%D0%B5%D0%BB%D1%8C%20%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D0%B0%D0%BC%D0%B8%20%D0%B8%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D0%B0%D0%BC%D0%B8)): Кроссплатформенная веб-панель управления кластером серверов 1С через графический интерфейс
+- [1С:Управление ландшафтом](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%A3%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BB%D0%B0%D0%BD%D0%B4%D1%88%D0%B0%D1%84%D1%82%D0%BE%D0%BC): Продукт 1С для централизованного управления корпоративным ландшафтом информационных систем на платформе 1С:Предприятие
+- [1С:Облачная подсистема Фреш](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%9E%D0%B1%D0%BB%D0%B0%D1%87%D0%BD%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%A4%D1%80%D0%B5%D1%88): Технология 1С для развертывания облачных сервисов на базе 1С:Предприятия по модели SaaS
+
+**Сетевая инфраструктура и облако**
+
+- [Apache HTTP Server](https://landscape1c.ru/?tool=Apache%20HTTP%20Server): Веб-сервер для публикации веб-клиента и HTTP/REST-сервисов 1С
+- [IIS](https://landscape1c.ru/?tool=IIS): Веб-сервер Microsoft для публикации баз 1С на Windows Server
+- [nginx](https://landscape1c.ru/?tool=nginx): Высокопроизводительный веб-сервер и обратный прокси для публикации 1С
+- [Caddy](https://landscape1c.ru/?tool=Caddy): Современный веб-сервер и обратный прокси с автоматическим HTTPS для публикации 1С
+- [HAProxy](https://landscape1c.ru/?tool=HAProxy): Высокопроизводительный балансировщик нагрузки и обратный прокси TCP/HTTP
+- [Angie](https://landscape1c.ru/?tool=Angie): Отечественный форк nginx с расширенными возможностями и совместимостью с его конфигами
+- [Terraform](https://landscape1c.ru/?tool=Terraform): Инструмент декларативного управления инфраструктурой как кодом (IaC)
+- [Selectel](https://landscape1c.ru/?tool=Selectel): Облачный провайдер с готовой инфраструктурой и сервисами для размещения 1С
+
+**Безопасность**
+
+- [HashiCorp Vault](https://landscape1c.ru/?tool=HashiCorp%20Vault): Хранилище секретов и централизованное управление доступом к чувствительным данным
+- [КриптоПро](https://landscape1c.ru/?tool=%D0%9A%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D0%9F%D1%80%D0%BE): Криптопровайдер и средства электронной подписи под российские стандарты (ГОСТ)
+- [Keycloak](https://landscape1c.ru/?tool=Keycloak): Открытая система управления доступом, единого входа (SSO) и федерации учетных записей
+- [Multifactor](https://landscape1c.ru/?tool=Multifactor): Российский сервис двухфакторной аутентификации (MFA) и контроля доступа
+- [ViPNet](https://landscape1c.ru/?tool=ViPNet): Российский комплекс защищенной сети и криптографии: ГОСТ-VPN и межсетевое экранирование
+- [Континент](https://landscape1c.ru/?tool=%D0%9A%D0%BE%D0%BD%D1%82%D0%B8%D0%BD%D0%B5%D0%BD%D1%82): Российский программно-аппаратный комплекс сетевой безопасности и ГОСТ-VPN
+- [Vaultwarden](https://landscape1c.ru/?tool=Vaultwarden): Легковесный self-hosted сервер паролей, совместимый с клиентами Bitwarden
+
+**Системы управления базами данных (СУБД)**
+
+- [Файловая СУБД](https://landscape1c.ru/?tool=%D0%A4%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D0%B0%D1%8F%20%D0%A1%D0%A3%D0%91%D0%94): Встроенное в платформу файловое хранилище данных 1С
+- [PostgreSQL](https://landscape1c.ru/?tool=PostgreSQL): Свободная СУБД; «1С» выпускает и поддерживает свою сборку PostgreSQL
+- [Microsoft SQLServer](https://landscape1c.ru/?tool=Microsoft%20SQLServer): Проприетарная СУБД Microsoft с языком запросов Transact-SQL
+- [Postgres Pro](https://landscape1c.ru/?tool=Postgres%20Pro): Российская СУБД на базе PostgreSQL с поддержкой и сертификацией для 1С
+- [Oracle Database](https://landscape1c.ru/?tool=Oracle%20Database): Промышленная СУБД Oracle, поддерживаемая платформой 1С:Предприятие
+- [IBM Db2](https://landscape1c.ru/?tool=IBM%20Db2): СУБД IBM Db2, входящая в список поддерживаемых платформой 1С
+- [Tantor SE 1C](https://landscape1c.ru/?tool=Tantor%20SE%201C): Российская СУБД на базе PostgreSQL, оптимизированная и одобренная для продуктов 1С
+- [Platform V Pangolin](https://landscape1c.ru/?tool=Platform%20V%20Pangolin): СУБД Сбера на базе PostgreSQL — отечественная альтернатива для баз 1С
+- [DBeaver](https://landscape1c.ru/?tool=DBeaver): Универсальный клиент СУБД: запросы, данные, ER-диаграммы
+
+**Мониторинг**
+
+- [Zabbix](https://landscape1c.ru/?tool=Zabbix): Мониторинг серверов, сервисов и инфраструктуры 1С
+- [Grafana](https://landscape1c.ru/?tool=Grafana): Дашборды и визуализация метрик из разных источников
+- [Prometheus](https://landscape1c.ru/?tool=Prometheus): Сбор и хранение метрик с алертингом
+- [Elasticsearch](https://landscape1c.ru/?tool=Elasticsearch): Поисковый движок для хранения и анализа логов
+- [Kibana](https://landscape1c.ru/?tool=Kibana): Визуализация и поиск по логам из Elasticsearch
+- [Logstash](https://landscape1c.ru/?tool=Logstash): Сбор, преобразование и доставка логов
+- [ClickHouse](https://landscape1c.ru/?tool=ClickHouse): Колоночная СУБД для аналитики больших логов
+- [Монитор (1smonitor)](https://landscape1c.ru/?tool=%D0%9C%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%20(1smonitor)): Инструмент мониторинга производительности баз и серверов 1С: запросы, блокировки, взаимоблокировки
+- [PerfDog](https://landscape1c.ru/?tool=PerfDog): Онлайн-мониторинг и диагностика производительности высоконагруженных систем 1С
+- [PerfExpert](https://landscape1c.ru/?tool=PerfExpert): Платформа мониторинга производительности высоконагруженных систем 1С и СУБД от SoftPoint
+- [Умный мониторинг](https://landscape1c.ru/?tool=%D0%A3%D0%BC%D0%BD%D1%8B%D0%B9%20%D0%BC%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3): Программный комплекс сбора и анализа технологических данных ИТ-инфраструктуры 1С
+- [Оркестратор 1С](https://landscape1c.ru/?tool=%D0%9E%D1%80%D0%BA%D0%B5%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%201%D0%A1): Отечественный сервис мониторинга и управления системами на платформе 1С:Предприятие
+- [Алькир](https://landscape1c.ru/?tool=%D0%90%D0%BB%D1%8C%D0%BA%D0%B8%D1%80): Отечественный инструмент мониторинга и оптимизации производительности систем 1С
+
+**Производительность и нагрузочное тестирование**
+
+- [1С:КИП (Корпоративный инструментальный пакет)](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%9A%D0%98%D0%9F%20(%D0%9A%D0%BE%D1%80%D0%BF%D0%BE%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82)): Пакет инструментов 1С для контроля и оптимизации производительности крупных внедрений
+- [1С:ЦКК (Центр контроля качества)](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%A6%D0%9A%D0%9A%20(%D0%A6%D0%B5%D0%BD%D1%82%D1%80%20%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D1%8F%20%D0%BA%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%B0)): Система автоматического мониторинга производительности и качества работы баз 1С
+- [1С:Тест-центр](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%A2%D0%B5%D1%81%D1%82-%D1%86%D0%B5%D0%BD%D1%82%D1%80): Инструмент автоматизации многопользовательского нагрузочного тестирования 1С
+- [1С:Анализатор](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80): Инструмент анализа нагрузки и технологического журнала 1С
+- [APDEX](https://landscape1c.ru/?tool=APDEX): Методика числовой оценки удовлетворенности пользователей временем отклика
+- [Анализ технологического журнала](https://landscape1c.ru/?tool=%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%20%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%20%D0%B6%D1%83%D1%80%D0%BD%D0%B0%D0%BB%D0%B0): Сбор и разбор технологического журнала платформы для поиска проблем производительности
+
+
+### Данные и интеграции
+
+**Интеграции**
+
+- [1С:Конвертация данных](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B0%D1%86%D0%B8%D1%8F%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85): Создание правил обмена между конфигурациями 1С
+- [EnterpriseData](https://landscape1c.ru/?tool=EnterpriseData): Универсальный формат обмена данными между системами
+- [1С:Шина](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%A8%D0%B8%D0%BD%D0%B0): Интеграционная шина предприятия (ESB) для обмена между системами
+- [Открытый пакет интеграций](https://landscape1c.ru/?tool=%D0%9E%D1%82%D0%BA%D1%80%D1%8B%D1%82%D1%8B%D0%B9%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%20%D0%B8%D0%BD%D1%82%D0%B5%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D0%B9): Набор модулей для интеграции 1С с популярными API
+- [Telegram бот](https://landscape1c.ru/?tool=Telegram%20%D0%B1%D0%BE%D1%82): Автоматизация обмена сообщениями через ботов Telegram
+- [Curlone](https://landscape1c.ru/?tool=Curlone): Конвертер команд curl в код на языке 1С
+- [RabbitMQ](https://landscape1c.ru/?tool=RabbitMQ): Брокер сообщений для асинхронного обмена
+- [Kafka](https://landscape1c.ru/?tool=Kafka): Потоковая платформа обмена сообщениями
+- [Объектное хранилище S3](https://landscape1c.ru/?tool=%D0%9E%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D0%BD%D0%BE%D0%B5%20%D1%85%D1%80%D0%B0%D0%BD%D0%B8%D0%BB%D0%B8%D1%89%D0%B5%20S3): Стандарт API объектных хранилищ для выноса файлов из базы 1С
+- [PAPI](https://landscape1c.ru/?tool=PAPI): Открытая подсистема интеграционных инструментов для 1С: универсальный http-сервис и сопутствующие механизмы
+
+**API и веб-сервисы**
+
+- [Fiddler](https://landscape1c.ru/?tool=Fiddler): Прокси-сниффер HTTP/HTTPS-трафика для отладки интеграций
+- [Bruno](https://landscape1c.ru/?tool=Bruno): Локальный (offline-first) клиент API: запросы и секреты хранятся в файлах, а не в облаке
+- [Insomnia](https://landscape1c.ru/?tool=Insomnia): Десктоп-клиент для проектирования и тестирования REST/GraphQL/gRPC API
+- [SoapUI](https://landscape1c.ru/?tool=SoapUI): Инструмент функционального и нагрузочного тестирования веб-сервисов (SOAP/REST)
+- [Karate](https://landscape1c.ru/?tool=Karate): Фреймворк автотестов API с человекочитаемым синтаксисом на базе Gherkin
+- [Postman](https://landscape1c.ru/?tool=Postman): Инструмент ручного тестирования HTTP-запросов к API
+- [OpenAPI UI (ex. Swagger)](https://landscape1c.ru/?tool=OpenAPI%20UI%20(ex.%20Swagger)): Интерактивная документация к REST API (бывший Swagger)
+- [Ngrok](https://landscape1c.ru/?tool=Ngrok): Временный публичный URL к локальному серверу для отладки webhook-ов
+- [JSON Editor Online](https://landscape1c.ru/?tool=JSON%20Editor%20Online): Визуальный редактор и сравнение JSON-документов
+- [JSONLint](https://landscape1c.ru/?tool=JSONLint): Онлайн-валидатор JSON
+
+**BI-системы**
+
+- [1С:Аналитика](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0): BI-система 1С для работы с аналитическими данными
+- [Microsoft Power BI](https://landscape1c.ru/?tool=Microsoft%20Power%20BI): BI-платформа Microsoft для визуализации и анализа данных
+- [Yandex DataLens](https://landscape1c.ru/?tool=Yandex%20DataLens): Отечественная BI-платформа Яндекса для дашбордов и аналитики
+- [Visiology](https://landscape1c.ru/?tool=Visiology): Российская BI-платформа для корпоративной аналитики и дашбордов
+
+
+### Управление и компетенции
+
+**Задачи**
+
+- [Jira](https://landscape1c.ru/?tool=Jira): Трекер задач и управление разработкой
+- [Trello](https://landscape1c.ru/?tool=Trello): Канбан-доски для простого ведения задач
+- [Яндекс Трекер](https://landscape1c.ru/?tool=%D0%AF%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%20%D0%A2%D1%80%D0%B5%D0%BA%D0%B5%D1%80): Облачный трекер задач и управление разработкой от Яндекса
+- [YouTrack](https://landscape1c.ru/?tool=YouTrack): Трекер задач и Agile-доски от JetBrains
+- [Redmine](https://landscape1c.ru/?tool=Redmine): Open-source система ведения задач и проектов
+- [Kaiten](https://landscape1c.ru/?tool=Kaiten): Отечественный сервис канбан-досок и управления задачами
+- [WEEEK](https://landscape1c.ru/?tool=WEEEK): Отечественный таск-менеджер с досками, спринтами и базой знаний
+- [Битрикс24](https://landscape1c.ru/?tool=%D0%91%D0%B8%D1%82%D1%80%D0%B8%D0%BA%D1%8124): Отечественная платформа для совместной работы: задачи, проекты, CRM и коммуникации
+
+**Сертификация**
+
+- [1С:Профессионал](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%9F%D1%80%D0%BE%D1%84%D0%B5%D1%81%D1%81%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB): Базовый экзамен на знание платформы и типовых конфигураций 1С
+- [1С:Специалист‑консультант](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%A1%D0%BF%D0%B5%D1%86%D0%B8%D0%B0%D0%BB%D0%B8%D1%81%D1%82%E2%80%91%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D0%BD%D1%82): Экзамены по внедрению и сопровождению прикладных решений
+- [1С:Специалист](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%A1%D0%BF%D0%B5%D1%86%D0%B8%D0%B0%D0%BB%D0%B8%D1%81%D1%82): Экзамен на умение решать практические задачи в конфигурациях
+- [1С:Эксперт по технологическим вопросам](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%AD%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D1%82%20%D0%BF%D0%BE%20%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%BC%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D0%BC): Экзамен по оптимизации и нестандартным техническим решениям
+- [1С:Эксплуататор](https://landscape1c.ru/?tool=1%D0%A1%3A%D0%AD%D0%BA%D1%81%D0%BF%D0%BB%D1%83%D0%B0%D1%82%D0%B0%D1%82%D0%BE%D1%80): Экзамен по настройке и поддержке крупных систем на базе 1С
+- [Сертификация от 1С-ТестЦентр](https://landscape1c.ru/?tool=%D0%A1%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BE%D1%82%201%D0%A1-%D0%A2%D0%B5%D1%81%D1%82%D0%A6%D0%B5%D0%BD%D1%82%D1%80): Онлайн-тестирование знаний и навыков специалистов 1С
+- [Сертификация от Госуслуг](https://landscape1c.ru/?tool=%D0%A1%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BE%D1%82%20%D0%93%D0%BE%D1%81%D1%83%D1%81%D0%BB%D1%83%D0%B3): Подтверждение ИТ-компетенций сертификатом на Госуслугах
+

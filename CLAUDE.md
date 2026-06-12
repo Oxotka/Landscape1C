@@ -61,6 +61,12 @@ python3 scripts/serve.py   # его и запускает start.command
 node scripts/validate.js
 ```
 
+Sitemap и llms.txt (`app/sitemap.xml`, `app/llms.txt` — каталог для поисковиков и ИИ-ассистентов) генерируются из `app/data.js`; прогонять после содержательных правок данных:
+
+```bash
+node scripts/sitegen.js
+```
+
 Cache-bust: проставить версии `?v=<хеш>` всем локальным ассетам (css/js) во всех `app/*.html` по содержимому файла. Заменяет ручной бамп `?v=` на каждой странице — поправил файл, прогнал команду, версии обновились только у изменившихся ассетов сразу везде:
 
 ```bash
@@ -73,7 +79,7 @@ node scripts/cachebust.js
 node scripts/build.js
 ```
 
-Деплой — GitHub Actions (`.github/workflows/deploy.yml`), выкладывает содержимое `app/` на GitHub Pages. Сейчас **только ручной запуск** (`workflow_dispatch`); автодеплой по push в `main` закомментирован (репозиторий приватный). Пути в `app/` относительные — работает на projectpage без доп. настроек.
+Деплой — GitHub Actions (`.github/workflows/deploy.yml`): собирает `dist/` (`node scripts/build.js` — валидация + копия `app/` без редактора) и выкладывает его на GitHub Pages. Сейчас **только ручной запуск** (`workflow_dispatch`); автодеплой по push в `main` закомментирован (репозиторий приватный). Пути в `app/` относительные — работает на projectpage без доп. настроек.
 
 ## Соглашения
 

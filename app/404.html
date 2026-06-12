@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Страница не нашлась · Ландшафт 1С</title>
+        <meta name="robots" content="noindex" />
+        <script>
+            (function () {
+                try {
+                    var t = localStorage.getItem("theme");
+                    if (!t)
+                        t = matchMedia("(prefers-color-scheme: dark)").matches
+                            ? "dark"
+                            : "light";
+                    document.documentElement.dataset.theme = t;
+                } catch (e) {}
+            })();
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Inter:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css?v=e1484269" />
+        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+        <style>
+            .nf {
+                min-height: calc(100vh - 100px);
+                display: grid;
+                place-content: center;
+                justify-items: start;
+                padding: 0 clamp(20px, 4vw, 40px);
+            }
+            .nf__mark {
+                width: 72px;
+                height: 72px;
+                stroke: var(--num); /* очень бледный знак над цифрой */
+                margin-bottom: 18px;
+            }
+            .nf__mark-acc {
+                fill: var(--brand);
+                opacity: 0.35;
+            }
+            .nf__num {
+                font-family: var(--display);
+                font-weight: 900;
+                font-size: clamp(72px, 16vw, 160px);
+                line-height: 1;
+                color: var(--num);
+                user-select: none;
+            }
+            .nf__title {
+                font-family: var(--display);
+                font-weight: 700;
+                font-size: clamp(18px, 3vw, 28px);
+                margin: 10px 0 8px;
+            }
+            .nf__text {
+                color: var(--ink-soft);
+                font-size: 14px;
+                margin: 0 0 22px;
+                max-width: 48ch;
+            }
+            .nf__btn {
+                justify-self: center; /* по центру текстового блока */
+            }
+        </style>
+    </head>
+    <body>
+        <main class="nf">
+            <svg
+                class="nf__mark"
+                viewBox="4.25 2.55 17.2 17.2"
+                aria-hidden="true"
+            >
+                <path d="M5.2 3.5 V18.8 H20.5" fill="none" stroke-width="1.9" />
+                <path
+                    d="M5.2 16.8 L9.6 9.8 L12.4 12.6 L16.6 5.8 L20.5 11.8"
+                    fill="none"
+                    stroke-width="1.9"
+                    stroke-linejoin="round"
+                />
+                <circle class="nf__mark-acc" cx="16.6" cy="5.8" r="1.9" />
+            </svg>
+            <div class="nf__num" aria-hidden="true">404</div>
+            <h1 class="nf__title">Такой страницы на карте нет</h1>
+            <p class="nf__text">
+                Возможно, ссылка устарела или в адресе опечатка. Все инструменты
+                по-прежнему на месте — начните с ландшафта
+            </p>
+            <a class="empty__btn nf__btn" href="/">На главную</a>
+        </main>
+    </body>
+</html>

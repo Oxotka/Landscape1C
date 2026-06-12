@@ -1,4 +1,4 @@
-# Публикация фронтенда (папка app/) на GitHub Pages.
+# Публикация фронтенда на GitHub Pages.
 #
 # СЕЙЧАС НЕАКТИВЕН: запускается только вручную (workflow_dispatch).
 # Чтобы включить автодеплой после открытия репозитория:
@@ -22,7 +22,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Сборки нет — это статика. Просто выкладываем содержимое app/.
+  # Публикуем dist/: build.js прогоняет валидатор данных и копирует статику
+  # из app/, выкидывая редактор (editor.*) и .DS_Store.
   deploy:
     environment:
       name: github-pages
@@ -31,12 +32,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build dist (validate + copy without editor)
+        run: node scripts/build.js
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./app
+          path: ./dist
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

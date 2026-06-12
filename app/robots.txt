@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://landscape1c.ru/sitemap.xml
