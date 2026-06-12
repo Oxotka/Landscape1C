@@ -79,7 +79,7 @@ node scripts/cachebust.js
 node scripts/build.js
 ```
 
-Деплой — GitHub Actions (`.github/workflows/deploy.yml`): собирает `dist/` (`node scripts/build.js` — валидация + копия `app/` без редактора) и выкладывает его на GitHub Pages. Сейчас **только ручной запуск** (`workflow_dispatch`); автодеплой по push в `main` закомментирован (репозиторий приватный). Пути в `app/` относительные — работает на projectpage без доп. настроек.
+Деплой — GitHub Actions (`.github/workflows/deploy.yml`): собирает `dist/` (`node scripts/build.js` — валидация + копия `app/` без редактора) и выкладывает его на GitHub Pages. **Автодеплой на каждый push в `main`** (плюс ручной запуск `workflow_dispatch`) — то есть push в `main` сразу публикует сайт на **https://landscape1c.ru**. Пути в `app/` относительные, домен задан в Settings → Pages.
 
 ## Соглашения
 
