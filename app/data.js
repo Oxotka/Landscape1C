@@ -232,12 +232,12 @@ window.LANDSCAPE = {
       "logo": "1c.png",
       "description": "Платформенный механизм для построения отчетов и сложной выборки данных без программирования",
       "why": "Стандартный механизм 1С для создания отчетов: запрос, настройки, группировки и оформление описываются декларативно. Знать СКД обязан каждый разработчик и аналитик 1С",
-      "homepage": "https://v8.1c.ru/platforma/sistema-komponovki-dannyh-skd/",
+      "homepage": "https://v8.1c.ru/platforma/sistema-komponovki-dannykh/",
       "repo": null,
       "start": [
         {
           "label": "Е. Ю. Хрусталева - Разработка сложных отчетов в 1С:Предприятии 8. Система компоновки данных",
-          "url": "https://its.1c.ru/db/pubskd"
+          "url": "https://its.1c.ru/db/pubcomplexreports"
         }
       ],
       "maturity": "базовое",
@@ -561,12 +561,12 @@ window.LANDSCAPE = {
       "logo": "1c.png",
       "description": "Набор готовых подсистем и стандартных механизмов от 1С — основа для разработки прикладных решений",
       "why": "Базовая библиотека, на которой строятся типовые конфигурации 1С. Дает готовые механизмы (права, печать, обмен данными, версионирование) и единые стандарты, экономя время разработки",
-      "homepage": "https://its.1c.ru/db/bsp",
+      "homepage": "https://its.1c.ru/db/bspdoc",
       "repo": null,
       "start": [
         {
           "label": "Библиотека стандартных подсистем на ИТС",
-          "url": "https://its.1c.ru/db/bsp"
+          "url": "https://its.1c.ru/db/bspdoc"
         }
       ],
       "maturity": "базовое",
@@ -1556,7 +1556,7 @@ window.LANDSCAPE = {
       "logo": "postgresql.svg",
       "description": "Свободная СУБД; «1С» выпускает и поддерживает свою сборку PostgreSQL",
       "why": "PostgreSQL - это бесплатная СУБД, которая в текущих реалиях является одной из самых рекомендуемых",
-      "homepage": "https://v8.1c.ru/platforma/postgresql/?",
+      "homepage": "https://v8.1c.ru/platforma/postgresql/",
       "repo": null,
       "start": [
         {
@@ -1624,8 +1624,8 @@ window.LANDSCAPE = {
           "url": "https://youtu.be/FcAPsYfhaFs?si=tEgUfh8c6ziAIvz9"
         },
         {
-          "label": "Microsoft SQL Server 2019 для поддержки системы \"1С:Предприятие 8\": администрирование, оптимизация, обеспечение безопасности",
-          "url": "https://www.1c-uc3.ru/our-courses/all-courses/dlya-administratorov/ms/"
+          "label": "Курс «Администрирование и оптимизация MS SQL Server для поддержки системы 1С:Предприятие»",
+          "url": "https://www.specialist.ru/course/1c82skvl"
         }
       ],
       "maturity": "продвинутое",
@@ -3263,10 +3263,6 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/1c/articles/1531329/"
         },
         {
-          "label": "Использование Vagrant и Docker при разработке в 1С",
-          "url": "https://infostart.ru/1c/articles/542836/"
-        },
-        {
           "label": "Многопоточный CI-контур для 1С",
           "url": "https://infostart.ru/1c/articles/1198035/"
         },
@@ -3308,10 +3304,6 @@ window.LANDSCAPE = {
         {
           "label": "Полное практическое руководство по Docker",
           "url": "https://habr.com/ru/post/310460/"
-        },
-        {
-          "label": "Использование Vagrant и Docker при разработке в 1С",
-          "url": "https://infostart.ru/1c/articles/542836/"
         },
         {
           "label": "Создаем Docker-контейнер с 1С",
@@ -4161,7 +4153,7 @@ window.LANDSCAPE = {
         },
         {
           "label": "Е. Ю. Хрусталева - 1С:Аналитика. BI-система в 1С:Предприятии 8",
-          "url": "https://v8.1c.ru/metod/books/135703.htm"
+          "url": "https://v8.1c.ru/metod/books/176017.htm"
         }
       ],
       "maturity": "продвинутое",
@@ -5138,9 +5130,6 @@ window.LANDSCAPE = {
         "ckk",
         "центр контроля качества"
       ],
-      "analogs": [
-        "1С:Анализатор"
-      ],
       "depends": [
         "1С:КИП (Корпоративный инструментальный пакет)",
         "APDEX"
@@ -5175,40 +5164,6 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "1С:КИП (Корпоративный инструментальный пакет)"
-      ]
-    },
-    {
-      "name": "1С:Анализатор",
-      "added": "2026-06-08",
-      "category": "Производительность и нагрузочное тестирование",
-      "subcategory": null,
-      "logo": "1c.png",
-      "description": "Инструмент анализа нагрузки и технологического журнала 1С",
-      "why": "Автоматически разбирает техжурнал и счетчики, находит узкие места и проблемные запросы без ручного парсинга логов",
-      "homepage": "https://analyzer.1c.ru/",
-      "repo": null,
-      "start": [],
-      "maturity": "нишевое",
-      "origin": "отечественное",
-      "license": "проприетарное",
-      "availability": "доступен",
-      "roles": [
-        "администратор"
-      ],
-      "contexts": [
-        "инхаус",
-        "проекты"
-      ],
-      "aliases": [
-        "анализатор",
-        "1с анализатор"
-      ],
-      "analogs": [
-        "1С:ЦКК (Центр контроля качества)",
-        "Анализ технологического журнала"
-      ],
-      "depends": [
-        "Анализ технологического журнала"
       ]
     },
     {
@@ -5265,9 +5220,6 @@ window.LANDSCAPE = {
         "тж",
         "анализ тж",
         "techlog"
-      ],
-      "analogs": [
-        "1С:Анализатор"
       ]
     },
     {
