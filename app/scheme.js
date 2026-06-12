@@ -348,6 +348,7 @@
             inkSoft: cssVar("--ink-soft"),
             cardLine: cssVar("--card-line"),
             edge: cssVar("--edge"),
+            brand: cssVar("--brand"),
         };
         const dark = document.documentElement.dataset.theme === "dark";
 
@@ -385,15 +386,26 @@
 
         let y = M;
 
+        // Знак проекта («рельеф на осях», как в nav.js) слева от заголовка;
+        // glyph занимает 4.25…21.45 × 2.55…19.75 своего viewBox
+        const mk = 64 / 17.2;
+        out.push(
+            `<g transform="translate(${M - 4.25 * mk} ${y - 2.55 * mk}) scale(${mk})" fill="none" stroke="${C.ink}" stroke-width="1.9">` +
+                `<path d="M5.2 3.5 V18.8 H20.5"/>` +
+                `<path d="M5.2 16.8 L9.6 9.8 L12.4 12.6 L16.6 5.8 L20.5 11.8" stroke-linejoin="round"/>` +
+                `<circle cx="16.6" cy="5.8" r="1.9" fill="${C.brand}" stroke="none"/>` +
+                `</g>`,
+        );
         // Заголовок постера; под подзаголовком — адрес сайта
+        const hx = M + 64 + 18;
         out.push(
-            `<text x="${M}" y="${y + 24}" font-family="Unbounded, sans-serif" font-weight="700" font-size="26" fill="${C.ink}">Ландшафт технологий 1С</text>`,
+            `<text x="${hx}" y="${y + 24}" font-family="Unbounded, sans-serif" font-weight="700" font-size="26" fill="${C.ink}">Ландшафт технологий 1С</text>`,
         );
         out.push(
-            `<text x="${M}" y="${y + 46}" font-family="Inter, sans-serif" font-size="12" fill="${C.inkSoft}">Карта технологий экосистемы 1С${D.updated ? " · обновлено " + esc(D.updated) : ""}</text>`,
+            `<text x="${hx}" y="${y + 46}" font-family="Inter, sans-serif" font-size="12" fill="${C.inkSoft}">Карта технологий экосистемы 1С${D.updated ? " · обновлено " + esc(D.updated) : ""}</text>`,
         );
         out.push(
-            `<text x="${M}" y="${y + 64}" font-family="Inter, sans-serif" font-weight="600" font-size="11" letter-spacing="1" fill="${C.inkSoft}">landscape1c.ru</text>`,
+            `<text x="${hx}" y="${y + 64}" font-family="Inter, sans-serif" font-weight="600" font-size="11" letter-spacing="1" fill="${C.inkSoft}">landscape1c.ru</text>`,
         );
         y += 92;
 
@@ -810,8 +822,17 @@
         { passive: true },
     );
 
-    // Дубль «Скачать» в самом верху бургера (запасной путь на узких экранах)
+    // «Отборы» и «Скачать» живут в бургере на всех ширинах (из прилепленной
+    // шапки отборы убраны: настроил наверху — дальше только смотришь и качаешь)
     (function injectBurgerActions() {
+        const filters = document.createElement("button");
+        filters.type = "button";
+        filters.className = "menu__pa-item";
+        filters.textContent = "Отборы";
+        filters.addEventListener("click", () => {
+            NAV.closeMenu();
+            setFiltersOpen(true);
+        });
         const head = document.createElement("button");
         head.type = "button";
         head.className = "menu__pa-item menu__pa-head";
@@ -837,7 +858,7 @@
             list.hidden = !open;
             head.setAttribute("aria-expanded", String(open));
         });
-        NAV.pageActions([head, list]);
+        NAV.pageActions([filters, head, list], true);
     })();
 
     // Клик по карточке инструмента → детальная модалка (как в графе)

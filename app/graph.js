@@ -524,23 +524,25 @@
         fbox.appendChild(r);
     })();
 
-    // ── Выпадающие отборы из верхней строки (только на мобильном) ──
+    // ── Попап отборов: открывается из бургера (мобильный и распахнутый режим) ──
     const fbox = document.getElementById("graph-filters");
-    const ftrigger = document.querySelector(".graph-ftrigger");
-    if (fbox && ftrigger) {
-        const setOpen = (on) => {
-            fbox.classList.toggle("is-open", on);
-            ftrigger.setAttribute("aria-expanded", on);
-        };
-        ftrigger.addEventListener("click", () => {
-            setOpen(!fbox.classList.contains("is-open"));
-        });
-        // Любое нажатие вне списка и кнопки — закрыть (работает и поверх canvas)
+    if (fbox) {
+        const setOpen = (on) => fbox.classList.toggle("is-open", on);
+        // Любое нажатие вне списка — закрыть (работает и поверх canvas)
         NAV.dismissOnOutside(
             () => fbox.classList.contains("is-open"),
-            [fbox, ftrigger],
+            [fbox],
             () => setOpen(false),
         );
+        const burgerBtn = document.createElement("button");
+        burgerBtn.type = "button";
+        burgerBtn.className = "menu__pa-item";
+        burgerBtn.textContent = "Отборы";
+        burgerBtn.addEventListener("click", () => {
+            NAV.closeMenu();
+            setOpen(true);
+        });
+        NAV.pageActions([burgerBtn]);
     }
 
     // ── Полноэкранный режим (кнопка в углу графа, десктоп) ──

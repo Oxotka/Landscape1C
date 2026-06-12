@@ -50,13 +50,21 @@
             group.appendChild(chips);
             box.appendChild(group);
         });
-        // Кнопка сброса — видна только в мобильном попапе «Отборы» (CSS)
+        // Кнопка сброса — видна только в мобильной шторке «Отборы» (CSS)
         const r = document.createElement("button");
         r.type = "button";
         r.className = "reset filters__reset";
         r.textContent = "Сбросить ✕";
         r.addEventListener("click", reset);
         box.appendChild(r);
+        // Кнопка-итог шторки: показывает счет и закрывает (текст ставит apply)
+        const a = document.createElement("button");
+        a.type = "button";
+        a.id = "filters-apply";
+        a.className = "filters__apply";
+        a.textContent = "Показать";
+        a.addEventListener("click", () => openFilters(false));
+        box.appendChild(a);
     }
 
     // ── Стартовые наборы по контексту ─────────
@@ -199,10 +207,37 @@
             c2.hidden = !active;
         }
         if (r2) r2.hidden = !active;
+        const fa = $("#filters-apply");
+        if (fa)
+            fa.textContent = `Показать ${visible.length} из ${D.items.length}`;
+        renderActiveChips();
         writeUrl();
         syncSubTops();
         // Высота доски изменилась — пусть фиксированный футер пересчитает «раскрытие»
         dispatchEvent(new Event("scroll"));
+    }
+
+    // Сводка активных отборов над доской (видна только на мобильном — CSS):
+    // что отфильтровано, не открывая шторку; тап по значению снимает его
+    function renderActiveChips() {
+        const box = $("#active-chips");
+        if (!box) return;
+        box.innerHTML = "";
+        const entries = [];
+        AXES.forEach((a) => state[a].forEach((v) => entries.push([a, v])));
+        box.hidden = entries.length === 0;
+        entries.forEach(([axis, val]) => {
+            const b = document.createElement("button");
+            b.type = "button";
+            b.className = "active-chip";
+            b.innerHTML = `${val} <span>✕</span>`;
+            b.addEventListener("click", () => {
+                state[axis].delete(val);
+                syncControls();
+                apply();
+            });
+            box.appendChild(b);
+        });
     }
 
     // Липкий подзаголовок подкатегории встает под шапку категории, чья высота

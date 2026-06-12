@@ -198,9 +198,10 @@
         $("#path-done").textContent = `${done} из ${total}`;
         const fill = total ? (100 * done) / total + "%" : "0";
         $("#path-fill").style.width = fill;
-        // Дубль прогресса в прилепленной шапке
+        // Дубль прогресса и выбранная роль в прилепленной шапке
         $("#path-fill2").style.width = fill;
         $("#path-done2").textContent = `${done} из ${total}`;
+        $("#path-role2").textContent = role;
         $("#path-reset").hidden = known.size === 0;
 
         renderTabs();

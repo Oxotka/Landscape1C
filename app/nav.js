@@ -288,11 +288,14 @@
         closeMenu: function () {
             setOpen(false);
         },
-        // Вставить пункты текущей страницы в начало панели бургера (+ разделитель)
-        pageActions: function (nodes) {
+        // Вставить пункты текущей страницы в начало панели бургера (+ разделитель).
+        // По умолчанию видны только на мобильном; always = и на десктопе
+        pageActions: function (nodes, always) {
             var panel = menu.querySelector(".menu__panel");
             var box = document.createElement("div");
-            box.className = "menu__page-actions";
+            box.className =
+                "menu__page-actions" +
+                (always ? " menu__page-actions--all" : "");
             nodes.forEach(function (n) {
                 box.appendChild(n);
             });
