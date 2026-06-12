@@ -5,11 +5,11 @@
     // ── Единый источник ссылок ──
     var NAV = [
         ["index.html", "Ландшафт"],
+        ["path.html", "Путь"],
         ["scheme.html", "Схема"],
         ["graph.html", "Граф"],
-        ["path.html", "Путь"],
-        ["methodology.html", "Методология"],
         ["council.html", "Эксперты"],
+        ["methodology.html", "Методология"],
     ];
     var BOOSTY =
         "https://boosty.to/1cnik/purchase/3363092?ssource=DIRECT&share=subscription_link";
