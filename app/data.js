@@ -856,7 +856,12 @@ window.LANDSCAPE = {
       "why": "Подсказывает и генерирует код прямо в редакторе. Доступен в РФ, встроен в отечественные среды (в том числе в GitFlame) — рабочая альтернатива западным копайлотам без проблем с доступом",
       "homepage": "https://gitverse.ru/features/gigacode/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Документация GigaCode",
+          "url": "https://gitverse.ru/docs/ai/ai-assistant-gigacode/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "бесплатное",
@@ -893,7 +898,12 @@ window.LANDSCAPE = {
       "why": "Автодополнение и генерация кода в IDE на основе сильных моделей. С кодом на 1С и OneScript справляется уверенно, особенно когда видит контекст проекта. Доступ из РФ ограничен",
       "homepage": "https://github.com/features/copilot",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Copilot — твой парный ИИ-программист",
+          "url": "https://infostart.ru/1c/articles/2175351/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "бесплатное",
@@ -972,7 +982,16 @@ window.LANDSCAPE = {
       "why": "Работает в терминале как агент: разбирается в кодовой базе и вносит правки по задаче. Сильные модели уверенно ориентируются и в коде на 1С. Доступ из РФ ограничен",
       "homepage": "https://www.anthropic.com/claude-code",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Вайб-кодинг в 1С: рутинные скиллы Claude Code",
+          "url": "https://infostart.ru/1c/articles/2650687/"
+        },
+        {
+          "label": "Практика разработки в 1С с AI-агентом: конфигурация с нуля",
+          "url": "https://infostart.ru/1c/articles/2618356/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
@@ -1208,7 +1227,12 @@ window.LANDSCAPE = {
       "why": "Подсвечивает ошибки и нарушения стандартов прямо в VSCode и 1С:EDT; лежит в основе многих проверок качества кода 1С",
       "homepage": "https://1c-syntax.github.io/bsl-language-server/",
       "repo": "https://github.com/1c-syntax/bsl-language-server",
-      "start": [],
+      "start": [
+        {
+          "label": "Как проверять код на языке 1С с помощью BSL Language Server",
+          "url": "https://infostart.ru/1c/articles/1789716/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
@@ -1409,7 +1433,16 @@ window.LANDSCAPE = {
       "why": "Переносит коммиты из Хранилища 1С в git с сохранением авторов и комментариев — мост к нормальному версионированию",
       "homepage": null,
       "repo": "https://github.com/oscript-library/gitsync",
-      "start": [],
+      "start": [
+        {
+          "label": "Синхронизация хранилища 1С и git с OneScript и Gitsync",
+          "url": "https://infostart.ru/1c/articles/903269/"
+        },
+        {
+          "label": "GitSync 3.0. Шпаргалка по использованию",
+          "url": "https://infostart.ru/1c/articles/1157400/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
@@ -1490,7 +1523,12 @@ window.LANDSCAPE = {
       "why": "Главный инструмент ad-hoc анализа данных: посмотреть содержимое таблиц, проверить гипотезу по данным и отладить запрос отчета без доработки конфигурации",
       "homepage": null,
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Все консоли запросов для 1С",
+          "url": "https://infostart.ru/1c/articles/1828459/"
+        }
+      ],
       "maturity": "базовое",
       "origin": "отечественное",
       "license": "бесплатное",
@@ -1663,7 +1701,16 @@ window.LANDSCAPE = {
       "why": "Отечественная замена PostgreSQL/MS SQL для продуктива 1С: входит в реестр ПО, оптимизирована под нагрузку 1С",
       "homepage": "https://postgrespro.ru/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Postgres Pro для 1С — страница продукта",
+          "url": "https://postgrespro.ru/products/1c"
+        },
+        {
+          "label": "Инструкция по установке Postgres для OLTP-приложений и 1С",
+          "url": "https://infostart.ru/1c/articles/2041886/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -1703,7 +1750,12 @@ window.LANDSCAPE = {
       "why": "Используется как СУБД для крупных внедрений 1С, где исторически стоял Oracle",
       "homepage": "https://www.oracle.com/database/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Особенности работы платформы 1С с СУБД Oracle Database",
+          "url": "https://infostart.ru/1c/articles/340996/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
@@ -1738,7 +1790,12 @@ window.LANDSCAPE = {
       "why": "Один из поддерживаемых 1С серверов БД; встречается в редких корпоративных ландшафтах",
       "homepage": "https://www.ibm.com/products/db2",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Рекомендации по настройке IBM DB2 в конфигурациях 1С",
+          "url": "https://infostart.ru/1c/articles/353790/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
@@ -1864,7 +1921,12 @@ window.LANDSCAPE = {
       "why": "Хранит репозитории проектов 1С, ведет merge request'ы и запускает пайплайны Gitlab CI",
       "homepage": "https://about.gitlab.com/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Git + 1С. Как подключиться к команде разработки",
+          "url": "https://infostart.ru/1c/articles/864097/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -1903,7 +1965,12 @@ window.LANDSCAPE = {
       "why": "Здесь живет большинство open-source проектов экосистемы 1С (OneScript, Vanessa, BSL LS)",
       "homepage": "https://github.com/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Github и 1С. Пошаговая инструкция на конкретном примере",
+          "url": "https://infostart.ru/1c/articles/691382/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "бесплатное",
@@ -1941,7 +2008,12 @@ window.LANDSCAPE = {
       "why": "Российская замена GitHub/GitLab для команд 1С: репозитории, код-ревью, CI и ИИ-ассистент GigaCode",
       "homepage": "https://gitverse.ru/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Тест двух российских git-платформ: GitFlic и GitVerse",
+          "url": "https://habr.com/ru/articles/886192/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "бесплатное",
@@ -1980,7 +2052,12 @@ window.LANDSCAPE = {
       "why": "Хранит репозитории проектов 1С и связывает коммиты с задачами Jira; есть встроенный CI (Bitbucket Pipelines)",
       "homepage": "https://bitbucket.org/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Учебные материалы по Git от Atlassian (на русском)",
+          "url": "https://www.atlassian.com/ru/git/tutorials"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "бесплатное",
@@ -2018,7 +2095,12 @@ window.LANDSCAPE = {
       "why": "Проектирование макетов форм и пользовательских сценариев до реализации в 1С; аналитики и разработчики работают над прототипом совместно",
       "homepage": "https://www.figma.com/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Справочный центр Figma (на русском)",
+          "url": "https://help.figma.com/hc/ru"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "бесплатное",
@@ -2048,7 +2130,12 @@ window.LANDSCAPE = {
       "why": "Сборка прототипов экранов из готовых компонентов для согласования с заказчиком до разработки в 1С",
       "homepage": "https://www.mockplus.com/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Справка Mockplus",
+          "url": "https://help.mockplus.com/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
@@ -2080,7 +2167,12 @@ window.LANDSCAPE = {
       "why": "Быстрые черновые наброски форм и экранов для обсуждения логики интерфейса будущего решения 1С",
       "homepage": "https://balsamiq.com/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Balsamiq Wireframing Academy",
+          "url": "https://balsamiq.com/learn/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
@@ -2194,7 +2286,16 @@ window.LANDSCAPE = {
       "why": "Автоматизирует функциональное тестирование конфигураций при обновлениях",
       "homepage": "https://v8.1c.ru/tekhnologii/tekhnologii-krupnykh-vnedreniy/korporativnyy-instrumentalnyy-paket/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Создание и модификация тестов в 1С:Тестировщик",
+          "url": "https://infostart.ru/1c/articles/2022869/"
+        },
+        {
+          "label": "Курс «Знакомство с 1С:Тестировщиком»",
+          "url": "https://uc1.1c.ru/course/znakomstvo-s-1s-testirovschikom/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -2321,7 +2422,16 @@ window.LANDSCAPE = {
       "why": "Ранний набор инструментов сценарного и поведенческого тестирования 1С",
       "homepage": null,
       "repo": "https://github.com/vanessa-opensource/add",
-      "start": [],
+      "start": [
+        {
+          "label": "Инструмент тестирования прикладных решений на платформе 1С",
+          "url": "https://habr.com/ru/post/418303/"
+        },
+        {
+          "label": "Разработка и сценарное тестирование с Vanessa",
+          "url": "https://infostart.ru/1c/articles/969637/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
@@ -2780,7 +2890,12 @@ window.LANDSCAPE = {
       "why": "Позволяет проводить структурированное ревью изменений: комментарии к строкам, обсуждения и отслеживание замечаний до их закрытия",
       "homepage": "https://www.atlassian.com/software/crucible",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Crucible",
+          "url": "https://confluence.atlassian.com/crucible/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
@@ -2815,7 +2930,12 @@ window.LANDSCAPE = {
       "why": "Дает командное рецензирование изменений без привязки к конкретному хостингу репозиториев — обзоры можно вести и до коммита",
       "homepage": "https://www.reviewboard.org",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Review Board",
+          "url": "https://www.reviewboard.org/docs/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -2850,7 +2970,12 @@ window.LANDSCAPE = {
       "why": "Поддерживает ревью не только кода, но и проектных документов, с настраиваемыми регламентами проверки и отчетностью",
       "homepage": "https://smartbear.com/product/collaborator/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Collaborator",
+          "url": "https://support.smartbear.com/collaborator/docs/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
@@ -2885,7 +3010,12 @@ window.LANDSCAPE = {
       "why": "Автоматически просматривает pull request'ы, оставляет осмысленные замечания по строкам и сводку изменений — ускоряет ревью и снимает рутину с рецензентов. Интегрируется с GitHub/GitLab. Доступ из РФ ограничен",
       "homepage": "https://www.coderabbit.ai",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Документация CodeRabbit",
+          "url": "https://docs.coderabbit.ai/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
@@ -3067,7 +3197,16 @@ window.LANDSCAPE = {
       "why": "Запускает сборку, тесты и проверки кода 1С при каждом пуше в репозиторий на GitHub",
       "homepage": "https://github.com/features/actions",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Особенности национального Workflow: Github Actions и OneScript",
+          "url": "https://infostart.ru/1c/articles/2068854/"
+        },
+        {
+          "label": "Секреты, кэш и артефакты в Github Actions",
+          "url": "https://infostart.ru/1c/articles/2075473/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "бесплатное",
@@ -3107,7 +3246,12 @@ window.LANDSCAPE = {
       "why": "Исторически популярный облачный CI; для 1С-проектов сейчас вытесняется GitHub Actions и GitLab CI",
       "homepage": "https://www.travis-ci.com/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Travis CI",
+          "url": "https://docs.travis-ci.com/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
@@ -3146,7 +3290,16 @@ window.LANDSCAPE = {
       "why": "Стандартный инструмент CI для 1С: создает и обновляет базы, запускает Vanessa-Automation, замеряет покрытие и выгружает конфигурацию — одной командой в пайплайне",
       "homepage": null,
       "repo": "https://github.com/vanessa-opensource/vanessa-runner",
-      "start": [],
+      "start": [
+        {
+          "label": "Использование vanessa-runner/deployka в сборочных линиях",
+          "url": "https://infostart.ru/1c/articles/1211686/"
+        },
+        {
+          "label": "Как начать разработку проекта 1С с прицелом на DevOps",
+          "url": "https://infostart.ru/1c/articles/1463154/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
@@ -3185,7 +3338,12 @@ window.LANDSCAPE = {
       "why": "Альтернатива Jenkins для пайплайнов 1С с удобным UI и готовыми раннерами",
       "homepage": "https://www.jetbrains.com/teamcity/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Getting Started with TeamCity — официальный гайд",
+          "url": "https://www.jetbrains.com/help/teamcity/getting-started-with-teamcity.html"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "бесплатное",
@@ -3225,7 +3383,16 @@ window.LANDSCAPE = {
       "why": "Автоматизирует развертывание серверов 1С, СУБД и окружений без ручной настройки",
       "homepage": "https://www.ansible.com/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Настройка сервера 1С на Linux через Ansible — опыт Magnit Tech",
+          "url": "https://infostart.ru/1c/articles/2438899/"
+        },
+        {
+          "label": "Установка 1С используя Ansible",
+          "url": "https://infostart.ru/1c/articles/1124819/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -3561,7 +3728,12 @@ window.LANDSCAPE = {
       "why": "Предназначено для легкой интеграции с существующими сервисами. Поставляется в виде расширения, проекта EDT, файлов конфигурации или других вариантов. После установки в конфигурации можем легко вызывать методы API сервисов не разрабатывая их самостоятельно",
       "homepage": "https://openintegrations.dev",
       "repo": "https://github.com/Bayselonarrend/OpenIntegrations",
-      "start": [],
+      "start": [
+        {
+          "label": "Открытый пакет интеграций для популярных API",
+          "url": "https://infostart.ru/1c/articles/2016164/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
@@ -3648,7 +3820,12 @@ window.LANDSCAPE = {
       "why": "При разработке интеграций с внешними сервисами часто встречаешь в документации к `API` примеры запросов на `curl`. Данный сервис помогает конвертировать такой запрос в код 1С. Приложение написано на `OneScript`",
       "homepage": "https://curlone.ru/",
       "repo": "https://github.com/alei1180/curlone",
-      "start": [],
+      "start": [
+        {
+          "label": "Curlone — конвертер команды curl в код на языке 1С",
+          "url": "https://infostart.ru/1c/articles/2319069/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
@@ -3841,7 +4018,12 @@ window.LANDSCAPE = {
       "why": "Тестирование HTTP/REST-сервисов 1С с хранением коллекций в git рядом с кодом — без облачного аккаунта и синхронизации",
       "homepage": "https://www.usebruno.com/",
       "repo": "https://github.com/usebruno/bruno",
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Bruno",
+          "url": "https://docs.usebruno.com/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -3877,7 +4059,12 @@ window.LANDSCAPE = {
       "why": "Альтернатива Postman для ручного тестирования веб-сервисов 1С с удобным минималистичным UI",
       "homepage": "https://insomnia.rest/",
       "repo": "https://github.com/Kong/insomnia",
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Insomnia",
+          "url": "https://docs.insomnia.rest/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -3913,7 +4100,12 @@ window.LANDSCAPE = {
       "why": "Тестирование SOAP- и REST-сервисов 1С, включая сложные сценарии, проверки ответов и нагрузочные прогоны",
       "homepage": "https://www.soapui.org/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "SoapUI Getting Started",
+          "url": "https://www.soapui.org/getting-started/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -4234,7 +4426,16 @@ window.LANDSCAPE = {
       "why": "Строит дашборды поверх данных 1С (через выгрузку или витрину) — российская замена Power BI",
       "homepage": "https://datalens.yandex.ru/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Создание дашборда в DataLens из отчета 1С",
+          "url": "https://infostart.ru/pm/1978248/"
+        },
+        {
+          "label": "Выгрузка из 1С в BI-системы: DataLens, Power BI, Visiology",
+          "url": "https://infostart.ru/public/1755776/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
@@ -4268,7 +4469,12 @@ window.LANDSCAPE = {
       "why": "Отечественная BI из реестра ПО — визуализация показателей поверх данных 1С",
       "homepage": "https://visiology.su/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Выгрузка из 1С в BI-системы: DataLens, Power BI, Visiology",
+          "url": "https://infostart.ru/public/1755776/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -4301,7 +4507,16 @@ window.LANDSCAPE = {
       "why": "Управление кластером, сеансами и информационными базами из командной строки — основа автоматизации администрирования и скриптов обслуживания",
       "homepage": "https://its.1c.ru/db/v8323doc#bookmark:adm:TI000000484",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Сервер администрирования кластера серверов 1С и deployka",
+          "url": "https://infostart.ru/1c/articles/810752/"
+        },
+        {
+          "label": "Полный список команд RAS/RAC",
+          "url": "https://infostart.ru/public/1038528/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -4336,7 +4551,16 @@ window.LANDSCAPE = {
       "why": "Позволяет работать с ИБ без кластера: разворачивать, обновлять конфигурацию и выгружать/загружать данные из CLI в пайплайнах",
       "homepage": "https://its.1c.ru/db/v8323doc#bookmark:adm:TI000000559",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Примеры работы с утилитой администрирования ibcmd",
+          "url": "https://infostart.ru/1c/articles/2500569/"
+        },
+        {
+          "label": "Автономный сервер. Часть 2 — утилита управления",
+          "url": "https://infostart.ru/1c/articles/1168516/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -4370,7 +4594,12 @@ window.LANDSCAPE = {
       "why": "Привычный GUI для администрирования кластера: рабочие серверы, сеансы, информационные базы, регламентные задания",
       "homepage": "https://its.1c.ru/db/v8323doc#bookmark:adm:TI000000186",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Особенности использования консоли администрирования разных версий",
+          "url": "https://rarus.ru/publications/20160321-osobennosti-ispolzovaniya-konsoli-administrirovaniya-serverov-1c-predpriyatie-raznykh-versiy-644584/"
+        }
+      ],
       "maturity": "базовое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -4406,7 +4635,16 @@ window.LANDSCAPE = {
       "why": "Классический вариант публикации базы 1С: веб-клиент, веб-сервисы и HTTP-сервисы доступны по сети",
       "homepage": "https://httpd.apache.org/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Пошаговая установка веб-сервера Apache и завязка с 1С",
+          "url": "https://infostart.ru/1c/articles/1207548/"
+        },
+        {
+          "label": "Публикация конфигурации на веб-сервере Apache (в картинках)",
+          "url": "https://infostart.ru/1c/articles/95950/"
+        }
+      ],
       "maturity": "базовое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -4446,7 +4684,16 @@ window.LANDSCAPE = {
       "why": "Штатный вариант публикации 1С в Windows-инфраструктуре: веб-клиент и HTTP-сервисы без стороннего ПО, доменная аутентификация из коробки",
       "homepage": "https://www.iis.net/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Пошаговая настройка web-сервисов для 1С и IIS",
+          "url": "https://infostart.ru/1c/articles/275820/"
+        },
+        {
+          "label": "Под капотом IIS: веб-публикация базы 1С без конфигуратора",
+          "url": "https://infostart.ru/1c/articles/1434014/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "проприетарное",
@@ -4479,7 +4726,16 @@ window.LANDSCAPE = {
       "why": "Обратный прокси и балансировщик перед серверами 1С: HTTPS, кэширование статики, маршрутизация веб- и HTTP-сервисов",
       "homepage": "https://nginx.org/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Настройка веб-сервера Nginx — методическая поддержка 1С",
+          "url": "https://its.1c.ru/db/content/metod8dev/src/developers/scalability/instructions/i8105980.htm"
+        },
+        {
+          "label": "Ограничение доступа к HTTP-публикациям 1С через NGINX",
+          "url": "https://infostart.ru/1c/articles/1258813/"
+        }
+      ],
       "maturity": "базовое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -4515,7 +4771,12 @@ window.LANDSCAPE = {
       "why": "Обеспечивает масштабируемость (наращивание оборудования под нагрузку), отказоустойчивость и балансировку нагрузки между серверами. Понимание устройства кластера важно при работе с серверным вариантом 1С и при администрировании крупных внедрений",
       "homepage": "https://habr.com/ru/companies/1c/articles/493008/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "О кластере серверов 1С:Предприятия",
+          "url": "https://habr.com/ru/companies/1c/articles/493008/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -4589,7 +4850,12 @@ window.LANDSCAPE = {
       "why": "Моделирование бизнес-процессов и схем интеграций для ТЗ и согласований; работает в браузере и десктопе, экспорт в проектную документацию",
       "homepage": "https://www.drawio.com/",
       "repo": "https://github.com/jgraph/drawio",
-      "start": [],
+      "start": [
+        {
+          "label": "Как быстро нарисовать блок-схему или бизнес-процесс",
+          "url": "https://infostart.ru/1c/articles/1556675/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -4621,7 +4887,16 @@ window.LANDSCAPE = {
       "why": "Хранит ТЗ, регламенты, протоколы встреч и базу знаний проекта 1С; тесно связан с задачами Jira",
       "homepage": "https://www.atlassian.com/software/confluence",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Официальные гайды по Confluence",
+          "url": "https://www.atlassian.com/ru/software/confluence/guides"
+        },
+        {
+          "label": "Расширение 1С для работы с базой знаний Confluence",
+          "url": "https://infostart.ru/1c/tools/1131241/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "бесплатное",
@@ -4693,7 +4968,12 @@ window.LANDSCAPE = {
       "why": "Базовый способ вести проектную документацию команды, когда не нужен отдельный Confluence: вики GitLab/GitHub/GitVerse хранится в git и правится в Markdown",
       "homepage": null,
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Документирование проекта с помощью вики на GitHub",
+          "url": "https://docs.github.com/ru/communities/documenting-your-project-with-wikis"
+        }
+      ],
       "maturity": "базовое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -4734,7 +5014,16 @@ window.LANDSCAPE = {
       "why": "Подтверждает базовый уровень владения платформой — стартовая ступень для разработчика и консультанта 1С, частое требование вакансий",
       "homepage": null,
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Описание экзамена от 1С",
+          "url": "https://1c.ru/prof/prof.htm"
+        },
+        {
+          "label": "1С:Учебное тестирование",
+          "url": "https://uc1.1c.ru/uchebnoe-testirovanie/"
+        }
+      ],
       "maturity": "базовое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -4770,7 +5059,16 @@ window.LANDSCAPE = {
       "why": "Подтверждает компетенции по внедрению и сопровождению типовых решений — ценится у франчайзи и на проектах внедрения",
       "homepage": null,
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Об экзамене 1С:Специалист-консультант",
+          "url": "https://uc1.1c.ru/ekzameny-1s/spec-konsultant/"
+        },
+        {
+          "label": "Подготовка к аттестации — подборка Инфостарта",
+          "url": "https://infostart.ru/public/all/priemy_i_metody_razrabotki/podgotovka_k_attestacii/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -4807,7 +5105,16 @@ window.LANDSCAPE = {
       "why": "Подтверждает умение дорабатывать конфигурации под задачи бизнеса — ключевая сертификация для разработчика 1С",
       "homepage": null,
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Как получить сертификат 1С:Специалист",
+          "url": "https://1c.ru/spec/texts/how_to_get.htm"
+        },
+        {
+          "label": "Подготовка к аттестации — подборка Инфостарта",
+          "url": "https://infostart.ru/public/all/priemy_i_metody_razrabotki/podgotovka_k_attestacii/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -4845,7 +5152,20 @@ window.LANDSCAPE = {
       "why": "Высшая техническая сертификация: оптимизация производительности и решение сложных нагрузочных задач в крупных системах",
       "homepage": null,
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Настольная книга 1С:Эксперта по технологическим вопросам",
+          "url": "https://online.1c.ru/books/book/20752408/"
+        },
+        {
+          "label": "База знаний «Технологические вопросы крупных внедрений»",
+          "url": "https://kb.1c.ru"
+        },
+        {
+          "label": "Как я стал Экспертом по технологическим вопросам за 3 месяца",
+          "url": "https://infostart.ru/1c/articles/2027654/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -4989,7 +5309,16 @@ window.LANDSCAPE = {
       "why": "Следит за доступностью и нагрузкой серверов 1С, шлет алерты при проблемах",
       "homepage": "https://www.zabbix.com/",
       "repo": "https://github.com/zabbix/zabbix",
-      "start": [],
+      "start": [
+        {
+          "label": "Мониторинг кластера 1С 8.3 в Zabbix",
+          "url": "https://infostart.ru/1c/articles/1632627/"
+        },
+        {
+          "label": "Мониторинг сервера 1С на GNU/Linux с помощью Zabbix",
+          "url": "https://infostart.ru/1c/articles/1529299/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -5020,7 +5349,16 @@ window.LANDSCAPE = {
       "why": "Собирает метрики 1С и инфраструктуры в наглядные дашборды",
       "homepage": "https://grafana.com/",
       "repo": "https://github.com/grafana/grafana",
-      "start": [],
+      "start": [
+        {
+          "label": "Метрики, графики, статистика = Prometheus + Grafana",
+          "url": "https://infostart.ru/1c/articles/811821/"
+        },
+        {
+          "label": "Как и чем мониторить 1С:Предприятие: просто о важном",
+          "url": "https://infostart.ru/1c/articles/2543624/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -5054,7 +5392,16 @@ window.LANDSCAPE = {
       "why": "Собирает метрики серверов и сервисов 1С, питает Grafana и алерты",
       "homepage": "https://prometheus.io/",
       "repo": "https://github.com/prometheus/prometheus",
-      "start": [],
+      "start": [
+        {
+          "label": "Prometheus и Grafana. Все, что вы хотели знать о мониторинге",
+          "url": "https://infostart.ru/1c/articles/2629748/"
+        },
+        {
+          "label": "Как я мониторинг разворачивал",
+          "url": "https://infostart.ru/1c/articles/1859181/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -5085,7 +5432,16 @@ window.LANDSCAPE = {
       "why": "Включает Центр контроля качества, Тест-центр и инструменты анализа — основа методики мониторинга и нагрузочного тестирования по стандартам 1С",
       "homepage": "https://its.1c.ru/db/kip",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Документация 1С:КИП на ИТС",
+          "url": "https://its.1c.ru/db/kip"
+        },
+        {
+          "label": "Обзор 1С:КИП на Инфостарте",
+          "url": "https://infostart.ru/soft1c/1c-kip/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -5113,7 +5469,16 @@ window.LANDSCAPE = {
       "why": "Регулярно собирает показатели (APDEX, ошибки, регламент) и сигнализирует о деградации производительности продуктивных систем",
       "homepage": "https://its.1c.ru/db/kip#content:171:hdoc",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Глава «Центр контроля качества» в документации КИП",
+          "url": "https://its.1c.ru/db/kip/content/47/hdoc"
+        },
+        {
+          "label": "Сценарии обслуживания SQL в Центре контроля качества",
+          "url": "https://infostart.ru/1c/articles/2068868/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -5145,7 +5510,16 @@ window.LANDSCAPE = {
       "why": "Эмулирует работу сотен пользователей для оценки производительности системы под нагрузкой до вывода в продуктив",
       "homepage": "https://its.1c.ru/db/kip#content:151:hdoc",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Оптимизируем и удешевляем нагрузочное тестирование 1С",
+          "url": "https://infostart.ru/1c/articles/2444773/"
+        },
+        {
+          "label": "Скрещиваем 1С:Тест-центр и Vanessa Automation",
+          "url": "https://infostart.ru/video/w1182050/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -5176,7 +5550,20 @@ window.LANDSCAPE = {
       "why": "Единая метрика производительности ключевых операций (0..1) — на ней строится мониторинг и SLA по скорости работы 1С",
       "homepage": "https://its.1c.ru/db/metod8dev#content:5847:hdoc",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Оценка интегральной производительности по методике APDEX",
+          "url": "https://its.1c.ru/db/metod8dev/content/5807/hdoc"
+        },
+        {
+          "label": "Другой взгляд на APDEX и подсистему «Оценка производительности»",
+          "url": "https://infostart.ru/1c/articles/1006853/"
+        },
+        {
+          "label": "Оценка производительности с помощью БСП",
+          "url": "https://infostart.ru/1c/articles/1686856/"
+        }
+      ],
       "maturity": "базовое",
       "origin": "зарубежное",
       "license": "бесплатное",
@@ -5203,7 +5590,20 @@ window.LANDSCAPE = {
       "why": "Техжурнал фиксирует события платформы (блокировки, длительные запросы, ошибки); его анализ — ключ к расследованию инцидентов производительности",
       "homepage": "https://its.1c.ru/db/v8323doc#bookmark:adm:TI000000437",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Примеры настроек технологического журнала",
+          "url": "https://infostart.ru/1c/articles/2020498/"
+        },
+        {
+          "label": "Описание почти всех событий технологического журнала",
+          "url": "https://infostart.ru/1c/articles/1195695/"
+        },
+        {
+          "label": "5 шагов к мониторингу проблем производительности базы 1С",
+          "url": "https://infostart.ru/1c/articles/1040073/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "бесплатное",
@@ -5232,7 +5632,16 @@ window.LANDSCAPE = {
       "why": "Хранит и индексирует логи 1С для быстрого поиска и анализа",
       "homepage": "https://www.elastic.co/elasticsearch",
       "repo": "https://github.com/elastic/elasticsearch",
-      "start": [],
+      "start": [
+        {
+          "label": "OpenSearch для 1Сников: бесплатный ElasticSearch без потерь",
+          "url": "https://infostart.ru/1c/articles/2440231/"
+        },
+        {
+          "label": "Перенос всех логов в Elasticsearch",
+          "url": "https://infostart.ru/1c/articles/1257666/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -5266,7 +5675,12 @@ window.LANDSCAPE = {
       "why": "Веб-интерфейс для анализа логов 1С, хранящихся в Elasticsearch",
       "homepage": "https://www.elastic.co/kibana",
       "repo": "https://github.com/elastic/kibana",
-      "start": [],
+      "start": [
+        {
+          "label": "Загрузка логов журнала регистрации 1С в ElasticSearch и Kibana",
+          "url": "https://infostart.ru/1c/articles/545895/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -5297,7 +5711,12 @@ window.LANDSCAPE = {
       "why": "Собирает логи 1С из разных источников и нормализует перед отправкой",
       "homepage": "https://www.elastic.co/logstash",
       "repo": "https://github.com/elastic/logstash",
-      "start": [],
+      "start": [
+        {
+          "label": "Экспорт технологического журнала 1С в Elastic с помощью Logstash",
+          "url": "https://infostart.ru/1c/articles/1933637/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -5366,7 +5785,12 @@ window.LANDSCAPE = {
       "why": "Ведет задачи, баги и спринты команды 1С-разработки",
       "homepage": "https://www.atlassian.com/software/jira",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Официальные гайды по Jira (на русском)",
+          "url": "https://www.atlassian.com/ru/software/jira/guides"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "бесплатное",
@@ -5405,7 +5829,12 @@ window.LANDSCAPE = {
       "why": "Легкое управление задачами небольших команд и проектов на 1С",
       "homepage": "https://trello.com/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Официальный гайд по Trello",
+          "url": "https://trello.com/guide"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "бесплатное",
@@ -5439,7 +5868,12 @@ window.LANDSCAPE = {
       "why": "Ведет задачи, спринты и процессы команды 1С в отечественном облаке — импортозамещение Jira",
       "homepage": "https://yandex.ru/tracker/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Яндекс Трекера",
+          "url": "https://yandex.cloud/ru/docs/tracker/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -5477,7 +5911,12 @@ window.LANDSCAPE = {
       "why": "Ведет задачи и спринты команды 1С с гибкими запросами и автоматизацией",
       "homepage": "https://www.jetbrains.com/youtrack/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Документация YouTrack",
+          "url": "https://www.jetbrains.com/help/youtrack/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "бесплатное",
@@ -5516,7 +5955,12 @@ window.LANDSCAPE = {
       "why": "Бесплатный трекер задач и багов для небольших команд и франчайзи на 1С",
       "homepage": "https://www.redmine.org/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Официальное руководство Redmine",
+          "url": "https://www.redmine.org/projects/redmine/wiki/Guide"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -5555,7 +5999,12 @@ window.LANDSCAPE = {
       "why": "Российская замена Trello/Jira для ведения задач команд 1С",
       "homepage": "https://kaiten.ru/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "База знаний Kaiten",
+          "url": "https://support.kaiten.ru/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -5628,7 +6077,12 @@ window.LANDSCAPE = {
       "why": "Российский корпоративный портал для ведения задач, проектов и общения команд 1С — часто внедряется вместе с 1С во франчайзи и инхаус",
       "homepage": "https://www.bitrix24.ru/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Справка Битрикс24",
+          "url": "https://helpdesk.bitrix24.ru/"
+        }
+      ],
       "maturity": "базовое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -5669,7 +6123,16 @@ window.LANDSCAPE = {
       "why": "Управляет контейнерами вокруг 1С: масштабирование, обновления, отказоустойчивость",
       "homepage": "https://kubernetes.io/",
       "repo": "https://github.com/kubernetes/kubernetes",
-      "start": [],
+      "start": [
+        {
+          "label": "Жизнь платформы 1C:Предприятие в кластере Kubernetes",
+          "url": "https://infostart.ru/1c/articles/1795989/"
+        },
+        {
+          "label": "Ферма приложений на Kubernetes",
+          "url": "https://infostart.ru/1c/articles/1283329/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -5703,7 +6166,12 @@ window.LANDSCAPE = {
       "why": "Простая публикация веб-клиента и сервисов 1С: обратный прокси с автоматическим выпуском TLS-сертификатов и лаконичным конфигом",
       "homepage": "https://caddyserver.com/",
       "repo": "https://github.com/caddyserver/caddy",
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Caddy",
+          "url": "https://caddyserver.com/docs/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -5738,7 +6206,16 @@ window.LANDSCAPE = {
       "why": "Администрирование инфраструктуры 1С без командной строки: базы, сеансы, блокировки и рабочие процессы кластера в одном браузерном интерфейсе. Работает на Linux и Windows",
       "homepage": "https://it-expertise.ru/pusk/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Устанавливаем и настраиваем ПУСК",
+          "url": "https://interface31.ru/tech_it/2025/01/ustanavlivaem-i-nastraivaem-pusk---panel-upravleniya-servisami-i-komponentami-dlya-1spredpriyatie.html"
+        },
+        {
+          "label": "ПУСК на Инфостарте",
+          "url": "https://infostart.ru/1c/tools/1713088/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "бесплатное",
@@ -5771,7 +6248,16 @@ window.LANDSCAPE = {
       "why": "Отечественная СУБД из реестра ПО для продуктива 1С: ядро PostgreSQL с собственными оптимизациями и встроенными средствами администрирования, тестируется на конфигурациях 1С",
       "homepage": "https://tantorlabs.ru/tantor-se-1c",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "1С и СУБД Tantor: история одного внедрения",
+          "url": "https://infostart.ru/1c/articles/2142833/"
+        },
+        {
+          "label": "СУБД Tantor Postgres 17.5: обзор улучшений для 1С",
+          "url": "https://infostart.ru/1c/articles/2432864/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -5846,7 +6332,12 @@ window.LANDSCAPE = {
       "why": "Выделяет ресурсоемкие запросы и контролирует нагрузку на уровне СУБД, серверов 1С и контекста кода: расшифровка блокировок и взаимоблокировок, разбор технологического журнала в одном интерфейсе",
       "homepage": "https://bia-tech.ru/solutions/perfdog-monitoring-1c",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Сторожевой пес нагруженности: зачем мы создали PerfDog",
+          "url": "https://vc.ru/services/698847-storozhevoy-pes-nagruzhennosti-zachem-my-sozdali-svoy-instrument-dlya-monitoringa-raboty-1s"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -5880,7 +6371,16 @@ window.LANDSCAPE = {
       "why": "Непрерывный контроль метрик производительности 1С и MS SQL/PostgreSQL: сбор трасс запросов, анализ блокировок и рекомендации по оптимизации индексов",
       "homepage": "https://perfexpert.ru/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Система мониторинга PerfExpert — обзор на Хабре",
+          "url": "https://habr.com/ru/companies/stss/articles/334638/"
+        },
+        {
+          "label": "ЖР и ТЖ 1С в решении вопросов производительности",
+          "url": "https://softpoint.ru/articles/1c-journal-perfomance/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -5950,7 +6450,16 @@ window.LANDSCAPE = {
       "why": "Диаграммы как код: последовательности, классы, компоненты и схемы процессов описываются текстом, хранятся рядом с проектом и удобно версионируются. Периодически встречается в материалах сообщества 1С",
       "homepage": "https://plantuml.com/",
       "repo": "https://github.com/plantuml/plantuml",
-      "start": [],
+      "start": [
+        {
+          "label": "1С + PlantUML + JavaScript: интерактивные диаграммы",
+          "url": "https://infostart.ru/1c/articles/2356036/"
+        },
+        {
+          "label": "Диаграмма объектов 1С на PlantUML",
+          "url": "https://infostart.ru/1c/tools/1714797/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -5989,7 +6498,12 @@ window.LANDSCAPE = {
       "why": "Отечественная замена GitHub/GitLab: хостинг git-репозиториев, код-ревью, CI и реестр пакетов. Входит в реестр российского ПО",
       "homepage": "https://gitflic.ru/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Автоматизация процесса разработки с помощью GitFlic",
+          "url": "https://infostart.ru/1c/articles/2058025/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "бесплатное",
@@ -6058,7 +6572,16 @@ window.LANDSCAPE = {
       "why": "Готовый каркас для интеграций на 1С: универсальный HTTP-сервис, логирование, подсистема «Алгоритмы» для выполнения кода, регламентные задания, роли и история данных. Развивается с открытым кодом, инструменты ранее обкатывались в отдельном репозитории PAPI-tools",
       "homepage": null,
       "repo": "https://github.com/dsdred/PAPI",
-      "start": [],
+      "start": [
+        {
+          "label": "Подсистема PAPI — обзор возможностей",
+          "url": "https://infostart.ru/1c/articles/2216535/"
+        },
+        {
+          "label": "Сервисы интеграции без Шины и интеграции",
+          "url": "https://infostart.ru/1c/articles/2059507/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
@@ -6089,7 +6612,12 @@ window.LANDSCAPE = {
       "why": "Распределение нагрузки между серверами 1С и отказоустойчивая публикация: надежный балансировщик уровня L4/L7, который любят в крупных инсталляциях",
       "homepage": "https://www.haproxy.org/",
       "repo": "https://github.com/haproxy/haproxy",
-      "start": [],
+      "start": [
+        {
+          "label": "Документация HAProxy",
+          "url": "https://docs.haproxy.org/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -6123,7 +6651,12 @@ window.LANDSCAPE = {
       "why": "Замена nginx там, где нужны российское решение и совместимость с требованиями регуляторов: тот же конфиг плюс дополнительные модули",
       "homepage": "https://angie.software/",
       "repo": "https://github.com/webserver-llc/angie",
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Angie",
+          "url": "https://angie.software/angie/docs/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
@@ -6158,7 +6691,12 @@ window.LANDSCAPE = {
       "why": "Воспроизводимое разворачивание серверов и окружений 1С в облаках и на железе: инфраструктура описывается кодом и применяется одной командой",
       "homepage": "https://www.terraform.io/",
       "repo": "https://github.com/hashicorp/terraform",
-      "start": [],
+      "start": [
+        {
+          "label": "Infrastructure as code: кнопка «Сделать все»",
+          "url": "https://infostart.ru/1c/articles/1966784/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "бесплатное",
@@ -6190,7 +6728,12 @@ window.LANDSCAPE = {
       "why": "Безопасное хранение паролей, токенов и ключей вместо конфигов и переменных окружения: централизованная выдача и ротация секретов для сервисов и пайплайнов",
       "homepage": "https://www.vaultproject.io/",
       "repo": "https://github.com/hashicorp/vault",
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Vault",
+          "url": "https://developer.hashicorp.com/vault/docs"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "бесплатное",
@@ -6223,7 +6766,16 @@ window.LANDSCAPE = {
       "why": "Без него не работают электронная подпись, защищенные соединения и обмен с госсистемами в 1С: реализует российскую криптографию на сервере и рабочих местах",
       "homepage": "https://www.cryptopro.ru/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Криптография и электронная подпись в решениях на 1С",
+          "url": "https://infostart.ru/1c/articles/809967/"
+        },
+        {
+          "label": "Интеграция КриптоПро CSP в платформе 1С:Предприятие",
+          "url": "https://infostart.ru/1c/articles/2194709/"
+        }
+      ],
       "maturity": "базовое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -6260,7 +6812,16 @@ window.LANDSCAPE = {
       "why": "Управление множеством баз и серверов 1С из одной точки: контроль состояния, права доступа пользователей и доставка обновлений конфигураций по всему ландшафту",
       "homepage": "https://v8.1c.ru/tekhnologii/tekhnologii-krupnykh-vnedreniy/korporativnye-instrumenty/upravlenie-landshaftom/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Руководство по использованию на ИТС",
+          "url": "https://its.1c.ru/db/landscapedoc"
+        },
+        {
+          "label": "От хаоса к порядку: «1С:Управление ландшафтом»",
+          "url": "https://infostart.ru/1c/articles/2511397/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -6289,7 +6850,16 @@ window.LANDSCAPE = {
       "why": "Провайдер размещает приложения 1С у себя и отдает их множеству изолированных абонентов: мультиарендность, разделение данных и централизованные обновления",
       "homepage": "https://v8.1c.ru/tekhnologii/1cfresh/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Документация «1С:Облачная подсистема Фреш» на ИТС",
+          "url": "https://its.1c.ru/db/freshpub"
+        },
+        {
+          "label": "docker_fresh — развертывание Фреш в контейнерах",
+          "url": "https://github.com/1C-Company/docker_fresh"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -6323,7 +6893,16 @@ window.LANDSCAPE = {
       "why": "Быстрый запуск 1С без своего железа: аренда готового облака с настроенным окружением и оплата по использованным ресурсам",
       "homepage": "https://selectel.ru/services/1c-leasing/1c-cloud/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Готовое облако 1С от Selectel",
+          "url": "https://infostart.ru/soft1c/2115676/"
+        },
+        {
+          "label": "1С в облаке: возможности и риски, решения и кейсы",
+          "url": "https://selectel.ru/blog/1c-in-cloud/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -6465,7 +7044,12 @@ window.LANDSCAPE = {
       "why": "Свое хранилище Docker-образов для сборки и поставки 1С-сервисов: контроль доступа, подпись и проверка образов на уязвимости",
       "homepage": "https://goharbor.io/",
       "repo": "https://github.com/goharbor/harbor",
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Harbor",
+          "url": "https://goharbor.io/docs/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -6499,7 +7083,12 @@ window.LANDSCAPE = {
       "why": "Командная работа над документацией как с вики, но с хранением в git: удобный редактор, версионирование и совместное ведение",
       "homepage": "https://gram.ax/",
       "repo": "https://github.com/Gram-ax/gramax",
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Gramax",
+          "url": "https://gram.ax/resources/docs"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
@@ -6535,7 +7124,16 @@ window.LANDSCAPE = {
       "why": "Единый вход и централизованная аутентификация для сервисов вокруг 1С: SSO, OIDC/SAML, многофакторность и управление пользователями в одном месте",
       "homepage": "https://www.keycloak.org/",
       "repo": "https://github.com/keycloak/keycloak",
-      "start": [],
+      "start": [
+        {
+          "label": "Настройка OpenID Connect через Keycloak при подключении к 1С",
+          "url": "https://infostart.ru/1c/articles/1538390/"
+        },
+        {
+          "label": "Все об аутентификации в 1С",
+          "url": "https://infostart.ru/1c/articles/2480616/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -6569,7 +7167,12 @@ window.LANDSCAPE = {
       "why": "Второй фактор при входе в инфраструктуру и сервисы вокруг 1С (VPN, RDP, порталы): подтверждение через приложение, OTP или биометрию против кражи паролей",
       "homepage": "https://multifactor.ru/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Multifactor",
+          "url": "https://multifactor.ru/docs/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -6674,7 +7277,12 @@ window.LANDSCAPE = {
       "why": "Стандарт де-факто для диаграмм в Markdown: рендерится в git-хостингах и базах знаний, версионируется рядом с кодом; библиотеку можно встраивать в свои решения, включая 1С",
       "homepage": "https://mermaid.live",
       "repo": "https://github.com/mermaid-js/mermaid",
-      "start": [],
+      "start": [
+        {
+          "label": "Введение в Mermaid — официальная документация",
+          "url": "https://mermaid.js.org/intro/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -6708,7 +7316,12 @@ window.LANDSCAPE = {
       "why": "Российский онлайн-редактор BPMN: совместная работа над схемами процессов без VPN и установки ПО",
       "homepage": "https://stormbpmn.com/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Справка StormBPMN",
+          "url": "https://stormbpmn.com/help"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
@@ -6774,7 +7387,12 @@ window.LANDSCAPE = {
       "why": "Кросс-платформенное моделирование и правка BPMN-схем офлайн, без привязки к онлайн-сервисам",
       "homepage": "https://camunda.com/download/modeler/",
       "repo": "https://github.com/camunda/camunda-modeler",
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Desktop Modeler",
+          "url": "https://docs.camunda.io/docs/components/modeler/desktop-modeler/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -6804,7 +7422,12 @@ window.LANDSCAPE = {
       "why": "Архитектура как код: модель системы описывается DSL, диаграммы C4 генерируются из нее и не расходятся между собой",
       "homepage": "https://structurizr.com/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Structurizr",
+          "url": "https://docs.structurizr.com/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "бесплатное",
@@ -6838,7 +7461,12 @@ window.LANDSCAPE = {
       "why": "Когда нужно описать взаимодействие нескольких систем и сквозные процессы корпоративного ландшафта, а не одну конфигурацию",
       "homepage": "https://www.archimatetool.com/",
       "repo": "https://github.com/archimatetool/archi",
-      "start": [],
+      "start": [
+        {
+          "label": "Учебные материалы Archi",
+          "url": "https://www.archimatetool.com/resources/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -6901,7 +7529,12 @@ window.LANDSCAPE = {
       "why": "Программная генерация схем связей и зависимостей: описал граф текстом — получил картинку",
       "homepage": "https://graphviz.org/",
       "repo": "https://gitlab.com/graphviz/graphviz",
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Graphviz",
+          "url": "https://graphviz.org/documentation/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -7096,7 +7729,12 @@ window.LANDSCAPE = {
       "why": "Сначала спецификация — потом код: ИИ ведет разработку от требований и задач к реализации",
       "homepage": "https://kiro.dev/",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Документация Kiro",
+          "url": "https://kiro.dev/docs/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "бесплатное",
@@ -7129,7 +7767,12 @@ window.LANDSCAPE = {
       "why": "Один инструмент для всех СУБД: выполнить запрос, посмотреть данные, построить ER-модель в IDEF1X или Crow's Foot",
       "homepage": "https://dbeaver.io/",
       "repo": "https://github.com/dbeaver/dbeaver",
-      "start": [],
+      "start": [
+        {
+          "label": "Документация DBeaver",
+          "url": "https://dbeaver.com/docs/dbeaver/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
@@ -7197,7 +7840,12 @@ window.LANDSCAPE = {
       "why": "Быстро разобраться в корпусе проектной документации: загружаешь требования, регламенты и статьи — и получаешь ответы строго по своим источникам, со ссылками на них",
       "homepage": "https://notebooklm.google.com",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Справка NotebookLM",
+          "url": "https://support.google.com/notebooklm"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "бесплатное",
