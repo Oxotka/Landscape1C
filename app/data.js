@@ -5376,7 +5376,12 @@ window.LANDSCAPE = {
       "why": "Быстро хранит и агрегирует огромные объемы логов и событий 1С",
       "homepage": "https://clickhouse.com/",
       "repo": "https://github.com/ClickHouse/ClickHouse",
-      "start": [],
+      "start": [
+        {
+          "label": "Библиотека ClickHouse для 1С",
+          "url": "https://infostart.ru/1c/articles/2639974/"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
@@ -7325,6 +7330,85 @@ window.LANDSCAPE = {
       "depends": [
         "Vanessa-Automation",
         "1С:СППР"
+      ]
+    },
+    {
+      "name": "Kafka UI",
+      "added": "2026-06-12",
+      "category": "Интеграции",
+      "subcategory": "Брокеры и шины",
+      "logo": "kafka-ui.svg",
+      "logoInvert": true,
+      "description": "Веб-интерфейс для управления кластерами Apache Kafka",
+      "why": "Наглядная консоль для Kafka: топики, сообщения, консьюмер-группы и брокеры в браузере — удобно смотреть и отлаживать обмен 1С с шиной без консольных утилит. Развивается сообществом Kafbat (форк provectus/kafka-ui)",
+      "homepage": "https://kafbat.io",
+      "repo": "https://github.com/kafbat/kafka-ui",
+      "start": [
+        {
+          "label": "Документация Kafbat UI",
+          "url": "https://ui.docs.kafbat.io"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "администратор",
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "кафка юай",
+        "кафка уи",
+        "kafka-ui",
+        "кафбат",
+        "kafbat"
+      ],
+      "depends": [
+        "Kafka"
+      ]
+    },
+    {
+      "name": "Внешние источники данных",
+      "added": "2026-06-12",
+      "category": "Интеграции",
+      "subcategory": null,
+      "logo": "1c.png",
+      "description": "Механизм платформы для работы с внешними СУБД как с объектами конфигурации",
+      "why": "Подключает таблицы Microsoft SQL Server, PostgreSQL, Oracle и других СУБД через ODBC — внешние данные доступны в запросах, отчетах на СКД и формах, как будто это справочники 1С",
+      "homepage": "https://v8.1c.ru/platforma/vneshniy-istochnik-dannyh/",
+      "repo": null,
+      "start": [
+        {
+          "label": "Трюки с внешними источниками данных",
+          "url": "https://infostart.ru/1c/articles/1019947/"
+        },
+        {
+          "label": "База знаний Инфостарта по теме",
+          "url": "https://infostart.ru/1c/integraciya_i_obmen_dannymi/vneshnie_istochniki_dannyh/"
+        }
+      ],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "availability": "доступен",
+      "roles": [
+        "разработчик"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "вид",
+        "внешние источники",
+        "odbc",
+        "одбц"
       ]
     }
   ]
