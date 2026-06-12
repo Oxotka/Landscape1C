@@ -18,11 +18,14 @@ const EXCLUDE = new Set([
 // 1. Целостность данных — мусор на хостинг не выкладываем.
 execFileSync("node", [path.join(__dirname, "validate.js")], { stdio: "inherit" });
 
-// 2. Чистим и копируем app/ → dist/ с фильтром.
+// 2. Освежаем sitemap.xml и llms.txt из данных — в dist уходят актуальные.
+execFileSync("node", [path.join(__dirname, "sitegen.js")], { stdio: "inherit" });
+
+// 3. Чистим и копируем app/ → dist/ с фильтром.
 fs.rmSync(DIST, { recursive: true, force: true });
 fs.cpSync(APP, DIST, { recursive: true, filter: (src) => !EXCLUDE.has(path.basename(src)) });
 
-// 3. Сводка.
+// 4. Сводка.
 const files = [];
 (function walk(d) {
   for (const e of fs.readdirSync(d, { withFileTypes: true })) {

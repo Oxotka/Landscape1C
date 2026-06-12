@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Локальный сервер редактора: отдает app/ и принимает:
-#   POST /save  -> пишет app/data.js и прогоняет cachebust (версии ?v= ассетов);
+#   POST /save  -> пишет app/data.js, прогоняет cachebust и sitegen;
 #   POST /build -> cachebust + validate + сборка dist/ (кнопка «Собрать dist»).
 # Запуск: ./start.command или python3 scripts/serve.py  →  http://127.0.0.1:8123/editor.html
 import http.server
@@ -40,8 +40,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             body = self.rfile.read(n)
             with open(DATA, "wb") as f:
                 f.write(body)
-            # data.js изменился — обновляем ?v= на страницах (не критично при сбое)
+            # data.js изменился — обновляем ?v= на страницах и sitemap/llms.txt
+            # (не критично при сбое)
             run_node("cachebust.js")
+            run_node("sitegen.js")
             self._respond(200, "saved")
         elif path == "/build":
             out = []
