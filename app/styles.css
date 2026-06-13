@@ -1574,7 +1574,7 @@ a {
 .page-graph {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
     padding-bottom: 0;
 }
 .page-graph .foot {
@@ -1585,7 +1585,7 @@ a {
     position: relative;
     overflow: hidden;
     flex: 1 1 auto;
-    min-height: 440px;
+    min-height: 0; /* сжимается под вьюпорт, чтобы подвал был виден без скролла */
     margin: 14px var(--frame-gap) var(--frame-gap); /* верх 14, бока и низ — равный отступ */
     border: 2px solid var(--ink);
     background: var(--paper);
