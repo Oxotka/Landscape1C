@@ -288,6 +288,29 @@
         });
     }
 
+    // ── Залипающие заголовки разделов (.doc h2): класс is-stuck, пока заголовок
+    // прилеплен под верхней строкой — по нему CSS показывает линию под ним.
+    // Залипание определяем через IntersectionObserver: верх обзора поджимаем на
+    // высоту topbar (52px), и как только заголовок доходит до этой границы,
+    // intersectionRatio падает ниже 1.
+    var docHeads = document.querySelectorAll(".doc h2");
+    if (docHeads.length && "IntersectionObserver" in window) {
+        var stickObs = new IntersectionObserver(
+            function (entries) {
+                entries.forEach(function (e) {
+                    e.target.classList.toggle(
+                        "is-stuck",
+                        e.intersectionRatio < 1,
+                    );
+                });
+            },
+            { threshold: [1], rootMargin: "-53px 0px 0px 0px" },
+        );
+        docHeads.forEach(function (h) {
+            stickObs.observe(h);
+        });
+    }
+
     // ── API для страничных скриптов (app.js, scheme.js, graph.js) ──
     window.NAV = {
         // Закрыть бургер-меню (после выбора страничного пункта)
