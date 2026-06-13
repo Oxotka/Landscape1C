@@ -195,10 +195,13 @@
         ]);
         let rootAttrs = "";
         Array.from(root.attributes).forEach((a) => {
-            if (
-                structural.has(a.name) ||
-                /^(xmlns|xml:|aria-|data-)/.test(a.name)
-            )
+            // Атрибут с чужим namespace-префиксом (inkscape:version,
+            // sodipodi:docname, serif:id…) — корень логотипа в чистку
+            // querySelectorAll("*") не попадает, а эти атрибуты копируются на
+            // обертку <g>: без объявления xmlns они ломают XML. Пропускаем.
+            const ns = a.name.includes(":") ? a.name.split(":")[0] : "";
+            if (ns && ns !== "xlink") return;
+            if (structural.has(a.name) || /^(xmlns|aria-|data-)/.test(a.name))
                 return;
             const v = a.value.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
             rootAttrs += ` ${a.name}="${v}"`;
