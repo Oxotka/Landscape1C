@@ -10,7 +10,7 @@
     const { wbr, logoMarkup, sortItems } = window.LandscapeUI;
 
     const ROLES = D.axes.role.values;
-    const DEFAULT_ROLE = "тестировщик";
+    const DEFAULT_ROLE = "разработчик";
     const STAGES = [
         {
             mat: "базовое",
