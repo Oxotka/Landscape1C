@@ -201,7 +201,9 @@
         // Дубль прогресса и выбранная роль в прилепленной шапке
         $("#path-fill2").style.width = fill;
         $("#path-done2").textContent = `${done} из ${total}`;
-        $("#path-role2").textContent = role;
+        // В липкой шапке роль — единственный заголовок, поэтому с большой буквы
+        $("#path-role2").textContent =
+            role.charAt(0).toUpperCase() + role.slice(1);
         $("#path-reset").hidden = known.size === 0;
 
         renderTabs();
