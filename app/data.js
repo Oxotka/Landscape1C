@@ -2823,7 +2823,7 @@ window.LANDSCAPE = {
           "url": "https://habr.com/ru/post/482946/"
         },
         {
-          "label": "https://t.me/s/SPPR1c",
+          "label": "Телеграм канал",
           "url": "https://t.me/s/SPPR1c"
         }
       ],
@@ -2834,8 +2834,7 @@ window.LANDSCAPE = {
       "roles": [
         "аналитик",
         "разработчик",
-        "тестировщик",
-        "администратор"
+        "тестировщик"
       ],
       "contexts": [
         "продукты",
