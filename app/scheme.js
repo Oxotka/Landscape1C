@@ -23,11 +23,15 @@
         svgH = 0;
     let logosReady = false; // логотипы догрузились; до этого на их местах — плейсхолдеры
 
+    // «Выбраны все значения оси» = всё равно что ничего не выбрано (ось не активна)
+    const roleActive = () => selRole.size > 0 && selRole.size < ROLES.length;
+    const matActive = () =>
+        selMat.size > 0 && selMat.size < D.axes.maturity.values.length;
+
     // Текущее дерево с учётом всех отборов: [{block, cats:[{cat, items}]}]
     const itemVisible = (it) =>
-        (selRole.size === 0 ||
-            (it.roles && it.roles.some((r) => selRole.has(r)))) &&
-        (selMat.size === 0 || selMat.has(it.maturity));
+        (!roleActive() || (it.roles && it.roles.some((r) => selRole.has(r)))) &&
+        (!matActive() || selMat.has(it.maturity));
     function currentTree() {
         const tree = [];
         D.blocks.forEach((block) => {
@@ -77,13 +81,14 @@
             count +
             " " +
             plural(count, "инструмент", "инструмента", "инструментов");
-        if (!selRole.size && !selMat.size) {
+        if (!roleActive() && !matActive()) {
             const n = tree.length;
             return tools + " в " + n + (n === 1 ? " разделе" : " разделах");
         }
+        const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
         const parts = [];
-        if (selRole.size) parts.push("роль: " + [...selRole].join(", "));
-        if (selMat.size) parts.push("зрелость: " + [...selMat].join(", "));
+        if (roleActive()) parts.push([...selRole].map(cap).join(", "));
+        if (matActive()) parts.push([...selMat].map(cap).join(", "));
         return parts.join(" · ") + " · " + tools;
     }
 
