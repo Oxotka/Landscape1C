@@ -57,6 +57,36 @@
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;");
 
+    // Склонение по числу: 1 инструмент, 2 инструмента, 5 инструментов
+    const plural = (n, one, few, many) => {
+        const d10 = n % 10,
+            d100 = n % 100;
+        if (d100 >= 11 && d100 <= 14) return many;
+        if (d10 === 1) return one;
+        if (d10 >= 2 && d10 <= 4) return few;
+        return many;
+    };
+    // Подзаголовок постера: текущий отбор + число показанных инструментов.
+    // Без отбора — «N инструментов в M разделах»; с отбором — перечисление осей.
+    function posterCaption(tree) {
+        const count = tree.reduce(
+            (s, b) => s + b.cats.reduce((c, x) => c + x.items.length, 0),
+            0,
+        );
+        const tools =
+            count +
+            " " +
+            plural(count, "инструмент", "инструмента", "инструментов");
+        if (!selRole.size && !selMat.size) {
+            const n = tree.length;
+            return tools + " в " + n + (n === 1 ? " разделе" : " разделах");
+        }
+        const parts = [];
+        if (selRole.size) parts.push("роль: " + [...selRole].join(", "));
+        if (selMat.size) parts.push("зрелость: " + [...selMat].join(", "));
+        return parts.join(" · ") + " · " + tools;
+    }
+
     const measureCanvas = document.createElement("canvas").getContext("2d");
     function measure(text, weight, size) {
         measureCanvas.font = weight + " " + size + "px Inter, sans-serif";
@@ -376,6 +406,7 @@
             brand: cssVar("--brand"),
         };
         const dark = document.documentElement.dataset.theme === "dark";
+        const tree = currentTree();
 
         const W = 1200,
             M = 32,
@@ -427,7 +458,7 @@
             `<text x="${hx}" y="${y + 24}" font-family="Unbounded, sans-serif" font-weight="700" font-size="26" fill="${C.ink}">Ландшафт технологий 1С</text>`,
         );
         out.push(
-            `<text x="${hx}" y="${y + 46}" font-family="Inter, sans-serif" font-size="12" fill="${C.inkSoft}">Карта технологий экосистемы 1С${D.updated ? " · обновлено " + esc(D.updated) : ""}</text>`,
+            `<text x="${hx}" y="${y + 46}" font-family="Inter, sans-serif" font-size="12" fill="${C.inkSoft}">${esc(posterCaption(tree) + (D.updated ? " · обновлено " + D.updated : ""))}</text>`,
         );
         out.push(
             `<text x="${hx}" y="${y + 64}" font-family="Inter, sans-serif" font-weight="600" font-size="11" letter-spacing="1" fill="${C.inkSoft}">landscape1c.ru</text>`,
@@ -537,7 +568,7 @@
             return { bottom: cy, headCenterX: cx };
         }
 
-        currentTree().forEach(({ block, cats }) => {
+        tree.forEach(({ block, cats }) => {
             const rows = chunk(cats, perRow);
             // Заголовок-полоса блока над первым рядом (по ширине ряда)
             const firstN = rows[0].length;
