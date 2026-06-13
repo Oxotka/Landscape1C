@@ -729,16 +729,21 @@
     function exportMindmap() {
         const tree = currentTree();
         if (!tree.length) return;
-        let s = '<map version="1.0.1">\n<node TEXT="Ландшафт технологий 1С">\n';
+        // У FreeMind-узлов уникальный ID и XML-декларация: без них XMind при
+        // импорте показывает диалог восстановления (хоть и открывает потом верно)
+        let id = 0;
+        const open = (t) => `<node ID="ID_${++id}" TEXT="${esc(t)}">\n`;
+        const leaf = (t) => `<node ID="ID_${++id}" TEXT="${esc(t)}"/>\n`;
+        let s =
+            '<?xml version="1.0" encoding="UTF-8"?>\n<map version="1.0.1">\n' +
+            open("Ландшафт технологий 1С");
         tree.forEach(({ block, cats }) => {
-            s += `<node TEXT="${esc(block.name)}">\n`;
+            s += open(block.name);
             cats.forEach(({ cat, items }) => {
-                s += `<node TEXT="${esc(cat)}">\n`;
+                s += open(cat);
                 groupBySub(items).forEach((g) => {
-                    if (g.sub) s += `<node TEXT="${esc(g.sub)}">\n`;
-                    g.items.forEach(
-                        (it) => (s += `<node TEXT="${esc(it.name)}"/>\n`),
-                    );
+                    if (g.sub) s += open(g.sub);
+                    g.items.forEach((it) => (s += leaf(it.name)));
                     if (g.sub) s += `</node>\n`;
                 });
                 s += `</node>\n`;
