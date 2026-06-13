@@ -170,8 +170,6 @@
         });
 
         $("#empty").hidden = visible.length > 0;
-        const marked = D.items.filter(isMarked).length;
-        $("#progress").textContent = `Размечено ${marked} из ${D.items.length}`;
     }
 
     function badge(v, cls = "badge--ghost") {
