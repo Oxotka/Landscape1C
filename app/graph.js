@@ -171,6 +171,22 @@
                 a.vy += fy;
                 b.vx -= fx;
                 b.vy -= fy;
+                // Разведение при пересечении дисков (по сумме радиусов) — иначе
+                // крупные узлы налезают; перетаскиваемый узел не сдвигаем
+                const minD = a.r + b.r + 6;
+                if (d < minD) {
+                    const p = ((minD - d) / d) * 0.5;
+                    const mx = dx * p,
+                        my = dy * p;
+                    if (a !== drag.node) {
+                        a.x += mx;
+                        a.y += my;
+                    }
+                    if (b !== drag.node) {
+                        b.x -= mx;
+                        b.y -= my;
+                    }
+                }
             }
         }
         links.forEach((l) => {
