@@ -1953,67 +1953,24 @@ a {
     color: var(--ink-soft);
     font-size: 13px;
 }
-/* Скелетон загрузки схемы (пока подгружаются логотипы): повторяет структуру
-   постера — блок → колонки категорий → карточки — с бегущим бликом */
-.scheme-skeleton {
-    padding: 24px var(--frame-gap);
+/* Схема рисуется сразу со структурой; на местах еще не загруженных логотипов —
+   пульсирующий плейсхолдер (кружок в SVG), который заполняется иконкой позже */
+.sch-logo-skel {
+    animation: sch-skel-pulse 1.2s ease-in-out infinite;
 }
-.scheme-skeleton__block + .scheme-skeleton__block {
-    margin-top: 30px;
-}
-.scheme-skeleton__cols {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 16px;
-}
-.scheme-skeleton__col {
-    flex: 1 1 190px;
-    max-width: 260px;
-}
-.scheme-skeleton__bar {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    background: rgba(128, 128, 128, 0.16);
-}
-.scheme-skeleton__bar::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    transform: translateX(-100%);
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(160, 160, 160, 0.28),
-        transparent
-    );
-    animation: sk-shimmer 1.3s ease-in-out infinite;
-}
-.scheme-skeleton__head {
-    height: 40px;
-    max-width: 340px;
-    margin: 0 auto;
-}
-.scheme-skeleton__cat {
-    height: 30px;
-    margin-bottom: 12px;
-}
-.scheme-skeleton__card {
-    height: 42px;
-}
-.scheme-skeleton__card + .scheme-skeleton__card {
-    margin-top: 8px;
-}
-@keyframes sk-shimmer {
-    to {
-        transform: translateX(100%);
+@keyframes sch-skel-pulse {
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.85;
     }
 }
 @media (prefers-reduced-motion: reduce) {
-    .scheme-skeleton__bar::after {
+    .sch-logo-skel {
         animation: none;
+        opacity: 0.5;
     }
 }
 .scheme-chips {

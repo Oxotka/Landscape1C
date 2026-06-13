@@ -21,6 +21,7 @@
     const logoCache = {}; // file -> dataURI | null
     let svgW = 0,
         svgH = 0;
+    let logosReady = false; // логотипы догрузились; до этого на их местах — плейсхолдеры
 
     // Текущее дерево с учётом всех отборов: [{block, cats:[{cat, items}]}]
     const itemVisible = (it) =>
@@ -507,6 +508,11 @@
                     out.push(
                         `<image x="${lx}" y="${ly}" width="${logoSz}" height="${logoSz}" xlink:href="${lg.uri}" preserveAspectRatio="xMidYMid meet"${flt}/>`,
                     );
+                } else if (it.logo && !logosReady) {
+                    // лого еще грузится — пульсирующий плейсхолдер на его месте
+                    out.push(
+                        `<circle class="sch-logo-skel" cx="${lx + logoSz / 2}" cy="${cardY + cardH / 2}" r="${logoSz / 2}" fill="${C.cardLine}"/>`,
+                    );
                 } else {
                     out.push(
                         `<text x="${lx + logoSz / 2}" y="${cardY + cardH / 2}" text-anchor="middle" dominant-baseline="central" font-family="Unbounded, sans-serif" font-weight="700" font-size="9" fill="${C.inkSoft}">1С</text>`,
@@ -903,32 +909,15 @@
     });
 
     renderToggles();
-    wrap.innerHTML = skeletonHTML();
-    preloadLogos().then(render);
-
-    // Скелетон загрузки: повторяет структуру постера (блок → колонки → карточки)
-    function skeletonHTML() {
-        const col = (cards) =>
-            '<div class="scheme-skeleton__col">' +
-            '<div class="scheme-skeleton__bar scheme-skeleton__cat"></div>' +
-            Array.from(
-                { length: cards },
-                () =>
-                    '<div class="scheme-skeleton__bar scheme-skeleton__card"></div>',
-            ).join("") +
-            "</div>";
-        const block = (cols) =>
-            '<div class="scheme-skeleton__block">' +
-            '<div class="scheme-skeleton__bar scheme-skeleton__head"></div>' +
-            '<div class="scheme-skeleton__cols">' +
-            cols.map(col).join("") +
-            "</div></div>";
-        return (
-            '<div class="scheme-skeleton" role="status" aria-label="Загрузка схемы">' +
-            block([4, 3, 5]) +
-            block([3, 4, 3, 4]) +
-            block([5, 3]) +
-            "</div>"
-        );
-    }
+    // Первый проход — структура постера с плейсхолдерами на местах лого. Ждем
+    // шрифты (грузятся быстрее ~150 логотипов), иначе замеры текста и раскладка
+    // разойдутся со вторым проходом и постер дернется. render() всегда читает
+    // актуальный logosReady, поэтому порядок этих двух .then не важен.
+    if (document.fonts && document.fonts.ready)
+        document.fonts.ready.then(render);
+    else render();
+    preloadLogos().then(() => {
+        logosReady = true;
+        render(); // логотипы догрузились — заполняем их места
+    });
 })();
