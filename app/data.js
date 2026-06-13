@@ -3760,7 +3760,8 @@ window.LANDSCAPE = {
         "opi"
       ],
       "analogs": [
-        "Telegram бот"
+        "Telegram бот",
+        "PAPI"
       ]
     },
     {
@@ -3851,6 +3852,9 @@ window.LANDSCAPE = {
         "курлван",
         "curl one",
         "курлоне"
+      ],
+      "analogs": [
+        "Postman"
       ]
     },
     {
@@ -3979,6 +3983,9 @@ window.LANDSCAPE = {
         "s3",
         "объектное хранилище",
         "эс три"
+      ],
+      "analogs": [
+        "Внешние источники данных"
       ]
     },
     {
@@ -4096,7 +4103,8 @@ window.LANDSCAPE = {
         "Bruno",
         "SoapUI",
         "Karate",
-        "Postman"
+        "Postman",
+        "OpenAPI UI (ex. Swagger)"
       ]
     },
     {
@@ -4224,7 +4232,8 @@ window.LANDSCAPE = {
         "Bruno",
         "Insomnia",
         "SoapUI",
-        "Karate"
+        "Karate",
+        "Curlone"
       ]
     },
     {
@@ -4289,6 +4298,9 @@ window.LANDSCAPE = {
         "опенапи",
         "openapi",
         "open api"
+      ],
+      "analogs": [
+        "Insomnia"
       ]
     },
     {
@@ -4849,7 +4861,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Elasticsearch",
-        "ClickHouse"
+        "ClickHouse",
+        "1С:Управление ландшафтом"
       ]
     },
     {
@@ -5472,6 +5485,9 @@ window.LANDSCAPE = {
         "кип",
         "kip",
         "корпоративный инструментальный пакет"
+      ],
+      "analogs": [
+        "Анализ технологического журнала"
       ]
     },
     {
@@ -5636,6 +5652,9 @@ window.LANDSCAPE = {
         "тж",
         "анализ тж",
         "techlog"
+      ],
+      "analogs": [
+        "1С:КИП (Корпоративный инструментальный пакет)"
       ]
     },
     {
@@ -6617,6 +6636,9 @@ window.LANDSCAPE = {
         "pretty api",
         "папи тулс",
         "papi tools"
+      ],
+      "analogs": [
+        "Открытый пакет интеграций"
       ]
     },
     {
@@ -6856,6 +6878,9 @@ window.LANDSCAPE = {
         "1с ул",
         "landscape management",
         "ул"
+      ],
+      "analogs": [
+        "OneSwiss"
       ]
     },
     {
@@ -7675,6 +7700,9 @@ window.LANDSCAPE = {
       "aliases": [
         "маркдаун",
         "мд редактор"
+      ],
+      "analogs": [
+        "Obsidian"
       ]
     },
     {
@@ -7817,6 +7845,9 @@ window.LANDSCAPE = {
       "aliases": [
         "дибивер",
         "дбивер"
+      ],
+      "analogs": [
+        "Внешние источники данных"
       ]
     },
     {
@@ -7890,6 +7921,9 @@ window.LANDSCAPE = {
         "ноутбуклм",
         "ноутбук лм",
         "notebookllm"
+      ],
+      "analogs": [
+        "Obsidian"
       ]
     },
     {
@@ -8037,6 +8071,10 @@ window.LANDSCAPE = {
         "внешние источники",
         "odbc",
         "одбц"
+      ],
+      "analogs": [
+        "Объектное хранилище S3",
+        "DBeaver"
       ]
     },
     {
@@ -8114,7 +8152,9 @@ window.LANDSCAPE = {
         "Teamly",
         "Wiki репозитория",
         "Gramax",
-        "Dendron"
+        "Dendron",
+        "Markdown Editor",
+        "NotebookLM"
       ]
     },
     {
