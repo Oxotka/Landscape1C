@@ -83,6 +83,25 @@ D.items.forEach((i) => {
   });
 });
 
+// 7. Ёмкость структуры: подкатегория ≤ 9 инструментов, раздел ≤ 6 категорий
+//    (иначе колонка/раздел на схеме-постере смотрятся неудачно — см. METHODOLOGY.md)
+const LIMIT_SUB = 9;
+const LIMIT_CAT = 6;
+const bucket = {};
+D.items.forEach((i) => {
+  const key = i.category + " :: " + (i.subcategory || "(без подкатегории)");
+  bucket[key] = (bucket[key] || 0) + 1;
+});
+Object.entries(bucket).forEach(([k, n]) => {
+  if (n > LIMIT_SUB) E(`подкатегория «${k}» — ${n} инстр. (>${LIMIT_SUB}), разбейте на подкатегории`);
+});
+if (D.blocks) {
+  D.blocks.forEach((b) => {
+    if (b.categories.length > LIMIT_CAT)
+      E(`раздел «${b.name}» — ${b.categories.length} категорий (>${LIMIT_CAT}), заведите новый раздел`);
+  });
+}
+
 if (errors.length) {
   console.error(`✗ Найдено проблем: ${errors.length}`);
   errors.forEach((e) => console.error("  - " + e));
