@@ -1212,6 +1212,9 @@ a {
     margin: 36px 0 0;
     padding: 20px 0 12px;
     border-top: 1px solid var(--line);
+    /* линия под заголовком: когда секция залипает, отделяет ее от текста,
+       что уезжает вниз (иначе заголовок будто висит в воздухе) */
+    border-bottom: 1px solid var(--line);
 }
 .doc section:first-child h2 {
     border-top: none;
