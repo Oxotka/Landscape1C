@@ -1,6 +1,6 @@
 // Данные ландшафта (Вариант B). Сгенерировано редактором разметки (editor.html).
 window.LANDSCAPE = {
-  "updated": "12 июня 2026",
+  "updated": "13 июня 2026",
   "categories": [
     "Прототипирование и диаграммы",
     "Моделирование и архитектура",
@@ -1223,6 +1223,7 @@ window.LANDSCAPE = {
       "category": "Плагины и расширения",
       "subcategory": null,
       "logo": "bsl-language-server.png",
+      "logoInvert": true,
       "description": "Языковой сервер для кода 1С (BSL): диагностики, автодополнение, форматирование",
       "why": "Подсвечивает ошибки и нарушения стандартов прямо в VSCode и 1С:EDT; лежит в основе многих проверок качества кода 1С",
       "homepage": "https://1c-syntax.github.io/bsl-language-server/",
@@ -1296,6 +1297,7 @@ window.LANDSCAPE = {
       "category": "Плагины и расширения",
       "subcategory": "Для VSCode",
       "logo": "bsl-language-server.png",
+      "logoInvert": true,
       "description": "Подсветка синтаксиса, автодополнение и навигация по коду 1С (BSL) в VSCode",
       "why": "Превращает VSCode в полноценный редактор кода 1С: подсветка, автодополнение и переход к определению",
       "homepage": "https://marketplace.visualstudio.com/items?itemName=1c-syntax.language-1c-bsl",
@@ -6725,6 +6727,7 @@ window.LANDSCAPE = {
       "category": "Безопасность",
       "subcategory": "Доступ и секреты",
       "logo": "vault.svg",
+      "logoInvert": true,
       "description": "Хранилище секретов и централизованное управление доступом к чувствительным данным",
       "why": "Безопасное хранение паролей, токенов и ключей вместо конфигов и переменных окружения: централизованная выдача и ротация секретов для сервисов и пайплайнов",
       "homepage": "https://www.vaultproject.io/",
@@ -6930,6 +6933,7 @@ window.LANDSCAPE = {
       "category": "Системы управления базами данных (СУБД)",
       "subcategory": "Семейство PostgreSQL",
       "logo": "platform-v.png",
+      "logoInvert": true,
       "description": "СУБД Сбера на базе PostgreSQL — отечественная альтернатива для баз 1С",
       "why": "PostgreSQL-совместимая российская СУБД под нагрузки 1С: корпоративная поддержка и доработки как замена зарубежным базам данных",
       "homepage": "https://platformv.sbertech.ru/products/rabota-s-dannymi/pangolin",
@@ -7350,6 +7354,7 @@ window.LANDSCAPE = {
       "category": "Моделирование и архитектура",
       "subcategory": "Моделирование процессов",
       "logo": "bpmn-io.svg",
+      "logoInvert": true,
       "description": "Открытая библиотека и онлайн-редактор BPMN-диаграмм",
       "why": "Моделирование процессов прямо в браузере, выгрузка в .bpmn/.png/.svg; редактор можно встраивать в свои решения, включая 1С",
       "homepage": "https://bpmn.io/",
