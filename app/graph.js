@@ -37,6 +37,11 @@
     const anchorOf = (it) => blockAnchor[blockOf(it)] || { x: 0, y: 0 };
 
     // ── Узлы и связи ──────────────────────────
+    // Радиус растет со степенью (числом связей), но с потолком — чтобы хабы
+    // вроде git становились заметнее, но не разрастались и не глушили схему
+    const R_BASE = 17,
+        R_MAX = 30;
+    const nodeR = (deg) => Math.min(R_MAX, R_BASE + 3 * Math.sqrt(deg));
     const nodes = D.items.map((it) => {
         const an = anchorOf(it); // стартуем рядом с якорем блока — кластеры сразу разнесены
         const n = {
@@ -48,7 +53,7 @@
             y: an.y + (Math.random() - 0.5) * 100,
             vx: 0,
             vy: 0,
-            r: 19,
+            r: R_BASE,
             deg: 0,
         };
         if (it.logo) {
@@ -82,7 +87,10 @@
         (it.analogs || []).forEach((n) => addLink(it.name, n, "analog"));
         (it.depends || []).forEach((n) => addLink(it.name, n, "depends"));
     });
-    nodes.forEach((n) => (n.vdeg = n.deg)); // степень среди видимых (с учётом фильтров)
+    nodes.forEach((n) => {
+        n.vdeg = n.deg; // степень среди видимых (с учётом фильтров)
+        n.r = nodeR(n.vdeg);
+    });
     let live = nodes.slice(); // видимые узлы (участвуют в физике и отрисовке)
 
     // ── Фильтры: роль и зрелость ──────────────
@@ -105,7 +113,10 @@
                 vd[l.b.id]++;
             }
         });
-        live.forEach((n) => (n.vdeg = vd[n.id]));
+        live.forEach((n) => {
+            n.vdeg = vd[n.id];
+            n.r = nodeR(n.vdeg); // размер по видимым связям — обновляем при фильтрах
+        });
         updateHint();
         alpha = Math.max(alpha, 0.6);
     }
