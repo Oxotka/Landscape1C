@@ -1,6 +1,6 @@
 # Ландшафт технологий 1С
 
-> Интерактивная карта инструментов экосистемы 1С: 193 инструмента с разметкой по роли (разработчик/администратор/тестировщик/аналитик), контексту работы, зрелости, происхождению, лицензии и доступности в РФ. Связи «аналоги» и «зависимости», маршруты освоения по ролям, экспертная выверка разметки. UI на русском языке.
+> Интерактивная карта инструментов экосистемы 1С: 201 инструмент с разметкой по роли (разработчик/администратор/тестировщик/аналитик), контексту работы, зрелости, происхождению, лицензии и доступности в РФ. Связи «аналоги» и «зависимости», маршруты освоения по ролям, экспертная выверка разметки. UI на русском языке.
 
 Данные актуальны на: 13 июня 2026
 
@@ -19,13 +19,16 @@
 
 ### Проектирование
 
-**Прототипирование и диаграммы**
+**Прототипирование**
 
 - [Figma](https://landscape1c.ru/?tool=Figma): Облачный редактор интерфейсов и кликабельных прототипов с совместной работой
 - [Mockplus](https://landscape1c.ru/?tool=Mockplus): Инструмент быстрого прототипирования интерфейсов и кликабельных макетов
 - [Balsamiq](https://landscape1c.ru/?tool=Balsamiq): Создание схематичных wireframe-макетов (mockups) интерфейсов
 - [MAKER-STUDIO](https://landscape1c.ru/?tool=MAKER-STUDIO): Онлайн-сервис прототипирования форм и моделирования бизнес-процессов
 - [Накидка](https://landscape1c.ru/?tool=%D0%9D%D0%B0%D0%BA%D0%B8%D0%B4%D0%BA%D0%B0): Быстрое создание форм 1С по текстовому описанию (Markdown-синтаксис)
+
+**Диаграммы**
+
 - [draw.io (diagrams.net)](https://landscape1c.ru/?tool=draw.io%20(diagrams.net)): Бесплатный редактор диаграмм и схем: блок-схемы, BPMN, ER, архитектура
 - [PlantUML](https://landscape1c.ru/?tool=PlantUML): Инструмент для создания UML- и других диаграмм из текстового описания
 - [Mermaid](https://landscape1c.ru/?tool=Mermaid): Диаграммы как код: блок-схемы, последовательности и Ганты из текста в Markdown
@@ -40,6 +43,7 @@
 - [Structurizr](https://landscape1c.ru/?tool=Structurizr): Документирование архитектуры ПО по модели C4
 - [Archi](https://landscape1c.ru/?tool=Archi): Моделирование корпоративной архитектуры в нотации ArchiMate
 - [Modelio](https://landscape1c.ru/?tool=Modelio): Десктопный инструмент моделирования в нотациях UML, BPMN, ArchiMate, SysML
+- [DocHub](https://landscape1c.ru/?tool=DocHub): Архитектура как код: документация и диаграммы системы в git-репозитории на YAML-манифестах
 
 **База знаний**
 
@@ -52,6 +56,9 @@
 - [Markdown Editor](https://landscape1c.ru/?tool=Markdown%20Editor): Онлайн-редактор Markdown с мгновенным предпросмотром
 - [NotebookLM](https://landscape1c.ru/?tool=NotebookLM): ИИ-блокнот Google: ответы, конспекты и аудиообзоры по загруженным источникам
 - [Obsidian](https://landscape1c.ru/?tool=Obsidian): Локальная база знаний на Markdown-файлах со связями между заметками и графом
+- [VitePress](https://landscape1c.ru/?tool=VitePress): Генератор сайтов документации на Markdown (на Vite и Vue)
+- [Dendron](https://landscape1c.ru/?tool=Dendron): Иерархическая база знаний на Markdown внутри VS Code
+- [Holst](https://landscape1c.ru/?tool=Holst): Российская онлайн-доска для совместной работы — замена Miro
 
 
 ### Разработка
@@ -101,6 +108,8 @@
 - [Claude Code](https://landscape1c.ru/?tool=Claude%20Code): CLI-агент Anthropic: выполняет задачи разработки в терминале, читая и правя проект
 - [Codex](https://landscape1c.ru/?tool=Codex): CLI-агент OpenAI для автоматизации задач разработки в терминале
 - [Kiro](https://landscape1c.ru/?tool=Kiro): ИИ-среда разработки Amazon со spec-driven подходом (IDE и CLI)
+- [Koda](https://landscape1c.ru/?tool=Koda): Российский ИИ-ассистент для кода с агентским режимом: чат, автодополнение и генерация в IDE
+- [opencode](https://landscape1c.ru/?tool=opencode): Open-source CLI-агент для разработки в терминале, работает с любым провайдером моделей
 
 **Системы хранения версий**
 
@@ -264,6 +273,7 @@
 - [Ngrok](https://landscape1c.ru/?tool=Ngrok): Временный публичный URL к локальному серверу для отладки webhook-ов
 - [JSON Editor Online](https://landscape1c.ru/?tool=JSON%20Editor%20Online): Визуальный редактор и сравнение JSON-документов
 - [JSONLint](https://landscape1c.ru/?tool=JSONLint): Онлайн-валидатор JSON
+- [Tuna](https://landscape1c.ru/?tool=Tuna): Отечественный сервис туннелей: временный публичный URL к локальному серверу
 
 **BI-системы**
 
@@ -285,6 +295,7 @@
 - [Kaiten](https://landscape1c.ru/?tool=Kaiten): Отечественный сервис канбан-досок и управления задачами
 - [WEEEK](https://landscape1c.ru/?tool=WEEEK): Отечественный таск-менеджер с досками, спринтами и базой знаний
 - [Битрикс24](https://landscape1c.ru/?tool=%D0%91%D0%B8%D1%82%D1%80%D0%B8%D0%BA%D1%8124): Отечественная платформа для совместной работы: задачи, проекты, CRM и коммуникации
+- [Tasks](https://landscape1c.ru/?tool=Tasks): Таск-трекер на платформе 1С: канбан-доска, релизы и учет времени
 
 **Сертификация**
 

@@ -1,0 +1,14 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#bababa" stroke="none" d="M 4.12207 21.591801 C 15.5296 21.322701 24.7246 12.699299 25.0117 2 L 18.408199 2 C 18.1255 9.280781 11.8848 15.134598 4.12207 15.399399 L 4.12207 21.591801 Z"/>
+    <linearGradient id="kodaGrad1" x1="4.12207" y1="25.2056" x2="25.0117" y2="25.2056" gradientUnits="userSpaceOnUse">
+        <stop offset="1e-05" stop-color="#c31bfa" stop-opacity="1"/>
+        <stop offset="1" stop-color="#ffcc3f" stop-opacity="1"/>
+    </linearGradient>
+    <path fill="url(#kodaGrad1)" stroke="none" d="M 4.12207 15.409698 C 15.5296 15.678799 24.7246 24.302299 25.0117 35.001499 L 18.408199 35.001499 C 18.1255 27.720699 11.8848 21.867001 4.12207 21.6021 L 4.12207 15.409698 Z"/>
+    <path fill="#bababa" stroke="none" d="M 48.232399 28.9097 C 36.8256 29.1796 27.6318 37.802799 27.3447 48.501499 L 33.9482 48.501499 C 34.2309 41.221298 40.470501 35.367699 48.232399 35.1021 L 48.232399 28.9097 Z"/>
+    <linearGradient id="kodaGrad2" x1="48.2324" y1="25.2959" x2="27.3447" y2="25.2959" gradientUnits="userSpaceOnUse">
+        <stop offset="1e-05" stop-color="#c31bfa" stop-opacity="1"/>
+        <stop offset="1" stop-color="#ffcc3f" stop-opacity="1"/>
+    </linearGradient>
+    <path fill="url(#kodaGrad2)" stroke="none" d="M 48.232399 35.091801 C 36.8256 34.821899 27.6318 26.1987 27.3447 15.5 L 33.9482 15.5 C 34.2309 22.7803 40.470501 28.633801 48.232399 28.899401 L 48.232399 35.091801 Z"/>
+</svg>

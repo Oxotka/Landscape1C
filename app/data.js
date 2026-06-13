@@ -2,7 +2,8 @@
 window.LANDSCAPE = {
   "updated": "13 июня 2026",
   "categories": [
-    "Прототипирование и диаграммы",
+    "Прототипирование",
+    "Диаграммы",
     "Моделирование и архитектура",
     "База знаний",
     "Разработка",
@@ -30,7 +31,8 @@ window.LANDSCAPE = {
     {
       "name": "Проектирование",
       "categories": [
-        "Прототипирование и диаграммы",
+        "Прототипирование",
+        "Диаграммы",
         "Моделирование и архитектура",
         "База знаний"
       ]
@@ -805,7 +807,7 @@ window.LANDSCAPE = {
       "name": "Плагин 1С:Напарник",
       "added": "2026-06-08",
       "category": "ИИ-ассистенты",
-      "subcategory": null,
+      "subcategory": "Автодополнение в IDE",
       "logo": "1c.png",
       "description": "ИИ-ассистент разработчика 1С: подсказки, исправления, комментарии",
       "why": "- Повышение производительности Сокращает рутинные операции, освобождая время разработчиков для более сложных и интересных задач и повышая общую производительность разработки. - Улучшение качества кода Помогает разработчикам писать более качественный код, проверяя его на соответствие стандартам 1С и предлагая рекомендации по улучшению. - Интеграция в среду разработки Работает непосредственно в 1С:EDT, без необходимости переключения между окнами, что упрощает процесс разработки и экономит время. - Понимание контекста Напарник учитывает содержание конфигурации: метаданные, формы, пользовательские функции и процедуры, поэтому предоставляет более точные и полезные рекомендации",
@@ -850,7 +852,7 @@ window.LANDSCAPE = {
       "name": "GigaCode",
       "added": "2026-06-09",
       "category": "ИИ-ассистенты",
-      "subcategory": null,
+      "subcategory": "Автодополнение в IDE",
       "logo": "gigacode.png",
       "description": "Российский ИИ-ассистент для написания кода от Сбера: автодополнение и генерация в IDE",
       "why": "Подсказывает и генерирует код прямо в редакторе. Доступен в РФ, встроен в отечественные среды (в том числе в GitFlame) — рабочая альтернатива западным копайлотам без проблем с доступом",
@@ -881,7 +883,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Плагин 1С:Напарник",
-        "GitHub Copilot"
+        "GitHub Copilot",
+        "Koda"
       ],
       "depends": [
         "Visual Studio Code (VSCode)"
@@ -891,7 +894,7 @@ window.LANDSCAPE = {
       "name": "GitHub Copilot",
       "added": "2026-06-09",
       "category": "ИИ-ассистенты",
-      "subcategory": null,
+      "subcategory": "Автодополнение в IDE",
       "logo": "github-copilot.svg",
       "logoInvert": true,
       "description": "Самый массовый ИИ-ассистент для написания кода прямо в редакторе",
@@ -932,7 +935,7 @@ window.LANDSCAPE = {
       "name": "Cursor",
       "added": "2026-06-09",
       "category": "ИИ-ассистенты",
-      "subcategory": null,
+      "subcategory": "ИИ-редакторы",
       "logo": "cursor.svg",
       "logoInvert": true,
       "description": "Редактор кода с ИИ-агентом: генерация и рефакторинг по всему проекту в диалоге",
@@ -969,14 +972,15 @@ window.LANDSCAPE = {
         "Visual Studio Code (VSCode)",
         "Claude Code",
         "Codex",
-        "Kiro"
+        "Kiro",
+        "Koda"
       ]
     },
     {
       "name": "Claude Code",
       "added": "2026-06-09",
       "category": "ИИ-ассистенты",
-      "subcategory": null,
+      "subcategory": "CLI-агенты",
       "logo": "claude.svg",
       "description": "CLI-агент Anthropic: выполняет задачи разработки в терминале, читая и правя проект",
       "why": "Работает в терминале как агент: разбирается в кодовой базе и вносит правки по задаче. Сильные модели уверенно ориентируются и в коде на 1С. Доступ из РФ ограничен",
@@ -1011,14 +1015,15 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Cursor",
-        "Codex"
+        "Codex",
+        "opencode"
       ]
     },
     {
       "name": "Codex",
       "added": "2026-06-09",
       "category": "ИИ-ассистенты",
-      "subcategory": null,
+      "subcategory": "CLI-агенты",
       "logo": "openai.svg",
       "logoInvert": true,
       "description": "CLI-агент OpenAI для автоматизации задач разработки в терминале",
@@ -1053,7 +1058,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Cursor",
-        "Claude Code"
+        "Claude Code",
+        "opencode"
       ]
     },
     {
@@ -2090,8 +2096,8 @@ window.LANDSCAPE = {
     {
       "name": "Figma",
       "added": "2026-06-08",
-      "category": "Прототипирование и диаграммы",
-      "subcategory": "Прототипы",
+      "category": "Прототипирование",
+      "subcategory": null,
       "logo": "figma.svg",
       "description": "Облачный редактор интерфейсов и кликабельных прототипов с совместной работой",
       "why": "Проектирование макетов форм и пользовательских сценариев до реализации в 1С; аналитики и разработчики работают над прототипом совместно",
@@ -2125,8 +2131,8 @@ window.LANDSCAPE = {
     {
       "name": "Mockplus",
       "added": "2026-06-08",
-      "category": "Прототипирование и диаграммы",
-      "subcategory": "Прототипы",
+      "category": "Прототипирование",
+      "subcategory": null,
       "logo": "mockplus.png",
       "description": "Инструмент быстрого прототипирования интерфейсов и кликабельных макетов",
       "why": "Сборка прототипов экранов из готовых компонентов для согласования с заказчиком до разработки в 1С",
@@ -2162,8 +2168,8 @@ window.LANDSCAPE = {
     {
       "name": "Balsamiq",
       "added": "2026-06-08",
-      "category": "Прототипирование и диаграммы",
-      "subcategory": "Прототипы",
+      "category": "Прототипирование",
+      "subcategory": null,
       "logo": "balsamiq.svg",
       "description": "Создание схематичных wireframe-макетов (mockups) интерфейсов",
       "why": "Быстрые черновые наброски форм и экранов для обсуждения логики интерфейса будущего решения 1С",
@@ -2200,8 +2206,8 @@ window.LANDSCAPE = {
     {
       "name": "MAKER-STUDIO",
       "added": "2026-06-08",
-      "category": "Прототипирование и диаграммы",
-      "subcategory": "Прототипы",
+      "category": "Прототипирование",
+      "subcategory": null,
       "logo": "maker.webp",
       "description": "Онлайн-сервис прототипирования форм и моделирования бизнес-процессов",
       "why": "Позволяет быстро создавать формы, организовать между ними связи и сделать кликабельный прототип. Проект можно дополнить наглядными диаграммами и текстовым описанием с поддержкой ролевых моделей GPT. В пару кликов генерирует готовое ТЗ из выбранных элементов",
@@ -2239,8 +2245,8 @@ window.LANDSCAPE = {
     {
       "name": "Накидка",
       "added": "2026-06-08",
-      "category": "Прототипирование и диаграммы",
-      "subcategory": "Прототипы",
+      "category": "Прототипирование",
+      "subcategory": null,
       "logo": "nakidka.png",
       "description": "Быстрое создание форм 1С по текстовому описанию (Markdown-синтаксис)",
       "why": "📌 Разработчикам Создание форм, соответствующих стандартам 1С и рекомендациям сообщества. Можно взять готовый код формы у аналитика. Автоматическая генерация кода программного создания реквизитов 📌 Аналитикам Быстрое создание прототипов с помощью Искусственного интеллекта. Привычный синтаксис Markdown. Наглядная визуализация будущего интерфейса на ранних этапах для согласования с заказчиком",
@@ -2844,7 +2850,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Jira",
-        "Redmine"
+        "Redmine",
+        "Tasks"
       ]
     },
     {
@@ -3978,7 +3985,7 @@ window.LANDSCAPE = {
       "name": "Fiddler",
       "added": "2026-06-08",
       "category": "API и веб-сервисы",
-      "subcategory": null,
+      "subcategory": "Туннели и трафик",
       "logo": "fiddler.png",
       "description": "Прокси-сниффер HTTP/HTTPS-трафика для отладки интеграций",
       "why": "Показывает реальный HTTP/HTTPS-трафик между 1С и внешними сервисами — незаменим при разборе сбоев интеграций и веб-сервисов",
@@ -4014,7 +4021,7 @@ window.LANDSCAPE = {
       "name": "Bruno",
       "added": "2026-06-08",
       "category": "API и веб-сервисы",
-      "subcategory": null,
+      "subcategory": "API-клиенты",
       "logo": "bruno.svg",
       "description": "Локальный (offline-first) клиент API: запросы и секреты хранятся в файлах, а не в облаке",
       "why": "Тестирование HTTP/REST-сервисов 1С с хранением коллекций в git рядом с кодом — без облачного аккаунта и синхронизации",
@@ -4055,7 +4062,7 @@ window.LANDSCAPE = {
       "name": "Insomnia",
       "added": "2026-06-08",
       "category": "API и веб-сервисы",
-      "subcategory": null,
+      "subcategory": "API-клиенты",
       "logo": "insomnia.svg",
       "description": "Десктоп-клиент для проектирования и тестирования REST/GraphQL/gRPC API",
       "why": "Альтернатива Postman для ручного тестирования веб-сервисов 1С с удобным минималистичным UI",
@@ -4096,7 +4103,7 @@ window.LANDSCAPE = {
       "name": "SoapUI",
       "added": "2026-06-08",
       "category": "API и веб-сервисы",
-      "subcategory": null,
+      "subcategory": "API-клиенты",
       "logo": "soapui.png",
       "description": "Инструмент функционального и нагрузочного тестирования веб-сервисов (SOAP/REST)",
       "why": "Тестирование SOAP- и REST-сервисов 1С, включая сложные сценарии, проверки ответов и нагрузочные прогоны",
@@ -4138,7 +4145,7 @@ window.LANDSCAPE = {
       "name": "Karate",
       "added": "2026-06-08",
       "category": "API и веб-сервисы",
-      "subcategory": null,
+      "subcategory": "API-клиенты",
       "logo": "karate.svg",
       "description": "Фреймворк автотестов API с человекочитаемым синтаксисом на базе Gherkin",
       "why": "Автоматизация тестирования HTTP-сервисов 1С декларативными сценариями — без написания кода на Java",
@@ -4174,7 +4181,7 @@ window.LANDSCAPE = {
       "name": "Postman",
       "added": "2026-06-08",
       "category": "API и веб-сервисы",
-      "subcategory": null,
+      "subcategory": "API-клиенты",
       "logo": "postman.svg",
       "description": "Инструмент ручного тестирования HTTP-запросов к API",
       "why": "Быстрая ручная проверка HTTP- и REST-сервисов 1С: запросы, заголовки, авторизация и коллекции для регрессии без написания кода",
@@ -4288,7 +4295,7 @@ window.LANDSCAPE = {
       "name": "Ngrok",
       "added": "2026-06-08",
       "category": "API и веб-сервисы",
-      "subcategory": null,
+      "subcategory": "Туннели и трафик",
       "logo": "ngrok.svg",
       "logoInvert": true,
       "description": "Временный публичный URL к локальному серверу для отладки webhook-ов",
@@ -4324,6 +4331,9 @@ window.LANDSCAPE = {
         "нгрок",
         "энгрок",
         "ngrok"
+      ],
+      "analogs": [
+        "Tuna"
       ]
     },
     {
@@ -4845,8 +4855,8 @@ window.LANDSCAPE = {
     {
       "name": "draw.io (diagrams.net)",
       "added": "2026-06-08",
-      "category": "Прототипирование и диаграммы",
-      "subcategory": "Диаграммы",
+      "category": "Диаграммы",
+      "subcategory": null,
       "logo": "drawio.svg",
       "description": "Бесплатный редактор диаграмм и схем: блок-схемы, BPMN, ER, архитектура",
       "why": "Моделирование бизнес-процессов и схем интеграций для ТЗ и согласований; работает в браузере и десктопе, экспорт в проектную документацию",
@@ -4883,7 +4893,7 @@ window.LANDSCAPE = {
       "name": "Confluence",
       "added": "2026-06-08",
       "category": "База знаний",
-      "subcategory": null,
+      "subcategory": "Корпоративные базы знаний",
       "logo": "confluence.svg",
       "description": "Корпоративная база знаний и пространство проектной документации от Atlassian",
       "why": "Хранит ТЗ, регламенты, протоколы встреч и базу знаний проекта 1С; тесно связан с задачами Jira",
@@ -4929,7 +4939,7 @@ window.LANDSCAPE = {
       "name": "Teamly",
       "added": "2026-06-08",
       "category": "База знаний",
-      "subcategory": null,
+      "subcategory": "Корпоративные базы знаний",
       "logo": "teamly.svg",
       "description": "Отечественная платформа базы знаний и совместной работы с документами",
       "why": "Российская замена Confluence: ТЗ, регламенты и база знаний команды 1С в ПО из реестра",
@@ -4965,7 +4975,7 @@ window.LANDSCAPE = {
       "name": "Wiki репозитория",
       "added": "2026-06-09",
       "category": "База знаний",
-      "subcategory": null,
+      "subcategory": "Корпоративные базы знаний",
       "logo": "wiki.svg",
       "logoInvert": true,
       "description": "Встроенная вики git-хостинга: статьи в Markdown рядом с кодом, без отдельного сервиса",
@@ -5785,7 +5795,7 @@ window.LANDSCAPE = {
       "name": "Jira",
       "added": "2026-06-08",
       "category": "Задачи",
-      "subcategory": null,
+      "subcategory": "Трекеры задач",
       "logo": "jira.svg",
       "description": "Трекер задач и управление разработкой",
       "why": "Ведет задачи, баги и спринты команды 1С-разработки",
@@ -5829,7 +5839,7 @@ window.LANDSCAPE = {
       "name": "Trello",
       "added": "2026-06-08",
       "category": "Задачи",
-      "subcategory": null,
+      "subcategory": "Канбан-доски",
       "logo": "trello.svg",
       "description": "Канбан-доски для простого ведения задач",
       "why": "Легкое управление задачами небольших команд и проектов на 1С",
@@ -5868,7 +5878,7 @@ window.LANDSCAPE = {
       "name": "Яндекс Трекер",
       "added": "2026-06-08",
       "category": "Задачи",
-      "subcategory": null,
+      "subcategory": "Трекеры задач",
       "logo": "yandex-tracker.svg",
       "description": "Облачный трекер задач и управление разработкой от Яндекса",
       "why": "Ведет задачи, спринты и процессы команды 1С в отечественном облаке — импортозамещение Jira",
@@ -5911,7 +5921,7 @@ window.LANDSCAPE = {
       "name": "YouTrack",
       "added": "2026-06-08",
       "category": "Задачи",
-      "subcategory": null,
+      "subcategory": "Трекеры задач",
       "logo": "youtrack.png",
       "description": "Трекер задач и Agile-доски от JetBrains",
       "why": "Ведет задачи и спринты команды 1С с гибкими запросами и автоматизацией",
@@ -5955,7 +5965,7 @@ window.LANDSCAPE = {
       "name": "Redmine",
       "added": "2026-06-08",
       "category": "Задачи",
-      "subcategory": null,
+      "subcategory": "Трекеры задач",
       "logo": "redmine.svg",
       "description": "Open-source система ведения задач и проектов",
       "why": "Бесплатный трекер задач и багов для небольших команд и франчайзи на 1С",
@@ -5992,14 +6002,15 @@ window.LANDSCAPE = {
         "Jira",
         "Яндекс Трекер",
         "YouTrack",
-        "Битрикс24"
+        "Битрикс24",
+        "Tasks"
       ]
     },
     {
       "name": "Kaiten",
       "added": "2026-06-08",
       "category": "Задачи",
-      "subcategory": null,
+      "subcategory": "Канбан-доски",
       "logo": "kaiten.jpeg",
       "description": "Отечественный сервис канбан-досок и управления задачами",
       "why": "Российская замена Trello/Jira для ведения задач команд 1С",
@@ -6040,7 +6051,7 @@ window.LANDSCAPE = {
       "name": "WEEEK",
       "added": "2026-06-08",
       "category": "Задачи",
-      "subcategory": null,
+      "subcategory": "Канбан-доски",
       "logo": "weeek.svg",
       "description": "Отечественный таск-менеджер с досками, спринтами и базой знаний",
       "why": "Российский сервис управления задачами и проектами для команд 1С",
@@ -6449,8 +6460,8 @@ window.LANDSCAPE = {
     {
       "name": "PlantUML",
       "added": "2026-06-10",
-      "category": "Прототипирование и диаграммы",
-      "subcategory": "Диаграммы",
+      "category": "Диаграммы",
+      "subcategory": null,
       "logo": "plantuml.svg",
       "description": "Инструмент для создания UML- и других диаграмм из текстового описания",
       "why": "Диаграммы как код: последовательности, классы, компоненты и схемы процессов описываются текстом, хранятся рядом с проектом и удобно версионируются. Периодически встречается в материалах сообщества 1С",
@@ -7087,7 +7098,7 @@ window.LANDSCAPE = {
       "name": "Gramax",
       "added": "2026-06-11",
       "category": "База знаний",
-      "subcategory": null,
+      "subcategory": "Документация как код",
       "logo": "gramax.svg",
       "description": "Инструмент ведения технической документации по принципу docs-as-code",
       "why": "Командная работа над документацией как с вики, но с хранением в git: удобный редактор, версионирование и совместное ведение",
@@ -7122,7 +7133,9 @@ window.LANDSCAPE = {
         "Wiki репозитория",
         "Confluence",
         "Teamly",
-        "Obsidian"
+        "Obsidian",
+        "DocHub",
+        "VitePress"
       ]
     },
     {
@@ -7281,8 +7294,8 @@ window.LANDSCAPE = {
     {
       "name": "Mermaid",
       "added": "2026-06-11",
-      "category": "Прототипирование и диаграммы",
-      "subcategory": "Диаграммы",
+      "category": "Диаграммы",
+      "subcategory": null,
       "logo": "mermaid.svg",
       "description": "Диаграммы как код: блок-схемы, последовательности и Ганты из текста в Markdown",
       "why": "Стандарт де-факто для диаграмм в Markdown: рендерится в git-хостингах и базах знаний, версионируется рядом с кодом; библиотеку можно встраивать в свои решения, включая 1С",
@@ -7460,7 +7473,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Archi",
-        "Modelio"
+        "Modelio",
+        "DocHub"
       ]
     },
     {
@@ -7534,8 +7548,8 @@ window.LANDSCAPE = {
     {
       "name": "Graphviz",
       "added": "2026-06-11",
-      "category": "Прототипирование и диаграммы",
-      "subcategory": "Диаграммы",
+      "category": "Диаграммы",
+      "subcategory": null,
       "logo": "graphviz.png",
       "description": "Визуализация графов из текстового описания на языке DOT",
       "why": "Программная генерация схем связей и зависимостей: описал граф текстом — получил картинку",
@@ -7598,7 +7612,8 @@ window.LANDSCAPE = {
         "мира"
       ],
       "analogs": [
-        "Excalidraw"
+        "Excalidraw",
+        "Holst"
       ]
     },
     {
@@ -7630,7 +7645,8 @@ window.LANDSCAPE = {
         "эксалидро"
       ],
       "analogs": [
-        "Miro"
+        "Miro",
+        "Holst"
       ]
     },
     {
@@ -7665,7 +7681,7 @@ window.LANDSCAPE = {
       "name": "JSON Editor Online",
       "added": "2026-06-11",
       "category": "API и веб-сервисы",
-      "subcategory": null,
+      "subcategory": "JSON-инструменты",
       "logo": "json-editor-online.png",
       "logoInvert": true,
       "description": "Визуальный редактор и сравнение JSON-документов",
@@ -7700,7 +7716,7 @@ window.LANDSCAPE = {
       "name": "JSONLint",
       "added": "2026-06-11",
       "category": "API и веб-сервисы",
-      "subcategory": null,
+      "subcategory": "JSON-инструменты",
       "logo": "jsonlint.svg",
       "logoInvert": true,
       "description": "Онлайн-валидатор JSON",
@@ -7735,7 +7751,7 @@ window.LANDSCAPE = {
       "name": "Kiro",
       "added": "2026-06-11",
       "category": "ИИ-ассистенты",
-      "subcategory": null,
+      "subcategory": "ИИ-редакторы",
       "logo": "kiro.svg",
       "description": "ИИ-среда разработки Amazon со spec-driven подходом (IDE и CLI)",
       "why": "Сначала спецификация — потом код: ИИ ведет разработку от требований и задач к реализации",
@@ -8061,7 +8077,7 @@ window.LANDSCAPE = {
       "name": "Obsidian",
       "added": "2026-06-13",
       "category": "База знаний",
-      "subcategory": null,
+      "subcategory": "Личные базы знаний",
       "logo": "obsidian.svg",
       "description": "Локальная база знаний на Markdown-файлах со связями между заметками и графом",
       "why": "Держать личную базу знаний по 1С — заметки, сниппеты, документацию — в Markdown-файлах со связями, локально и без сервера",
@@ -8097,7 +8113,296 @@ window.LANDSCAPE = {
         "Confluence",
         "Teamly",
         "Wiki репозитория",
+        "Gramax",
+        "Dendron"
+      ]
+    },
+    {
+      "name": "Tasks",
+      "added": "2026-06-13",
+      "category": "Задачи",
+      "subcategory": "Трекеры задач",
+      "logo": "tasks.png",
+      "description": "Таск-трекер на платформе 1С: канбан-доска, релизы и учет времени",
+      "why": "Ведет задачи команды 1С прямо в знакомой платформе — с загрузкой изменений из хранилища и управлением релизами",
+      "homepage": "https://github.com/BlizD/Tasks",
+      "repo": "https://github.com/BlizD/Tasks",
+      "start": [
+        {
+          "label": "Репозиторий на GitHub",
+          "url": "https://github.com/BlizD/Tasks"
+        },
+        {
+          "label": "Описание на Инфостарте",
+          "url": "https://infostart.ru/public/552480/"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "аналитик",
+        "тестировщик",
+        "администратор"
+      ],
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "таскс",
+        "трекер задач 1с",
+        "mtasks",
+        "blizd"
+      ],
+      "analogs": [
+        "1С:СППР",
+        "Redmine"
+      ]
+    },
+    {
+      "name": "Tuna",
+      "added": "2026-06-13",
+      "category": "API и веб-сервисы",
+      "subcategory": "Туннели и трафик",
+      "logo": "tuna.svg",
+      "logoInvert": true,
+      "description": "Отечественный сервис туннелей: временный публичный URL к локальному серверу",
+      "why": "Открывает локальную базу 1С наружу по временному HTTPS-адресу для отладки вебхуков и интеграций — российская замена Ngrok",
+      "homepage": "https://tuna.am",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "бесплатное",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "тестировщик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты",
+        "франчайзи"
+      ],
+      "aliases": [
+        "тюна",
+        "туна",
+        "tuna",
+        "tuna.am"
+      ],
+      "analogs": [
+        "Ngrok"
+      ]
+    },
+    {
+      "name": "Koda",
+      "added": "2026-06-13",
+      "category": "ИИ-ассистенты",
+      "subcategory": "Автодополнение в IDE",
+      "logo": "koda.svg",
+      "description": "Российский ИИ-ассистент для кода с агентским режимом: чат, автодополнение и генерация в IDE",
+      "why": "Агент, чат и автодополнение кода прямо в редакторе, работает в РФ без VPN — отечественная замена западным ИИ-ассистентам",
+      "homepage": "https://kodacode.ru",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "бесплатное",
+      "availability": "доступен",
+      "roles": [
+        "разработчик"
+      ],
+      "contexts": [
+        "продукты",
+        "инхаус"
+      ],
+      "aliases": [
+        "кода",
+        "koda",
+        "kodacode",
+        "кодакод"
+      ],
+      "analogs": [
+        "GigaCode",
+        "Cursor"
+      ]
+    },
+    {
+      "name": "opencode",
+      "added": "2026-06-13",
+      "category": "ИИ-ассистенты",
+      "subcategory": "CLI-агенты",
+      "logo": "opencode.svg",
+      "logoInvert": true,
+      "description": "Open-source CLI-агент для разработки в терминале, работает с любым провайдером моделей",
+      "why": "Терминальный ИИ-агент, который читает и правит проект; подключается к любым моделям, включая отечественные и локальные — без привязки к одному зарубежному сервису",
+      "homepage": "https://opencode.ai",
+      "repo": "https://github.com/sst/opencode",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик"
+      ],
+      "contexts": [
+        "продукты",
+        "инхаус"
+      ],
+      "aliases": [
+        "опенкод",
+        "opencode",
+        "open code"
+      ],
+      "analogs": [
+        "Claude Code",
+        "Codex"
+      ]
+    },
+    {
+      "name": "DocHub",
+      "added": "2026-06-13",
+      "category": "Моделирование и архитектура",
+      "subcategory": "Архитектура",
+      "logo": "dochub.svg",
+      "description": "Архитектура как код: документация и диаграммы системы в git-репозитории на YAML-манифестах",
+      "why": "Хранит архитектуру и техдокументацию рядом с кодом в git — версионирование, диаграммы (PlantUML, Mermaid, BPMN) и единый портал; отечественная альтернатива Structurizr",
+      "homepage": "https://dochub.info",
+      "repo": "https://github.com/DocHubTeam/DocHub",
+      "start": [
+        {
+          "label": "Telegram-канал DocHub",
+          "url": "https://t.me/dochubchannel"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "аналитик",
+        "разработчик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "докхаб",
+        "дочхаб",
+        "dochub",
+        "архитектура как код"
+      ],
+      "analogs": [
+        "Structurizr",
         "Gramax"
+      ]
+    },
+    {
+      "name": "VitePress",
+      "added": "2026-06-13",
+      "category": "База знаний",
+      "subcategory": "Документация как код",
+      "logo": "vitepress.svg",
+      "description": "Генератор сайтов документации на Markdown (на Vite и Vue)",
+      "why": "Превращает Markdown в быстрый сайт документации — docs-as-code для публикации техдокументации продукта или библиотеки",
+      "homepage": "https://vitepress.dev",
+      "repo": "https://github.com/vuejs/vitepress",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты",
+        "продукты"
+      ],
+      "aliases": [
+        "вайтпресс",
+        "витепресс",
+        "vitepress"
+      ],
+      "analogs": [
+        "Gramax"
+      ]
+    },
+    {
+      "name": "Dendron",
+      "added": "2026-06-13",
+      "category": "База знаний",
+      "subcategory": "Личные базы знаний",
+      "logo": "dendron.svg",
+      "description": "Иерархическая база знаний на Markdown внутри VS Code",
+      "why": "Локальная база знаний из связанных Markdown-заметок со схемами прямо в редакторе — заметки рядом с кодом; активная разработка прекращена, проект на поддержке",
+      "homepage": "https://www.dendron.so",
+      "repo": "https://github.com/dendronhq/dendron",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "дендрон",
+        "dendron"
+      ],
+      "analogs": [
+        "Obsidian"
+      ]
+    },
+    {
+      "name": "Holst",
+      "added": "2026-06-13",
+      "category": "База знаний",
+      "subcategory": "Совместные доски",
+      "logo": "holst.png",
+      "description": "Российская онлайн-доска для совместной работы — замена Miro",
+      "why": "Совместные сессии команды на бесконечном холсте: карты процессов, воркшопы, канбан — доступна из РФ и импортирует доски из Miro",
+      "homepage": "https://holst.so",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "бесплатное",
+      "availability": "доступен",
+      "roles": [
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "холст",
+        "холс",
+        "holst"
+      ],
+      "analogs": [
+        "Miro",
+        "Excalidraw"
       ]
     }
   ]
