@@ -469,6 +469,164 @@ a {
     color: var(--ink);
 }
 
+/* ── Онбординг: цепочка тултипов при первом визите (onboarding.js) ── */
+/* Затемнение с «дыркой» над целью: box-shadow закрывает всё, кроме прямоугольника.
+   pointer-events:none — цель под дыркой остается кликабельной (карточка, подвал). */
+.onb-hole {
+    position: fixed;
+    z-index: 58;
+    pointer-events: none;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.62);
+}
+/* Swiss Grid бабл: без скруглений и рамок. Светлый в светлой теме, темный — в темной. */
+.onb {
+    --onb-bg: #f7f5f0;
+    --onb-fg: #1a1a1a;
+    --onb-muted: #7a7065;
+    --onb-count: #999;
+    --onb-btn-bg: #1a1a1a;
+    --onb-btn-fg: #f7f5f0;
+    --onb-opt-border: #d6cfc2;
+    position: fixed;
+    z-index: 60;
+    width: 320px;
+    max-width: calc(100vw - 24px);
+    padding: 18px 20px;
+    background: var(--onb-bg);
+    color: var(--onb-fg);
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.45);
+}
+:root[data-theme="dark"] .onb {
+    --onb-bg: #38322b; /* заметно светлее фона — не сливается с затемнением */
+    --onb-fg: #f7f5f0;
+    --onb-muted: #b3a594;
+    --onb-count: #8a7f76;
+    --onb-btn-bg: #f7f5f0;
+    --onb-btn-fg: #1a1a1a;
+    --onb-opt-border: #5c5349;
+}
+/* Широкий бабл для шагов с кнопками — чтобы значения встали в один ряд */
+.onb.is-wide {
+    width: 480px;
+}
+/* Стрелка-указатель — треугольник цвета бабла */
+.onb::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+}
+.onb.is-left::after {
+    left: -8px;
+    top: 24px;
+    border-left-width: 0;
+    border-right-color: var(--onb-bg);
+}
+.onb.is-up::after {
+    top: -8px;
+    left: 26px;
+    border-top-width: 0;
+    border-bottom-color: var(--onb-bg);
+}
+.onb.is-down::after {
+    bottom: -8px;
+    left: 50%;
+    margin-left: -8px;
+    border-bottom-width: 0;
+    border-top-color: var(--onb-bg);
+}
+.onb__q {
+    margin: 0 0 8px;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.3;
+    color: var(--onb-fg);
+}
+.onb__text {
+    margin: 0 0 14px;
+    font-family: var(--body);
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--onb-muted);
+}
+.onb__opts {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+.onb__opt {
+    padding: 5px 11px;
+    font-family: var(--body);
+    font-size: 11px;
+    white-space: nowrap;
+    background: transparent;
+    border: 1px solid var(--onb-opt-border);
+    border-radius: 0;
+    color: var(--onb-fg);
+    cursor: pointer;
+}
+.onb__opt:hover {
+    border-color: var(--onb-fg);
+}
+.onb__opt[aria-pressed="true"] {
+    background: var(--onb-fg);
+    color: var(--onb-bg);
+    border-color: var(--onb-fg);
+    font-weight: 700;
+}
+.onb__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+.onb__foot-r {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.onb__count {
+    font-family: var(--body);
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--onb-count);
+}
+.onb__skip {
+    padding: 0;
+    background: none;
+    border: none;
+    font-family: var(--body);
+    font-size: 10px;
+    color: var(--onb-count);
+    cursor: pointer;
+}
+.onb__skip:hover {
+    color: var(--onb-muted);
+}
+.onb__next {
+    padding: 6px 14px;
+    background: var(--onb-btn-bg);
+    color: var(--onb-btn-fg);
+    border: none;
+    border-radius: 0;
+    font-family: var(--body);
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+.onb__next:hover {
+    opacity: 0.85;
+}
+
 /* На узком экране сайдбар уезжает наверх — фильтры горизонтально, чипы тегами.
    Метка оси встаёт в одну строку с чипами. */
 @media (max-width: 720px) {
