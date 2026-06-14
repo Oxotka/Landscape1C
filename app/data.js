@@ -1563,7 +1563,7 @@ window.LANDSCAPE = {
         "git sync"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "1С:ГитКонвертер"
@@ -1610,7 +1610,7 @@ window.LANDSCAPE = {
         "git converter"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "gitsync"
@@ -2065,7 +2065,7 @@ window.LANDSCAPE = {
         "git lab"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "GitHub",
@@ -2112,7 +2112,7 @@ window.LANDSCAPE = {
         "git hub"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "GitLab",
@@ -2159,7 +2159,7 @@ window.LANDSCAPE = {
         "сбер гитверс"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "GitLab",
@@ -2205,7 +2205,7 @@ window.LANDSCAPE = {
         "bit bucket"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "GitLab",
@@ -5205,7 +5205,7 @@ window.LANDSCAPE = {
         "confluence"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "senior"
       },
       "analogs": [
         "Teamly",
@@ -5244,7 +5244,7 @@ window.LANDSCAPE = {
         "teamly"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "senior"
       },
       "analogs": [
         "Confluence",
@@ -6149,7 +6149,7 @@ window.LANDSCAPE = {
         "jira"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "1С:СППР",
@@ -6194,7 +6194,7 @@ window.LANDSCAPE = {
         "trello"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "Kaiten",
@@ -6238,7 +6238,7 @@ window.LANDSCAPE = {
         "yandex tracker"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "Jira",
@@ -6285,7 +6285,7 @@ window.LANDSCAPE = {
         "ютрэк"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "Jira",
@@ -6331,7 +6331,7 @@ window.LANDSCAPE = {
         "redmine"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "1С:СППР",
@@ -6379,7 +6379,7 @@ window.LANDSCAPE = {
         "kaiten"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "Trello",
@@ -6419,7 +6419,7 @@ window.LANDSCAPE = {
         "weeek"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "Trello",
@@ -6889,7 +6889,7 @@ window.LANDSCAPE = {
       ],
       "logoInvert": true,
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "GitVerse",
@@ -6926,7 +6926,7 @@ window.LANDSCAPE = {
         "moshub"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "GitVerse",
@@ -7496,7 +7496,7 @@ window.LANDSCAPE = {
         "докс эс код"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "senior"
       },
       "analogs": [
         "Wiki репозитория",
@@ -8581,7 +8581,7 @@ window.LANDSCAPE = {
         "blizd"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "1С:СППР",
@@ -8773,7 +8773,7 @@ window.LANDSCAPE = {
         "vitepress"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "senior"
       },
       "analogs": [
         "Gramax"
