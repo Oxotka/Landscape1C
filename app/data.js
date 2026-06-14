@@ -178,7 +178,10 @@ window.LANDSCAPE = {
         "bsl",
         "бсл",
         "код 1с"
-      ]
+      ],
+      "grade": {
+        "разработчик": "junior"
+      }
     },
     {
       "name": "Язык запросов",
@@ -224,7 +227,10 @@ window.LANDSCAPE = {
         "sdbl",
         "сдбл",
         "query"
-      ]
+      ],
+      "grade": {
+        "разработчик": "junior"
+      }
     },
     {
       "name": "Система компоновки данных (СКД)",
@@ -262,6 +268,9 @@ window.LANDSCAPE = {
         "компоновка данных",
         "система компоновки"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "depends": [
         "Язык запросов"
       ]
@@ -307,7 +316,10 @@ window.LANDSCAPE = {
         "1c element",
         "element",
         "1с элемент"
-      ]
+      ],
+      "grade": {
+        "разработчик": "senior+"
+      }
     },
     {
       "name": "1C:Предприятие.Элемент Скрипт",
@@ -347,6 +359,9 @@ window.LANDSCAPE = {
         "element script",
         "1с исполнитель"
       ],
+      "grade": {
+        "разработчик": "senior+"
+      },
       "depends": [
         "1С:Предприятие.Элемент"
       ]
@@ -401,7 +416,10 @@ window.LANDSCAPE = {
         "ванскрипт",
         "oscript",
         "one script"
-      ]
+      ],
+      "grade": {
+        "разработчик": "middle"
+      }
     },
     {
       "name": "Конфигуратор",
@@ -438,6 +456,9 @@ window.LANDSCAPE = {
         "конфа",
         "конфигуратор 1с"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "1C:Enterprise Development Tools (EDT)",
         "Visual Studio Code (VSCode)"
@@ -497,6 +518,9 @@ window.LANDSCAPE = {
         "1с едт",
         "enterprise development tools"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Конфигуратор",
         "Visual Studio Code (VSCode)"
@@ -546,6 +570,9 @@ window.LANDSCAPE = {
         "vs code",
         "вскоде"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Конфигуратор",
         "1C:Enterprise Development Tools (EDT)",
@@ -590,6 +617,9 @@ window.LANDSCAPE = {
         "ssl",
         "стандартные подсистемы"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "depends": [
         "Встроенный язык программирования 1С:Предприятия",
         "Стандарты разработки"
@@ -627,6 +657,9 @@ window.LANDSCAPE = {
         "турбо конф",
         "turbo conf"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "Плагин для конфигуратора PhoenixBSL"
       ],
@@ -667,6 +700,9 @@ window.LANDSCAPE = {
         "ир",
         "подсистема инструменты разработчика"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Подсистема \"Универсальные инструменты 1С для управляемых форм\"",
         "Infostart Toolkit"
@@ -707,6 +743,9 @@ window.LANDSCAPE = {
         "универсальные инструменты",
         "инструменты для управляемых форм"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Подсистема \"Инструменты разработчика\"",
         "Infostart Toolkit"
@@ -755,6 +794,9 @@ window.LANDSCAPE = {
         "тулкит",
         "инфостарт"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Подсистема \"Инструменты разработчика\"",
         "Подсистема \"Универсальные инструменты 1С для управляемых форм\""
@@ -796,6 +838,9 @@ window.LANDSCAPE = {
         "phoenixbsl",
         "феникс бсл"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "TurboConf"
       ],
@@ -840,6 +885,9 @@ window.LANDSCAPE = {
         "naparnik",
         "копилот 1с"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "GigaCode",
         "GitHub Copilot"
@@ -881,6 +929,9 @@ window.LANDSCAPE = {
         "giga code",
         "сбер gigacode"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Плагин 1С:Напарник",
         "GitHub Copilot",
@@ -923,6 +974,9 @@ window.LANDSCAPE = {
         "копилот",
         "copilot"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Плагин 1С:Напарник",
         "GigaCode"
@@ -968,6 +1022,9 @@ window.LANDSCAPE = {
         "cursor ai",
         "курсор ии"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Visual Studio Code (VSCode)",
         "Claude Code",
@@ -1013,6 +1070,9 @@ window.LANDSCAPE = {
         "claude",
         "клод"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Cursor",
         "Codex",
@@ -1056,6 +1116,9 @@ window.LANDSCAPE = {
         "openai codex",
         "кодекс openai"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Cursor",
         "Claude Code",
@@ -1095,6 +1158,9 @@ window.LANDSCAPE = {
         "платформ тулс",
         "1c platform tools"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "depends": [
         "Visual Studio Code (VSCode)"
       ]
@@ -1140,6 +1206,9 @@ window.LANDSCAPE = {
         "edt plugins",
         "плагины edt"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "depends": [
         "1C:Enterprise Development Tools (EDT)"
       ]
@@ -1187,6 +1256,9 @@ window.LANDSCAPE = {
         "oscript-library",
         "библиотеки oscript"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "depends": [
         "OneScript"
       ]
@@ -1219,6 +1291,9 @@ window.LANDSCAPE = {
         "autumn",
         "отумн"
       ],
+      "grade": {
+        "разработчик": "senior+"
+      },
       "depends": [
         "OneScript"
       ]
@@ -1259,6 +1334,9 @@ window.LANDSCAPE = {
         "бсл сервер",
         "лангуэдж сервер"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "depends": [
         "Visual Studio Code (VSCode)",
         "1C:Enterprise Development Tools (EDT)"
@@ -1292,6 +1370,9 @@ window.LANDSCAPE = {
         "ванскрипт дебаг",
         "отладчик onescript"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "depends": [
         "Visual Studio Code (VSCode)",
         "OneScript"
@@ -1327,6 +1408,9 @@ window.LANDSCAPE = {
         "bsl vscode",
         "лэнгвич 1с"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "depends": [
         "Visual Studio Code (VSCode)"
       ]
@@ -1361,6 +1445,9 @@ window.LANDSCAPE = {
         "геркин",
         "кукумбер"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "depends": [
         "Visual Studio Code (VSCode)"
       ]
@@ -1394,6 +1481,9 @@ window.LANDSCAPE = {
         "выравнивание таблиц gherkin",
         "геркин"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "depends": [
         "Visual Studio Code (VSCode)"
       ]
@@ -1427,6 +1517,9 @@ window.LANDSCAPE = {
         "аллюр vscode",
         "аллюр"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "depends": [
         "Visual Studio Code (VSCode)"
       ]
@@ -1469,6 +1562,9 @@ window.LANDSCAPE = {
         "гит синк",
         "git sync"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "1С:ГитКонвертер"
       ],
@@ -1513,6 +1609,9 @@ window.LANDSCAPE = {
         "gitconverter",
         "git converter"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "gitsync"
       ],
@@ -1556,6 +1655,9 @@ window.LANDSCAPE = {
         "консоль запросов",
         "query console"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "depends": [
         "Язык запросов"
       ]
@@ -1590,6 +1692,9 @@ window.LANDSCAPE = {
         "file database",
         "файловый режим"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "depends": [
         "Конфигуратор"
       ]
@@ -1871,6 +1976,9 @@ window.LANDSCAPE = {
         "storage",
         "репозиторий 1с"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "git"
       ]
@@ -1915,6 +2023,9 @@ window.LANDSCAPE = {
       "aliases": [
         "гит"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "Хранилище"
       ]
@@ -1953,6 +2064,9 @@ window.LANDSCAPE = {
         "гит лаб",
         "git lab"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "GitHub",
         "GitVerse",
@@ -1997,6 +2111,9 @@ window.LANDSCAPE = {
         "гит хаб",
         "git hub"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "GitLab",
         "GitVerse",
@@ -2041,6 +2158,9 @@ window.LANDSCAPE = {
         "git verse",
         "сбер гитверс"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "GitLab",
         "GitHub",
@@ -2084,6 +2204,9 @@ window.LANDSCAPE = {
         "битбэкет",
         "bit bucket"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "GitLab",
         "GitHub",
@@ -2237,6 +2360,9 @@ window.LANDSCAPE = {
         "макер студио",
         "maker studio"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Balsamiq",
         "Накидка"
@@ -2279,6 +2405,9 @@ window.LANDSCAPE = {
         "накидка",
         "nakidka"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Balsamiq",
         "MAKER-STUDIO"
@@ -2457,6 +2586,9 @@ window.LANDSCAPE = {
         "vanessa add",
         "ванесса add"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Vanessa-Automation"
       ],
@@ -2508,6 +2640,9 @@ window.LANDSCAPE = {
         "тестер",
         "tester"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "1С:Тестировщик",
         "1С:Сценарное тестирование",
@@ -2559,6 +2694,9 @@ window.LANDSCAPE = {
         "yaxunit",
         "юнит тесты 1с"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "depends": [
         "Встроенный язык программирования 1С:Предприятия",
         "Allure"
@@ -2599,6 +2737,9 @@ window.LANDSCAPE = {
         "покрытие кода",
         "coverage41c"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "depends": [
         "SonarQube"
       ]
@@ -2631,6 +2772,9 @@ window.LANDSCAPE = {
         "ibcmd runner",
         "ибцмд раннер"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "vanessa-runner"
       ],
@@ -2666,6 +2810,9 @@ window.LANDSCAPE = {
         "test runner",
         "1 test runner"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "vanessa-runner"
       ],
@@ -2702,6 +2849,9 @@ window.LANDSCAPE = {
         "проверка конфигурации",
         "syntax check"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "1С:Автоматизированная проверка конфигураций (АПК)",
         "SonarQube"
@@ -2743,6 +2893,9 @@ window.LANDSCAPE = {
         "apk",
         "автоматизированная проверка"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Синтаксическая проверка конфигурации",
         "SonarQube"
@@ -2794,6 +2947,9 @@ window.LANDSCAPE = {
         "sonar",
         "сонар куб"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Синтаксическая проверка конфигурации",
         "1С:Автоматизированная проверка конфигураций (АПК)"
@@ -2847,6 +3003,9 @@ window.LANDSCAPE = {
         "система проектирования",
         "alm"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Jira",
         "Redmine",
@@ -2886,7 +3045,10 @@ window.LANDSCAPE = {
         "стандарты разработки",
         "стандарты кода",
         "coding standards"
-      ]
+      ],
+      "grade": {
+        "разработчик": "junior"
+      }
     },
     {
       "name": "Crucible",
@@ -2919,6 +3081,9 @@ window.LANDSCAPE = {
         "крусибл",
         "crucible"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Review Board",
         "Collaborator",
@@ -2959,6 +3124,9 @@ window.LANDSCAPE = {
         "ревью борд",
         "review board"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Crucible",
         "Collaborator",
@@ -2999,6 +3167,9 @@ window.LANDSCAPE = {
         "коллаборатор",
         "collaborator"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Crucible",
         "Review Board",
@@ -3041,6 +3212,9 @@ window.LANDSCAPE = {
         "code rabbit",
         "кодребит"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "ai-review"
       ],
@@ -3077,6 +3251,9 @@ window.LANDSCAPE = {
         "ии ревью",
         "ai review"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "CodeRabbit"
       ],
@@ -3132,6 +3309,9 @@ window.LANDSCAPE = {
         "женкинс",
         "jenkins"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Gitlab CI",
         "GitHub Actions",
@@ -3185,6 +3365,9 @@ window.LANDSCAPE = {
         "гитлаб сиай",
         "gitlab ci"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Jenkins",
         "GitHub Actions",
@@ -3234,6 +3417,9 @@ window.LANDSCAPE = {
         "github actions",
         "гитхаб actions"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Jenkins",
         "Gitlab CI",
@@ -3278,6 +3464,9 @@ window.LANDSCAPE = {
         "травис",
         "travis"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Jenkins",
         "Gitlab CI",
@@ -3327,6 +3516,9 @@ window.LANDSCAPE = {
         "vanessa runner",
         "ванесса runner"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "ibcmdrunner",
         "1testrunner"
@@ -3371,6 +3563,9 @@ window.LANDSCAPE = {
         "тим сити",
         "team city"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Jenkins",
         "Gitlab CI",
@@ -3514,7 +3709,10 @@ window.LANDSCAPE = {
         "докер",
         "доккер",
         "doker"
-      ]
+      ],
+      "grade": {
+        "разработчик": "senior"
+      }
     },
     {
       "name": "Allure",
@@ -3561,6 +3759,9 @@ window.LANDSCAPE = {
         "алюр",
         "allure"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Grafana",
         "ТестОпс"
@@ -3607,6 +3808,9 @@ window.LANDSCAPE = {
         "allure testops",
         "qatools"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Allure"
       ],
@@ -3648,6 +3852,9 @@ window.LANDSCAPE = {
         "кд",
         "data conversion"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "depends": [
         "EnterpriseData"
       ]
@@ -3685,7 +3892,10 @@ window.LANDSCAPE = {
         "энтерпрайз дата",
         "enterprise data",
         "эд"
-      ]
+      ],
+      "grade": {
+        "разработчик": "middle"
+      }
     },
     {
       "name": "1С:Шина",
@@ -3721,6 +3931,9 @@ window.LANDSCAPE = {
         "esb",
         "сервисная шина"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "RabbitMQ",
         "Kafka"
@@ -3758,6 +3971,9 @@ window.LANDSCAPE = {
         "открытый пакет интеграций",
         "opi"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Telegram бот",
         "PAPI"
@@ -3814,6 +4030,9 @@ window.LANDSCAPE = {
         "telegram bot",
         "бот телеграм"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Открытый пакет интеграций"
       ]
@@ -3852,6 +4071,9 @@ window.LANDSCAPE = {
         "curl one",
         "курлоне"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Postman"
       ]
@@ -3895,6 +4117,9 @@ window.LANDSCAPE = {
         "rabbit",
         "рэббит"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "1С:Шина",
         "Kafka"
@@ -3936,6 +4161,9 @@ window.LANDSCAPE = {
       "aliases": [
         "кафка"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "1С:Шина",
         "RabbitMQ"
@@ -3983,6 +4211,9 @@ window.LANDSCAPE = {
         "объектное хранилище",
         "эс три"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Внешние источники данных"
       ]
@@ -4021,7 +4252,10 @@ window.LANDSCAPE = {
         "фиддлер",
         "фидлер",
         "fiddler"
-      ]
+      ],
+      "grade": {
+        "разработчик": "middle"
+      }
     },
     {
       "name": "Bruno",
@@ -4057,6 +4291,9 @@ window.LANDSCAPE = {
         "бруно",
         "bruno"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Insomnia",
         "SoapUI",
@@ -4098,6 +4335,9 @@ window.LANDSCAPE = {
         "инсомния",
         "insomnia"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Bruno",
         "SoapUI",
@@ -4141,6 +4381,9 @@ window.LANDSCAPE = {
         "soap ui",
         "соапюай"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Bruno",
         "Insomnia",
@@ -4177,6 +4420,9 @@ window.LANDSCAPE = {
         "карате",
         "karate"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Bruno",
         "Insomnia",
@@ -4227,6 +4473,9 @@ window.LANDSCAPE = {
         "постман",
         "postman"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Bruno",
         "Insomnia",
@@ -4298,6 +4547,9 @@ window.LANDSCAPE = {
         "openapi",
         "open api"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Insomnia"
       ]
@@ -4343,6 +4595,9 @@ window.LANDSCAPE = {
         "энгрок",
         "ngrok"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Tuna"
       ]
@@ -4688,6 +4943,9 @@ window.LANDSCAPE = {
         "апаче",
         "httpd"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "nginx",
         "Caddy",
@@ -4735,6 +4993,9 @@ window.LANDSCAPE = {
         "иис",
         "internet information services"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Apache HTTP Server"
       ]
@@ -4899,7 +5160,10 @@ window.LANDSCAPE = {
         "draw io",
         "diagrams",
         "диаграммс"
-      ]
+      ],
+      "grade": {
+        "разработчик": "middle"
+      }
     },
     {
       "name": "Confluence",
@@ -4940,6 +5204,9 @@ window.LANDSCAPE = {
         "конфлюэнс",
         "confluence"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "Teamly",
         "Wiki репозитория",
@@ -4976,6 +5243,9 @@ window.LANDSCAPE = {
         "тимли",
         "teamly"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "Confluence",
         "Wiki репозитория",
@@ -5021,6 +5291,9 @@ window.LANDSCAPE = {
         "вики репозитория",
         "репозиторий вики"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "Confluence",
         "Teamly",
@@ -5072,6 +5345,9 @@ window.LANDSCAPE = {
         "проф",
         "сертификат профессионал"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "depends": [
         "Встроенный язык программирования 1С:Предприятия"
       ]
@@ -5160,6 +5436,9 @@ window.LANDSCAPE = {
         "специалист",
         "сертификат специалист"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "1С:Специалист‑консультант",
         "1С:Эксперт по технологическим вопросам",
@@ -5211,6 +5490,9 @@ window.LANDSCAPE = {
         "эксперт по технологическим вопросам",
         "1с эксперт"
       ],
+      "grade": {
+        "разработчик": "senior+"
+      },
       "analogs": [
         "1С:Специалист‑консультант",
         "1С:Специалист"
@@ -5288,6 +5570,9 @@ window.LANDSCAPE = {
         "тест центр",
         "сертификация 1с"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Сертификация от Госуслуг"
       ]
@@ -5322,6 +5607,9 @@ window.LANDSCAPE = {
         "сертификация госуслуги",
         "gosuslugi"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Сертификация от 1С-ТестЦентр"
       ]
@@ -5567,6 +5855,9 @@ window.LANDSCAPE = {
         "тест-центр",
         "test center"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "depends": [
         "1С:КИП (Корпоративный инструментальный пакет)"
       ]
@@ -5652,6 +5943,9 @@ window.LANDSCAPE = {
         "анализ тж",
         "techlog"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "1С:КИП (Корпоративный инструментальный пакет)"
       ]
@@ -5694,6 +5988,9 @@ window.LANDSCAPE = {
         "elastic",
         "эластик серч"
       ],
+      "grade": {
+        "разработчик": "senior+"
+      },
       "analogs": [
         "OneSwiss",
         "ClickHouse"
@@ -5731,6 +6028,9 @@ window.LANDSCAPE = {
         "кибана",
         "kibana"
       ],
+      "grade": {
+        "разработчик": "senior+"
+      },
       "depends": [
         "Elasticsearch"
       ]
@@ -5804,6 +6104,9 @@ window.LANDSCAPE = {
         "клик хаус",
         "click house"
       ],
+      "grade": {
+        "разработчик": "senior+"
+      },
       "analogs": [
         "OneSwiss",
         "Elasticsearch"
@@ -5845,6 +6148,9 @@ window.LANDSCAPE = {
         "жира",
         "jira"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "1С:СППР",
         "Яндекс Трекер",
@@ -5887,6 +6193,9 @@ window.LANDSCAPE = {
         "трелло",
         "trello"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "Kaiten",
         "WEEEK"
@@ -5928,6 +6237,9 @@ window.LANDSCAPE = {
         "трекер",
         "yandex tracker"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "Jira",
         "YouTrack",
@@ -5972,6 +6284,9 @@ window.LANDSCAPE = {
         "youtrack",
         "ютрэк"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "Jira",
         "Яндекс Трекер",
@@ -6015,6 +6330,9 @@ window.LANDSCAPE = {
         "редмине",
         "redmine"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "1С:СППР",
         "Jira",
@@ -6060,6 +6378,9 @@ window.LANDSCAPE = {
         "кайтен",
         "kaiten"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "Trello",
         "WEEEK"
@@ -6097,6 +6418,9 @@ window.LANDSCAPE = {
         "виик",
         "weeek"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "Trello",
         "Kaiten"
@@ -6141,6 +6465,9 @@ window.LANDSCAPE = {
         "bitrix24",
         "б24"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "Jira",
         "Яндекс Трекер",
@@ -6517,6 +6844,9 @@ window.LANDSCAPE = {
         "плант умл",
         "умл"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "draw.io (diagrams.net)",
         "Mermaid",
@@ -6558,6 +6888,9 @@ window.LANDSCAPE = {
         "gitflic"
       ],
       "logoInvert": true,
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "GitVerse",
         "MosHub"
@@ -6592,6 +6925,9 @@ window.LANDSCAPE = {
         "мос хаб",
         "moshub"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "GitVerse",
         "GitFlic"
@@ -6636,6 +6972,9 @@ window.LANDSCAPE = {
         "папи тулс",
         "papi tools"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Открытый пакет интеграций"
       ]
@@ -6836,6 +7175,9 @@ window.LANDSCAPE = {
         "скзи",
         "эцп"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "ViPNet",
         "Континент"
@@ -7153,6 +7495,9 @@ window.LANDSCAPE = {
         "грамэкс",
         "докс эс код"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "Wiki репозитория",
         "Confluence",
@@ -7276,6 +7621,9 @@ window.LANDSCAPE = {
         "infotecs",
         "гост vpn"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Континент",
         "КриптоПро"
@@ -7349,6 +7697,9 @@ window.LANDSCAPE = {
         "мермаид",
         "mermaid live"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "PlantUML",
         "Graphviz"
@@ -7421,6 +7772,9 @@ window.LANDSCAPE = {
         "бпмн ио",
         "bpmn js"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "StormBPMN",
         "Camunda Modeler"
@@ -7495,6 +7849,9 @@ window.LANDSCAPE = {
         "c4",
         "си4"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Archi",
         "Modelio",
@@ -7603,6 +7960,9 @@ window.LANDSCAPE = {
         "дот",
         "dot"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "PlantUML",
         "Mermaid"
@@ -7668,6 +8028,9 @@ window.LANDSCAPE = {
         "экскалидро",
         "эксалидро"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "Miro",
         "Holst"
@@ -7732,6 +8095,9 @@ window.LANDSCAPE = {
         "джейсон редактор",
         "json редактор"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "JSONLint"
       ]
@@ -7767,6 +8133,9 @@ window.LANDSCAPE = {
         "джейсонлинт",
         "json линт"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "JSON Editor Online"
       ]
@@ -7804,6 +8173,9 @@ window.LANDSCAPE = {
         "spec driven",
         "sdd"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Cursor"
       ]
@@ -7842,6 +8214,9 @@ window.LANDSCAPE = {
         "дибивер",
         "дбивер"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Внешние источники данных"
       ]
@@ -7946,6 +8321,9 @@ window.LANDSCAPE = {
         "гит код ревью",
         "гиткодревью"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Crucible",
         "Review Board",
@@ -7982,6 +8360,9 @@ window.LANDSCAPE = {
         "кот фор 1с",
         "kotfor1c"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "depends": [
         "Vanessa-Automation",
         "1С:СППР"
@@ -8024,6 +8405,9 @@ window.LANDSCAPE = {
         "кафбат",
         "kafbat"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "depends": [
         "Kafka"
       ]
@@ -8065,6 +8449,9 @@ window.LANDSCAPE = {
         "odbc",
         "одбц"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Объектное хранилище S3",
         "DBeaver"
@@ -8140,6 +8527,9 @@ window.LANDSCAPE = {
         "заметки",
         "маркдаун"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "Confluence",
         "Teamly",
@@ -8190,6 +8580,9 @@ window.LANDSCAPE = {
         "mtasks",
         "blizd"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "1С:СППР",
         "Redmine"
@@ -8228,6 +8621,9 @@ window.LANDSCAPE = {
         "tuna",
         "tuna.am"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Ngrok"
       ]
@@ -8260,6 +8656,9 @@ window.LANDSCAPE = {
         "kodacode",
         "кодакод"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "GigaCode",
         "Cursor"
@@ -8293,6 +8692,9 @@ window.LANDSCAPE = {
         "opencode",
         "open code"
       ],
+      "grade": {
+        "разработчик": "middle"
+      },
       "analogs": [
         "Claude Code",
         "Codex"
@@ -8333,6 +8735,9 @@ window.LANDSCAPE = {
         "dochub",
         "архитектура как код"
       ],
+      "grade": {
+        "разработчик": "senior"
+      },
       "analogs": [
         "Structurizr",
         "Gramax"
@@ -8367,6 +8772,9 @@ window.LANDSCAPE = {
         "витепресс",
         "vitepress"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "Gramax"
       ]
@@ -8399,6 +8807,9 @@ window.LANDSCAPE = {
         "дендрон",
         "dendron"
       ],
+      "grade": {
+        "разработчик": "junior"
+      },
       "analogs": [
         "Obsidian"
       ]

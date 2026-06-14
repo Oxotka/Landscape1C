@@ -1,7 +1,9 @@
 // Страница «Путь»: маршрут освоения инструментов для роли — от базы к
-// специализации. Ступени — шкала зрелости (базовое → продвинутое → нишевое),
-// внутри ступени группировка по блокам ландшафта. Отметки «знаю» хранятся
-// в localStorage (общие для всех ролей), роль — в URL (?role=…).
+// специализации. Ступени — грейды (Junior → Middle → Senior → Senior+) для
+// ролей с разметкой grade[role] (пока разработчик), иначе фолбэк на шкалу
+// зрелости (базовое → продвинутое → нишевое). Внутри ступени группировка по
+// блокам ландшафта. Отметки «знаю» хранятся в localStorage (общие для всех
+// ролей), роль — в URL (?role=…).
 (function () {
     "use strict";
 
@@ -11,21 +13,56 @@
 
     const ROLES = D.axes.role.values;
     const DEFAULT_ROLE = "разработчик";
-    const STAGES = [
+    // Ступени по шкале зрелости — фолбэк для ролей без разметки грейдов
+    const MATURITY_STAGES = [
         {
-            mat: "базовое",
+            tag: "базовое",
             name: "База",
             desc: "Основа профессии — это знает каждый. Незнакомое здесь — первый кандидат на изучение",
+            match: (i) => i.maturity === "базовое",
         },
         {
-            mat: "продвинутое",
+            tag: "продвинутое",
             name: "Мейнстрим",
             desc: "Профессиональный мейнстрим: инструменты, которые отличают уверенного специалиста",
+            match: (i) => i.maturity === "продвинутое",
         },
         {
-            mat: "нишевое",
+            tag: "нишевое",
             name: "Специализация",
             desc: "Нишевые инструменты под конкретные задачи — выбирайте по своей траектории",
+            match: (i) => i.maturity === "нишевое",
+        },
+    ];
+
+    // Ступени по грейдам — для ролей с разметкой grade[role] (пока разработчик).
+    // grade — это пара «инструмент × роль»: один инструмент на разных ролях
+    // может попадать в разные грейды (см. docs/competencies)
+    const grOf = (i) => i.grade && i.grade[role];
+    const GRADE_STAGES = [
+        {
+            tag: "старт",
+            name: "Junior",
+            desc: "Старт профессии — базовый инструментарий, без которого не обойтись",
+            match: (i) => grOf(i) === "junior",
+        },
+        {
+            tag: "уверенный",
+            name: "Middle",
+            desc: "Уверенный разработчик: ежедневные рабочие инструменты",
+            match: (i) => grOf(i) === "middle",
+        },
+        {
+            tag: "продвинутый",
+            name: "Senior",
+            desc: "Глубина и ответственность: оптимизация, ревью, проектирование, CI/CD",
+            match: (i) => grOf(i) === "senior",
+        },
+        {
+            tag: "эксперт",
+            name: "Senior+",
+            desc: "Архитектура и экспертиза: нишевые и сложные инструменты",
+            match: (i) => grOf(i) === "senior+",
         },
     ];
 
@@ -161,11 +198,13 @@
         let total = 0;
         let done = 0;
 
+        // У роли есть разметка грейдов → ступени по грейдам, иначе по зрелости
+        const useGrade = items.some((i) => i.grade && i.grade[role]);
+        const STAGES = useGrade ? GRADE_STAGES : MATURITY_STAGES;
+
         const box = $("#path-stages");
         box.innerHTML = STAGES.map((st) => {
-            const stage = items
-                .filter((i) => i.maturity === st.mat)
-                .sort(sortItems);
+            const stage = items.filter(st.match).sort(sortItems);
             if (!stage.length) return "";
             const slots = slotsOf(stage);
             const stDone = slots.filter(slotKnown).length;
@@ -185,7 +224,7 @@
       <section class="cat">
         <div class="cat__head">
           <div class="cat__title">
-            <span class="cat__block">${st.mat}</span>
+            <span class="cat__block">${st.tag}</span>
             <h2 class="cat__name">${st.name}</h2>
           </div>
           <span class="cat__num">${stDone} из ${slots.length}</span>
