@@ -658,7 +658,7 @@ window.LANDSCAPE = {
         "turbo conf"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "Плагин для конфигуратора PhoenixBSL"
@@ -839,7 +839,7 @@ window.LANDSCAPE = {
         "феникс бсл"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "TurboConf"
@@ -2024,7 +2024,7 @@ window.LANDSCAPE = {
         "гит"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "Хранилище"
@@ -8029,7 +8029,7 @@ window.LANDSCAPE = {
         "эксалидро"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "Miro",
@@ -8808,7 +8808,7 @@ window.LANDSCAPE = {
         "dendron"
       ],
       "grade": {
-        "разработчик": "junior"
+        "разработчик": "middle"
       },
       "analogs": [
         "Obsidian"
