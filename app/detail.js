@@ -141,12 +141,21 @@
                 openDetail(D.items[+btn.dataset.i]),
             ),
         );
-        // Шапка схлопывается, как только середина прокручена
+        // Шапка схлопывается при прокрутке. Гистерезис (24/4) + запас по
+        // переполнению, иначе схлопывание само убирает скролл и шапка дергается
         const scroll = dlg.querySelector(".detail__scroll");
         const head = dlg.querySelector(".detail__head");
-        scroll.addEventListener("scroll", () =>
-            head.classList.toggle("is-compact", scroll.scrollTop > 4),
-        );
+        let compact = false;
+        scroll.addEventListener("scroll", () => {
+            if (!compact) {
+                const overflow = scroll.scrollHeight - scroll.clientHeight;
+                if (scroll.scrollTop > 24 && overflow > 140)
+                    (head.classList.add("is-compact"), (compact = true));
+            } else if (scroll.scrollTop <= 4) {
+                head.classList.remove("is-compact");
+                compact = false;
+            }
+        });
         if (!dlg.open) dlg.showModal();
         writeTool(i.name);
     }

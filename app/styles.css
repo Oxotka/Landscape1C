@@ -1146,12 +1146,13 @@ a {
 .detail__head.is-compact .detail__logo--ph {
     font-size: 12px;
 }
-.detail__head.is-compact .detail__sub {
+.detail__head.is-compact .detail__sub,
+.detail__head.is-compact .detail__badges {
     display: none;
 }
 .detail__head.is-compact .detail__title {
     font-size: 16px;
-    margin-bottom: 6px;
+    margin-bottom: 0;
 }
 
 /* Прокручиваемая середина: контент + подвал (шапка остается закрепленной) */
