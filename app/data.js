@@ -9113,6 +9113,48 @@ window.LANDSCAPE = {
       "depends": [
         "Kafka"
       ]
+    },
+    {
+      "name": "JenkinsLib",
+      "added": "2026-06-15",
+      "category": "CI/CD",
+      "subcategory": "Сборка 1С",
+      "logo": null,
+      "description": "Shared-библиотека Jenkins с готовыми этапами сборки и проверки конфигураций 1С",
+      "why": "Сводит настройку CI-конвейера 1С к короткому конфигу вместо ручного Jenkinsfile",
+      "homepage": "https://github.com/firstBitMarksistskaya/jenkins-lib",
+      "repo": "https://github.com/firstBitMarksistskaya/jenkins-lib",
+      "start": [
+        {
+          "label": "Репозиторий и документация",
+          "url": "https://github.com/firstBitMarksistskaya/jenkins-lib"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "администратор",
+        "разработчик",
+        "тестировщик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "дженкинслиб",
+        "jenkins-lib",
+        "jenkinslib",
+        "jenkins lib",
+        "библиотека дженкинс"
+      ],
+      "depends": [
+        "Jenkins",
+        "vanessa-runner"
+      ]
     }
   ]
 };
