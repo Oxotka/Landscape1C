@@ -3824,7 +3824,7 @@ window.LANDSCAPE = {
       "added": "2026-06-08",
       "category": "Интеграции",
       "subcategory": "Внешние API",
-      "logo": "curlone.svg",
+      "logo": "curlone.png",
       "description": "Конвертер команд curl в код на языке 1С",
       "why": "Превращает пример запроса на curl из документации внешнего API в готовый код на 1С — написан на OneScript",
       "homepage": "https://curlone.ru/",
@@ -4390,7 +4390,8 @@ window.LANDSCAPE = {
       "analogs": [
         "Microsoft Power BI",
         "Yandex DataLens",
-        "Visiology"
+        "Visiology",
+        "Apache Superset"
       ]
     },
     {
@@ -4437,7 +4438,8 @@ window.LANDSCAPE = {
       "analogs": [
         "1С:Аналитика",
         "Yandex DataLens",
-        "Visiology"
+        "Visiology",
+        "Apache Superset"
       ]
     },
     {
@@ -4480,7 +4482,8 @@ window.LANDSCAPE = {
       "analogs": [
         "1С:Аналитика",
         "Microsoft Power BI",
-        "Visiology"
+        "Visiology",
+        "Apache Superset"
       ]
     },
     {
@@ -4518,7 +4521,8 @@ window.LANDSCAPE = {
       "analogs": [
         "1С:Аналитика",
         "Microsoft Power BI",
-        "Yandex DataLens"
+        "Yandex DataLens",
+        "Apache Superset"
       ]
     },
     {
@@ -8622,6 +8626,46 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "MobaXterm"
+      ]
+    },
+    {
+      "name": "Apache Superset",
+      "added": "2026-06-15",
+      "category": "BI-системы",
+      "subcategory": null,
+      "logo": "superset.svg",
+      "description": "BI-платформа с открытым кодом для визуализации данных и интерактивных дашбордов",
+      "why": "Открытая альтернатива Power BI — строит дашборды поверх выгруженных из 1С данных в SQL-СУБД или ClickHouse",
+      "homepage": "https://superset.apache.org/",
+      "repo": "https://github.com/apache/superset",
+      "start": [
+        {
+          "label": "superset-bi.ru — русскоязычный портал",
+          "url": "https://superset-bi.ru/"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "суперсет",
+        "superset",
+        "апач суперсет",
+        "apache superset"
+      ],
+      "analogs": [
+        "1С:Аналитика",
+        "Microsoft Power BI",
+        "Yandex DataLens",
+        "Visiology"
       ]
     }
   ]
