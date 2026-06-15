@@ -2807,7 +2807,6 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "git",
-        "Coverage41C",
         "SonarQube BSL Community Plugin"
       ]
     },
