@@ -2125,7 +2125,8 @@ window.LANDSCAPE = {
         "фигма"
       ],
       "analogs": [
-        "Mockplus"
+        "Mockplus",
+        "Pixso"
       ]
     },
     {
@@ -2162,7 +2163,8 @@ window.LANDSCAPE = {
         "mock plus"
       ],
       "analogs": [
-        "Figma"
+        "Figma",
+        "Pixso"
       ]
     },
     {
@@ -2562,6 +2564,9 @@ window.LANDSCAPE = {
       "depends": [
         "Встроенный язык программирования 1С:Предприятия",
         "Allure"
+      ],
+      "analogs": [
+        "OneUnit"
       ]
     },
     {
@@ -3724,7 +3729,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "RabbitMQ",
-        "Kafka"
+        "Kafka",
+        "Datareon"
       ]
     },
     {
@@ -4949,7 +4955,9 @@ window.LANDSCAPE = {
         "Teamly",
         "Wiki репозитория",
         "Gramax",
-        "Obsidian"
+        "Obsidian",
+        "EvaWiki",
+        "Wiki.js"
       ]
     },
     {
@@ -4985,7 +4993,9 @@ window.LANDSCAPE = {
         "Confluence",
         "Wiki репозитория",
         "Gramax",
-        "Obsidian"
+        "Obsidian",
+        "EvaWiki",
+        "Wiki.js"
       ]
     },
     {
@@ -5030,7 +5040,9 @@ window.LANDSCAPE = {
         "Confluence",
         "Teamly",
         "Gramax",
-        "Obsidian"
+        "Obsidian",
+        "EvaWiki",
+        "Wiki.js"
       ],
       "depends": [
         "git"
@@ -5368,7 +5380,8 @@ window.LANDSCAPE = {
         "zabbix"
       ],
       "analogs": [
-        "Prometheus"
+        "Prometheus",
+        "Deckhouse Prom++"
       ]
     },
     {
@@ -5451,7 +5464,8 @@ window.LANDSCAPE = {
         "prometheus"
       ],
       "analogs": [
-        "Zabbix"
+        "Zabbix",
+        "Deckhouse Prom++"
       ]
     },
     {
@@ -5855,7 +5869,8 @@ window.LANDSCAPE = {
         "Яндекс Трекер",
         "YouTrack",
         "Redmine",
-        "Битрикс24"
+        "Битрикс24",
+        "ПланФикс"
       ]
     },
     {
@@ -5894,7 +5909,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Kaiten",
-        "WEEEK"
+        "WEEEK",
+        "YouGile"
       ]
     },
     {
@@ -5937,7 +5953,8 @@ window.LANDSCAPE = {
         "Jira",
         "YouTrack",
         "Redmine",
-        "Битрикс24"
+        "Битрикс24",
+        "ПланФикс"
       ]
     },
     {
@@ -6067,7 +6084,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Trello",
-        "WEEEK"
+        "WEEEK",
+        "YouGile"
       ]
     },
     {
@@ -6104,7 +6122,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Trello",
-        "Kaiten"
+        "Kaiten",
+        "YouGile"
       ]
     },
     {
@@ -6150,7 +6169,8 @@ window.LANDSCAPE = {
         "Jira",
         "Яндекс Трекер",
         "YouTrack",
-        "Redmine"
+        "Redmine",
+        "ПланФикс"
       ]
     },
     {
@@ -8666,6 +8686,326 @@ window.LANDSCAPE = {
         "Microsoft Power BI",
         "Yandex DataLens",
         "Visiology"
+      ]
+    },
+    {
+      "name": "OneUnit",
+      "added": "2026-06-15",
+      "category": "Автоматизированное тестирование",
+      "subcategory": "Юнит-тесты",
+      "logo": "oscript-library.png",
+      "description": "Фреймворк юнит-тестирования для OneScript",
+      "why": "Пишет и запускает юнит-тесты библиотек и скриптов на OneScript — с тегами, параметризацией и отчетами JUnit для CI",
+      "homepage": null,
+      "repo": "https://github.com/sfaqer/OneUnit",
+      "start": [
+        {
+          "label": "GitHub OneUnit",
+          "url": "https://github.com/sfaqer/OneUnit"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты"
+      ],
+      "aliases": [
+        "уанюнит",
+        "oneunit",
+        "ванюнит"
+      ],
+      "analogs": [
+        "YAxUnit"
+      ]
+    },
+    {
+      "name": "Deckhouse Prom++",
+      "added": "2026-06-15",
+      "category": "Мониторинг",
+      "subcategory": "Мониторинг инфраструктуры",
+      "logo": "prompp.svg",
+      "description": "Российский форк Prometheus с пониженным потреблением памяти",
+      "why": "Drop-in замена Prometheus — те же API, конфигурации и хранилище при кратно меньшем расходе памяти, от отечественного Deckhouse",
+      "homepage": null,
+      "repo": "https://github.com/deckhouse/prompp",
+      "start": [
+        {
+          "label": "GitHub Prom++",
+          "url": "https://github.com/deckhouse/prompp"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "промпп",
+        "промплюсплюс",
+        "prompp",
+        "prom++",
+        "деккхаус"
+      ],
+      "analogs": [
+        "Prometheus",
+        "Zabbix"
+      ]
+    },
+    {
+      "name": "Pixso",
+      "added": "2026-06-15",
+      "category": "Прототипирование",
+      "subcategory": null,
+      "logo": "pixso.png",
+      "description": "Облачный редактор интерфейсов и прототипов — альтернатива Figma",
+      "why": "Совместная проработка макетов интерфейсов прямо в браузере — работает из России, в отличие от Figma",
+      "homepage": "https://pixso.net/ru/",
+      "repo": null,
+      "start": [
+        {
+          "label": "pixso.net",
+          "url": "https://pixso.net/ru/"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "бесплатное",
+      "availability": "доступен",
+      "roles": [
+        "аналитик"
+      ],
+      "contexts": [
+        "продукты",
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "пиксо",
+        "pixso"
+      ],
+      "analogs": [
+        "Figma",
+        "Mockplus"
+      ]
+    },
+    {
+      "name": "Datareon",
+      "added": "2026-06-15",
+      "category": "Интеграции",
+      "subcategory": "Брокеры и шины",
+      "logo": "datareon.png",
+      "description": "Отечественная интеграционная платформа (ESB) для обмена данными между системами",
+      "why": "Интеграционная шина для обмена между 1С и внешними системами — отечественная ESB из реестра российского ПО",
+      "homepage": "https://www.datareon.ru/",
+      "repo": null,
+      "start": [
+        {
+          "label": "datareon.ru",
+          "url": "https://www.datareon.ru/"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "датареон",
+        "datareon",
+        "датарион"
+      ],
+      "analogs": [
+        "1С:Шина"
+      ]
+    },
+    {
+      "name": "EvaWiki",
+      "added": "2026-06-15",
+      "category": "База знаний",
+      "subcategory": "Корпоративные базы знаний",
+      "logo": "evawiki.png",
+      "description": "Российская корпоративная база знаний — замена Confluence",
+      "why": "Корпоративная вики с версионированием и публичным доступом для клиентов — отечественная альтернатива Confluence из реестра ПО",
+      "homepage": "https://www.evateam.ru/evawiki/",
+      "repo": null,
+      "start": [
+        {
+          "label": "evateam.ru/evawiki",
+          "url": "https://www.evateam.ru/evawiki/"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "availability": "доступен",
+      "roles": [
+        "аналитик",
+        "разработчик",
+        "тестировщик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "эвавики",
+        "evawiki",
+        "эватим",
+        "evateam"
+      ],
+      "analogs": [
+        "Confluence",
+        "Teamly",
+        "Wiki репозитория",
+        "Wiki.js"
+      ]
+    },
+    {
+      "name": "Wiki.js",
+      "added": "2026-06-15",
+      "category": "База знаний",
+      "subcategory": "Корпоративные базы знаний",
+      "logo": "wikijs.svg",
+      "description": "Открытая вики-платформа на Node.js для документации и баз знаний",
+      "why": "Self-hosted вики для документации команды и базы знаний по проектам — open-source, разворачивается на своих серверах",
+      "homepage": "https://js.wiki/",
+      "repo": "https://github.com/requarks/wiki",
+      "start": [
+        {
+          "label": "js.wiki",
+          "url": "https://js.wiki/"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "аналитик",
+        "тестировщик"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты",
+        "продукты"
+      ],
+      "aliases": [
+        "вики джс",
+        "wikijs",
+        "wiki.js",
+        "викиджс"
+      ],
+      "analogs": [
+        "Confluence",
+        "Teamly",
+        "Wiki репозитория",
+        "EvaWiki"
+      ]
+    },
+    {
+      "name": "YouGile",
+      "added": "2026-06-15",
+      "category": "Задачи",
+      "subcategory": "Канбан-доски",
+      "logo": "yougile.svg",
+      "description": "Российская система управления проектами с канбан-досками",
+      "why": "Канбан-доски и задачи для команды с чатами прямо в карточках — отечественный сервис с бесплатным тарифом",
+      "homepage": "https://ru.yougile.com/",
+      "repo": null,
+      "start": [
+        {
+          "label": "yougile.com",
+          "url": "https://ru.yougile.com/"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "бесплатное",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "аналитик",
+        "тестировщик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "франчайзи",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "югайл",
+        "yougile",
+        "югайле"
+      ],
+      "analogs": [
+        "Trello",
+        "Kaiten",
+        "WEEEK"
+      ]
+    },
+    {
+      "name": "ПланФикс",
+      "added": "2026-06-15",
+      "category": "Задачи",
+      "subcategory": "Трекеры задач",
+      "logo": "planfix.svg",
+      "description": "Платформа для управления задачами, проектами и бизнес-процессами",
+      "why": "Гибкий трекер задач и проектов с настройкой под процессы команды — отечественный сервис с бесплатным тарифом",
+      "homepage": "https://planfix.ru/",
+      "repo": null,
+      "start": [
+        {
+          "label": "planfix.ru",
+          "url": "https://planfix.ru/"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "бесплатное",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "аналитик",
+        "тестировщик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "франчайзи",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "планфикс",
+        "planfix"
+      ],
+      "analogs": [
+        "Jira",
+        "Яндекс Трекер",
+        "Битрикс24"
       ]
     }
   ]
