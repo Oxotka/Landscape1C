@@ -2807,7 +2807,8 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "git",
-        "Coverage41C"
+        "Coverage41C",
+        "SonarQube BSL Community Plugin"
       ]
     },
     {
@@ -9154,6 +9155,46 @@ window.LANDSCAPE = {
       "depends": [
         "Jenkins",
         "vanessa-runner"
+      ]
+    },
+    {
+      "name": "SonarQube BSL Community Plugin",
+      "added": "2026-06-15",
+      "category": "Статический анализ кода",
+      "subcategory": null,
+      "logo": "bsl-language-server.png",
+      "logoInvert": true,
+      "description": "Плагин SonarQube с поддержкой языков 1С:Предприятие и OneScript",
+      "why": "Учит SonarQube понимать код 1С — без него анализ BSL в Sonar не работает",
+      "homepage": "https://1c-syntax.github.io/sonar-bsl-plugin-community/",
+      "repo": "https://github.com/1c-syntax/sonar-bsl-plugin-community",
+      "start": [
+        {
+          "label": "Документация плагина",
+          "url": "https://1c-syntax.github.io/sonar-bsl-plugin-community/"
+        }
+      ],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик"
+      ],
+      "contexts": [
+        "продукты",
+        "проекты",
+        "инхаус"
+      ],
+      "aliases": [
+        "сонар плагин bsl",
+        "sonar-bsl-plugin-community",
+        "плагин bsl для sonarqube",
+        "сонар бсл",
+        "sonar bsl"
+      ],
+      "depends": [
+        "BSL Language Server"
       ]
     }
   ]
