@@ -2496,14 +2496,21 @@ a {
 }
 /* Блок выбора роли — как группа отборов: мелкий заголовок + чипы */
 .path-role {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 14px;
     margin: 26px 0 24px;
 }
+/* Заголовок слева от чипов — как .graph-flabel в графе и схеме */
 .path-role__head {
-    font-size: 9px;
-    letter-spacing: 2px;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     color: #999;
-    margin: 0 0 8px;
+    margin: 0;
 }
 .path-tabs {
     display: flex;
@@ -2593,6 +2600,7 @@ a {
         padding: 0 clamp(16px, 3vw, 24px);
     }
     .path-role {
+        display: block; /* на мобильном — как было: тумблер во всю ширину */
         margin: 16px 0 18px;
     }
     .path-role__head {
