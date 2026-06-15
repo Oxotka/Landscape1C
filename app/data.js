@@ -5870,7 +5870,8 @@ window.LANDSCAPE = {
         "YouTrack",
         "Redmine",
         "Битрикс24",
-        "ПланФикс"
+        "ПланФикс",
+        "OpenProject"
       ]
     },
     {
@@ -5998,7 +5999,8 @@ window.LANDSCAPE = {
         "Jira",
         "Яндекс Трекер",
         "Redmine",
-        "Битрикс24"
+        "Битрикс24",
+        "OpenProject"
       ]
     },
     {
@@ -6043,7 +6045,8 @@ window.LANDSCAPE = {
         "Яндекс Трекер",
         "YouTrack",
         "Битрикс24",
-        "Tasks"
+        "Tasks",
+        "OpenProject"
       ]
     },
     {
@@ -9002,6 +9005,47 @@ window.LANDSCAPE = {
         "Jira",
         "Яндекс Трекер",
         "Битрикс24"
+      ]
+    },
+    {
+      "name": "OpenProject",
+      "added": "2026-06-15",
+      "category": "Задачи",
+      "subcategory": "Трекеры задач",
+      "logo": "openproject.svg",
+      "description": "Открытая система управления проектами и задачами",
+      "why": "Self-hosted управление проектами, задачами и дорожными картами — open-source альтернатива Jira, разворачивается на своих серверах",
+      "homepage": "https://www.openproject.org/",
+      "repo": "https://github.com/opf/openproject",
+      "start": [
+        {
+          "label": "openproject.org",
+          "url": "https://www.openproject.org/"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "аналитик",
+        "тестировщик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "опенпроджект",
+        "openproject",
+        "опен проджект"
+      ],
+      "analogs": [
+        "Jira",
+        "Redmine",
+        "YouTrack"
       ]
     }
   ]
