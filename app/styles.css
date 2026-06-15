@@ -2514,24 +2514,30 @@ a {
 }
 .path-tabs {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
 }
+/* Чипы роли — как в графе и схеме (.graph-filters .chip): мельче шрифт,
+   на активном — фирменная черта слева */
 .path-tab {
     font-family: var(--body);
-    font-size: 13px;
-    font-weight: 600;
-    padding: 7px 14px;
+    font-size: 12px;
+    padding: 5px 11px;
     background: none;
-    border: 1.5px solid var(--edge);
-    border-radius: 0;
+    border: 1px solid var(--edge);
+    border-radius: 2px;
     color: var(--ink-soft);
     cursor: pointer;
+}
+.path-tab:hover {
+    background: var(--hover);
 }
 .path-tab[aria-pressed="true"] {
     background: var(--ink);
     border-color: var(--ink);
     color: var(--paper);
+    font-weight: 700;
+    box-shadow: inset 3px 0 0 var(--brand);
 }
 .path-sum {
     font-size: 13px;
@@ -2617,9 +2623,13 @@ a {
         font-size: clamp(10px, 3vw, 12px);
         white-space: nowrap;
         text-align: center;
+        border-radius: 0; /* мобильный — сплошной тумблер, без скруглений */
     }
     .path-tab:not(:first-child) {
         border-left: none; /* смежные рамки тумблера не двоим */
+    }
+    .path-tab[aria-pressed="true"] {
+        box-shadow: none; /* и без фирменной черты — тут это тумблер */
     }
 }
 /* Строка-описание ступени — под липкой шапкой, не липнет */
