@@ -17,6 +17,14 @@
     // Пусто = без ограничения по оси (как в графе). Между осями — И, внутри оси — ИЛИ.
     const selRole = new Set();
     const selMat = new Set();
+    // Перенесенные с других страниц отборы (общий стор shared.js)
+    (function hydrate() {
+        const f = window.LandscapeFilters.read();
+        f.role.forEach((r) => ROLES.includes(r) && selRole.add(r));
+        f.maturity.forEach(
+            (m) => D.axes.maturity.values.includes(m) && selMat.add(m),
+        );
+    })();
     const hiddenBlocks = new Set(); // блоки, скрытые из схемы (чекбоксы «Блоки»)
     const logoCache = {}; // file -> dataURI | null
     let svgW = 0,
@@ -278,7 +286,7 @@
     }
 
     // ── Отборы (как в графе: роль + зрелость, пусто = все) ──
-    function buildGroup(labelText, values, set) {
+    function buildGroup(labelText, values, set, axis) {
         const group = document.createElement("div");
         group.className = "graph-fgroup";
         const label = document.createElement("span");
@@ -296,6 +304,7 @@
                 if (set.has(val)) set.delete(val);
                 else set.add(val);
                 b.setAttribute("aria-pressed", String(set.has(val)));
+                window.LandscapeFilters.patch({ [axis]: [...set] }); // унести
                 render();
             });
             chips.appendChild(b);
@@ -373,6 +382,7 @@
     function resetAll() {
         selRole.clear();
         selMat.clear();
+        window.LandscapeFilters.patch({ role: [], maturity: [] }); // снять и в сторе
         hiddenBlocks.clear();
         togglesBox
             .querySelectorAll(".chip")
@@ -386,8 +396,8 @@
     }
     function renderToggles() {
         togglesBox.innerHTML = "";
-        buildGroup("Роль", ROLES, selRole);
-        buildGroup("Зрелость", D.axes.maturity.values, selMat);
+        buildGroup("Роль", ROLES, selRole, "role");
+        buildGroup("Зрелость", D.axes.maturity.values, selMat, "maturity");
         buildBlocksControl();
         resetBtn = document.createElement("button");
         resetBtn.type = "button";

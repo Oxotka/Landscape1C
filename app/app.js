@@ -285,7 +285,7 @@
             `mailto:aripovn@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
 
-    // ── Состояние в URL (шаринг) ──────────────
+    // ── Состояние в URL (шаринг) + общий стор (перенос между страницами) ──
     function writeUrl() {
         const params = new URLSearchParams();
         AXES.forEach((a) => {
@@ -297,18 +297,25 @@
         if (tool) params.set("tool", tool);
         const qs = params.toString();
         history.replaceState(null, "", qs ? "?" + qs : location.pathname);
+        // Те же отборы — в общий стор, чтобы унести их в путь/схему/граф
+        const snap = { q: query };
+        AXES.forEach((a) => (snap[a] = [...state[a]]));
+        window.LandscapeFilters.patch(snap);
     }
+    // URL (ссылка-шаринг) важнее; без параметров берем перенесенные отборы из стора
     function readUrl() {
         const params = new URLSearchParams(location.search);
+        const fromUrl = AXES.some((a) => params.get(a)) || !!params.get("q");
+        const store = fromUrl ? null : window.LandscapeFilters.read();
         AXES.forEach((a) => {
-            const raw = params.get(a);
-            if (!raw) return;
             const allowed = D.axes[a].values;
+            const raw = fromUrl ? params.get(a) : (store[a] || []).join(",");
+            if (!raw) return;
             raw.split(",").forEach((v) => {
                 if (allowed.includes(v)) state[a].add(v);
             });
         });
-        const q = params.get("q");
+        const q = fromUrl ? params.get("q") : store.q;
         if (q) {
             query = q.toLowerCase();
             $("#search").value = q;

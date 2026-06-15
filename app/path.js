@@ -11,7 +11,6 @@
     const { wbr, logoMarkup, sortItems } = window.LandscapeUI;
 
     const ROLES = D.axes.role.values;
-    const DEFAULT_ROLE = "разработчик";
     const STAGES = [
         {
             mat: "базовое",
@@ -44,40 +43,47 @@
         } catch (e) {}
     };
 
-    // ── Роли в URL (через запятую) — ссылкой можно делиться; ?tool= не
-    // затираем (detail.js). Можно совмещать: разработчик+администратор и т.п.
+    // Роли из URL (через запятую, ?tool= не затираем) или, если ссылка без них,
+    // из общего стора — отборы переносятся между страницами. Можно совмещать
+    // (разработчик+администратор), а пустой выбор = все роли (отбор снят).
     function parseRoles() {
-        const raw = (
-            new URLSearchParams(location.search).get("role") || ""
-        ).split(",");
+        const param = new URLSearchParams(location.search).get("role");
+        const raw =
+            param === null
+                ? window.LandscapeFilters.read().role
+                : param.split(",");
         const set = new Set(
-            raw.map((s) => s.trim()).filter((r) => ROLES.includes(r)),
+            (raw || [])
+                .map((s) => String(s).trim())
+                .filter((r) => ROLES.includes(r)),
         );
-        const list = ROLES.filter((r) => set.has(r)); // порядок оси ROLES
-        return list.length ? list : [DEFAULT_ROLE];
+        return ROLES.filter((r) => set.has(r)); // порядок оси; пусто = все
     }
     let selected = parseRoles();
     function writeUrl() {
         const p = new URLSearchParams(location.search);
-        p.set("role", selected.join(","));
-        history.replaceState(null, "", "?" + p.toString());
+        if (selected.length) p.set("role", selected.join(","));
+        else p.delete("role");
+        const qs = p.toString();
+        history.replaceState(null, "", qs ? "?" + qs : location.pathname);
+        window.LandscapeFilters.patch({ role: selected }); // унести в др. страницы
     }
-    // Хотя бы одна роль всегда выбрана; порядок держим по оси ROLES
+    // Можно снять все роли (пустой выбор = все); порядок держим по оси ROLES
     function toggleRole(r) {
-        const on = selected.includes(r);
-        if (on && selected.length === 1) return;
         const set = new Set(selected);
-        on ? set.delete(r) : set.add(r);
+        set.has(r) ? set.delete(r) : set.add(r);
         selected = ROLES.filter((x) => set.has(x));
         writeUrl();
         render();
     }
 
-    // Инструмент попадает в маршрут, если подходит хотя бы одной выбранной роли
+    // Пусто = весь маршрут; иначе — инструменты хотя бы одной выбранной роли
     const roleItems = () =>
-        D.items.filter((i) =>
-            (i.roles || []).some((r) => selected.includes(r)),
-        );
+        selected.length
+            ? D.items.filter((i) =>
+                  (i.roles || []).some((r) => selected.includes(r)),
+              )
+            : D.items.filter((i) => (i.roles || []).length);
 
     // ── Слоты: аналоги внутри ступени — один пункт «на выбор» ──
     // Знаешь GitLab CI — GitHub Actions осваивать не обязательно. Компоненты
@@ -222,9 +228,9 @@
         $("#path-fill2").style.width = fill;
         $("#path-done2").textContent = `${done} из ${total}`;
         // В липкой шапке роли — «Разработчик + Администратор» (каждая с большой);
-        // когда выбраны все — короче «Все роли»
+        // пусто или выбраны все — короче «Все роли»
         $("#path-role2").textContent =
-            selected.length === ROLES.length
+            selected.length === 0 || selected.length === ROLES.length
                 ? "Все роли"
                 : selected
                       .map((r) => r.charAt(0).toUpperCase() + r.slice(1))

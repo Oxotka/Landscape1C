@@ -46,4 +46,41 @@
     };
 
     window.LandscapeUI = { wbr, logoMarkup, sortItems, groupBySub, plural };
+
+    // ── Общие отборы между страницами (localStorage) ──
+    // Роль/контекст/зрелость/… переносятся между главной, путем, схемой и
+    // графом: выбрал на одной — увидишь на другой, и наоборот. Каждая страница
+    // читает оси, которые умеет, и пишет только их (остальные сохраняются).
+    // Пустой набор оси = «все» (ось не активна) — единая семантика везде.
+    const FKEY = "landscapeFilters";
+    const FAXES = [
+        "role",
+        "context",
+        "maturity",
+        "origin",
+        "license",
+        "availability",
+    ];
+    const readFilters = () => {
+        let o = {};
+        try {
+            o = JSON.parse(localStorage.getItem(FKEY) || "{}") || {};
+        } catch (e) {}
+        const out = {};
+        FAXES.forEach((a) => (out[a] = Array.isArray(o[a]) ? o[a] : []));
+        out.q = typeof o.q === "string" ? o.q : "";
+        return out;
+    };
+    const patchFilters = (partial) => {
+        const cur = readFilters();
+        Object.assign(cur, partial);
+        try {
+            localStorage.setItem(FKEY, JSON.stringify(cur));
+        } catch (e) {}
+    };
+    window.LandscapeFilters = {
+        read: readFilters,
+        patch: patchFilters,
+        AXES: FAXES,
+    };
 })();

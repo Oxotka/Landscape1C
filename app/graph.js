@@ -129,6 +129,14 @@
     // ── Фильтры: роль и зрелость ──────────────
     const fRole = new Set(),
         fMat = new Set();
+    // Перенесенные с других страниц отборы (общий стор shared.js)
+    (function hydrate() {
+        const f = window.LandscapeFilters.read();
+        f.role.forEach((r) => D.axes.role.values.includes(r) && fRole.add(r));
+        f.maturity.forEach(
+            (m) => D.axes.maturity.values.includes(m) && fMat.add(m),
+        );
+    })();
     const nodeVisible = (it) => {
         if (fRole.size && !(it.roles || []).some((r) => fRole.has(r)))
             return false;
@@ -547,7 +555,7 @@
     }
 
     // ── Чипы фильтров: роль и зрелость ────────
-    function buildChips(boxId, values, set) {
+    function buildChips(boxId, values, set, axis) {
         const box = document.getElementById(boxId);
         if (!box) return;
         values.forEach((val) => {
@@ -555,18 +563,19 @@
             chip.className = "chip";
             chip.type = "button";
             chip.textContent = val;
-            chip.setAttribute("aria-pressed", "false");
+            chip.setAttribute("aria-pressed", String(set.has(val)));
             chip.addEventListener("click", () => {
                 if (set.has(val)) set.delete(val);
                 else set.add(val);
                 chip.setAttribute("aria-pressed", set.has(val));
+                window.LandscapeFilters.patch({ [axis]: [...set] }); // унести
                 applyFilter();
             });
             box.appendChild(chip);
         });
     }
-    buildChips("f-role", D.axes.role.values, fRole);
-    buildChips("f-maturity", D.axes.maturity.values, fMat);
+    buildChips("f-role", D.axes.role.values, fRole, "role");
+    buildChips("f-maturity", D.axes.maturity.values, fMat, "maturity");
 
     // ── Кнопка сброса отборов (видимость — через CSS :has) ──
     (function addReset() {
@@ -579,6 +588,7 @@
         r.addEventListener("click", () => {
             fRole.clear();
             fMat.clear();
+            window.LandscapeFilters.patch({ role: [], maturity: [] }); // и в сторе
             fbox.querySelectorAll(".chip").forEach((c) =>
                 c.setAttribute("aria-pressed", "false"),
             );
