@@ -2868,12 +2868,12 @@ window.LANDSCAPE = {
       "logo": "1c.png",
       "description": "Система стандартов и методик разработки конфигураций 1С",
       "why": "Система стандартов описывает как правильно писать код, чтобы он был качественный и производительный",
-      "homepage": null,
+      "homepage": "https://its.1c.ru/db/v8std",
       "repo": null,
       "start": [
         {
-          "label": "Система стандартов",
-          "url": "https://its.1c.ru/db/v8std"
+          "label": "Стандарты разработки 1С от Игоря Апресова",
+          "url": "https://v8std.ru"
         }
       ],
       "maturity": "базовое",
