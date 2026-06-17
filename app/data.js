@@ -7483,7 +7483,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "StormBPMN",
-        "bpmn.io"
+        "bpmn.io",
+        "OpenBPM"
       ]
     },
     {
@@ -9188,6 +9189,56 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "BSL Language Server"
+      ]
+    },
+    {
+      "name": "OpenBPM",
+      "added": "2026-06-17",
+      "category": "Интеграции",
+      "subcategory": null,
+      "logo": "openbpm.png",
+      "description": "Российская BPM-платформа: движок исполнения процессов по схемам BPMN и инструменты вокруг него — Studio, Control и Tasklist",
+      "why": "Оркестровать сквозные бизнес-процессы поверх разных систем: ядро платформы ведет процесс по схеме BPMN, а задачи на исполнение забирают микросервисы и приложения на любом языке, в том числе на 1С, обращаясь к нему по REST API",
+      "homepage": "https://openbpm.ru/engine",
+      "repo": "https://gitflic.ru/project/openbpm/openbpm-engine-community",
+      "start": [
+        {
+          "label": "Быстрый старт",
+          "url": "https://docs.openbpm.ru/openbpm/quick-start.html"
+        },
+        {
+          "label": "Документация",
+          "url": "https://docs.openbpm.ru/"
+        },
+        {
+          "label": "Интеграция Camunda BPM и 1С (Инфостарт)",
+          "url": "https://infostart.ru/1c/articles/1235299/"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "аналитик",
+        "разработчик",
+        "администратор"
+      ],
+      "contexts": [
+        "проекты",
+        "инхаус",
+        "продукты"
+      ],
+      "aliases": [
+        "опенбпм",
+        "openbpm",
+        "openbpm engine",
+        "камунда",
+        "camunda",
+        "бпм движок"
+      ],
+      "analogs": [
+        "Camunda Modeler"
       ]
     }
   ]
