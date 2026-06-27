@@ -9481,7 +9481,7 @@ window.LANDSCAPE = {
       "homepage": "https://farmanager.com",
       "repo": "https://github.com/FarGroup/FarManager",
       "start": [],
-      "maturity": "продвинутое",
+      "maturity": "базовое",
       "origin": "отечественное",
       "license": "open-source",
       "availability": "доступен",
