@@ -161,6 +161,22 @@ D.items.forEach((i) => {
   }
 }
 
+// 12. Опрос (app/survey2026.js) хранится отдельно и связан с карточками только
+//     по имени инструмента: разъехавшееся имя молча спрячет полосу опроса на
+//     сайте и проценты у аналогов. Ловим переименование карточки без обновления
+//     данных опроса (и опечатки в списке инструментов бота).
+{
+  const surveyFile = path.join(APP, "survey2026.js");
+  if (fs.existsSync(surveyFile)) {
+    require(surveyFile);
+    const S = global.window.SURVEY;
+    ((S && S.tools) || []).forEach((t) => {
+      if (!names.has(t.name))
+        E(`опрос: инструмент «${t.name}» не найден среди карточек data.js (карточку переименовали или удалили?)`);
+    });
+  }
+}
+
 if (errors.length) {
   console.error(`✗ Найдено проблем: ${errors.length}`);
   errors.forEach((e) => console.error("  - " + e));
