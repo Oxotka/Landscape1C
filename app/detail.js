@@ -3,7 +3,7 @@
 (() => {
     const D = window.LANDSCAPE;
     const $ = (sel) => document.querySelector(sel);
-    const { wbr, logoMarkup, slugOf } = window.LandscapeUI; // shared.js
+    const { wbr, logoMarkup, slugOf, plural, surveyOf } = window.LandscapeUI; // shared.js
     const byName = (n) => D.items.find((x) => x.name === n);
 
     // ── Дип-линки: открытая карточка отражается в URL (?tool=слаг) ──
@@ -72,8 +72,10 @@
                       )
                       .join("")}</ul>`
                 : "";
-        // Связанные карточки — квадратные кнопки с лого, открывают свою модалку
-        const relLinks = (names) =>
+        // Связанные карточки — квадратные кнопки с лого, открывают свою модалку.
+        // У аналогов — «взяли бы снова» из опроса (если аналог был в опросе):
+        // сравнение соседей по нише, не открывая их карточек.
+        const relLinks = (names, withLoyal) =>
             (names || [])
                 .map((n) => {
                     const t = byName(n);
@@ -81,12 +83,43 @@
                     const logo = t.logo
                         ? `<img class="detail__rel-logo${t.logoInvert ? " is-invert" : ""}" src="logos/${t.logo}" alt="">`
                         : `<span class="detail__rel-logo detail__rel-logo--ph">1С</span>`;
-                    return `<button type="button" class="detail__rel" data-i="${D.items.indexOf(t)}">${logo}<span>${t.name}</span></button>`;
+                    const svr = withLoyal ? surveyOf(t.name) : null;
+                    const loyal =
+                        svr && svr.loyal !== null
+                            ? `<span class="detail__rel-loyal" title="Взяли бы снова: ${svr.loyal}% работавших — из опроса">↻ ${svr.loyal}%</span>`
+                            : "";
+                    return `<button type="button" class="detail__rel" data-i="${D.items.indexOf(t)}">${logo}<span>${t.name}</span>${loyal}</button>`;
                 })
                 .filter(Boolean)
                 .join("");
-        const analogsInner = relLinks(i.analogs);
+        const analogsInner = relLinks(i.analogs, true);
         const dependsInner = relLinks(i.depends);
+
+        // Опрос: одна bullet-полоса, как на витрине результатов. Фон полосы =
+        // узнаваемость, заливка = использование, риска делит заливку по
+        // «взяли бы снова» (использование × возврат: слева — вернувшиеся).
+        // При наведении — тултип со всеми метриками, сегмент под курсором
+        // подсвечивается (обработчики вешаются ниже, после innerHTML).
+        const sv = surveyOf(i.name);
+        const sLine = (k, label, val, hint) =>
+            val === null
+                ? ""
+                : `<div data-k="${k}"><span>${label}${hint ? ` <em>${hint}</em>` : ""}</span><b>${val}%</b></div>`;
+        const surveyBar =
+            sv && sv.used !== null
+                ? `<div class="srange detail__srange">
+          <span class="sr-known" style="width:${sv.known}%"></span>
+          <span class="sr-used" style="width:${sv.used}%"></span>
+          ${sv.loyal !== null ? `<span class="sr-tick" style="left:${(sv.used * sv.loyal) / 100}%"></span>` : ""}
+          <div class="detail__stip" hidden>
+            ${sLine("known", "Слышали или работали", sv.known)}
+            ${sLine("used", "Работали", sv.used)}
+            ${sLine("loyal", "Взяли бы снова", sv.loyal, "из работавших")}
+            ${sLine("want", "Хотят попробовать", sv.want, "из слышавших")}
+            <div class="stip-n">${sv.n} ${plural(sv.n, "ответ", "ответа", "ответов")} в опросе</div>
+          </div>
+        </div>`
+                : "";
 
         dlg.querySelector(".detail__body").innerHTML = `
       <button class="detail__close" aria-label="Закрыть">✕</button>
@@ -105,6 +138,7 @@
           ${row("С чего начать", startInner)}
           ${row("Аналоги", analogsInner ? `<div class="detail__rels">${analogsInner}</div>` : "")}
           ${row("Зависимости", dependsInner ? `<div class="detail__rels">${dependsInner}</div>` : "")}
+          ${surveyBar}
           ${row("Роль", i.roles && i.roles.length ? `<div class="detail__tags">${tags(i.roles)}</div>` : "")}
           ${row("Контекст", i.contexts && i.contexts.length ? `<div class="detail__tags">${tags(i.contexts)}</div>` : "")}
         </div>
@@ -139,6 +173,41 @@
                 openDetail(D.items[+btn.dataset.i]),
             ),
         );
+        // Полоса опроса: тултип при наведении, подсветка метрики под курсором
+        // (геометрия как на витрине: у риски широкая зона попадания ±7px).
+        // На тач-экранах наведения нет — тултип переключается тапом по полосе.
+        const srange = dlg.querySelector(".detail__srange");
+        if (srange) {
+            const stip = srange.querySelector(".detail__stip");
+            const hi = (k) =>
+                stip
+                    .querySelectorAll("[data-k]")
+                    .forEach((d) =>
+                        d.classList.toggle("is-hi", d.dataset.k === k),
+                    );
+            srange.addEventListener("mousemove", (e) => {
+                stip.hidden = false;
+                const r = srange.getBoundingClientRect();
+                const x = e.clientX - r.left;
+                const xpc = (x / r.width) * 100;
+                let k = null;
+                if (
+                    sv.loyal !== null &&
+                    Math.abs(x - (r.width * sv.used * sv.loyal) / 10000) <= 7
+                )
+                    k = "loyal";
+                else if (xpc <= sv.used) k = "used";
+                else if (xpc <= sv.known) k = "known";
+                hi(k);
+            });
+            srange.addEventListener("mouseleave", () => (stip.hidden = true));
+            if (matchMedia("(pointer: coarse)").matches)
+                srange.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    stip.hidden = !stip.hidden;
+                    hi(null);
+                });
+        }
         // Шапка схлопывается при прокрутке. Гистерезис (24/4) + запас по
         // переполнению, иначе схлопывание само убирает скролл и шапка дергается
         const scroll = dlg.querySelector(".detail__scroll");

@@ -1197,6 +1197,90 @@ a {
     gap: 6px;
 }
 
+/* Полоса опроса (общий компонент карточки и модалки), как на витрине:
+   фон = узнаваемость, заливка = использование, риска = «взяли бы снова» */
+.srange {
+    position: relative;
+    background: var(--paper);
+    border: 1px solid var(--edge);
+}
+.srange .sr-known,
+.srange .sr-used {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+.srange .sr-known {
+    background: color-mix(in srgb, var(--ink) 18%, var(--paper));
+}
+.srange .sr-used {
+    background: var(--ink);
+}
+.srange .sr-tick {
+    position: absolute;
+    top: -3px;
+    width: 3px;
+    height: calc(100% + 6px);
+    margin-left: -1.5px;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+}
+/* в модалке — под «Зависимостями», числа в тултипе при наведении */
+.detail__srange {
+    height: 14px;
+    margin: 4px 0 20px;
+    cursor: help;
+}
+/* на карточке доски — тонкая, между описанием и бейджами */
+.card__srange {
+    height: 5px;
+    margin: 2px 0;
+}
+.card__srange .sr-tick {
+    top: -2px;
+    width: 2px;
+    height: calc(100% + 4px);
+    margin-left: -1px;
+}
+/* Тултип полосы: панель над шкалой (внизу модалки может не хватить места),
+   курсор не ловит (иначе мерцание) */
+.detail__stip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 0;
+    z-index: 5;
+    min-width: 240px;
+    padding: 10px 12px;
+    background: var(--card, var(--paper));
+    border: 1px solid var(--ink);
+    font-size: 12px;
+    line-height: 1.5;
+    pointer-events: none;
+}
+.detail__stip > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 1px 5px;
+}
+.detail__stip em {
+    font-style: normal;
+    font-size: 10px;
+    color: var(--ink-soft);
+}
+.detail__stip b {
+    font-variant-numeric: tabular-nums;
+}
+.detail__stip .is-hi {
+    background: var(--line);
+}
+.detail__stip .stip-n {
+    margin-top: 4px;
+    font-size: 11px;
+    color: var(--ink-soft);
+}
+
 /* Связанные карточки — квадратные кнопки с лого */
 .detail__rels {
     display: flex;
@@ -1237,6 +1321,13 @@ a {
 .detail__rel::after {
     content: "\2197\FE0E";
     opacity: 0.5;
+}
+/* «взяли бы снова» аналога из опроса — приглушенно, цвет наследует hover */
+.detail__rel-loyal {
+    font-size: 10px;
+    font-weight: 700;
+    opacity: 0.55;
+    font-variant-numeric: tabular-nums;
 }
 .detail__rel:hover {
     background: var(--ink);
