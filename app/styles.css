@@ -2142,6 +2142,11 @@ a {
     width: 100%;
     height: auto;
 }
+/* Разъезд блоков и колонок при перетаскивании (превью раскладки) */
+.scheme-blk,
+.scheme-cat {
+    transition: transform 0.22s ease;
+}
 .scheme-wrap__empty {
     padding: 60px 20px;
     text-align: center;

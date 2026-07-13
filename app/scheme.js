@@ -27,6 +27,30 @@
     })();
     const hiddenBlocks = new Set(); // блоки, скрытые из схемы (чекбоксы «Блоки»)
     const logoCache = {}; // file -> dataURI | null
+    let qrCode = null; // инлайн-QR для шапки постера (грузится с логотипами)
+    let landscape = true; // ориентация постера: ландшафт / портрет
+    let placed = []; // позиции блоков последнего рендера (для перетаскивания)
+    let placedCats = []; // позиции колонок-категорий последнего рендера
+    let placedBands = []; // зазоры между полками (слоты «новая полка»)
+    let lastShelves = []; // текущее разбиение по полкам (имена блоков)
+    // Ручная раскладка полок ландшафта (перетаскивание блоков): массив полок
+    // с именами блоков; null — автоподбор. Портрет всегда стопкой. localStorage
+    let shelvesMan = null;
+    try {
+        const saved = JSON.parse(localStorage.getItem("schemeShelves"));
+        if (Array.isArray(saved)) shelvesMan = saved;
+        else if (saved && Array.isArray(saved.land)) shelvesMan = saved.land;
+    } catch (e) {}
+    const saveShelves = () =>
+        localStorage.setItem("schemeShelves", JSON.stringify(shelvesMan));
+    let catOrder = {}; // имя блока -> порядок его категорий
+    try {
+        const saved = JSON.parse(localStorage.getItem("schemeCatOrder"));
+        if (saved && typeof saved === "object" && !Array.isArray(saved))
+            catOrder = saved;
+    } catch (e) {}
+    const saveCatOrder = () =>
+        localStorage.setItem("schemeCatOrder", JSON.stringify(catOrder));
     let svgW = 0,
         svgH = 0;
     let logosReady = false; // логотипы догрузились; до этого на их местах — плейсхолдеры
@@ -44,7 +68,14 @@
         const tree = [];
         D.blocks.forEach((block) => {
             if (hiddenBlocks.has(block.name)) return;
-            const cats = block.categories
+            // Порядок категорий: сохраненный пользователем, новые — в конец
+            let names = block.categories;
+            const savedCats = catOrder[block.name];
+            if (Array.isArray(savedCats)) {
+                const valid = savedCats.filter((c) => names.includes(c));
+                names = valid.concat(names.filter((c) => !valid.includes(c)));
+            }
+            const cats = names
                 .map((cat) => ({
                     cat,
                     items: D.items
@@ -283,6 +314,12 @@
         const files = [...new Set(D.items.map((i) => i.logo).filter(Boolean))];
         const uris = await Promise.all(files.map((f, i) => loadLogo(f, i)));
         files.forEach((f, k) => (logoCache[f] = uris[k]));
+        // QR-код на сайт для шапки постера — готовый app/qr.svg
+        // (копия promo/qr-landscape1c-mark.svg), инлайнится как логотипы
+        try {
+            const res = await fetch("qr.svg");
+            if (res.ok) qrCode = processSVG(await res.text(), "qr_");
+        } catch (e) {}
     }
 
     // ── Отборы (как в графе: роль + зрелость, пусто = все) ──
@@ -371,6 +408,40 @@
         group.append(label, btn, panel);
         togglesBox.appendChild(group);
     }
+    // Тумблер ориентации листа: ландшафт (по умолчанию) или портрет.
+    // Не отбор — кнопка «Сбросить» его не трогает
+    function buildLayoutControl() {
+        const group = document.createElement("div");
+        group.className = "graph-fgroup scheme-lay";
+        const label = document.createElement("span");
+        label.className = "graph-flabel";
+        label.textContent = "Лист";
+        const chips = document.createElement("div");
+        chips.className = "scheme-chips";
+        [
+            ["ландшафт", true],
+            ["портрет", false],
+        ].forEach(([name, val]) => {
+            const b = document.createElement("button");
+            b.type = "button";
+            b.className = "chip";
+            b.textContent = name;
+            b.setAttribute("aria-pressed", String(landscape === val));
+            b.addEventListener("click", () => {
+                if (landscape === val) return;
+                landscape = val;
+                chips
+                    .querySelectorAll(".chip")
+                    .forEach((c) =>
+                        c.setAttribute("aria-pressed", String(c === b)),
+                    );
+                render();
+            });
+            chips.appendChild(b);
+        });
+        group.append(label, chips);
+        togglesBox.appendChild(group);
+    }
     // Кнопка «Сбросить» — показать всё снова (как на главной)
     let resetBtn;
     function refreshReset() {
@@ -384,9 +455,10 @@
         selMat.clear();
         window.LandscapeFilters.patch({ role: [], maturity: [] }); // снять и в сторе
         hiddenBlocks.clear();
-        togglesBox
-            .querySelectorAll(".chip")
-            .forEach((c) => c.setAttribute("aria-pressed", "false"));
+        togglesBox.querySelectorAll(".chip").forEach((c) => {
+            if (!c.closest(".scheme-lay"))
+                c.setAttribute("aria-pressed", "false");
+        });
         const ddBtn = togglesBox.querySelector(".scheme-dd__btn");
         if (ddBtn) ddBtn.textContent = "все";
         togglesBox
@@ -399,6 +471,7 @@
         buildGroup("Роль", ROLES, selRole, "role");
         buildGroup("Зрелость", D.axes.maturity.values, selMat, "maturity");
         buildBlocksControl();
+        buildLayoutControl();
         resetBtn = document.createElement("button");
         resetBtn.type = "button";
         resetBtn.className = "reset scheme-reset";
@@ -410,6 +483,9 @@
 
     // ── Раскладка и построение SVG ────────────
     // Древовидная схема: блок → шина → категории → вертикальные ветки к карточкам.
+    // Блоки рисуются в локальных координатах (renderBlock) и раскладываются
+    // полками: лента — каждый блок на своей полке (6 колонок, W = 1200),
+    // постер — перебор всех разбиений на полки, аспект ближе всего к листу (√2).
     function buildSVG() {
         const C = {
             paper: cssVar("--paper"),
@@ -422,17 +498,12 @@
         };
         const dark = document.documentElement.dataset.theme === "dark";
         const tree = currentTree();
+        if (!tree.length) return null; // нечего показывать
 
-        const W = 1200,
-            M = 32,
-            innerW = W - M * 2;
         // Колонка категории
         const colW = 176,
             colGap = 16;
-        const perRow = Math.max(
-            1,
-            Math.floor((innerW + colGap) / (colW + colGap)),
-        );
+        const M = 32;
         // Карточка инструмента
         const logoSz = 20,
             cardPadX = 10,
@@ -448,13 +519,72 @@
             headGap = 16,
             catLineH = 14,
             catPadY = 7;
+        const hGap = 48, // зазор между блоками на полке
+            vGap = 44; // зазор между полками
 
-        const out = [];
-        const line = (x1, yy1, x2, yy2) =>
-            out.push(
+        const line = (o, x1, yy1, x2, yy2) =>
+            o.push(
                 `<line x1="${x1}" y1="${yy1}" x2="${x2}" y2="${yy2}" stroke="${C.edge}" stroke-width="1.5"/>`,
             );
 
+        // Рендер блоков (drawColumn/renderBlock объявлены ниже, hoisting)
+        const blocks = tree.map(({ block, cats }) => renderBlock(block, cats));
+        const shelfW = (s) =>
+            s.reduce((a, b) => a + b.w, 0) + hGap * (s.length - 1);
+        const headH = 92; // шапка: заголовок, подзаголовок, QR
+        // Полки: ручная раскладка (если пользователь перетаскивал) или
+        // автоподбор — перебор всех 2^(n-1) разбиений с сохранением порядка;
+        // высота полки — самый высокий из ее блоков. Критерий автоподбора —
+        // аспект листа: ландшафт √2, портрет 1/√2
+        let shelves;
+        if (!landscape) {
+            // Портрет: каждый блок на своей полке, сверху вниз (как лента);
+            // перетаскиваются только категории внутри блоков
+            shelves = blocks.map((b) => [b]);
+        } else if (shelvesMan) {
+            const byName = {};
+            blocks.forEach((b) => (byName[b.name] = b));
+            shelves = shelvesMan
+                .map((row) => row.map((n) => byName[n]).filter(Boolean))
+                .filter((row) => row.length);
+            const seen = new Set(shelvesMan.flat());
+            blocks.forEach((b) => {
+                if (!seen.has(b.name)) shelves.push([b]); // новые блоки — вниз
+            });
+            if (!shelves.length) shelves = blocks.map((b) => [b]);
+        } else {
+            const target = Math.SQRT2;
+            let best = null,
+                best2 = null;
+            for (let mask = 0; mask < 1 << (blocks.length - 1); mask++) {
+                const sh = [[blocks[0]]];
+                for (let i = 1; i < blocks.length; i++) {
+                    if (mask & (1 << (i - 1))) sh.push([]);
+                    sh[sh.length - 1].push(blocks[i]);
+                }
+                const w = Math.max(...sh.map(shelfW)) + M * 2;
+                const h =
+                    M +
+                    headH +
+                    sh.reduce((a, s) => a + Math.max(...s.map((b) => b.h)), 0) +
+                    vGap * sh.length +
+                    M -
+                    18;
+                const d = Math.abs(w / h - target);
+                if (!best || d < best.d) best = { sh, d };
+                if (sh.length === 2 && (!best2 || d < best2.d))
+                    best2 = { sh, d };
+            }
+            // По умолчанию — две полки (предсказуемый постер, ближе к листу);
+            // больше полок пользователь добавляет сам перетаскиванием
+            shelves = (best2 || best).sh;
+        }
+        lastShelves = shelves.map((s) => s.map((b) => b.name));
+        // Не уже шапки (заголовок + QR), даже если остался один узкий блок
+        const W = Math.max(Math.max(...shelves.map(shelfW)) + M * 2, 720);
+        const innerW = W - M * 2;
+
+        const out = [];
         let y = M;
 
         // Знак проекта («рельеф на осях», как в nav.js) слева от заголовка;
@@ -478,22 +608,43 @@
         out.push(
             `<text x="${hx}" y="${y + 64}" font-family="Inter, sans-serif" font-weight="600" font-size="11" letter-spacing="1" fill="${C.inkSoft}">landscape1c.ru</text>`,
         );
+        // QR на сайт в правом углу шапки (появляется со вторым проходом).
+        // В темной теме не фильтр-инверсия, а подмена палитры файла на цвета
+        // темы — брендовый акцент остается терракотовым (сканеры читают и
+        // инвертированный QR, проверено)
+        if (qrCode) {
+            let qrInner = qrCode.inner;
+            if (dark)
+                qrInner = qrInner
+                    .replace(/#f7f5f0/gi, C.paper)
+                    .replace(/#ffffff/gi, C.card)
+                    .replace(/#1a1a1a/gi, C.ink)
+                    .replace(/#a83e18/gi, C.brand);
+            out.push(
+                `<svg x="${W - M - 88}" y="${y - 10}" width="88" height="88" viewBox="${qrCode.viewBox}">${qrInner}</svg>`,
+            );
+        }
         y += 92;
 
-        // Рисует колонку категории, возвращает нижнюю границу
-        function drawColumn(colX, topY, cat, items) {
+        // Рисует колонку категории в массив o, возвращает нижнюю границу
+        function drawColumn(o, colX, topY, cat, items) {
             const cx = colX + colW / 2;
-            // Заголовок категории (карточка, перенос до 2 строк)
+            // Заголовок категории (карточка, перенос до 2 строк) — за него
+            // колонка перетаскивается внутри блока
             const catLines = wrapText(cat, colW - 20, "700", 11, 2);
             const catBoxH = catLines.length * catLineH + catPadY * 2;
-            out.push(
+            o.push(
+                `<g class="scheme-cat-bar" style="cursor:grab;touch-action:none">`,
+            );
+            o.push(
                 `<rect x="${colX}" y="${topY}" width="${colW}" height="${catBoxH}" rx="6" fill="${C.ink}"/>`,
             );
             catLines.forEach((ln, li) => {
-                out.push(
+                o.push(
                     `<text x="${cx}" y="${topY + catPadY + catLineH / 2 + li * catLineH}" text-anchor="middle" dominant-baseline="central" font-family="Inter, sans-serif" font-weight="700" font-size="11" fill="${C.paper}">${esc(ln)}</text>`,
                 );
             });
+            o.push(`</g>`);
 
             let cy = topY + catBoxH;
             let prevBottom = cy; // откуда тянуть вертикальную ветку
@@ -507,18 +658,18 @@
                     subFont,
                 );
                 const dMid = cy + cardGap + 8; // линия текста разделителя
-                line(cx, prevBottom, cx, dMid - 8); // ветка до разделителя
+                line(o, cx, prevBottom, cx, dMid - 8); // ветка до разделителя
                 const half =
                     (measure(label, "700", subFont) + label.length * 0.8) / 2 +
                     8;
-                out.push(
+                o.push(
                     `<text x="${cx}" y="${dMid}" text-anchor="middle" dominant-baseline="central" font-family="Inter, sans-serif" font-weight="700" font-size="${subFont}" letter-spacing="0.8" fill="${C.inkSoft}">${esc(label)}</text>`,
                 );
                 if (cx - half > colX) {
-                    out.push(
+                    o.push(
                         `<line x1="${colX}" y1="${dMid}" x2="${cx - half}" y2="${dMid}" stroke="${C.cardLine}" stroke-width="1"/>`,
                     );
-                    out.push(
+                    o.push(
                         `<line x1="${cx + half}" y1="${dMid}" x2="${colX + colW}" y2="${dMid}" stroke="${C.cardLine}" stroke-width="1"/>`,
                     );
                 }
@@ -533,12 +684,12 @@
                 );
                 const cardY = cy + cardGap;
                 // ветка: вертикаль от предыдущего низа к верху карточки
-                line(cx, prevBottom, cx, cardY);
+                line(o, cx, prevBottom, cx, cardY);
                 // карточка (кликабельна → openDetail)
-                out.push(
+                o.push(
                     `<g class="scheme-card" data-i="${D.items.indexOf(it)}" style="cursor:pointer">`,
                 );
-                out.push(
+                o.push(
                     `<rect x="${colX}" y="${cardY}" width="${colW}" height="${cardH}" rx="7" fill="${C.card}" stroke="${C.cardLine}" stroke-width="1"/>`,
                 );
                 const lg = it.logo ? logoCache[it.logo] : null;
@@ -547,20 +698,20 @@
                 const flt =
                     dark && it.logoInvert ? ` filter="url(#schInv)"` : "";
                 if (lg && lg.type === "svg") {
-                    out.push(
+                    o.push(
                         `<svg x="${lx}" y="${ly}" width="${logoSz}" height="${logoSz}" viewBox="${lg.viewBox}" preserveAspectRatio="xMidYMid meet"${flt}>${lg.inner}</svg>`,
                     );
                 } else if (lg && lg.type === "img") {
-                    out.push(
+                    o.push(
                         `<image x="${lx}" y="${ly}" width="${logoSz}" height="${logoSz}" xlink:href="${lg.uri}" preserveAspectRatio="xMidYMid meet"${flt}/>`,
                     );
                 } else if (it.logo && !logosReady) {
                     // лого еще грузится — пульсирующий плейсхолдер на его месте
-                    out.push(
+                    o.push(
                         `<circle class="sch-logo-skel" cx="${lx + logoSz / 2}" cy="${cardY + cardH / 2}" r="${logoSz / 2}" fill="${C.cardLine}"/>`,
                     );
                 } else {
-                    out.push(
+                    o.push(
                         `<text x="${lx + logoSz / 2}" y="${cardY + cardH / 2}" text-anchor="middle" dominant-baseline="central" font-family="Unbounded, sans-serif" font-weight="700" font-size="9" fill="${C.inkSoft}">1С</text>`,
                     );
                 }
@@ -568,11 +719,11 @@
                 const ty0 =
                     cardY + cardH / 2 - ((nameLines.length - 1) * lineH) / 2;
                 nameLines.forEach((ln, li) => {
-                    out.push(
+                    o.push(
                         `<text x="${tx}" y="${ty0 + li * lineH}" dominant-baseline="central" font-family="Inter, sans-serif" font-weight="500" font-size="${cardFont}" fill="${C.ink}">${esc(ln)}</text>`,
                     );
                 });
-                out.push(`</g>`);
+                o.push(`</g>`);
                 cy = cardY + cardH;
                 prevBottom = cy;
             };
@@ -583,52 +734,105 @@
             return { bottom: cy, headCenterX: cx };
         }
 
-        tree.forEach(({ block, cats }) => {
-            const rows = chunk(cats, perRow);
-            // Заголовок-полоса блока над первым рядом (по ширине ряда)
+        // Блок в локальных координатах (0,0 — левый верх полосы блока):
+        // полоса-заголовок (за нее блок перетаскивается), шина, ряды категорий
+        function renderBlock(block, cats) {
+            const o = [];
+            const rows = chunk(cats, 8); // ряд не шире 8 колонок
+            // первый ряд всегда самый широкий — он задает ширину бокса
             const firstN = rows[0].length;
             const span = firstN * colW + (firstN - 1) * colGap;
-            const barW = Math.max(span, 220);
-            const barX = M + (innerW - barW) / 2;
-            const barY = y;
-            out.push(
-                `<rect x="${barX}" y="${barY}" width="${barW}" height="${blockBarH}" rx="4" fill="${C.ink}"/>`,
+            const bw = Math.max(span, 220);
+            const cx0 = bw / 2;
+            // Полоса — ручка перетаскивания блока (только в ландшафте)
+            o.push(
+                `<g class="scheme-blk-bar" style="${landscape ? "cursor:grab;touch-action:none" : ""}">` +
+                    `<rect x="0" y="0" width="${bw}" height="${blockBarH}" rx="4" fill="${C.ink}"/>` +
+                    `<text x="${cx0}" y="${blockBarH / 2}" text-anchor="middle" dominant-baseline="central" font-family="Unbounded, sans-serif" font-weight="700" font-size="15" fill="${C.paper}">${esc(block.name)}</text>` +
+                    `</g>`,
             );
-            out.push(
-                `<text x="${barX + barW / 2}" y="${barY + blockBarH / 2}" text-anchor="middle" dominant-baseline="central" font-family="Unbounded, sans-serif" font-weight="700" font-size="15" fill="${C.paper}">${esc(block.name)}</text>`,
-            );
-
-            const busY = barY + blockBarH + busGap;
+            const busY = blockBarH + busGap;
             const headTopY = busY + headGap;
             // вертикаль от полосы блока вниз к шине
-            line(M + innerW / 2, barY + blockBarH, M + innerW / 2, busY);
-
+            line(o, cx0, blockBarH, cx0, busY);
             let rowTop = headTopY;
+            const catBoxes = []; // позиции колонок внутри блока (для слотов)
             rows.forEach((row, ri) => {
                 const n = row.length;
                 const sp = n * colW + (n - 1) * colGap;
-                const sx = M + (innerW - sp) / 2;
+                const sx = cx0 - sp / 2;
                 const centers = [];
                 let maxBottom = rowTop;
                 row.forEach((c, ci) => {
                     const colX = sx + ci * (colW + colGap);
-                    const r = drawColumn(colX, rowTop, c.cat, c.items);
+                    o.push(`<g class="scheme-cat" data-cat="${esc(c.cat)}">`);
+                    const r = drawColumn(o, colX, rowTop, c.cat, c.items);
+                    o.push(`</g>`);
                     centers.push(r.headCenterX);
+                    catBoxes.push({
+                        cat: c.cat,
+                        x: colX,
+                        y: rowTop,
+                        w: colW,
+                        h: r.bottom - rowTop,
+                    });
                     if (r.bottom > maxBottom) maxBottom = r.bottom;
                 });
                 // шина блок→категории только для первого ряда
                 if (ri === 0 && centers.length) {
                     const left = centers[0],
                         right = centers[centers.length - 1];
-                    if (right > left) line(left, busY, right, busY);
-                    centers.forEach((cx) => line(cx, busY, cx, headTopY));
+                    if (right > left) line(o, left, busY, right, busY);
+                    centers.forEach((cx) => line(o, cx, busY, cx, headTopY));
                 }
                 rowTop = maxBottom + 34;
             });
-            y = rowTop + 10;
-        });
+            return {
+                name: block.name,
+                svg: o.join(""),
+                w: bw,
+                h: rowTop - 34,
+                cats: catBoxes,
+            };
+        }
 
-        if (out.length <= 2) return null; // только заголовок постера — нечего показывать
+        // Полки: блоки слева направо, полка по центру, следующая — под самой
+        // высокой из блоков полки. Позиции запоминаем для перетаскивания
+        placed = [];
+        placedCats = [];
+        placedBands = [];
+        shelves.forEach((shelf) => {
+            let x = M + (innerW - shelfW(shelf)) / 2;
+            let maxH = 0;
+            shelf.forEach((b) => {
+                out.push(
+                    `<g class="scheme-blk" data-b="${esc(b.name)}" transform="translate(${x} ${y})">${b.svg}</g>`,
+                );
+                placed.push({ name: b.name, x, y, w: b.w, h: b.h });
+                b.cats.forEach((c) =>
+                    placedCats.push({
+                        block: b.name,
+                        cat: c.cat,
+                        x: x + c.x,
+                        y: y + c.y,
+                        w: c.w,
+                        h: c.h,
+                    }),
+                );
+                x += b.w + hGap;
+                if (b.h > maxH) maxH = b.h;
+            });
+            y += maxH + vGap;
+        });
+        // Единственный слот «новая полка» — зона под последней полкой
+        // (подсвечивается только при перетаскивании блока)
+        placedBands.push({
+            index: shelves.length,
+            x: M,
+            y: y - vGap,
+            w: innerW,
+            h: vGap,
+        });
 
         const H = Math.round(y + M - 18);
         svgW = W;
@@ -648,6 +852,14 @@
         wrap.innerHTML = svg
             ? svg
             : '<div class="scheme-wrap__empty">Ничего не найдено</div>';
+        // Дублируем позицию блока в style.transform: CSS-переход при
+        // перетаскивании стартует от нее, а не от identity (иначе первый
+        // разъезд «слетался» из левого верхнего угла). Атрибут transform
+        // остается для экспорта (Illustrator не читает CSS)
+        placed.forEach((b) => {
+            const g = wrap.querySelector(`.scheme-blk[data-b="${b.name}"]`);
+            if (g) g.style.transform = `translate(${b.x}px, ${b.y}px)`;
+        });
     }
 
     // ── Экспорт ───────────────────────────────
@@ -704,9 +916,11 @@
             c.toBlob((b) => download(b, "landscape-scheme.png"), "image/png"),
         );
     }
-    // PDF: растровый (JPEG внутри PDF, /DCTDecode) — без зависимостей
+    // PDF: растровый (JPEG внутри PDF, /DCTDecode) — без зависимостей.
+    // Растр покрупнее, чтобы годился и в печать (~300 dpi на А1)
     function exportPDF() {
-        rasterize(2, cssVar("--paper") || "#ffffff", (c) =>
+        const scale = Math.min(3, 16000 / Math.max(svgW, svgH)); // лимит стороны canvas у Safari
+        rasterize(scale, cssVar("--paper") || "#ffffff", (c) =>
             c.toBlob(
                 (blob) =>
                     blob
@@ -947,6 +1161,296 @@
         const g = e.target.closest(".scheme-card");
         if (g && window.openDetail) window.openDetail(D.items[+g.dataset.i]);
     });
+
+    // ── Перетаскивание блоков и категорий ─────
+    // Блок тянется за свою полосу-заголовок, колонка категории — за темную
+    // шапку (только внутри своего блока). Слоты дискретные: место другого
+    // блока (левая половина — перед ним, правая — после) или зазор между
+    // полками — выделить в новую полку. Превью живое: остальные блоки
+    // анимированно разъезжаются (CSS transition), пунктир показывает слот
+    // перетаскиваемого. Раскладка фиксируется на отпускании; до этого
+    // ничего не мутируется, так что pointercancel — просто перерисовка
+    (function initDrag() {
+        let drag = null; // {kind, name, block?, offX, offY, moved, preview, hintBox}
+        const svgPoint = (e) => {
+            const svg = wrap.querySelector("svg");
+            if (!svg) return null;
+            const p = svg.createSVGPoint();
+            p.x = e.clientX;
+            p.y = e.clientY;
+            return p.matrixTransform(svg.getScreenCTM().inverse());
+        };
+        const inBox = (pt, b) =>
+            pt.x >= b.x &&
+            pt.x <= b.x + b.w &&
+            pt.y >= b.y &&
+            pt.y <= b.y + b.h;
+        // Слот под указателем — по геометрии исходной раскладки (placed*
+        // во время перетаскивания не пересчитываются, поэтому стабильно)
+        function slotAt(d, pt) {
+            if (!pt) return null;
+            if (d.kind === "block") {
+                const b = placed.find((b) => b.name !== d.name && inBox(pt, b));
+                if (b) return { target: b.name, after: pt.x > b.x + b.w / 2 };
+                const band = placedBands.find((b) => inBox(pt, b));
+                return band ? { band: band.index } : null;
+            }
+            const c = placedCats.find(
+                (c) => c.block === d.block && c.cat !== d.name && inBox(pt, c),
+            );
+            return c ? { target: c.cat, after: pt.x > c.x + c.w / 2 } : null;
+        }
+        // Пунктирная рамка на слоте, куда встанет перетаскиваемый
+        function showHint(s) {
+            const svg = wrap.querySelector("svg");
+            if (!svg) return;
+            let r = svg.querySelector("#schemeDropHint");
+            if (!r) {
+                r = document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "rect",
+                );
+                r.id = "schemeDropHint";
+                r.setAttribute("fill", "none");
+                r.setAttribute("stroke", cssVar("--brand") || "#a83e18");
+                r.setAttribute("stroke-width", "2.5");
+                r.setAttribute("stroke-dasharray", "8 6");
+                r.setAttribute("rx", "8");
+                r.setAttribute("pointer-events", "none");
+                svg.appendChild(r);
+            }
+            r.setAttribute("x", s.x - 5);
+            r.setAttribute("y", s.y - 5);
+            r.setAttribute("width", s.w + 10);
+            r.setAttribute("height", s.h + 10);
+        }
+        const hideHint = () => {
+            const r = wrap.querySelector("#schemeDropHint");
+            if (r) r.remove();
+        };
+        // Зона «+ новая полка» под постером: появляется только пока тянешь
+        // блок — полка добавляется осознанно, а не случайным зазором.
+        // Холст на время растягивается, чтобы превью новой полки было видно
+        function showZone() {
+            const svg = wrap.querySelector("svg");
+            const b = placedBands[0];
+            if (!svg || !b || svg.querySelector("#schemeShelfZone")) return;
+            const extra = (placedOf(drag) || { h: 0 }).h;
+            svg.setAttribute("height", svgH + extra);
+            svg.setAttribute("viewBox", `0 0 ${svgW} ${svgH + extra}`);
+            const g = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "g",
+            );
+            g.id = "schemeShelfZone";
+            g.setAttribute("pointer-events", "none");
+            g.innerHTML =
+                `<rect x="${b.x}" y="${b.y + 6}" width="${b.w}" height="${b.h - 10}" rx="8" fill="none" stroke="${cssVar("--edge") || "#c8c3bb"}" stroke-width="1.5" stroke-dasharray="6 6"/>` +
+                `<text x="${b.x + b.w / 2}" y="${b.y + b.h / 2 + 1}" text-anchor="middle" dominant-baseline="central" font-family="Inter, sans-serif" font-size="11" fill="${cssVar("--ink-soft") || "#666666"}">+ новая полка</text>`;
+            svg.appendChild(g);
+        }
+        const hideZone = () => {
+            const z = wrap.querySelector("#schemeShelfZone");
+            if (z) z.remove();
+        };
+        const placedOf = (d) =>
+            d.kind === "block"
+                ? placed.find((b) => b.name === d.name)
+                : placedCats.find(
+                      (c) => c.block === d.block && c.cat === d.name,
+                  );
+        const gOf = (d) =>
+            d.kind === "block"
+                ? wrap.querySelector(`.scheme-blk[data-b="${d.name}"]`)
+                : wrap.querySelector(
+                      `.scheme-blk[data-b="${d.block}"] .scheme-cat[data-cat="${d.name}"]`,
+                  );
+        // Новое разбиение полок после переноса блока в слот
+        function moveBlockTo(rows0, name, slot) {
+            const stripped = rows0.map((r) => r.filter((n) => n !== name));
+            let rows;
+            if (slot.band !== undefined) {
+                rows = [];
+                stripped.forEach((r, i) => {
+                    if (i === slot.band) rows.push([name]);
+                    if (r.length) rows.push(r);
+                });
+                if (slot.band >= stripped.length) rows.push([name]);
+            } else {
+                rows = stripped.map((r) => r.slice());
+                for (const r of rows) {
+                    const i = r.indexOf(slot.target);
+                    if (i !== -1) {
+                        r.splice(i + (slot.after ? 1 : 0), 0, name);
+                        break;
+                    }
+                }
+                rows = rows.filter((r) => r.length);
+            }
+            return rows;
+        }
+        // Позиции блоков для разбиения — та же математика, что раскладка
+        // полок в buildSVG (константы держать в согласии с ней)
+        function blockPositions(rows) {
+            const M = 32,
+                hGap = 48,
+                vGap = 44;
+            const dims = {};
+            placed.forEach((b) => (dims[b.name] = b));
+            const innerW = svgW - M * 2;
+            const pos = {};
+            let y = M + 92;
+            rows.forEach((row) => {
+                const sw =
+                    row.reduce((a, n) => a + dims[n].w, 0) +
+                    hGap * (row.length - 1);
+                let x = M + (innerW - sw) / 2;
+                let maxH = 0;
+                row.forEach((n) => {
+                    pos[n] = { x, y, w: dims[n].w, h: dims[n].h };
+                    x += dims[n].w + hGap;
+                    if (dims[n].h > maxH) maxH = dims[n].h;
+                });
+                y += maxH + vGap;
+            });
+            return pos;
+        }
+        // Превью: разъезд существующих узлов CSS-трансформами (анимируется
+        // через transition в styles.css), без перерисовки SVG.
+        // Возвращает бокс слота перетаскиваемого — для пунктира
+        function previewBlocks(rows) {
+            const pos = blockPositions(rows);
+            placed.forEach((b) => {
+                if (b.name === drag.name) return;
+                const p = pos[b.name];
+                const g = wrap.querySelector(`.scheme-blk[data-b="${b.name}"]`);
+                if (g && p) g.style.transform = `translate(${p.x}px, ${p.y}px)`;
+            });
+            return pos[drag.name];
+        }
+        function previewCats(list) {
+            // колонки одного блока одинаковой ширины: боксы-слоты неподвижны,
+            // по ним раскладываются колонки в новом порядке
+            const boxes = placedCats.filter((c) => c.block === drag.block);
+            const slotOf = {};
+            list.forEach((cat, i) => (slotOf[cat] = boxes[i]));
+            boxes.forEach((c) => {
+                if (c.cat === drag.name) return;
+                const t = slotOf[c.cat];
+                const g = wrap.querySelector(
+                    `.scheme-blk[data-b="${drag.block}"] .scheme-cat[data-cat="${c.cat}"]`,
+                );
+                if (g && t)
+                    g.style.transform = `translate(${t.x - c.x}px, ${t.y - c.y}px)`;
+            });
+            return slotOf[drag.name];
+        }
+        const moveInList = (list, name, slotName, after) => {
+            const l = list.filter((n) => n !== name);
+            l.splice(l.indexOf(slotName) + (after ? 1 : 0), 0, name);
+            return l;
+        };
+        wrap.addEventListener("pointerdown", (e) => {
+            const catBar = e.target.closest(".scheme-cat-bar");
+            const blkBar = catBar ? null : e.target.closest(".scheme-blk-bar");
+            if (!catBar && !blkBar) return;
+            if (blkBar && !landscape) return; // в портрете блоки не двигаются
+            const pt = svgPoint(e);
+            if (!pt) return;
+            let d;
+            if (catBar) {
+                const cg = catBar.closest(".scheme-cat");
+                const bg = catBar.closest(".scheme-blk");
+                if (!cg || !bg) return;
+                d = { kind: "cat", name: cg.dataset.cat, block: bg.dataset.b };
+            } else {
+                const g = blkBar.closest(".scheme-blk");
+                if (!g) return;
+                d = { kind: "block", name: g.dataset.b };
+            }
+            const p = placedOf(d);
+            if (!p) return;
+            drag = Object.assign(d, {
+                offX: pt.x - p.x, // хват: смещение указателя от угла элемента
+                offY: pt.y - p.y,
+                x0: pt.x,
+                y0: pt.y,
+                moved: false,
+                preview: null, // последняя показанная раскладка (фиксируется на drop)
+                hintBox: null,
+            });
+            e.preventDefault();
+        });
+        window.addEventListener("pointermove", (e) => {
+            if (!drag) return;
+            const pt = svgPoint(e);
+            if (!pt) return;
+            if (!drag.moved && Math.hypot(pt.x - drag.x0, pt.y - drag.y0) < 6)
+                return; // порог от случайных кликов
+            if (!drag.moved) {
+                drag.moved = true;
+                if (drag.kind === "block") showZone();
+            }
+            // Навели на слот — соседи разъезжаются, показывая будущее место
+            const s = slotAt(drag, pt);
+            if (s) {
+                if (drag.kind === "block") {
+                    drag.preview = moveBlockTo(lastShelves, drag.name, s);
+                    drag.hintBox = previewBlocks(drag.preview);
+                } else {
+                    const cur = placedCats
+                        .filter((c) => c.block === drag.block)
+                        .map((c) => c.cat);
+                    drag.preview = moveInList(
+                        cur,
+                        drag.name,
+                        s.target,
+                        s.after,
+                    );
+                    drag.hintBox = previewCats(drag.preview);
+                }
+            }
+            if (drag.hintBox) showHint(drag.hintBox);
+            // Перетаскиваемый следует за указателем поверх превью
+            const g = gOf(drag);
+            const p = placedOf(drag);
+            if (!g || !p) return;
+            g.style.transition = "none"; // за указателем — без анимации
+            const dx = pt.x - drag.offX,
+                dy = pt.y - drag.offY;
+            g.style.transform =
+                drag.kind === "block"
+                    ? `translate(${dx}px, ${dy}px)`
+                    : `translate(${dx - p.x}px, ${dy - p.y}px)`;
+            g.style.opacity = "0.75";
+        });
+        window.addEventListener("pointerup", () => {
+            if (!drag) return;
+            const d = drag;
+            drag = null;
+            if (!d.moved) return;
+            hideHint();
+            hideZone();
+            // Фиксируем последнее показанное превью
+            if (d.preview && d.kind === "block") {
+                shelvesMan = d.preview;
+                saveShelves();
+            } else if (d.preview) {
+                catOrder[d.block] = d.preview;
+                saveCatOrder();
+            }
+            render(); // снап: чистая перерисовка без временных трансформов
+        });
+        // Браузер прервал перетаскивание (например, системный жест).
+        // Раскладка не мутировалась — достаточно перерисовать
+        window.addEventListener("pointercancel", () => {
+            if (!drag) return;
+            drag = null;
+            hideHint();
+            hideZone();
+            render();
+        });
+    })();
 
     // Перерисовка при смене темы (инлайн-скрипт страницы меняет data-theme)
     new MutationObserver(render).observe(document.documentElement, {
