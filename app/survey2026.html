@@ -402,7 +402,8 @@
             }
             /* ── Инструменты: bullet-полосы, сгруппированные по блокам
                ландшафта. Фон полосы = узнаваемость, заливка = использование
-               (цвет блока), метка-риска = возврат ── */
+               (цвет блока), метка-риска делит заливку по возврату: слева от
+               нее — работавшие, кто взял бы снова (использование × возврат) ── */
             /* палитра заливки по блокам (порядок ландшафта) */
             .survey {
                 --blk-1: #1a4f8a;
@@ -1351,7 +1352,7 @@
                     `<span class="rng-known" style="width:${r.known}%"></span>` +
                     `<span class="rng-used" style="width:${r.used}%"></span>` +
                     (r.retention !== null
-                        ? `<span class="rng-tick" style="left:${r.retention}%"></span>`
+                        ? `<span class="rng-tick" style="left:${(r.used * r.retention) / 100}%"></span>`
                         : "") +
                     `</div>`;
                 $("#rng").innerHTML = groups
@@ -1400,7 +1401,9 @@
                         const xpc = (x / br.width) * 100;
                         if (
                             r.retention !== null &&
-                            Math.abs(x - (br.width * r.retention) / 100) <= 7
+                            Math.abs(
+                                x - (br.width * r.used * r.retention) / 10000,
+                            ) <= 7
                         )
                             seg = "retention";
                         else if (xpc <= r.used) seg = "used";
