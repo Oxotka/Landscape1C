@@ -57,8 +57,8 @@
         const stat =
             i.repo && window.REPOSTATS && window.REPOSTATS.repos[i.repo];
         const statBadges = stat
-            ? `<span class="badge badge--ghost" title="звезды репозитория">★ ${stat.stars.toLocaleString("ru-RU")}</span>` +
-              `<span class="badge badge--ghost" title="последний коммит ${stat.pushed}">коммит: ${new Date(stat.pushed).toLocaleDateString("ru-RU", { month: "long", year: "numeric" }).replace(" г.", "")}</span>`
+            ? `<span class="badge badge--ghost">★ ${stat.stars.toLocaleString("ru-RU")}</span>` +
+              `<span class="badge badge--ghost">коммит: ${new Date(stat.pushed).toLocaleDateString("ru-RU", { month: "long", year: "numeric" }).replace(" г.", "")}</span>`
             : "";
         const badges = [
             i.maturity
