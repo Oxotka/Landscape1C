@@ -10,10 +10,6 @@ window.REPOSTATS = {
       "stars": 274,
       "pushed": "2025-02-05"
     },
-    "https://github.com/1C-Company/GitConverter?ysclid=lse94qtufp676076754": {
-      "stars": 274,
-      "pushed": "2025-02-05"
-    },
     "https://github.com/1c-syntax/bsl-language-server": {
       "stars": 453,
       "pushed": "2026-07-13"
@@ -99,7 +95,7 @@ window.REPOSTATS = {
       "pushed": "2026-03-11"
     },
     "https://github.com/dani-garcia/vaultwarden": {
-      "stars": 63612,
+      "stars": 63613,
       "pushed": "2026-07-08"
     },
     "https://github.com/dbeaver/dbeaver": {
@@ -154,8 +150,12 @@ window.REPOSTATS = {
       "stars": 208,
       "pushed": "2026-06-23"
     },
+    "https://github.com/git/git": {
+      "stars": 61991,
+      "pushed": "2026-07-13"
+    },
     "https://github.com/goharbor/harbor": {
-      "stars": 28904,
+      "stars": 28905,
       "pushed": "2026-07-10"
     },
     "https://github.com/grafana/grafana": {
@@ -235,7 +235,7 @@ window.REPOSTATS = {
       "pushed": "2026-06-28"
     },
     "https://github.com/opf/openproject": {
-      "stars": 15550,
+      "stars": 15551,
       "pushed": "2026-07-13"
     },
     "https://github.com/oscript-library/1testrunner": {
@@ -271,7 +271,7 @@ window.REPOSTATS = {
       "pushed": "2026-06-10"
     },
     "https://github.com/sst/opencode": {
-      "stars": 185170,
+      "stars": 185173,
       "pushed": "2026-07-13"
     },
     "https://github.com/swagger-api/swagger-ui": {
@@ -279,7 +279,7 @@ window.REPOSTATS = {
       "pushed": "2026-07-11"
     },
     "https://github.com/usebruno/bruno": {
-      "stars": 45562,
+      "stars": 45563,
       "pushed": "2026-07-10"
     },
     "https://github.com/vanessa-opensource/add": {
@@ -312,7 +312,7 @@ window.REPOSTATS = {
     },
     "https://github.com/zabbix/zabbix": {
       "stars": 6046,
-      "pushed": "2026-07-10"
+      "pushed": "2026-07-13"
     },
     "https://gitlab.com/graphviz/graphviz": {
       "stars": 1463,

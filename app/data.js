@@ -1,6 +1,6 @@
 // Данные ландшафта (Вариант B). Сгенерировано редактором разметки (editor.html).
 window.LANDSCAPE = {
-  "updated": "8 июля 2026",
+  "updated": "13 июля 2026",
   "categories": [
     "Прототипирование",
     "Диаграммы",
@@ -1925,14 +1925,14 @@ window.LANDSCAPE = {
     {
       "name": "git",
       "added": "2026-06-07",
-      "updated": "2026-06-11",
+      "updated": "2026-07-13",
       "category": "Системы хранения версий",
       "subcategory": "Системы контроля версий",
       "logo": "git.svg",
       "description": "Распределенная система контроля версий — индустриальный стандарт",
       "why": "Используется для командной разработки, чтобы отслеживать версии кода. Используется при разработке в 1C:EDT",
       "homepage": "https://git-scm.com/book/ru/v2",
-      "repo": "https://github.com/1C-Company/GitConverter?ysclid=lse94qtufp676076754",
+      "repo": "https://github.com/git/git",
       "start": [
         {
           "label": "1С:EDT о git",
