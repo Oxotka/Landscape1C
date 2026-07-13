@@ -28,7 +28,12 @@
     const hiddenBlocks = new Set(); // блоки, скрытые из схемы (чекбоксы «Блоки»)
     const logoCache = {}; // file -> dataURI | null
     let qrCode = null; // инлайн-QR для шапки постера (грузится с логотипами)
-    let landscape = true; // ориентация постера: ландшафт / портрет
+    // Ориентация постера: ландшафт / портрет; на мобильном по умолчанию
+    // портрет — широкий лист на узком экране нечитаем
+    let landscape = !window.matchMedia("(max-width: 720px)").matches;
+    // Перетаскивание только для точного указателя: на таче оно дерется со
+    // скроллом и выделением текста
+    const dragOK = !window.matchMedia("(pointer: coarse)").matches;
     let placed = []; // позиции блоков последнего рендера (для перетаскивания)
     let placedCats = []; // позиции колонок-категорий последнего рендера
     let placedBands = []; // зазоры между полками (слоты «новая полка»)
@@ -634,7 +639,7 @@
             const catLines = wrapText(cat, colW - 20, "700", 11, 2);
             const catBoxH = catLines.length * catLineH + catPadY * 2;
             o.push(
-                `<g class="scheme-cat-bar" style="cursor:grab;touch-action:none">`,
+                `<g class="scheme-cat-bar" style="${dragOK ? "cursor:grab;touch-action:none" : ""}">`,
             );
             o.push(
                 `<rect x="${colX}" y="${topY}" width="${colW}" height="${catBoxH}" rx="6" fill="${C.ink}"/>`,
@@ -744,9 +749,9 @@
             const span = firstN * colW + (firstN - 1) * colGap;
             const bw = Math.max(span, 220);
             const cx0 = bw / 2;
-            // Полоса — ручка перетаскивания блока (только в ландшафте)
+            // Полоса — ручка перетаскивания блока (мышью и только в ландшафте)
             o.push(
-                `<g class="scheme-blk-bar" style="${landscape ? "cursor:grab;touch-action:none" : ""}">` +
+                `<g class="scheme-blk-bar" style="${dragOK && landscape ? "cursor:grab;touch-action:none" : ""}">` +
                     `<rect x="0" y="0" width="${bw}" height="${blockBarH}" rx="4" fill="${C.ink}"/>` +
                     `<text x="${cx0}" y="${blockBarH / 2}" text-anchor="middle" dominant-baseline="central" font-family="Unbounded, sans-serif" font-weight="700" font-size="15" fill="${C.paper}">${esc(block.name)}</text>` +
                     `</g>`,
@@ -1171,6 +1176,7 @@
     // перетаскиваемого. Раскладка фиксируется на отпускании; до этого
     // ничего не мутируется, так что pointercancel — просто перерисовка
     (function initDrag() {
+        if (!dragOK) return; // на таче не перетаскиваем
         let drag = null; // {kind, name, block?, offX, offY, moved, preview, hintBox}
         const svgPoint = (e) => {
             const svg = wrap.querySelector("svg");

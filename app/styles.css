@@ -2147,6 +2147,11 @@ a {
 .scheme-cat {
     transition: transform 0.22s ease;
 }
+/* Постер не выделяется текстом — иначе перетаскивание красит подписи */
+.scheme-wrap {
+    user-select: none;
+    -webkit-user-select: none;
+}
 .scheme-wrap__empty {
     padding: 60px 20px;
     text-align: center;
