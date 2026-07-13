@@ -53,6 +53,13 @@
                 ? `<div class="detail__row"><h3>${title}</h3>${inner}</div>`
                 : "";
 
+        // Авто-метрики репозитория (звезды, последний коммит) из repostats.js
+        const stat =
+            i.repo && window.REPOSTATS && window.REPOSTATS.repos[i.repo];
+        const statBadges = stat
+            ? `<span class="badge badge--ghost" title="звезды репозитория">★ ${stat.stars.toLocaleString("ru-RU")}</span>` +
+              `<span class="badge badge--ghost" title="последний коммит ${stat.pushed}">коммит: ${new Date(stat.pushed).toLocaleDateString("ru-RU", { month: "long", year: "numeric" }).replace(" г.", "")}</span>`
+            : "";
         const badges = [
             i.maturity
                 ? `<span class="badge badge--mat" data-mat="${i.maturity}" style="--mat:var(--m-${matKey(i.maturity)})">${i.maturity}</span>`
@@ -62,6 +69,7 @@
                 i.license,
                 i.availability === "ограничен" ? "ограничен" : "",
             ]),
+            statBadges,
         ].join("");
         const startInner =
             i.start && i.start.length

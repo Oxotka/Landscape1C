@@ -2,6 +2,9 @@
 # Prettier их не трогает, иначе сохранение из редактора даст шумный дифф.
 app/data.js
 
+# Генерируется scripts/repostats.js тем же 2-пробельным JSON
+app/repostats.js
+
 # Сборка и логотипы
 dist/
 app/logos/
