@@ -14,10 +14,6 @@ const EXCLUDE = new Set([
   "editor.html", "editor.js", "editor.css",   // редактор разметки — пишет в data.js, только локально
   ".DS_Store",
 ]);
-// Витрина опроса публикуется по URL /survey2026 (не через меню, noindex).
-// Старый тестовый адрес /test_survey оставляем копией — ранние ссылки живут.
-const COPY = { "survey2026.html": "test_survey.html" };
-
 // 1. Целостность данных — мусор на хостинг не выкладываем.
 execFileSync("node", [path.join(__dirname, "validate.js")], { stdio: "inherit" });
 
@@ -31,12 +27,6 @@ execFileSync("node", [path.join(__dirname, "cachebust.js")], { stdio: "inherit" 
 // 3. Чистим и копируем app/ → dist/ с фильтром.
 fs.rmSync(DIST, { recursive: true, force: true });
 fs.cpSync(APP, DIST, { recursive: true, filter: (src) => !EXCLUDE.has(path.basename(src)) });
-
-// 3б. Копии под дополнительными URL (витрина: /survey2026 + старый /test_survey).
-for (const [from, to] of Object.entries(COPY)) {
-  const src = path.join(DIST, from);
-  if (fs.existsSync(src)) fs.copyFileSync(src, path.join(DIST, to));
-}
 
 // 4. Сводка.
 const files = [];
