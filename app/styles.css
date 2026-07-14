@@ -1989,7 +1989,7 @@ a {
 /* Подвал — фиксированный снизу, как на других страницах (body{padding-bottom}). */
 .scheme-bar {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 12px;
     align-items: center;
     justify-content: space-between;
@@ -2113,6 +2113,7 @@ a {
 .scheme-actions {
     display: flex;
     gap: 8px;
+    flex-shrink: 0; /* «Скачать» всегда виден, отборы ужимаются первыми */
 }
 .scheme-btn {
     font-family: var(--body);
@@ -2185,8 +2186,30 @@ a {
     gap: 6px;
 }
 
-/* ── Отборы как попап (как в графе): на мобильном всегда, на десктопе —
-   при видимой шапке во время прокрутки. Открытие — кнопкой «Отборы». ── */
+/* Отборы в баре — строго в один ряд: не влезающие группы прячет JS
+   (fitToggles, класс is-cut); попап-дубль показывает все группы */
+.scheme-toggles:not(.is-open) {
+    flex-wrap: nowrap;
+    overflow: hidden;
+    min-width: 0;
+}
+.scheme-toggles:not(.is-open) .graph-fgroup {
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+}
+.scheme-toggles:not(.is-open) .scheme-chips {
+    flex-wrap: nowrap;
+}
+.scheme-toggles:not(.is-open) .graph-fgroup.is-cut {
+    display: none;
+}
+
+/* ── Отборы как попап: отдельный элемент-дубль панели (строит scheme.js),
+   открытый попап не «опустошает» панель в баре. Открытие — пунктом
+   «Отборы» в бургере (мобильный всегда; десктоп — когда часть срезана) ── */
+.scheme-toggles--popup:not(.is-open) {
+    display: none;
+}
 .scheme-toggles.is-open {
     position: fixed;
     top: 52px;
@@ -2309,6 +2332,9 @@ a {
 }
 .menu__page-actions--all {
     display: contents;
+}
+.menu__pa-item[hidden] {
+    display: none;
 }
 .menu__pa-item {
     font-family: var(--body);

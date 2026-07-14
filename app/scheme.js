@@ -328,7 +328,17 @@
     }
 
     // ── Отборы (как в графе: роль + зрелость, пусто = все) ──
-    function buildGroup(labelText, values, set, axis) {
+    // Контролы строятся дважды: в панель бара (togglesBox) и в попап-дубль
+    // (popupBox) — открытый попап не «опустошает» панель. Состояние общее
+    // (selRole/selMat/hiddenBlocks/landscape), вид обоих наборов после
+    // каждого изменения обновляет syncToggles по реестру syncFns
+    const popupBox = document.createElement("div");
+    popupBox.className = "scheme-toggles scheme-toggles--popup";
+    document.body.appendChild(popupBox);
+    const syncFns = [];
+    const syncToggles = () => syncFns.forEach((f) => f());
+
+    function buildGroup(box, labelText, values, set, axis) {
         const group = document.createElement("div");
         group.className = "graph-fgroup";
         const label = document.createElement("span");
@@ -341,21 +351,23 @@
             b.type = "button";
             b.className = "chip";
             b.textContent = val;
-            b.setAttribute("aria-pressed", String(set.has(val)));
+            syncFns.push(() =>
+                b.setAttribute("aria-pressed", String(set.has(val))),
+            );
             b.addEventListener("click", () => {
                 if (set.has(val)) set.delete(val);
                 else set.add(val);
-                b.setAttribute("aria-pressed", String(set.has(val)));
                 window.LandscapeFilters.patch({ [axis]: [...set] }); // унести
+                syncToggles();
                 render();
             });
             chips.appendChild(b);
         });
         group.append(label, chips);
-        togglesBox.appendChild(group);
+        box.appendChild(group);
     }
     // Выпадающий список «Блоки» с чекбоксами — какие блоки печатать
-    function buildBlocksControl() {
+    function buildBlocksControl(box) {
         const group = document.createElement("div");
         group.className = "graph-fgroup scheme-dd";
         const label = document.createElement("span");
@@ -369,7 +381,7 @@
         panel.className = "scheme-dd__panel";
         panel.hidden = true;
 
-        const updateBtn = () => {
+        syncFns.push(() => {
             btn.textContent =
                 hiddenBlocks.size === 0
                     ? "все"
@@ -378,17 +390,17 @@
                       " из " +
                       D.blocks.length;
             btn.setAttribute("aria-pressed", String(hiddenBlocks.size > 0));
-        };
+        });
 
         D.blocks.forEach((b) => {
             const row = document.createElement("label");
             const cb = document.createElement("input");
             cb.type = "checkbox";
-            cb.checked = !hiddenBlocks.has(b.name);
+            syncFns.push(() => (cb.checked = !hiddenBlocks.has(b.name)));
             cb.addEventListener("change", () => {
                 if (cb.checked) hiddenBlocks.delete(b.name);
                 else hiddenBlocks.add(b.name);
-                updateBtn();
+                syncToggles();
                 render();
             });
             row.appendChild(cb);
@@ -409,13 +421,12 @@
             }
         });
 
-        updateBtn();
         group.append(label, btn, panel);
-        togglesBox.appendChild(group);
+        box.appendChild(group);
     }
     // Тумблер ориентации листа: ландшафт (по умолчанию) или портрет.
     // Не отбор — кнопка «Сбросить» его не трогает
-    function buildLayoutControl() {
+    function buildLayoutControl(box) {
         const group = document.createElement("div");
         group.className = "graph-fgroup scheme-lay";
         const label = document.createElement("span");
@@ -431,27 +442,25 @@
             b.type = "button";
             b.className = "chip";
             b.textContent = name;
-            b.setAttribute("aria-pressed", String(landscape === val));
+            syncFns.push(() =>
+                b.setAttribute("aria-pressed", String(landscape === val)),
+            );
             b.addEventListener("click", () => {
                 if (landscape === val) return;
                 landscape = val;
-                chips
-                    .querySelectorAll(".chip")
-                    .forEach((c) =>
-                        c.setAttribute("aria-pressed", String(c === b)),
-                    );
+                syncToggles();
                 render();
             });
             chips.appendChild(b);
         });
         group.append(label, chips);
-        togglesBox.appendChild(group);
+        box.appendChild(group);
     }
     // Кнопка «Сбросить» — показать всё снова (как на главной)
-    let resetBtn;
+    let resetBtns = [];
     function refreshReset() {
         const active = !!(selRole.size || selMat.size || hiddenBlocks.size);
-        if (resetBtn) resetBtn.hidden = !active;
+        resetBtns.forEach((b) => (b.hidden = !active));
         const r2 = document.getElementById("reset2");
         if (r2) r2.hidden = !active;
     }
@@ -460,30 +469,51 @@
         selMat.clear();
         window.LandscapeFilters.patch({ role: [], maturity: [] }); // снять и в сторе
         hiddenBlocks.clear();
-        togglesBox.querySelectorAll(".chip").forEach((c) => {
-            if (!c.closest(".scheme-lay"))
-                c.setAttribute("aria-pressed", "false");
-        });
-        const ddBtn = togglesBox.querySelector(".scheme-dd__btn");
-        if (ddBtn) ddBtn.textContent = "все";
-        togglesBox
-            .querySelectorAll(".scheme-dd__panel input")
-            .forEach((cb) => (cb.checked = true));
+        syncToggles();
         render();
     }
     function renderToggles() {
-        togglesBox.innerHTML = "";
-        buildGroup("Роль", ROLES, selRole, "role");
-        buildGroup("Зрелость", D.axes.maturity.values, selMat, "maturity");
-        buildBlocksControl();
-        buildLayoutControl();
-        resetBtn = document.createElement("button");
-        resetBtn.type = "button";
-        resetBtn.className = "reset scheme-reset";
-        resetBtn.textContent = "Сбросить ✕";
-        resetBtn.hidden = true;
-        resetBtn.addEventListener("click", resetAll);
-        togglesBox.appendChild(resetBtn);
+        syncFns.length = 0;
+        resetBtns = [];
+        [togglesBox, popupBox].forEach((box) => {
+            box.innerHTML = "";
+            buildGroup(box, "Роль", ROLES, selRole, "role");
+            buildGroup(
+                box,
+                "Зрелость",
+                D.axes.maturity.values,
+                selMat,
+                "maturity",
+            );
+            buildBlocksControl(box);
+            buildLayoutControl(box);
+            const rb = document.createElement("button");
+            rb.type = "button";
+            rb.className = "reset scheme-reset";
+            rb.textContent = "Сбросить ✕";
+            rb.hidden = true;
+            rb.addEventListener("click", resetAll);
+            box.appendChild(rb);
+            resetBtns.push(rb);
+        });
+        syncToggles();
+    }
+    // Панель отборов в баре — один ряд: не влезающие группы прячутся с конца
+    // целиком (в попапе при этом есть все). Пункт «Отборы» в бургере на
+    // десктопе виден, только когда что-то срезано (на мобильном — всегда)
+    let burgerFilters; // пункт «Отборы» в бургере (создается в injectBurgerActions)
+    function fitToggles() {
+        const groups = [...togglesBox.querySelectorAll(".graph-fgroup")];
+        groups.forEach((g) => g.classList.remove("is-cut"));
+        for (let i = groups.length - 1; i >= 0; i--) {
+            if (togglesBox.scrollWidth - togglesBox.clientWidth < 2) break;
+            groups[i].classList.add("is-cut");
+        }
+        if (burgerFilters) {
+            const mobile = getComputedStyle(togglesBox).display === "none";
+            burgerFilters.hidden =
+                !mobile && !togglesBox.querySelector(".is-cut");
+        }
     }
 
     // ── Раскладка и построение SVG ────────────
@@ -853,6 +883,7 @@
 
     function render() {
         refreshReset();
+        fitToggles(); // «Сбросить» появился/пропал — ширина панели изменилась
         const svg = buildSVG();
         wrap.innerHTML = svg
             ? svg
@@ -1090,30 +1121,36 @@
     const reset2 = document.getElementById("reset2");
     if (reset2) reset2.addEventListener("click", resetAll);
 
-    // Кнопки «Отборы» (в баре и в заголовке) → попап с отборами на мобильном
+    // Кнопки «Отборы» (в бургере) → попап-дубль отборов (popupBox)
     const triggers = document.querySelectorAll(".scheme-ftrigger");
     const setFiltersOpen = (on) => {
-        togglesBox.classList.toggle("is-open", on);
+        popupBox.classList.toggle("is-open", on);
         triggers.forEach((t) => t.setAttribute("aria-expanded", String(on)));
     };
+    addEventListener("resize", fitToggles);
     triggers.forEach((t) =>
         t.addEventListener("click", (e) => {
             e.stopPropagation();
-            setFiltersOpen(!togglesBox.classList.contains("is-open"));
+            setFiltersOpen(!popupBox.classList.contains("is-open"));
         }),
     );
     NAV.dismissOnOutside(
-        () => togglesBox.classList.contains("is-open"),
-        [togglesBox, ".scheme-ftrigger"],
+        () => popupBox.classList.contains("is-open"),
+        [popupBox, ".scheme-ftrigger"],
         () => setFiltersOpen(false),
     );
-    // На десктопе при прокрутке наверх шапка прячется — закрываем попап отборов
+    // На десктопе при прокрутке наверх шапка прячется — закрываем попап
+    // отборов, только если панель в баре не видна (иначе попап и так лишний)
     const topbarEl = document.getElementById("topbar");
     addEventListener(
         "scroll",
         () => {
+            const barGone =
+                togglesBox.getBoundingClientRect().bottom < 0 ||
+                getComputedStyle(togglesBox).display === "none";
             if (
-                togglesBox.classList.contains("is-open") &&
+                popupBox.classList.contains("is-open") &&
+                barGone &&
                 topbarEl &&
                 !topbarEl.classList.contains("is-visible")
             )
@@ -1129,6 +1166,8 @@
         filters.type = "button";
         filters.className = "menu__pa-item";
         filters.textContent = "Отборы";
+        filters.hidden = true; // покажет fitToggles: мобильный или срезанные группы
+        burgerFilters = filters;
         filters.addEventListener("click", () => {
             NAV.closeMenu();
             setFiltersOpen(true);
