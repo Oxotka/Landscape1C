@@ -59,7 +59,9 @@ const CLOSED = !!process.env.CLOSED;
 async function closedNotice(chat) {
     let s = state[chat];
     if (!s) {
-        s = state[chat] = { step: "closed", epoch: EPOCH };
+        // Эпоха заведомо чужая: когда сбор откроется, staleEpoch сбросит
+        // такую сессию в свежее интро с первого же сообщения
+        s = state[chat] = { step: "closed", epoch: "closed" };
         saveState();
     }
     await anchorUpdate(chat, s, T.anchor.closed);
