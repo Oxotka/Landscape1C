@@ -24,7 +24,7 @@
     let query = "";
 
     const $ = (sel) => document.querySelector(sel);
-    const { wbr, logoMarkup, sortItems, groupBySub, plural } =
+    const { wbr, logoMarkup, sortItems, groupBySub, plural, surveyOf } =
         window.LandscapeUI; // shared.js
 
     // ── Рендер фильтров ───────────────────────
@@ -326,11 +326,20 @@
         const el = document.createElement("button");
         el.className = "card";
         el.dataset.mat = i.maturity;
+        // Мини-полоса опроса (как в модалке): фон = узнаваемость, заливка =
+        // использование, риска делит заливку по «взяли бы снова». Порог
+        // оценок — в shared.js, подробный тултип — в модалке карточки.
+        const sv = surveyOf(i.name);
+        const svBar =
+            sv && sv.used !== null
+                ? `<div class="srange card__srange" title="Опрос: слышали или работали ${sv.known}%, работали ${sv.used}%${sv.loyal !== null ? `, взяли бы снова ${sv.loyal}%` : ""}"><span class="sr-known" style="width:${sv.known}%"></span><span class="sr-used" style="width:${sv.used}%"></span>${sv.loyal !== null ? `<span class="sr-tick" style="left:${(sv.used * sv.loyal) / 100}%"></span>` : ""}</div>`
+                : "";
         el.innerHTML = `
       <div class="card__media">${logoMarkup(i, "card__logo")}</div>
       <div class="card__body">
         <div class="card__name">${wbr(i.name)}</div>
         <div class="card__desc">${i.description}</div>
+        ${svBar}
         <div class="card__meta">
           <span class="badge badge--mat">${i.maturity}</span>
           <span class="badge badge--ghost">${i.origin}</span>

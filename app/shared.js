@@ -62,6 +62,47 @@
             .replace(/[^a-z0-9]+/g, "-")
             .replace(/^-+|-+$/g, "");
 
+    // ── Опрос State of 1C: агрегаты по инструменту (survey2026.js) ──
+    // Считаются лениво из window.SURVEY (если скрипт подключен на странице)
+    // и кэшируются. Метрика видна от SURVEY_MIN оценок, иначе null — малые
+    // выборки не показываем. Имена инструментов совпадают с data.js.
+    const SURVEY_MIN = 10;
+    let surveyCache = null;
+    const surveyOf = (name) => {
+        const S = window.SURVEY;
+        if (!S) return null;
+        if (!surveyCache) {
+            surveyCache = new Map();
+            const pct = (a, b) =>
+                b >= SURVEY_MIN ? Math.round((100 * a) / b) : null;
+            S.tools.forEach((t) => {
+                // Ячейка: [роль, уровень, контекст, работал, слышал, не знаю,
+                // взял бы снова, не взял бы, хочу попробовать, не хочу]
+                let u = 0, h = 0, x = 0, ag = 0, no = 0, w = 0, nw = 0; // prettier-ignore
+                t.cells.forEach((c) => {
+                    u += c[3];
+                    h += c[4];
+                    x += c[5];
+                    ag += c[6];
+                    no += c[7];
+                    w += c[8];
+                    nw += c[9];
+                });
+                const n = u + h + x;
+                surveyCache.set(t.name, {
+                    n, // всего ответивших по инструменту
+                    known: pct(u + h, n), // узнаваемость: слышали или работали
+                    used: pct(u, n), // доля работавших
+                    loyal: pct(ag, ag + no), // «взял бы снова» среди работавших
+                    loyalN: ag + no,
+                    want: pct(w, w + nw), // «хочу попробовать» среди слышавших
+                    wantN: w + nw,
+                });
+            });
+        }
+        return surveyCache.get(name) || null;
+    };
+
     window.LandscapeUI = {
         wbr,
         logoMarkup,
@@ -69,6 +110,7 @@
         groupBySub,
         plural,
         slugOf,
+        surveyOf,
     };
 
     // ── Общие отборы между страницами (localStorage) ──
