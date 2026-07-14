@@ -56,6 +56,12 @@ function staleEpoch(chat, s) {
 // не трогаются: по чатам из state.json в новую волну уйдет приглашение
 // (bot/notify.js), поэтому новичок здесь тоже получает запись в state
 const CLOSED = !!process.env.CLOSED;
+// Секретный вход (env UNLOCK_WORD, работает только при CLOSED): написавший
+// это слово проходит опрос при закрытом сборе — проверить боевую волну до
+// открытия. Повторное слово закрывает обратно. В меню и справке слова нет;
+// слово живет в env на сервере, не в коде — репозиторий публичный. Ответы
+// проверяющего пишутся в общий журнал — он обнуляется перед волной
+const UNLOCK = (process.env.UNLOCK_WORD || "").trim().toLowerCase();
 async function closedNotice(chat) {
     let s = state[chat];
     if (!s) {
@@ -290,6 +296,7 @@ async function startIntro(chat, keepAnswered) {
         anchorMsg: prev.anchorMsg,
         anchorText: prev.anchorText,
         msgs: prev.msgs,
+        unlocked: prev.unlocked, // секретный вход переживает «заново»
     });
     saveState();
     await anchorUpdate(chat, s, T.anchor.intro);
@@ -380,10 +387,25 @@ async function onMessage(m) {
     const s = state[chat];
     // Сообщения пользователя тоже убираем — чат держим максимально чистым
     hideCard(chat, m.message_id);
-    if (CLOSED) return closedNotice(chat);
+    const cmd = (m.text || "").trim().toLowerCase();
+    if (CLOSED && UNLOCK && cmd === UNLOCK) {
+        if (s && s.unlocked) {
+            s.unlocked = false;
+            saveState();
+            await toast(chat, T.unlockOff);
+            return closedNotice(chat);
+        }
+        // Чистая проверка: свежий онбординг (старая сессия любой эпохи
+        // не нужна), якорь и реестр сообщений startIntro сохранит сам
+        await toast(chat, T.unlockOn, 6000);
+        await startIntro(chat);
+        state[chat].unlocked = true;
+        saveState();
+        return;
+    }
+    if (CLOSED && !(s && s.unlocked)) return closedNotice(chat);
     // Сессия прошлой эпохи (сменилась волна) — начинаем заново с интро
     if (staleEpoch(chat, s)) return startIntro(chat);
-    const cmd = (m.text || "").trim().toLowerCase();
     // Сброс: стираем ответы и прогресс пользователя (с подтверждением)
     if (RESET_WORDS.includes(cmd) && s) {
         return send(chat, T.resetConfirm, K.reset);
@@ -494,7 +516,7 @@ async function onCallback(q) {
     const s = state[chat];
     // Не ждем подтверждение нажатия — экономим круг до сервера на каждом тапе
     api("answerCallbackQuery", { callback_query_id: q.id }).catch(() => {});
-    if (CLOSED) {
+    if (CLOSED && !(s && s.unlocked)) {
         // Кнопки закрытой волны больше не работают — убираем их носителя
         hideCard(chat, q.message.message_id);
         return closedNotice(chat);
@@ -516,10 +538,16 @@ async function onCallback(q) {
         (s.msgs || []).forEach((id, i) =>
             setTimeout(() => hideCard(chat, id), i * 40),
         );
+        const unlocked = s.unlocked; // сброс не запирает секретный вход
         delete state[chat];
         saveState();
         await toast(chat, T.erased);
-        return startIntro(chat);
+        await startIntro(chat);
+        if (unlocked) {
+            state[chat].unlocked = true;
+            saveState();
+        }
+        return;
     }
     if (kind === "go" && s.step === "intro") {
         hideCard(chat, q.message.message_id); // онбординг не захламляет чат
@@ -733,7 +761,10 @@ async function onCallback(q) {
             (TEST_MODE
                 ? " ⚠ ТЕСТОВЫЙ РЕЖИМ: фиксированный набор из test-set.json."
                 : "") +
-            (CLOSED ? " 🔒 СБОР ЗАКРЫТ: бот отвечает заглушкой." : ""),
+            (CLOSED
+                ? " 🔒 СБОР ЗАКРЫТ: бот отвечает заглушкой." +
+                  (UNLOCK ? " Секретный вход включен." : "")
+                : ""),
     );
     // Меню команд в телеграме — чтобы команды были находимы без подсказок
     api("setMyCommands", {
