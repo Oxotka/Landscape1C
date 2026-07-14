@@ -1,18 +1,14 @@
 <!doctype html>
-<!-- Итоги опроса популярности — волна 2026 (п.13 ТЗ). Сейчас это внутренняя
-     витрина: страница исключена из dist (scripts/build.js), данные
-     app/survey2026.js в .gitignore (генерит node bot/aggregate.js), наружу
-     ничего не уходит. Дальше на этой же странице поверх витрины вырастет
-     отчет-лонгрид «Итоги 2026».
-     При публикации: убрать исключения из build.js и .gitignore, снять
-     noindex, добавить Метрику/OG/canonical (по образцу council.html),
-     ссылку в nav.js и страницу в PAGES sitegen.js. -->
+<!-- Итоги опроса популярности — волна 2026 (п.13 ТЗ). Публичная витрина
+     промежуточного опроса (в меню, sitemap, индексируется); данные
+     app/survey2026.js генерит node bot/aggregate.js (агрегаты без ПДн).
+     Дальше на этой же странице поверх витрины вырастет отчет-лонгрид
+     «Итоги 2026». -->
 <html lang="ru">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="robots" content="noindex" />
-        <title>Итоги тестового опроса · Ландшафт 1С</title>
+        <title>Итоги промежуточного опроса · Ландшафт 1С</title>
         <script>
             (function () {
                 try {
@@ -34,6 +30,79 @@
         <link rel="stylesheet" href="styles.css?v=e402edb3" />
         <link rel="icon" href="favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+        <meta
+            name="description"
+            content="Итоги промежуточного опроса сообщества 1С: узнаваемость, использование и лояльность инструментов ландшафта"
+        />
+        <link rel="canonical" href="https://landscape1c.ru/survey2026.html" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Ландшафт технологий 1С" />
+        <meta
+            property="og:title"
+            content="Итоги промежуточного опроса · Ландшафт технологий 1С"
+        />
+        <meta
+            property="og:description"
+            content="Итоги промежуточного опроса сообщества 1С: узнаваемость, использование и лояльность инструментов ландшафта"
+        />
+        <meta
+            property="og:url"
+            content="https://landscape1c.ru/survey2026.html"
+        />
+        <meta
+            property="og:image"
+            content="https://landscape1c.ru/og-image.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript">
+            (function (m, e, t, r, i, k, a) {
+                m[i] =
+                    m[i] ||
+                    function () {
+                        (m[i].a = m[i].a || []).push(arguments);
+                    };
+                m[i].l = 1 * new Date();
+                for (var j = 0; j < document.scripts.length; j++) {
+                    if (document.scripts[j].src === r) {
+                        return;
+                    }
+                }
+                ((k = e.createElement(t)),
+                    (a = e.getElementsByTagName(t)[0]),
+                    (k.async = 1),
+                    (k.src = r),
+                    a.parentNode.insertBefore(k, a));
+            })(
+                window,
+                document,
+                "script",
+                "https://mc.yandex.ru/metrika/tag.js?id=109810369",
+                "ym",
+            );
+
+            ym(109810369, "init", {
+                ssr: true,
+                webvisor: true,
+                clickmap: true,
+                ecommerce: "dataLayer",
+                referrer: document.referrer,
+                url: location.href,
+                accurateTrackBounce: true,
+                trackLinks: true,
+            });
+        </script>
+        <noscript
+            ><div>
+                <img
+                    src="https://mc.yandex.ru/watch/109810369"
+                    style="position: absolute; left: -9999px"
+                    alt=""
+                /></div
+        ></noscript>
+        <!-- /Yandex.Metrika counter -->
         <style>
             /* Витрина на токенах styles.css; свои — только цвета серии.
                Классы с приставкой sv- там, где имена заняты ландшафтом
@@ -806,7 +875,7 @@
                 <p class="kicker">
                     <a href="index.html" class="back">← Ландшафт</a>
                 </p>
-                <h1 class="title">Итоги тестового опроса</h1>
+                <h1 class="title">Итоги промежуточного опроса</h1>
             </div>
         </header>
 
@@ -899,7 +968,7 @@
         <script src="data.js?v=678ca06d"></script>
         <script src="shared.js?v=644e4aee"></script>
         <script src="survey2026.js?v=c3282118"></script>
-        <script src="nav.js?v=e707cea1"></script>
+        <script src="nav.js?v=71bbce08"></script>
         <script>
             "use strict";
             const S = window.SURVEY;
