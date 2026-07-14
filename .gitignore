@@ -20,6 +20,8 @@ app/tools/
 bot/answers.jsonl
 bot/state.json
 bot/file-ids.json
+# Снимки сессий (список адресатов рассылки notify.js) — chat_id, в git нельзя
+bot/state-test-*.json
 # Агрегат волны для витрины — генерит bot/aggregate.js. Тестовая волна
 # публикуется как /test_survey (агрегаты без ПДн), поэтому файл в репозитории.
 # Ранбук волны с адресом сервера — локальный, копия на сервере в /root
