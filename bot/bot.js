@@ -50,6 +50,26 @@ function staleEpoch(chat, s) {
     return true;
 }
 
+// ── Закрытый сбор ──
+// env CLOSED=1: волна завершена, бот не опрашивает — на любое действие
+// отвечает одной заглушкой «большая волна в сентябре». Сессии и ответы
+// не трогаются: по чатам из state.json в новую волну уйдет приглашение
+// (bot/notify.js), поэтому новичок здесь тоже получает запись в state
+const CLOSED = !!process.env.CLOSED;
+async function closedNotice(chat) {
+    let s = state[chat];
+    if (!s) {
+        s = state[chat] = { step: "closed", epoch: EPOCH };
+        saveState();
+    }
+    await anchorUpdate(chat, s, T.anchor.closed);
+    // Заглушка в чате одна: старую убираем, свежая всегда внизу
+    if (s.closedMsg) hideCard(chat, s.closedMsg);
+    const msg = await send(chat, T.closed).catch(() => null);
+    s.closedMsg = msg && msg.message_id;
+    saveState();
+}
+
 // ── Якорь ──
 // Несмываемое сообщение вверху чата: пока оно есть, чат не бывает пустым
 // (иначе между удалением старой карточки и приходом новой телеграм успевает
@@ -358,6 +378,7 @@ async function onMessage(m) {
     const s = state[chat];
     // Сообщения пользователя тоже убираем — чат держим максимально чистым
     hideCard(chat, m.message_id);
+    if (CLOSED) return closedNotice(chat);
     // Сессия прошлой эпохи (сменилась волна) — начинаем заново с интро
     if (staleEpoch(chat, s)) return startIntro(chat);
     const cmd = (m.text || "").trim().toLowerCase();
@@ -471,6 +492,11 @@ async function onCallback(q) {
     const s = state[chat];
     // Не ждем подтверждение нажатия — экономим круг до сервера на каждом тапе
     api("answerCallbackQuery", { callback_query_id: q.id }).catch(() => {});
+    if (CLOSED) {
+        // Кнопки закрытой волны больше не работают — убираем их носителя
+        hideCard(chat, q.message.message_id);
+        return closedNotice(chat);
+    }
     // «Понятно» под справкой — просто убрать сообщение, сессия не нужна
     if (q.data === "hide:") return hideCard(chat, q.message.message_id);
     if (!s) return;
@@ -704,7 +730,8 @@ async function onCallback(q) {
         `Бот запущен. Волна ${WAVE} (эпоха ${EPOCH}). Инструментов: ${L.items.length}, исключено из опроса: ${EXCLUDED.length}.` +
             (TEST_MODE
                 ? " ⚠ ТЕСТОВЫЙ РЕЖИМ: фиксированный набор из test-set.json."
-                : ""),
+                : "") +
+            (CLOSED ? " 🔒 СБОР ЗАКРЫТ: бот отвечает заглушкой." : ""),
     );
     // Меню команд в телеграме — чтобы команды были находимы без подсказок
     api("setMyCommands", {
