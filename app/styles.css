@@ -2294,6 +2294,10 @@ a {
 .scheme-toggles:not(.is-open) .graph-fgroup.is-cut {
     display: none;
 }
+/* открытый список «Блоки» не должен обрезаться однорядным баром */
+.scheme-toggles:not(.is-open).is-dd-open {
+    overflow: visible;
+}
 
 /* ── Отборы как попап: отдельный элемент-дубль панели (строит scheme.js),
    открытый попап не «опустошает» панель в баре. Открытие — пунктом

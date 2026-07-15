@@ -413,11 +413,15 @@
             const willOpen = panel.hidden;
             panel.hidden = !willOpen;
             btn.setAttribute("aria-expanded", String(willOpen));
+            // бар режет всё лишнее overflow: hidden — на время открытого
+            // списка снимаем обрезку, иначе панель не видна
+            box.classList.toggle("is-dd-open", willOpen);
         });
         document.addEventListener("click", (e) => {
             if (!group.contains(e.target)) {
                 panel.hidden = true;
                 btn.setAttribute("aria-expanded", "false");
+                box.classList.remove("is-dd-open");
             }
         });
 
@@ -504,11 +508,26 @@
     let burgerFilters; // пункт «Отборы» в бургере (создается в injectBurgerActions)
     function fitToggles() {
         const groups = [...togglesBox.querySelectorAll(".graph-fgroup")];
+        // открытый список «Блоки» торчит за край и раздувает scrollWidth —
+        // на время замера прячем, иначе срезается больше групп, чем нужно
+        const open = [
+            ...togglesBox.querySelectorAll(".scheme-dd__panel"),
+        ].filter((p) => !p.hidden);
+        open.forEach((p) => (p.hidden = true));
         groups.forEach((g) => g.classList.remove("is-cut"));
         for (let i = groups.length - 1; i >= 0; i--) {
             if (togglesBox.scrollWidth - togglesBox.clientWidth < 2) break;
             groups[i].classList.add("is-cut");
         }
+        open.forEach((p) => {
+            const g = p.closest(".graph-fgroup");
+            if (g && g.classList.contains("is-cut")) {
+                // группа срезалась вместе с открытым списком — закрываем честно
+                const btn = g.querySelector(".scheme-dd__btn");
+                if (btn) btn.setAttribute("aria-expanded", "false");
+                togglesBox.classList.remove("is-dd-open");
+            } else p.hidden = false;
+        });
         if (burgerFilters) {
             const mobile = getComputedStyle(togglesBox).display === "none";
             burgerFilters.hidden =
@@ -1388,7 +1407,11 @@
                 if (g && t)
                     g.style.transform = `translate(${t.x - c.x}px, ${t.y - c.y}px)`;
             });
-            return slotOf[drag.name];
+            // пунктир: позиция слота, но габариты перетаскиваемой колонки
+            // (в слоте стояла другая — ее размер не подходит)
+            const t = slotOf[drag.name];
+            const me = boxes.find((c) => c.cat === drag.name);
+            return t && me ? { x: t.x, y: t.y, w: me.w, h: me.h } : t;
         }
         const moveInList = (list, name, slotName, after) => {
             const l = list.filter((n) => n !== name);
