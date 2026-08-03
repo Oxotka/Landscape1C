@@ -916,12 +916,6 @@ a {
     margin-top: 2px;
 }
 
-@media (max-width: 720px) {
-    .card__desc {
-        font-size: 12px;
-    }
-}
-
 @media (max-width: 1040px) {
     .cards {
         grid-template-columns: repeat(2, 1fr);
