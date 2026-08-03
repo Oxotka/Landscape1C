@@ -128,6 +128,25 @@ const relLinks = (names) =>
 function toolPage(i) {
     const url = `${SITE}tools/${slugs.get(i.name)}.html`;
     const desc = esc(i.description);
+
+    // Заголовок и описание для выдачи. По имени инструмента официальный сайт
+    // всегда выигрывает, поэтому целимся в хвост: «<имя> аналоги», «чем
+    // заменить», «<имя> обзор» — то, на что у ландшафта есть свой ответ.
+    // На саму страницу это не влияет: h1 и og-теги остаются прежними.
+    const analogs3 = (i.analogs || []).slice(0, 3);
+    const hook = analogs3.length ? "аналоги и обзор" : "обзор и применение";
+    // Яндекс режет заголовок примерно на 70 знаках. Если бренд туда не
+    // влезает, жертвуем им: ключевые слова в начале строки важнее.
+    const titled = `${i.name} — ${hook} · Ландшафт 1С`;
+    const seoTitle = titled.length > 70 ? `${i.name} — ${hook}` : titled;
+    const seoDesc = [
+        `${desc}.`,
+        analogs3.length ? `Аналоги: ${analogs3.join(", ")}.` : "",
+        `${i.category} в ландшафте технологий 1С`,
+    ]
+        .filter(Boolean)
+        .join(" ");
+
     const ld = {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -168,8 +187,8 @@ function toolPage(i) {
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>${h(i.name)} — Ландшафт технологий 1С</title>
-<meta name="description" content="${h(desc)}" />
+<title>${h(seoTitle)}</title>
+<meta name="description" content="${h(seoDesc)}" />
 <link rel="canonical" href="${url}" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Ландшафт технологий 1С" />
