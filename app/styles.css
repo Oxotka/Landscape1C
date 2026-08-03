@@ -905,7 +905,7 @@ a {
     overflow-wrap: break-word;
 }
 .card__desc {
-    font-size: 11px;
+    font-size: 12px;
     color: #888;
     line-height: 1.5;
 }
@@ -942,10 +942,11 @@ a {
 .badge {
     display: inline-block;
     font-family: var(--body);
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+    /* строчные 12px/500 — та же типографика, что у чипов отборов:
+       бейдж и чип показывают одно и то же, значение оси */
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.15; /* удерживает прежнюю высоту плашки */
     padding: 2px 6px;
     border-radius: 2px;
     border: 1px solid transparent;
