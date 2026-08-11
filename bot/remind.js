@@ -33,7 +33,12 @@ const RESUMABLE = ["quiz", "paused", "checkpoint", "offer", "fix"];
 const FIRST_AFTER_MS = 3 * 24 * 60 * 60 * 1000; // 3 дня бездействия
 const FINAL_WINDOW_MS = 7 * 24 * 60 * 60 * 1000; // окно финального призыва
 
-const state = JSON.parse(fs.readFileSync(stateFile, "utf8"));
+// Как store.js читает state.json бота: пустой/битый файл — не ошибка,
+// а состояние "сессий еще нет" (например сразу после сброса)
+let state = {};
+try {
+    state = JSON.parse(fs.readFileSync(stateFile, "utf8"));
+} catch (e) {}
 let reminders = {};
 try {
     reminders = JSON.parse(fs.readFileSync(remindersFile, "utf8"));
