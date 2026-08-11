@@ -43,7 +43,18 @@ const now = Date.now();
 const cutoffTs = process.env.CUTOFF_DATE
     ? Date.parse(process.env.CUTOFF_DATE)
     : null;
-const finalWindowOpen = !!cutoffTs && now >= cutoffTs - FINAL_WINDOW_MS;
+if (process.env.CUTOFF_DATE && Number.isNaN(cutoffTs)) {
+    console.error(`CUTOFF_DATE не распознан: "${process.env.CUTOFF_DATE}"`);
+    process.exit(1);
+}
+if (cutoffTs && now > cutoffTs) {
+    console.log(
+        "Волна закрыта (CUTOFF_DATE в прошлом) — напоминания не шлются.",
+    );
+    process.exit(0);
+}
+const finalWindowOpen =
+    !!cutoffTs && now >= cutoffTs - FINAL_WINDOW_MS && now <= cutoffTs;
 
 const targets = [];
 for (const [chatStr, s] of Object.entries(state)) {
@@ -56,10 +67,15 @@ for (const [chatStr, s] of Object.entries(state)) {
     const idle = now - s.lastActive;
     let attempt = 0;
     if (rem.count === 0 && idle >= FIRST_AFTER_MS) attempt = 1;
-    else if (rem.count === 1 && finalWindowOpen) attempt = 2;
+    else if (finalWindowOpen) attempt = rem.count + 1;
     if (!attempt) continue;
     const n = s.answered.length;
-    const text = s.step === "paused" ? T.remindPaused(n) : T.remindGhost(n);
+    const text =
+        attempt === 2
+            ? T.remindFinal(n)
+            : s.step === "paused"
+              ? T.remindPaused(n)
+              : T.remindGhost(n);
     targets.push({ chat: Number(chatStr), chatStr, text, attempt });
 }
 
@@ -76,6 +92,16 @@ if (!yes) {
     process.exit(0);
 }
 
+// Пишем после каждой успешной отправки, а не одним разом в конце — иначе
+// падение/kill посреди рассылки (сотни адресатов, пауза 100мс между) стирает
+// всю память о том, кому уже написали. Атомарно (tmp+rename), как store.js
+// пишет state.json — оборванная запись не должна портить JSON и сбрасывать
+// счетчик антиспама всем сразу
+const flush = () => {
+    fs.writeFileSync(remindersFile + ".tmp", JSON.stringify(reminders));
+    fs.renameSync(remindersFile + ".tmp", remindersFile);
+};
+
 (async () => {
     let ok = 0,
         gone = 0,
@@ -89,10 +115,12 @@ if (!yes) {
                 reply_markup: { inline_keyboard: K.resume },
             });
             reminders[t.chatStr] = { count: t.attempt, lastSentTs: now };
+            flush();
             ok++;
         } catch (e) {
             if (/blocked|deactivated|chat not found/i.test(e.message)) {
                 reminders[t.chatStr] = { count: t.attempt, lastSentTs: now };
+                flush();
                 gone++;
             } else {
                 failed++;
@@ -101,9 +129,9 @@ if (!yes) {
         }
         await new Promise((r) => setTimeout(r, 100));
     }
-    fs.writeFileSync(remindersFile, JSON.stringify(reminders));
+    flush();
     console.log(
         `Отправлено: ${ok}, недоступны (блок/удален): ${gone}, ошибки: ${failed}`,
     );
-    process.exit(0);
+    process.exit(failed ? 1 : 0);
 })();

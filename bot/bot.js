@@ -174,7 +174,14 @@ async function offerMore(chat, s) {
     s.step = "offer";
     saveState();
     await anchorUpdate(chat, s, T.anchor.offer(s.answered.length));
-    await send(chat, T.offer(s.answered.length), rows.concat([[K.finishBtn]]));
+    if (s.offerMsg) hideCard(chat, s.offerMsg);
+    const msg = await send(
+        chat,
+        T.offer(s.answered.length),
+        rows.concat([[K.finishBtn]]),
+    );
+    s.offerMsg = msg && msg.message_id;
+    saveState();
 }
 
 async function finish(chat, s) {

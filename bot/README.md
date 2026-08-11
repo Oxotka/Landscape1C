@@ -113,10 +113,13 @@ BOT_TOKEN=<токен> node bot/remind.js                              # реп�
 BOT_TOKEN=<токен> CUTOFF_DATE=2026-10-01 node bot/remind.js --yes # рассылка
 ```
 
-По cron раз в сутки — вхолостую, если сегодня некому напоминать:
+По cron раз в сутки — вхолостую, если сегодня некому напоминать. Токен
+берем из `/etc/stateof1c.env` (см. «Развертывание» ниже), а не пишем в
+открытом виде в строке cron — иначе он светится в `crontab -l` и истории
+шелла:
 
 ```bash
-( crontab -l 2>/dev/null; echo "0 10 * * * cd /opt/landscape1c/bot && BOT_TOKEN=<токен> CUTOFF_DATE=2026-10-01 node remind.js --yes >> /var/log/remind.log 2>&1" ) | crontab -
+( crontab -l 2>/dev/null; echo "0 10 * * * cd /opt/landscape1c/bot && set -a && . /etc/stateof1c.env && set +a && CUTOFF_DATE=2026-10-01 node remind.js --yes >> /var/log/remind.log 2>&1" ) | crontab -
 ```
 
 ## Развертывание (VPS, systemd)
