@@ -20,6 +20,7 @@ app/tools/
 bot/answers.jsonl
 bot/state.json
 bot/file-ids.json
+bot/reminders.json
 # Снимки сессий (список адресатов рассылки notify.js) — chat_id, в git нельзя
 bot/state-test-*.json
 # Снимок журнала промежуточного опроса (сырье для склейки базовых в «Итоги
