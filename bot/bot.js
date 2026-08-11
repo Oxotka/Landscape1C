@@ -370,6 +370,35 @@ async function next(chat, s) {
     await sendCard(chat, s);
 }
 
+// ── Продолжение брошенной сессии ──
+// Общий путь для "/resume"/кнопки "Продолжить" (на паузе, на чекпоинте)
+// и для напоминаний remind.js — везде ведет туда же, куда обычное
+// продолжение с того шага, на котором сессия остановилась
+async function resumeSession(chat, s) {
+    if (s.step === "paused") {
+        if (s.pauseMsg) hideCard(chat, s.pauseMsg);
+        clearAux(chat, s);
+        s.pauseMsg = null;
+        s.step = "quiz";
+        saveState();
+        await toast(chat, T.welcomeBack);
+        return sendCard(chat, s);
+    }
+    if (s.step === "checkpoint") {
+        if (s.cpMsg) hideCard(chat, s.cpMsg);
+        clearAux(chat, s);
+        s.cpMsg = null;
+        s.step = "quiz";
+        saveState();
+        return sendCard(chat, s);
+    }
+    if (s.step === "quiz") return sendCard(chat, s);
+    if (s.step === "fix" && s.fixTool) return sendFixCard(chat, s, s.fixTool);
+    if (s.step === "offer") return offerMore(chat, s);
+    if (s.step === "done") return toast(chat, T.nothingToResume, 6000);
+    return toast(chat, T.pickButton, 4000);
+}
+
 // ── Роутинг входящих сообщений ──
 const RESET_WORDS = ["/reset", "сброс", "сбросить", "заново"];
 const PROGRESS_WORDS = [
@@ -385,6 +414,11 @@ const RESUME_WORDS = ["/resume", "продолжить", "продолжаем",
 async function onMessage(m) {
     const chat = m.chat.id;
     const s = state[chat];
+    // Метка активности — на ней держатся напоминания remind.js
+    if (s) {
+        s.lastActive = Date.now();
+        saveState();
+    }
     // Сообщения пользователя тоже убираем — чат держим максимально чистым
     hideCard(chat, m.message_id);
     const cmd = (m.text || "").trim().toLowerCase();
@@ -428,30 +462,7 @@ async function onMessage(m) {
         return;
     }
     // Продолжить: снять паузу, двинуться с чекпоинта или вернуть карточку
-    if (RESUME_WORDS.includes(cmd) && s) {
-        if (s.step === "paused") {
-            if (s.pauseMsg) hideCard(chat, s.pauseMsg);
-            clearAux(chat, s);
-            s.pauseMsg = null;
-            s.step = "quiz";
-            saveState();
-            await toast(chat, T.welcomeBack);
-            return sendCard(chat, s);
-        }
-        if (s.step === "checkpoint") {
-            if (s.cpMsg) hideCard(chat, s.cpMsg);
-            clearAux(chat, s);
-            s.cpMsg = null;
-            s.step = "quiz";
-            saveState();
-            return sendCard(chat, s);
-        }
-        if (s.step === "quiz") return sendCard(chat, s);
-        if (s.step === "fix" && s.fixTool)
-            return sendFixCard(chat, s, s.fixTool);
-        if (s.step === "done") return toast(chat, T.nothingToResume, 6000);
-        return toast(chat, T.pickButton, 4000);
-    }
+    if (RESUME_WORDS.includes(cmd) && s) return resumeSession(chat, s);
     // Пауза в любой момент опроса (кнопкой она есть только на чекпоинтах)
     if (PAUSE_WORDS.includes(cmd) && s) {
         if (s.step === "paused") return toast(chat, T.alreadyPaused, 5000);
@@ -514,6 +525,11 @@ async function onMessage(m) {
 async function onCallback(q) {
     const chat = q.message.chat.id;
     const s = state[chat];
+    // Метка активности — на ней держатся напоминания remind.js
+    if (s) {
+        s.lastActive = Date.now();
+        saveState();
+    }
     // Не ждем подтверждение нажатия — экономим круг до сервера на каждом тапе
     api("answerCallbackQuery", { callback_query_id: q.id }).catch(() => {});
     if (CLOSED && !(s && s.unlocked)) {
@@ -702,12 +718,9 @@ async function onCallback(q) {
         }
         return sendCard(chat, s);
     }
-    if (kind === "resume" && s.step === "paused") {
+    if (kind === "resume") {
         hideCard(chat, q.message.message_id);
-        s.pauseMsg = null;
-        s.step = "quiz";
-        saveState();
-        return sendCard(chat, s);
+        return resumeSession(chat, s);
     }
     if (kind === "cont" && s.step === "checkpoint") {
         hideCard(chat, q.message.message_id); // чекпоинт с итогами тоже убираем
