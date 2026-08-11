@@ -1,6 +1,6 @@
 # Напоминания брошенным сессиям опроса — Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Добавить в `@stateOf1c_bot` автоматические напоминания тем, кто ответил хотя бы на один вопрос опроса, но давно не возвращался — до двух напоминаний на человека, без гонки с работающим ботом.
 
@@ -33,7 +33,7 @@
 
 **Важно:** сейчас кнопка «▶️ Продолжить» (`callback_data: "resume:"`) обрабатывается только при `s.step === "paused"`; в остальных случаях нажатие молча проглатывается (`answerCallbackQuery` без действия). Это ограничение снимается — после рефакторинга кнопка (в том числе на будущих напоминаниях из Task 2) работает при любом «зависшем» шаге, а не только на паузе. Заодно нажатие кнопки на паузе начинает вызывать `clearAux` и тост `T.welcomeBack`, как уже делает текстовая команда `/resume` — раньше кнопка их пропускала, это мелкое расхождение устраняется как побочный эффект переиспользования одной функции для обоих путей.
 
-- [ ] **Step 1: Добавить хелпер `resumeSession`**
+- [x] **Step 1: Добавить хелпер `resumeSession`**
 
 Открыть `bot/bot.js`. Найти функцию `next` (заканчивается на строке 371 закрывающей `}`) и следующую за ней секцию:
 
@@ -74,7 +74,7 @@ async function resumeSession(chat, s) {
 }
 ```
 
-- [ ] **Step 2: Переиспользовать хелпер в текстовой команде `/resume`**
+- [x] **Step 2: Переиспользовать хелпер в текстовой команде `/resume`**
 
 Найти в `onMessage` блок (текущие строки ~431-454):
 
@@ -113,7 +113,7 @@ async function resumeSession(chat, s) {
     if (RESUME_WORDS.includes(cmd) && s) return resumeSession(chat, s);
 ```
 
-- [ ] **Step 3: Переиспользовать хелпер в кнопке `resume`**
+- [x] **Step 3: Переиспользовать хелпер в кнопке `resume`**
 
 Найти в `onCallback` блок (текущие строки ~705-711):
 
@@ -136,7 +136,7 @@ async function resumeSession(chat, s) {
     }
 ```
 
-- [ ] **Step 4: Штамповать `lastActive` в `onMessage`**
+- [x] **Step 4: Штамповать `lastActive` в `onMessage`**
 
 Найти начало `onMessage`:
 
@@ -163,7 +163,7 @@ async function onMessage(m) {
     hideCard(chat, m.message_id);
 ```
 
-- [ ] **Step 5: Штамповать `lastActive` в `onCallback`**
+- [x] **Step 5: Штамповать `lastActive` в `onCallback`**
 
 Найти начало `onCallback`:
 
@@ -190,21 +190,21 @@ async function onCallback(q) {
     api("answerCallbackQuery", { callback_query_id: q.id }).catch(() => {});
 ```
 
-- [ ] **Step 6: Проверить синтаксис**
+- [x] **Step 6: Проверить синтаксис**
 
 Run: `node --check bot/bot.js`
 Expected: без вывода (успех).
 
-- [ ] **Step 7: Прогнать Prettier**
+- [x] **Step 7: Прогнать Prettier**
 
 Run: `npx prettier --write bot/bot.js`
 
-- [ ] **Step 8: Повторно проверить синтаксис после форматирования**
+- [x] **Step 8: Повторно проверить синтаксис после форматирования**
 
 Run: `node --check bot/bot.js`
 Expected: без вывода.
 
-- [ ] **Step 9: Ручная сверка (нет живого токена/процесса для end-to-end прогона в этой задаче)**
+- [x] **Step 9: Ручная сверка (нет живого токена/процесса для end-to-end прогона в этой задаче)**
 
 Открыть `bot/bot.js` и убедиться:
 - `RESUME_WORDS` в `onMessage` и `kind === "resume"` в `onCallback` оба вызывают `resumeSession(chat, s)`, дублирующей логики не осталось;
@@ -213,7 +213,7 @@ Expected: без вывода.
 
 Живой прогон на реальном боте — на проде силами пользователя, вне этого плана (см. `bot/RUNBOOK.local.md`).
 
-- [ ] **Step 10: Commit**
+- [x] **Step 10: Commit**
 
 ```bash
 git add bot/bot.js
@@ -236,7 +236,7 @@ git commit -m "Бот: метка активности сессии + общий
 
 **Test:** ручной прогон на файле-фикстуре (создаётся во время проверки, не коммитится) — dry-run должен показать ровно ожидаемых кандидатов с ожидаемым текстом; прогон с `--yes` на фиктивном chat_id должен завершиться без падения и не записать в `reminders.json` неудачные попытки.
 
-- [ ] **Step 1: Добавить тексты напоминаний**
+- [x] **Step 1: Добавить тексты напоминаний**
 
 Открыть `bot/lib/texts.js`. Найти строку:
 
@@ -255,12 +255,12 @@ git commit -m "Бот: метка активности сессии + общий
         `Заметил, что прогресс в опросе завис 👀\n\nТы уже ответил на <b>${n}</b> ${plural(n, "инструмент", "инструмента", "инструментов")} — жалко бросать на середине. Продолжим?`,
 ```
 
-- [ ] **Step 2: Проверить синтаксис**
+- [x] **Step 2: Проверить синтаксис**
 
 Run: `node --check bot/lib/texts.js`
 Expected: без вывода.
 
-- [ ] **Step 3: Создать `bot/remind.js`**
+- [x] **Step 3: Создать `bot/remind.js`**
 
 Создать файл `bot/remind.js` со следующим содержимым:
 
@@ -376,7 +376,7 @@ if (!yes) {
 })();
 ```
 
-- [ ] **Step 4: Добавить `bot/reminders.json` в `.gitignore`**
+- [x] **Step 4: Добавить `bot/reminders.json` в `.gitignore`**
 
 Открыть `.gitignore`, найти блок:
 
@@ -395,7 +395,7 @@ bot/file-ids.json
 bot/reminders.json
 ```
 
-- [ ] **Step 5: Проверить синтаксис и прогнать Prettier**
+- [x] **Step 5: Проверить синтаксис и прогнать Prettier**
 
 Run: `node --check bot/remind.js`
 Expected: без вывода.
@@ -405,7 +405,7 @@ Run: `npx prettier --write bot/lib/texts.js bot/remind.js`
 Run: `node --check bot/remind.js && node --check bot/lib/texts.js`
 Expected: без вывода на оба вызова.
 
-- [ ] **Step 6: Собрать фикстуру `state.json` для проверки**
+- [x] **Step 6: Собрать фикстуру `state.json` для проверки**
 
 Создать файл в скретчпаде (не в репозитории), например
 `/private/tmp/claude-503/-Users-nikitaaripov-Documents-Landscape1C/04f52642-3f75-47df-bf39-c7b592edb4fd/scratchpad/fixture-state.json`, время подставить реальное (`now` = момент проверки в мс, `Date.now()` в консоли Node):
@@ -445,7 +445,7 @@ Expected: без вывода на оба вызова.
 
 Сессия `111` и `222` — старая активность (кандидаты на напоминание #1); `333` — уже пройден; `444` — не ответил ни на один вопрос; `555` — без `lastActive` (как будто из-до этого деплоя). `lastActive: 0` означает «очень давно» — заведомо больше 3 дней от текущего момента.
 
-- [ ] **Step 7: Прогнать dry-run на фикстуре**
+- [x] **Step 7: Прогнать dry-run на фикстуре**
 
 Run:
 ```bash
@@ -454,7 +454,7 @@ BOT_TOKEN=test node bot/remind.js --state /private/tmp/claude-503/-Users-nikitaa
 
 Expected: `Кандидатов: 2`, дальше две строки — `111` с текстом от `T.remindGhost` (не на паузе) и `222` с текстом от `T.remindPaused`, оба содержат «напоминание #1»; `333`, `444`, `555` в списке нет. В конце — «Репетиция — ничего не отправлено».
 
-- [ ] **Step 8: Прогнать `--yes` на фикстуре и проверить, что ошибка не портит `reminders.json`**
+- [x] **Step 8: Прогнать `--yes` на фикстуре и проверить, что ошибка не портит `reminders.json`**
 
 Run:
 ```bash
@@ -464,13 +464,13 @@ cat /private/tmp/claude-503/-Users-nikitaaripov-Documents-Landscape1C/04f52642-3
 
 Expected: скрипт не падает (токен `test` невалиден — Telegram ответит ошибкой авторизации, попадёт в ветку `failed`, не в `blocked/deactivated`); итоговая строка вида `Отправлено: 0, недоступны (блок/удален): 0, ошибки: 2`; `fixture-reminders.json` пуст (`{}`) — неудачные попытки не засчитываются, кандидаты останутся кандидатами на завтра.
 
-- [ ] **Step 9: Удалить фикстуры**
+- [x] **Step 9: Удалить фикстуры**
 
 ```bash
 rm -f /private/tmp/claude-503/-Users-nikitaaripov-Documents-Landscape1C/04f52642-3f75-47df-bf39-c7b592edb4fd/scratchpad/fixture-state.json /private/tmp/claude-503/-Users-nikitaaripov-Documents-Landscape1C/04f52642-3f75-47df-bf39-c7b592edb4fd/scratchpad/fixture-reminders.json
 ```
 
-- [ ] **Step 10: Commit**
+- [x] **Step 10: Commit**
 
 ```bash
 git add bot/remind.js bot/lib/texts.js .gitignore
@@ -489,7 +489,7 @@ git commit -m "Бот: скрипт напоминаний зависшим се
 
 **Test:** визуальная проверка — раздел читается связно, команды копипастятся без правок.
 
-- [ ] **Step 1: Добавить раздел про напоминания**
+- [x] **Step 1: Добавить раздел про напоминания**
 
 Открыть `bot/README.md`. Найти конец раздела «Между волнами: заморозка и рассылка» — последний абзац:
 
@@ -534,7 +534,7 @@ BOT_TOKEN=<токен> CUTOFF_DATE=2026-10-01 node bot/remind.js --yes # рас�
 ## Развертывание (VPS, systemd)
 ```
 
-- [ ] **Step 2: Добавить `reminders.json` в раздел «Данные»**
+- [x] **Step 2: Добавить `reminders.json` в раздел «Данные»**
 
 Найти в конце файла:
 
@@ -551,7 +551,7 @@ BOT_TOKEN=<токен> CUTOFF_DATE=2026-10-01 node bot/remind.js --yes # рас�
   `bot/remind.js`: `{chatId: {count, lastSentTs}}`, максимум `count: 2`.
 ```
 
-- [ ] **Step 3: Уточнить описание `state.json`**
+- [x] **Step 3: Уточнить описание `state.json`**
 
 Найти:
 
@@ -568,7 +568,7 @@ BOT_TOKEN=<токен> CUTOFF_DATE=2026-10-01 node bot/remind.js --yes # рас�
   `bot/remind.js` считает, кому пора напомнить).
 ```
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add bot/README.md
