@@ -767,73 +767,85 @@ async function onCallback(q) {
     }
 }
 
+module.exports = { onMessage, onCallback };
+
 // ── Long polling ──
-(async () => {
-    badExcluded().forEach((n) =>
-        console.error(`⚠ excluded.json: «${n}» не найден в data.js`),
-    );
-    if (TEST_MODE)
-        badTestSet().forEach((n) =>
-            console.error(`⚠ test-set.json: «${n}» не найден в data.js`),
+// require.main === module: блок ниже выполняется только при "node bot.js"
+// напрямую, не при require("./bot") из тестов или из bot-max.js (иначе
+// MAX-процесс тоже запустит telegram-polling тем же токеном)
+if (require.main === module)
+    (async () => {
+        badExcluded().forEach((n) =>
+            console.error(`⚠ excluded.json: «${n}» не найден в data.js`),
         );
-    console.log(
-        `Бот запущен. Волна ${WAVE} (эпоха ${EPOCH}). Инструментов: ${L.items.length}, исключено из опроса: ${EXCLUDED.length}.` +
-            (TEST_MODE
-                ? " ⚠ ТЕСТОВЫЙ РЕЖИМ: фиксированный набор из test-set.json."
-                : "") +
-            (CLOSED
-                ? " 🔒 СБОР ЗАКРЫТ: бот отвечает заглушкой." +
-                  (UNLOCK ? " Секретный вход включен." : "")
-                : ""),
-    );
-    // Меню команд в телеграме — чтобы команды были находимы без подсказок
-    api("setMyCommands", {
-        commands: [
-            { command: "progress", description: "Мои ответы и прогресс" },
-            {
-                command: "pause",
-                description: "Прерваться — прогресс сохранится",
-            },
-            { command: "resume", description: "Продолжить опрос" },
-            { command: "help", description: "Как все устроено" },
-            { command: "start", description: "Начать опрос" },
-            { command: "reset", description: "Стереть все и начать заново" },
-        ],
-    }).catch((e) => console.error("setMyCommands:", e.message));
-    // Кнопка «Меню» у поля ввода — принудительно включаем показ команд
-    // (иначе клиент решает сам и у части пользователей меню не видно)
-    api("setChatMenuButton", { menu_button: { type: "commands" } }).catch((e) =>
-        console.error("setChatMenuButton:", e.message),
-    );
-    // Чаты обрабатываются параллельно, внутри чата — строго по очереди
-    // (цепочка промисов на чат): медленный чат не тормозит остальных,
-    // а два быстрых тапа одного пользователя не гоняются друг с другом
-    const chains = new Map();
-    const dispatch = (chat, fn) => {
-        const tail = (chains.get(chat) || Promise.resolve())
-            .then(fn)
-            .catch(console.error);
-        chains.set(chat, tail);
-        tail.finally(() => {
-            if (chains.get(chat) === tail) chains.delete(chat);
-        });
-    };
-    let offset = 0;
-    for (;;) {
-        try {
-            const updates = await api("getUpdates", { offset, timeout: 50 });
-            for (const u of updates) {
-                offset = u.update_id + 1;
-                if (u.message)
-                    dispatch(u.message.chat.id, () => onMessage(u.message));
-                if (u.callback_query && u.callback_query.message)
-                    dispatch(u.callback_query.message.chat.id, () =>
-                        onCallback(u.callback_query),
-                    );
+        if (TEST_MODE)
+            badTestSet().forEach((n) =>
+                console.error(`⚠ test-set.json: «${n}» не найден в data.js`),
+            );
+        console.log(
+            `Бот запущен. Волна ${WAVE} (эпоха ${EPOCH}). Инструментов: ${L.items.length}, исключено из опроса: ${EXCLUDED.length}.` +
+                (TEST_MODE
+                    ? " ⚠ ТЕСТОВЫЙ РЕЖИМ: фиксированный набор из test-set.json."
+                    : "") +
+                (CLOSED
+                    ? " 🔒 СБОР ЗАКРЫТ: бот отвечает заглушкой." +
+                      (UNLOCK ? " Секретный вход включен." : "")
+                    : ""),
+        );
+        // Меню команд в телеграме — чтобы команды были находимы без подсказок
+        api("setMyCommands", {
+            commands: [
+                { command: "progress", description: "Мои ответы и прогресс" },
+                {
+                    command: "pause",
+                    description: "Прерваться — прогресс сохранится",
+                },
+                { command: "resume", description: "Продолжить опрос" },
+                { command: "help", description: "Как все устроено" },
+                { command: "start", description: "Начать опрос" },
+                {
+                    command: "reset",
+                    description: "Стереть все и начать заново",
+                },
+            ],
+        }).catch((e) => console.error("setMyCommands:", e.message));
+        // Кнопка «Меню» у поля ввода — принудительно включаем показ команд
+        // (иначе клиент решает сам и у части пользователей меню не видно)
+        api("setChatMenuButton", { menu_button: { type: "commands" } }).catch(
+            (e) => console.error("setChatMenuButton:", e.message),
+        );
+        // Чаты обрабатываются параллельно, внутри чата — строго по очереди
+        // (цепочка промисов на чат): медленный чат не тормозит остальных,
+        // а два быстрых тапа одного пользователя не гоняются друг с другом
+        const chains = new Map();
+        const dispatch = (chat, fn) => {
+            const tail = (chains.get(chat) || Promise.resolve())
+                .then(fn)
+                .catch(console.error);
+            chains.set(chat, tail);
+            tail.finally(() => {
+                if (chains.get(chat) === tail) chains.delete(chat);
+            });
+        };
+        let offset = 0;
+        for (;;) {
+            try {
+                const updates = await api("getUpdates", {
+                    offset,
+                    timeout: 50,
+                });
+                for (const u of updates) {
+                    offset = u.update_id + 1;
+                    if (u.message)
+                        dispatch(u.message.chat.id, () => onMessage(u.message));
+                    if (u.callback_query && u.callback_query.message)
+                        dispatch(u.callback_query.message.chat.id, () =>
+                            onCallback(u.callback_query),
+                        );
+                }
+            } catch (e) {
+                console.error("poll:", e.message);
+                await new Promise((r) => setTimeout(r, 3000));
             }
-        } catch (e) {
-            console.error("poll:", e.message);
-            await new Promise((r) => setTimeout(r, 3000));
         }
-    }
-})();
+    })();
