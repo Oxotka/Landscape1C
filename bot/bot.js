@@ -10,7 +10,16 @@
 // (каждые 10 ответов checkpoint, из него paused) → offer → done;
 // fix — исправление ответа по названию (с чекпоинта или финала).
 "use strict";
-const { api, send, sendPhoto, hideCard, toast } = require("./lib/telegram");
+const {
+    api,
+    send,
+    sendPhoto,
+    hideCard,
+    toast,
+    editCard,
+    answerCallback,
+    setupCommands,
+} = require("./lib/telegram");
 const { T, K, CHEERS, ansRow, btnRows } = require("./lib/texts");
 const {
     ROLES,
@@ -86,11 +95,7 @@ async function ensureAnchor(chat, s, text) {
     if (s.anchorText === text) return;
     if (s.anchorMsg) {
         try {
-            await api("editMessageText", {
-                chat_id: chat,
-                message_id: s.anchorMsg,
-                text,
-            });
+            await editCard(chat, s.anchorMsg, text);
             s.anchorText = text;
             saveState();
             return;
@@ -538,7 +543,7 @@ async function onCallback(q) {
         saveState();
     }
     // Не ждем подтверждение нажатия — экономим круг до сервера на каждом тапе
-    api("answerCallbackQuery", { callback_query_id: q.id }).catch(() => {});
+    answerCallback(q.id).catch(() => {});
     if (CLOSED && !(s && s.unlocked)) {
         // Кнопки закрытой волны больше не работают — убираем их носителя
         hideCard(chat, q.message.message_id);
@@ -643,16 +648,12 @@ async function onCallback(q) {
             (isFix
                 ? T.fixCard(i, prevAnswer(chat, tool))
                 : T.card(i, s.pos, s.queue.length)) + T.sentPrompt(val);
-        const params = {
-            chat_id: chat,
-            message_id: q.message.message_id,
-            parse_mode: "HTML",
-            reply_markup: { inline_keyboard: K.sent[val] },
-        };
-        params[q.message.photo ? "caption" : "text"] = text;
-        return api(
-            q.message.photo ? "editMessageCaption" : "editMessageText",
-            params,
+        return editCard(
+            chat,
+            q.message.message_id,
+            text,
+            K.sent[val],
+            !!q.message.photo,
         ).catch(() => send(chat, T.sentFallback(val), K.sent[val]));
     }
     if (kind === "s" && s.pending) {
@@ -792,27 +793,10 @@ if (require.main === module)
                       (UNLOCK ? " Секретный вход включен." : "")
                     : ""),
         );
-        // Меню команд в телеграме — чтобы команды были находимы без подсказок
-        api("setMyCommands", {
-            commands: [
-                { command: "progress", description: "Мои ответы и прогресс" },
-                {
-                    command: "pause",
-                    description: "Прерваться — прогресс сохранится",
-                },
-                { command: "resume", description: "Продолжить опрос" },
-                { command: "help", description: "Как все устроено" },
-                { command: "start", description: "Начать опрос" },
-                {
-                    command: "reset",
-                    description: "Стереть все и начать заново",
-                },
-            ],
-        }).catch((e) => console.error("setMyCommands:", e.message));
-        // Кнопка «Меню» у поля ввода — принудительно включаем показ команд
-        // (иначе клиент решает сам и у части пользователей меню не видно)
-        api("setChatMenuButton", { menu_button: { type: "commands" } }).catch(
-            (e) => console.error("setChatMenuButton:", e.message),
+        // Меню команд + кнопка «Меню» у поля ввода — чтобы команды были
+        // находимы без подсказок (детали — в lib/telegram.js)
+        setupCommands().catch((e) =>
+            console.error("setupCommands:", e.message),
         );
         // Чаты обрабатываются параллельно, внутри чата — строго по очереди
         // (цепочка промисов на чат): медленный чат не тормозит остальных,
