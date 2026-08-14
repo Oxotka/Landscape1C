@@ -198,8 +198,11 @@ const editCard = async (chat, msgId, text, keyboard, isPhoto) => {
 // здесь просто подтверждение без правки текста, как и telegram-овский
 // answerCallbackQuery — сама карточка правится отдельным editCard выше
 const answerCallback = (id) => api("POST", `/answers?callback_id=${id}`, {});
-// У MAX нет API-аналога setMyCommands/setChatMenuButton — команды и
-// описание бота настраиваются в кабинете business.max.ru, не кодом
+// У MAX нет ни API-, ни кабинетного аналога setMyCommands/
+// setChatMenuButton (проверено 14.08.2026 — ни в документации методов,
+// ни в разделе управления ботом business.max.ru такой функции нет).
+// Меню команд у MAX-бота просто не будет — текстовые синонимы команд
+// в bot.js (кроме "/reset" и т.п.) работают и без него
 const setupCommands = () => Promise.resolve();
 
 module.exports = {
