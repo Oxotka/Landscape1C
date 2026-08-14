@@ -160,4 +160,49 @@ const toast = async (chat, text, ms = 3000) => {
     if (m) setTimeout(() => hideCard(chat, m.message_id), ms);
 };
 
-module.exports = { api, send, sendPhoto, hideCard, toast };
+// Редактирование карточки: текст или подпись под фото (isPhoto=true).
+// keyboard не передаём, если пусто, — Telegram тогда не трогает текущую
+// клавиатуру (нужно для якоря, у которого клавиатуры вообще нет)
+const editCard = (chat, msgId, text, keyboard, isPhoto) => {
+    const params = { chat_id: chat, message_id: msgId, parse_mode: "HTML" };
+    params[isPhoto ? "caption" : "text"] = text;
+    if (keyboard) params.reply_markup = { inline_keyboard: keyboard };
+    return api(isPhoto ? "editMessageCaption" : "editMessageText", params);
+};
+// Подтверждение нажатия кнопки — вызывающий код не ждёт (fire-and-forget),
+// экономим круг до сервера на каждом тапе
+const answerCallback = (id) =>
+    api("answerCallbackQuery", { callback_query_id: id });
+// Меню команд + принудительный показ кнопки «Меню» у поля ввода.
+// Оба вызова независимы — падение одного не должно блокировать другой
+const setupCommands = () =>
+    Promise.all([
+        api("setMyCommands", {
+            commands: [
+                { command: "progress", description: "Мои ответы и прогресс" },
+                {
+                    command: "pause",
+                    description: "Прерваться — прогресс сохранится",
+                },
+                { command: "resume", description: "Продолжить опрос" },
+                { command: "help", description: "Как все устроено" },
+                { command: "start", description: "Начать опрос" },
+                {
+                    command: "reset",
+                    description: "Стереть все и начать заново",
+                },
+            ],
+        }),
+        api("setChatMenuButton", { menu_button: { type: "commands" } }),
+    ]);
+
+module.exports = {
+    api,
+    send,
+    sendPhoto,
+    hideCard,
+    toast,
+    editCard,
+    answerCallback,
+    setupCommands,
+};
