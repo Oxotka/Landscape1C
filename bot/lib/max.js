@@ -165,17 +165,35 @@ const toast = async (chat, text, ms = 3000) => {
 
 // keyboard не передаём, если пусто — как и в lib/telegram.js, чтобы не
 // трогать текущую клавиатуру карточки. isPhoto в контракте есть (bot.js
-// зовёт editCard одинаково для обеих платформ, 5 позиционных аргументов),
-// но MAX не различает text/caption как отдельные поля — не используется
-const editCard = (chat, msgId, text, keyboard, isPhoto) =>
-    api("PUT", `/messages?message_id=${msgId}`, {
+// зовёт editCard одинаково для обеих платформ, 5 позиционных аргументов) —
+// в отличие от telegram-овского editMessageCaption, PUT /messages у MAX
+// не патчит сообщение, а задаёт вложения целиком: без явного фото в
+// запросе оно молча стирается (проверено на живом прогоне 14.08.2026).
+// Поэтому при isPhoto сначала перечитываем текущее вложение-фото и
+// прикладываем его обратно вместе с новой клавиатурой
+const editCard = async (chat, msgId, text, keyboard, isPhoto) => {
+    let attachments = kbAttachment(keyboard) || [];
+    if (isPhoto) {
+        const { messages } = await api("GET", `/messages?message_ids=${msgId}`);
+        const photo =
+            messages[0] &&
+            messages[0].body.attachments &&
+            messages[0].body.attachments.find((a) => a.type === "image");
+        if (photo)
+            attachments = [
+                { type: "image", payload: { token: photo.payload.token } },
+                ...attachments,
+            ];
+    }
+    return api("PUT", `/messages?message_id=${msgId}`, {
         text,
         format: "html",
-        attachments: kbAttachment(keyboard),
+        attachments: attachments.length ? attachments : undefined,
         notify: false,
     }).then((r) => ({
         message_id: r.message && r.message.body && r.message.body.mid,
     }));
+};
 // В MAX ответ на callback и правка карточки — один вызов (POST /answers);
 // здесь просто подтверждение без правки текста, как и telegram-овский
 // answerCallbackQuery — сама карточка правится отдельным editCard выше
