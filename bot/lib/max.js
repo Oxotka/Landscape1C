@@ -9,7 +9,7 @@ const path = require("path");
 
 const TOKEN = process.env.MAX_BOT_TOKEN;
 if (!TOKEN) {
-    console.error("Нужен токен: MAX_BOT_TOKEN=<токен> node bot/bot-max.js");
+    console.error("Нужен токен: MAX_BOT_TOKEN=<токен>");
     process.exit(1);
 }
 const HOST = "platform-api2.max.ru";
@@ -71,14 +71,32 @@ const withRetry = (fn, attempt = 0) =>
 const api = (method, urlPath, body) =>
     withRetry(() => rawRequest(method, urlPath, body));
 
+// Кнопки в lib/texts.js описаны в форме телеграма ({text, callback_data}),
+// у MAX своя ({type: "callback", text, payload}) — переводим здесь, чтобы
+// общее ядро и тексты не знали про платформу
+const kbButton = (b) => ({
+    type: "callback",
+    text: b.text,
+    payload: b.callback_data,
+});
 const kbAttachment = (keyboard) =>
     keyboard
-        ? [{ type: "inline_keyboard", payload: { buttons: keyboard } }]
+        ? [
+              {
+                  type: "inline_keyboard",
+                  payload: {
+                      buttons: keyboard.map((row) => row.map(kbButton)),
+                  },
+              },
+          ]
         : undefined;
 
+// format: "html" — тексты в lib/texts.js размечены тегами <b>/<i> под
+// telegram-овский parse_mode: "HTML"; без format MAX покажет теги как есть
 const send = (chat, text, keyboard) =>
     api("POST", `/messages?chat_id=${chat}`, {
         text,
+        format: "html",
         attachments: kbAttachment(keyboard),
         notify: false,
     }).then((r) => ({
@@ -122,13 +140,10 @@ const sendPhoto = async (chat, file, caption, keyboard) => {
     const { url } = await withRetry(requestUploadUrl);
     const { token } = await uploadFile(url, file);
     const attachments = [{ type: "image", payload: { token } }];
-    if (keyboard)
-        attachments.push({
-            type: "inline_keyboard",
-            payload: { buttons: keyboard },
-        });
+    if (keyboard) attachments.push(...kbAttachment(keyboard));
     const r = await api("POST", `/messages?chat_id=${chat}`, {
         text: caption,
+        format: "html",
         attachments,
         notify: false,
     });
@@ -151,6 +166,7 @@ const toast = async (chat, text, ms = 3000) => {
 const editCard = (chat, msgId, text, keyboard, isPhoto) =>
     api("PUT", `/messages?message_id=${msgId}`, {
         text,
+        format: "html",
         attachments: kbAttachment(keyboard),
     }).then((r) => ({
         message_id: r.message && r.message.body && r.message.body.mid,

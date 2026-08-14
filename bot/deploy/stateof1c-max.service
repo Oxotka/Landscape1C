@@ -12,6 +12,12 @@ User=stateof1c
 WorkingDirectory=/opt/landscape1c
 ExecStart=/usr/bin/node bot/bot-max.js
 EnvironmentFile=/etc/stateof1c.env
+# PLATFORM задаётся только здесь, в юните MAX-процесса, и никогда в общем
+# /etc/stateof1c.env: эта переменная выбирает и транспорт в bot.js
+# (lib/max.js против lib/telegram.js), и файлы состояния с солью uid в
+# lib/store.js — попав в общий env-файл, она молча переключит и
+# телеграм-бота, испортив боевые данные опроса.
+Environment=PLATFORM=max
 Restart=always
 RestartSec=3
 

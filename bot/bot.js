@@ -19,7 +19,7 @@ const {
     editCard,
     answerCallback,
     setupCommands,
-} = require("./lib/telegram");
+} = require(process.env.PLATFORM === "max" ? "./lib/max" : "./lib/telegram");
 const { T, K, CHEERS, ansRow, btnRows } = require("./lib/texts");
 const {
     ROLES,
