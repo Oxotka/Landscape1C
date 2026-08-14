@@ -2,11 +2,17 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const crypto = require("node:crypto");
+const fs = require("node:fs");
+const path = require("node:path");
 
 process.env.BOT_SALT = "fixed-test-salt";
 process.env.PLATFORM = "telegram";
 process.env.STATE_FILE = "test/tmp/state-uid-stability.json";
 process.env.ANSWERS_FILE = "test/tmp/answers-uid-stability.jsonl";
+
+// Создаём директорию для тестовых файлов перед require(store.js)
+// чтобы файлы были готовы к записи при вызове saveAnswer
+fs.mkdirSync(path.join(__dirname, "tmp"), { recursive: true });
 
 const { uid } = require("../lib/store.js");
 
