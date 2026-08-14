@@ -5,7 +5,7 @@ const { setupTestEnv } = require("./helpers/testEnv");
 const { installFakeTelegram } = require("./helpers/fakeTransport");
 
 setupTestEnv("fix-and-reset");
-installFakeTelegram();
+const fake = installFakeTelegram();
 const { onMessage, onCallback } = require("../bot.js");
 const { state, myAnswers, eraseAnswers } = require("../lib/store.js");
 
@@ -50,8 +50,27 @@ test("исправление ответа по названию инструме
     assert.equal(state[CHAT].fixReturn, "quiz");
 
     // Исправляем на "работал" → сентимент "да"
-    await onCallback(cb("a:работал", state[CHAT].cardMsg));
-    await onCallback(cb("s:да", state[CHAT].cardMsg));
+    const cardMsg = state[CHAT].cardMsg;
+    const before = fake.calls.length;
+    await onCallback(cb("a:работал", cardMsg));
+
+    // Контракт транспорта в ветке исправления: карточка правится тем же
+    // editCard(chat, msgId, text, keyboard, isPhoto)
+    const edit = fake.calls
+        .slice(before)
+        .find((c) => c.name === "editCard" && c.args[3]);
+    assert.ok(edit, "второй вопрос исправления должен уйти через editCard");
+    const [eChat, eMsgId, eText, eKeyboard, eIsPhoto] = edit.args;
+    assert.equal(eChat, CHAT);
+    assert.equal(eMsgId, cardMsg);
+    assert.ok(
+        eText.includes(firstTool),
+        "правится карточка того же инструмента",
+    );
+    assert.ok(Array.isArray(eKeyboard) && Array.isArray(eKeyboard[0]));
+    assert.equal(typeof eIsPhoto, "boolean");
+
+    await onCallback(cb("s:да", cardMsg));
 
     // Возврат туда, откуда пришли — квиз, позиция не сдвинулась исправлением
     assert.equal(state[CHAT].step, "quiz");

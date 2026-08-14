@@ -604,7 +604,7 @@ Expected: `# pass 2`, `# fail 0`.
 
 - [ ] **Step 3: Прогнать весь набор регрессионных тестов вместе**
 
-Run: `node --test bot/test/`
+Run: `node --test bot/test/*.test.js`
 Expected: `# pass 6`, `# fail 0` (3 теста Task 1 + 1 Task 3 + 2 Task 4). Это базовая линия «до рефакторинга» — именно её должны продолжать проходить Task 5 и 6.
 
 - [ ] **Step 4: Форматирование и коммит**
@@ -693,7 +693,7 @@ module.exports = {
 
 - [ ] **Step 3: Прогнать полный регрессионный набор — должен остаться зелёным**
 
-Run: `node --test bot/test/`
+Run: `node --test bot/test/*.test.js`
 Expected: `# pass 6`, `# fail 0` (правка аддитивная, `bot.js` новые функции ещё не вызывает).
 
 - [ ] **Step 4: Форматирование и коммит**
@@ -713,7 +713,7 @@ git commit -m "Бот: транспорт — editCard/answerCallback/setupComma
 
 **Interfaces:**
 - Consumes: `editCard`/`answerCallback`/`setupCommands` из Task 5.
-- Это единственный таск, ради которого писались тесты Task 1–4 — каждый шаг ниже проверяется прогоном `node --test bot/test/`.
+- Это единственный таск, ради которого писались тесты Task 1–4 — каждый шаг ниже проверяется прогоном `node --test bot/test/*.test.js`.
 - `module.exports` и `require.main`-guard в `bot.js` уже добавлены в Task 3 Step 1 (иначе тесты Task 3/4 не смогли бы требовать `bot.js` без запуска polling) — здесь их трогать не нужно.
 
 - [ ] **Step 1: Расширить импорт транспорта**
@@ -855,7 +855,7 @@ async function ensureAnchor(chat, s, text) {
 
 - [ ] **Step 6: Прогнать полный регрессионный набор — это и есть проверка «ничего не сломали»**
 
-Run: `node --test bot/test/`
+Run: `node --test bot/test/*.test.js`
 Expected: `# pass 6`, `# fail 0`. Если что-то упало — не подгонять тест под новое поведение, разбираться в diff по шагам 1–5 (например: `editCard` при `isPhoto=false` должен ставить именно `params.text`, не `params.caption`).
 
 - [ ] **Step 7: Ручная регресс-проверка на боевом коде (без реальной отправки)**

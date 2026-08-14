@@ -1,10 +1,9 @@
 "use strict";
 // Фейковый транспорт для регрессионных тестов bot.js: реализует контракт
-// lib/telegram.js целиком, включая editCard/answerCallback/setupCommands
-// (Task 5) и «сырой» api() — нужен, пока bot.js ещё зовёт его напрямую
-// для editMessageText/editMessageCaption/answerCallbackQuery/
-// setMyCommands/setChatMenuButton (до Task 6). Ничего не шлёт по сети,
-// но зовёт store.trackMsg как настоящий транспорт — иначе «сброс»
+// lib/telegram.js целиком (send/sendPhoto/hideCard/toast/editCard/
+// answerCallback/setupCommands) и записывает все вызовы в calls — на них
+// тесты проверяют, что bot.js зовёт транспорт по контракту. Ничего не шлёт
+// по сети, но зовёт store.trackMsg как настоящий транспорт — иначе «сброс»
 // (kind === "reset" в bot.js) не найдёт, что чистить с экрана.
 const { trackMsg } = require("../../lib/store");
 
@@ -39,22 +38,18 @@ function createFakeTransport() {
         record("editCard", [chat, msgId, text, keyboard, isPhoto], {});
     const answerCallback = async (id) => record("answerCallback", [id], {});
     const setupCommands = async () => record("setupCommands", [], {});
-    // До Task 6 bot.js зовёт editMessageText/editMessageCaption/
-    // answerCallbackQuery/setMyCommands/setChatMenuButton напрямую
-    // через api() — эмулируем и это, чтобы тесты проходили и на
-    // текущем (до рефакторинга) коде
-    const api = async (method, params) => {
-        if (
-            [
-                "editMessageText",
-                "editMessageCaption",
-                "answerCallbackQuery",
-                "setMyCommands",
-                "setChatMenuButton",
-            ].includes(method)
-        )
-            return record("api:" + method, [params], {});
-        throw new Error(`fakeTransport: неожиданный api(${method})`);
+    // Сырых вызовов api() в тестируемых путях bot.js больше нет: Task 6
+    // перевёл editMessageText/editMessageCaption/answerCallbackQuery/
+    // setMyCommands/setChatMenuButton на методы контракта (editCard/
+    // answerCallback/setupCommands), а единственный оставшийся
+    // api("getUpdates") живёт в цикле опроса под require.main === module
+    // и в тестах не выполняется. Поэтому любой вызов api() здесь —
+    // регрессия (обратно протащили платформенный вызов мимо контракта),
+    // и падать он должен громко, а не эмулироваться заглушкой
+    const api = async (method) => {
+        throw new Error(
+            `fakeTransport: bot.js не должен звать api(${method}) напрямую — только методы контракта транспорта`,
+        );
     };
 
     return {

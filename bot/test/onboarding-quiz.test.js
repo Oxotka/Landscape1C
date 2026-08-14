@@ -5,7 +5,7 @@ const { setupTestEnv } = require("./helpers/testEnv");
 const { installFakeTelegram } = require("./helpers/fakeTransport");
 
 setupTestEnv("onboarding-quiz");
-installFakeTelegram();
+const fake = installFakeTelegram();
 const { onMessage, onCallback } = require("../bot.js");
 const { state } = require("../lib/store.js");
 
@@ -74,7 +74,28 @@ test("онбординг → квиз → чекпоинт → пауза → п
 
     // Ответ с сентиментом: "работал" → второй вопрос → "да"
     const toolWithSentiment = state[CHAT].queue[state[CHAT].pos];
-    await onCallback(cb("a:работал", state[CHAT].cardMsg));
+    const cardMsg = state[CHAT].cardMsg;
+    const before = fake.calls.length;
+    await onCallback(cb("a:работал", cardMsg));
+
+    // Контракт транспорта: второй вопрос дописывается в ту же карточку
+    // именно через editCard(chat, msgId, text, keyboard, isPhoto) —
+    // порядок аргументов ловится только здесь (в bot.js вызов один)
+    const edit = fake.calls
+        .slice(before)
+        .find((c) => c.name === "editCard" && c.args[3]);
+    assert.ok(edit, "второй вопрос должен уйти через editCard");
+    const [eChat, eMsgId, eText, eKeyboard, eIsPhoto] = edit.args;
+    assert.equal(eChat, CHAT);
+    assert.equal(eMsgId, cardMsg);
+    assert.equal(typeof eText, "string");
+    assert.ok(
+        eText.includes(toolWithSentiment),
+        "в тексте — тот же инструмент",
+    );
+    assert.ok(Array.isArray(eKeyboard) && Array.isArray(eKeyboard[0]));
+    assert.equal(typeof eIsPhoto, "boolean");
+
     assert.ok(state[CHAT].pending);
     assert.equal(state[CHAT].pending.tool, toolWithSentiment);
     assert.equal(
