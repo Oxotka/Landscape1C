@@ -64,7 +64,15 @@ const server = http.createServer((req, res) => {
                 message: {
                     chat: { id: m.recipient.chat_id },
                     message_id: m.body.mid,
-                    photo: undefined, // MAX не различает фото/текст при редактировании — editCard в lib/max.js это уже учитывает
+                    // Есть ли у карточки фото-вложение — по нему editCard в
+                    // lib/max.js решает, нужно ли при правке (PUT) подтянуть
+                    // и вернуть то же фото (иначе PUT его стирает, см. commit
+                    // "editCard сохраняет фото-вложение..."). Раньше здесь
+                    // было захардкожено undefined — из-за этого фото
+                    // молча пропадало на живом прогоне 14.08.2026
+                    photo: (m.body.attachments || []).some(
+                        (a) => a.type === "image",
+                    ),
                 },
             }).catch(console.error);
         }
