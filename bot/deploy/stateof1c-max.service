@@ -1,0 +1,19 @@
+# Юнит systemd для MAX-бота опроса (docs/superpowers/specs/2026-08-13-max-bot-design.md).
+# Установка: скопировать в /etc/systemd/system/stateof1c-max.service,
+# токен и секрет вебхука — в /etc/stateof1c.env (MAX_BOT_TOKEN=...,
+# MAX_WEBHOOK_SECRET=...), рядом с BOT_TOKEN телеграм-бота.
+[Unit]
+Description=Бот опроса в MAX (StateOf1C_bot, landscape1c.ru)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=stateof1c
+WorkingDirectory=/opt/landscape1c
+ExecStart=/usr/bin/node bot/bot-max.js
+EnvironmentFile=/etc/stateof1c.env
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
