@@ -18,6 +18,9 @@ app/tools/
 # Бот-опросник: собранные ответы, состояние сессий и кэш телеграма
 # (пререндеренные логотипы bot/logos-png/ наоборот коммитятся)
 bot/answers.jsonl
+# Лок журнала ответов (store.withAnswersLock) — живёт только на время записи,
+# но остаётся на диске, если процесс упал внутри секции
+bot/answers.jsonl.lock
 bot/state.json
 bot/state-max.json
 bot/test/tmp/

@@ -57,9 +57,48 @@ if (fs.existsSync(ANSWERS))
             } catch (e) {}
         });
 
+// Журнал ответов общий для телеграма и MAX (в записи есть platform), а
+// процессов теперь два — дозапись (saveAnswer) и перезапись целиком
+// (eraseAnswers на «сбросе») могут прийтись на один момент, и перезапись
+// молча потеряет чужую дозапись. Межпроцессный advisory-лок без
+// зависимостей: файл рядом с журналом, создаваемый эксклюзивно ("wx"),
+// снимается в finally. Ждём занятый лок синхронно (обе операции
+// синхронные) и ограниченно — лучше громкая ошибка, чем зависший бот
+const LOCK = ANSWERS + ".lock";
+const LOCK_STEP_MS = 10;
+const LOCK_TRIES = 200; // ~2 секунды ожидания
+const sleepSync = (ms) =>
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+const withAnswersLock = (fn) => {
+    let fd = null;
+    for (let i = 0; i < LOCK_TRIES && fd === null; i++) {
+        try {
+            fd = fs.openSync(LOCK, "wx");
+        } catch (e) {
+            if (e.code !== "EEXIST") throw e;
+            sleepSync(LOCK_STEP_MS);
+        }
+    }
+    if (fd === null)
+        throw new Error(
+            `Журнал ответов заблокирован дольше ${(LOCK_TRIES * LOCK_STEP_MS) / 1000} с: ${LOCK}. ` +
+                "Если второй процесс бота не работает — лок остался от упавшего, удалите файл",
+        );
+    try {
+        return fn();
+    } finally {
+        fs.closeSync(fd);
+        try {
+            fs.unlinkSync(LOCK);
+        } catch (e) {}
+    }
+};
+
 const saveAnswer = (rec) => {
     rec = { ...rec, platform: PLATFORM };
-    fs.appendFileSync(ANSWERS, JSON.stringify(rec) + "\n");
+    withAnswersLock(() =>
+        fs.appendFileSync(ANSWERS, JSON.stringify(rec) + "\n"),
+    );
     remember(rec);
 };
 
@@ -112,22 +151,28 @@ const myAnswers = (chat) => {
     return m ? [...m.values()] : [];
 };
 
-// «Сброс»: стираем все ответы пользователя из журнала и индекса
+// «Сброс»: стираем все ответы пользователя из журнала и индекса.
+// Чтение и перезапись журнала — под тем же локом, что и дозапись в
+// saveAnswer: иначе дозапись соседнего процесса, пришедшая между
+// readFileSync и writeFileSync, потеряется. Индекс в памяти локальный
+// для процесса, межпроцессный лок ему не нужен
 const eraseAnswers = (chat) => {
     index.delete(uid(chat));
     if (!fs.existsSync(ANSWERS)) return;
-    const keep = fs
-        .readFileSync(ANSWERS, "utf8")
-        .split("\n")
-        .filter(Boolean)
-        .filter((l) => {
-            try {
-                return JSON.parse(l).uid !== uid(chat);
-            } catch (e) {
-                return true;
-            }
-        });
-    fs.writeFileSync(ANSWERS, keep.length ? keep.join("\n") + "\n" : "");
+    withAnswersLock(() => {
+        const keep = fs
+            .readFileSync(ANSWERS, "utf8")
+            .split("\n")
+            .filter(Boolean)
+            .filter((l) => {
+                try {
+                    return JSON.parse(l).uid !== uid(chat);
+                } catch (e) {
+                    return true;
+                }
+            });
+        fs.writeFileSync(ANSWERS, keep.length ? keep.join("\n") + "\n" : "");
+    });
 };
 
 // Реестр отправленных ботом сообщений (живет в состоянии чата) —
@@ -144,6 +189,7 @@ const trackMsg = (chat, res) => {
 
 module.exports = {
     uid,
+    withAnswersLock, // экспортируется ради теста лока (bot/test/answers-lock.test.js)
     saveAnswer,
     state,
     saveState,
