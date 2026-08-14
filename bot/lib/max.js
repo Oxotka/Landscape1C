@@ -138,7 +138,11 @@ const uploadFile = (uploadUrl, file) =>
     });
 const sendPhoto = async (chat, file, caption, keyboard) => {
     const { url } = await withRetry(requestUploadUrl);
-    const { token } = await uploadFile(url, file);
+    // Ответ загрузки — не плоский {token}, а {photos: {<id>: {token}}}
+    // (в документации это не расписано, снято по факту 14.08.2026);
+    // id ключа — служебный, сам токен только внутри значения
+    const { photos } = await uploadFile(url, file);
+    const { token } = Object.values(photos)[0];
     const attachments = [{ type: "image", payload: { token } }];
     if (keyboard) attachments.push(...kbAttachment(keyboard));
     const r = await api("POST", `/messages?chat_id=${chat}`, {
@@ -168,6 +172,7 @@ const editCard = (chat, msgId, text, keyboard, isPhoto) =>
         text,
         format: "html",
         attachments: kbAttachment(keyboard),
+        notify: false,
     }).then((r) => ({
         message_id: r.message && r.message.body && r.message.body.mid,
     }));
