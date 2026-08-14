@@ -6,15 +6,34 @@ const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 
-const ANSWERS = path.join(__dirname, "..", "answers.jsonl");
-const STATE = path.join(__dirname, "..", "state.json");
+// PLATFORM различает телеграм и MAX: раздельные файлы состояния (два
+// процесса не должны драться за один state.json) и соль uid — только
+// для MAX добавляем префикс платформы, чтобы не столкнуться с
+// telegram-id случайно; для телеграма (по умолчанию) формула хеша не
+// меняется — в answers.jsonl уже боевые данные волны, ломать их нельзя
+const PLATFORM = process.env.PLATFORM || "telegram";
+// STATE_FILE/ANSWERS_FILE — переопределение путей для тестов
+// (регрессионные тесты bot.js не должны трогать боевые
+// bot/state.json и bot/answers.jsonl)
+const ANSWERS = path.join(
+    __dirname,
+    "..",
+    process.env.ANSWERS_FILE || "answers.jsonl",
+);
+const STATE = path.join(
+    __dirname,
+    "..",
+    process.env.STATE_FILE ||
+        (PLATFORM === "max" ? "state-max.json" : "state.json"),
+);
 const SALT = process.env.BOT_SALT || "landscape1c-proto"; // в проде задать свою
 
-// Респондент в данных — только соленый хеш telegram-id
+// Респондент в данных — только соленый хеш id (для MAX — с префиксом
+// платформы, для телеграма формула прежняя, см. комментарий выше)
 const uid = (id) =>
     crypto
         .createHash("sha256")
-        .update(SALT + id)
+        .update(SALT + (PLATFORM === "max" ? "max" : "") + id)
         .digest("hex")
         .slice(0, 16);
 
@@ -39,6 +58,7 @@ if (fs.existsSync(ANSWERS))
         });
 
 const saveAnswer = (rec) => {
+    rec = { ...rec, platform: PLATFORM };
     fs.appendFileSync(ANSWERS, JSON.stringify(rec) + "\n");
     remember(rec);
 };

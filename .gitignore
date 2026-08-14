@@ -19,6 +19,8 @@ app/tools/
 # (пререндеренные логотипы bot/logos-png/ наоборот коммитятся)
 bot/answers.jsonl
 bot/state.json
+bot/state-max.json
+bot/test/tmp/
 bot/file-ids.json
 bot/reminders.json
 # Снимки сессий (список адресатов рассылки notify.js) — chat_id, в git нельзя
