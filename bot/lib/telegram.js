@@ -74,6 +74,16 @@ const send = (chat, text, keyboard) =>
         reply_markup: keyboard ? { inline_keyboard: keyboard } : undefined,
     }).then((r) => trackMsg(chat, r));
 
+// Рассылка (notify.js/remind.js): в отличие от send() — с пушем (без
+// disable_notification) и без реестра сообщений чата, это не диалог бота
+const broadcast = (chat, text, keyboard) =>
+    api("sendMessage", {
+        chat_id: chat,
+        text,
+        parse_mode: "HTML",
+        reply_markup: keyboard ? { inline_keyboard: keyboard } : undefined,
+    });
+
 // Кэш telegram file_id по файлу логотипа: первый показ грузит файл,
 // дальше фото уходит мгновенно по идентификатору — в этом вся скорость
 const FILEIDS = path.join(__dirname, "..", "file-ids.json");
@@ -199,6 +209,7 @@ const setupCommands = () =>
 module.exports = {
     api,
     send,
+    broadcast,
     sendPhoto,
     hideCard,
     toast,

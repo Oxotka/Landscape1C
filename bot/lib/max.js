@@ -156,6 +156,18 @@ const sendPhoto = async (chat, file, caption, keyboard) => {
     };
 };
 
+// Рассылка (notify.js/remind.js): в отличие от send() — с пушем
+// (notify: true), это не диалог бота, а разовое приглашение/напоминание
+const broadcast = (chat, text, keyboard) =>
+    api("POST", `/messages?chat_id=${chat}`, {
+        text,
+        format: "html",
+        attachments: kbAttachment(keyboard),
+        notify: true,
+    }).then((r) => ({
+        message_id: r.message && r.message.body && r.message.body.mid,
+    }));
+
 const hideCard = (chat, msgId) =>
     api("DELETE", `/messages?message_id=${msgId}`).catch(() => {});
 const toast = async (chat, text, ms = 3000) => {
@@ -208,6 +220,7 @@ const setupCommands = () => Promise.resolve();
 module.exports = {
     api,
     send,
+    broadcast,
     sendPhoto,
     hideCard,
     toast,

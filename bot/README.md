@@ -4,7 +4,9 @@
 востребованности инструментов ландшафта (замысел — `docs/TZ.md`, п.13). Живет
 отдельно от сайта: собирает ответы волнами по годам, публикация на карточках —
 отдельный шаг после проверки данных. Ноль зависимостей: системный Node.js,
-Bot API через long polling.
+Bot API через long polling. Тот же опрос живет и в мессенджере MAX
+(`StateOf1C_bot`, там вебхуки вместо long polling) — устройство и отличия
+платформы см. в разделе «MAX-бот» ниже.
 
 ## Запуск
 
@@ -96,6 +98,14 @@ BOT_TOKEN=<токен> node bot/notify.js --state <снимок state.json> --ye
 в отличие от беззвучных сообщений самого опроса; заблокировавшие бота
 просто пропускаются.
 
+Для MAX — тот же скрипт с `--platform max` и токеном `MAX_BOT_TOKEN` вместо
+`BOT_TOKEN`; без `--state` берет `bot/state-max.json`:
+
+```bash
+MAX_BOT_TOKEN=<токен> node bot/notify.js --platform max "<текст>"        # репетиция
+MAX_BOT_TOKEN=<токен> node bot/notify.js --platform max --yes "<текст>"  # рассылка
+```
+
 ## Напоминания зависшим сессиям
 
 Кто ответил хотя бы на один вопрос, но давно не возвращается (`quiz`,
@@ -111,6 +121,15 @@ BOT_TOKEN=<токен> node bot/notify.js --state <снимок state.json> --ye
 ```bash
 BOT_TOKEN=<токен> node bot/remind.js                              # репетиция
 BOT_TOKEN=<токен> CUTOFF_DATE=2026-10-01 node bot/remind.js --yes # рассылка
+```
+
+Для MAX — тот же скрипт с `--platform max` и токеном `MAX_BOT_TOKEN` вместо
+`BOT_TOKEN`; без `--state`/`--reminders` берет `bot/state-max.json` и
+`bot/reminders-max.json` (свой счетчик, платформы не делят один chat_id):
+
+```bash
+MAX_BOT_TOKEN=<токен> node bot/remind.js --platform max                              # репетиция
+MAX_BOT_TOKEN=<токен> CUTOFF_DATE=2026-10-01 node bot/remind.js --platform max --yes  # рассылка
 ```
 
 По cron раз в сутки — вхолостую, если сегодня некому напоминать. Токен
@@ -165,6 +184,60 @@ journalctl -u stateof1c -f   # лог
 ssh <сервер> 'git -C /opt/landscape1c pull && systemctl restart stateof1c'
 ```
 
+## MAX-бот
+
+Тот же опрос в мессенджере [MAX](https://max.ru) — `StateOf1C_bot`. Общее
+ядро (`bot.js`: `onMessage`/`onCallback`, вся машина состояний, тексты)
+одно на обе платформы; отличаются только транспорт и способ получения
+апдейтов:
+
+- транспорт выбирается переменной окружения `PLATFORM=max` — `bot.js`
+  подключает `lib/max.js` вместо `lib/telegram.js` (REST MAX Bot API вместо
+  Bot API телеграма), `lib/store.js` переключается на отдельные
+  `state-max.json`/uid-соль с префиксом платформы (боевые данные
+  телеграм-волны от этого не зависят);
+- вместо long polling — вебхук: `bot-max.js` слушает голый HTTP на
+  `127.0.0.1:3001`, за nginx-терминатором TLS, проверяет заголовок
+  `X-Max-Bot-Api-Secret` и переводит апдейт MAX в telegram-подобный
+  конверт для того же `onMessage`/`onCallback`.
+
+Живые находки платформы, которых нет в документации MAX (см. подробнее
+`docs/superpowers/specs/2026-08-13-max-bot-design.md`):
+
+- **вебхуки MAX доставляются только на порт 443** — 8443 и любой другой
+  не работают, хотя документация порт не регламентирует;
+- исходящие запросы к `platform-api2.max.ru` требуют доверия к
+  «Russian Trusted Sub CA» (Минцифры) — нужен `NODE_EXTRA_CA_CERTS` с
+  этим корнем в окружении, системного доверия сертификату Node.js не видит;
+- `PUT /messages` (правка карточки) задает вложения целиком, не патчит —
+  без явного фото в запросе оно молча стирается (`editCard` в `lib/max.js`
+  сначала перечитывает текущее фото-вложение и прикладывает обратно);
+- у MAX нет вообще никакого аналога меню команд телеграма (ни через API,
+  ни в кабинете business.max.ru) — команды работают только текстом.
+
+Установка на тот же VPS, рядом с телеграм-ботом — юнит
+`bot/deploy/stateof1c-max.service`:
+
+```bash
+sudo cp /opt/landscape1c/bot/deploy/stateof1c-max.service /etc/systemd/system/
+# в /etc/stateof1c.env добавить (НЕ трогая существующие BOT_TOKEN/BOT_SALT):
+#   MAX_BOT_TOKEN=<токен>
+#   MAX_WEBHOOK_SECRET=<секрет>
+sudo systemctl enable --now stateof1c-max
+journalctl -u stateof1c-max -f   # лог
+```
+
+`Environment=PLATFORM=max` задан в самом юните, не в общем
+`/etc/stateof1c.env` — иначе телеграм-бот тоже переключится на
+MAX-хранилище и испортит боевые данные волны. Порт 443 должен быть
+свободен под nginx (на проде для этого пришлось насовсем отключить личный
+VPN владельца, занимавший 443, — см. спеку). Разовая регистрация
+вебхука после первого деплоя (URL — реальный порт 443, без `:8443`):
+
+```bash
+MAX_BOT_TOKEN=<токен> MAX_WEBHOOK_SECRET=<секрет> node bot/register-max-webhook.js
+```
+
 ## Устройство
 
 `bot.js` — машина состояний и роутинг апдейтов. Шаги сессии:
@@ -180,6 +253,9 @@ ssh <сервер> 'git -C /opt/landscape1c pull && systemctl restart stateof1c'
   (`retry_after`), отправка фото с кэшем `file_id` (`file-ids.json` — вся
   скорость в нем), гигиена чата: удаление сообщений, тосты, реестр
   отправленного (на нем полная очистка по «сбросу»).
+- `lib/max.js` / `bot-max.js` — тот же контракт транспорта (`api`, `send`,
+  `sendPhoto`, `editCard`, …) под REST MAX Bot API и вебхук-приемник; см.
+  раздел «MAX-бот» выше.
 - `lib/quiz.js` — данные ландшафта (`app/data.js`), исключения и очереди:
   ядро роли = продвинутые + 1 нишевый на каждые 3, после трех «не знаю» подряд
   вперед поднимается массовый инструмент; остаток нишевых — опт-ин после ядра.
@@ -216,11 +292,13 @@ node bot/render-logos.js --all   # перерендерить все занов�
   перепрохождения и исправления не дублируют (дедуп в `report.js`).
 - `state.json` (в `.gitignore`) — состояние сессий: прогресс, очередь,
   реестр сообщений, `lastActive` (метка последней активности — на ней
-  `bot/remind.js` считает, кому пора напомнить).
+  `bot/remind.js` считает, кому пора напомнить). У MAX-бота — свой файл
+  `state-max.json`, тот же формат, отдельное пространство chat_id.
 - `excluded.json` (коммитится) — универсальные инструменты, о которых не
   спрашиваем: их использовали все, в итогах пойдут как «не применимо».
   Имена сверяются с `data.js` при старте и в `validate.js`.
 - `reminders.json` (в `.gitignore`) — счетчик отправленных напоминаний
   `bot/remind.js`: `{chatId: {count, lastSentTs}}`, максимум `count: 2`.
+  Для MAX (`--platform max`) — отдельный `reminders-max.json`.
 
 Номер волны — константа `WAVE` в `bot.js`.

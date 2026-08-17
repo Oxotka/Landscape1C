@@ -3,10 +3,15 @@
 // работающего бота ТОЛЬКО на чтение (бот сам перезаписывает его каждую
 // секунду — дописывать туда из другого процесса было бы гонкой), а
 // счетчик отправленных напоминаний держит в своем файле reminders.json.
-// Запуск: BOT_TOKEN=<токен> node bot/remind.js [--state <файл>]
-//   [--reminders <файл>] [--yes]
-//   --state       какой state.json читать (по умолчанию bot/state.json)
-//   --reminders   файл счетчика напоминаний (по умолчанию bot/reminders.json)
+// Запуск: BOT_TOKEN=<токен> node bot/remind.js [--platform telegram|max]
+//   [--state <файл>] [--reminders <файл>] [--yes]
+//   --platform    какой транспорт и токен использовать (по умолчанию
+//                 telegram; для max нужен MAX_BOT_TOKEN вместо BOT_TOKEN)
+//   --state       какой state.json читать (по умолчанию bot/state.json или
+//                 bot/state-max.json для --platform max)
+//   --reminders   файл счетчика напоминаний (по умолчанию bot/reminders.json
+//                 или bot/reminders-max.json для --platform max — разные
+//                 платформы не делят одно пространство chat_id)
 //   --yes         реально разослать; без него — репетиция, ничего не уходит
 // Первое напоминание — через 3 дня бездействия. Второе (финальное) —
 // в окне за неделю до отсечки волны; дата отсечки берется из env
@@ -14,7 +19,6 @@
 "use strict";
 const fs = require("fs");
 const path = require("path");
-const { api } = require("./lib/telegram");
 const { T, K } = require("./lib/texts");
 
 const args = process.argv.slice(2);
@@ -23,10 +27,24 @@ const opt = (name, def) => {
     const i = args.indexOf(name);
     return i >= 0 ? args[i + 1] : def;
 };
-const stateFile = opt("--state", path.join(__dirname, "state.json"));
+const platform = opt("--platform", "telegram");
+if (!["telegram", "max"].includes(platform)) {
+    console.error(`Платформа не распознана: "${platform}" (telegram|max)`);
+    process.exit(1);
+}
+const { broadcast } = require(
+    platform === "max" ? "./lib/max" : "./lib/telegram",
+);
+const stateFile = opt(
+    "--state",
+    path.join(__dirname, platform === "max" ? "state-max.json" : "state.json"),
+);
 const remindersFile = opt(
     "--reminders",
-    path.join(__dirname, "reminders.json"),
+    path.join(
+        __dirname,
+        platform === "max" ? "reminders-max.json" : "reminders.json",
+    ),
 );
 
 const RESUMABLE = ["quiz", "paused", "checkpoint", "offer", "fix"];
@@ -84,7 +102,7 @@ for (const [chatStr, s] of Object.entries(state)) {
     targets.push({ chat: Number(chatStr), chatStr, text, attempt });
 }
 
-console.log(`Кандидатов: ${targets.length}`);
+console.log(`Платформа: ${platform}. Кандидатов: ${targets.length}`);
 if (!yes) {
     targets.forEach((t) =>
         console.log(
@@ -113,12 +131,7 @@ const flush = () => {
         failed = 0;
     for (const t of targets) {
         try {
-            await api("sendMessage", {
-                chat_id: t.chat,
-                text: t.text,
-                parse_mode: "HTML",
-                reply_markup: { inline_keyboard: K.resume },
-            });
+            await broadcast(t.chat, t.text, K.resume);
             reminders[t.chatStr] = { count: t.attempt, lastSentTs: now };
             flush();
             ok++;
