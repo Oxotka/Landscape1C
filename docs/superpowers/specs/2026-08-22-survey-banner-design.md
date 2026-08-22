@@ -38,10 +38,10 @@ Issue: [#28](https://github.com/Oxotka/Landscape1C/issues/28) «Сделать �
     </p>
     <div class="survey-banner__actions">
         <a href="https://t.me/stateOf1c_bot" target="_blank" rel="noopener"
-            >Ответить в Telegram →</a
+            >Telegram →</a
         >
         <a href="https://max.ru/se13951546_bot" target="_blank" rel="noopener"
-            >Ответить в MAX →</a
+            >MAX →</a
         >
     </div>
     <button type="button" class="survey-banner__close" aria-label="Закрыть">✕</button>
