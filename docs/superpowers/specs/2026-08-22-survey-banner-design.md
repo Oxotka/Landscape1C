@@ -26,10 +26,12 @@ Issue: [#28](https://github.com/Oxotka/Landscape1C/issues/28) «Сделать �
 
 ## Разметка и размещение
 
-Новый блок `.survey-banner` в `app/index.html`, между `</header>` (masthead) и `<div class="body">`, на всю ширину страницы. По умолчанию с атрибутом `hidden`; `app.js` снимает `hidden` при выполнении условий показа.
+`app/index.html` не трогается — никакой статичной разметки и атрибута `hidden` нет. Блок `.survey-banner` целиком собирается в JS: `initSurveyBanner()` в `app/app.js` создает элемент через `document.createElement`/`innerHTML` и вставляет его после шапки — `masthead.after(banner)`. Пока `SURVEY_BANNER_ENABLED = false`, функция выходит на первой строке — баннера нет в DOM вообще, не просто скрыт.
+
+Ниже — снимок того, как выглядит сгенерированная разметка (содержимое актуально, это не статичный HTML-файл):
 
 ```html
-<div id="survey-banner" class="survey-banner" hidden>
+<div class="survey-banner">
     <p class="survey-banner__text">
         Большой опрос «Состояние ландшафта 1С 2026» — расскажите, какими
         инструментами пользуетесь
@@ -42,7 +44,7 @@ Issue: [#28](https://github.com/Oxotka/Landscape1C/issues/28) «Сделать �
             >Ответить в MAX →</a
         >
     </div>
-    <button id="survey-banner-close" class="survey-banner__close" aria-label="Закрыть">✕</button>
+    <button type="button" class="survey-banner__close" aria-label="Закрыть">✕</button>
 </div>
 ```
 
