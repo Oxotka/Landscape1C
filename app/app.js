@@ -18,6 +18,10 @@
         availability: "availability",
     };
 
+    // Баннер опроса «Состояние ландшафта 1С 2026» — включаем одним флагом
+    // в день анонса боевой волны (см. docs/superpowers/specs/2026-08-22-survey-banner-design.md)
+    const SURVEY_BANNER_ENABLED = false;
+
     // Состояние фильтров: для каждой оси — Set выбранных значений
     const state = {};
     AXES.forEach((a) => (state[a] = new Set()));
@@ -390,6 +394,31 @@
         () => openFilters(false),
     );
 
+    // ── Баннер опроса ──────────────────────────
+    function initSurveyBanner() {
+        if (!SURVEY_BANNER_ENABLED) return;
+        const DISMISS_KEY = "survey_banner_dismissed";
+        if (localStorage.getItem(DISMISS_KEY)) return;
+        const masthead = document.querySelector(".masthead");
+        if (!masthead) return;
+        const banner = document.createElement("div");
+        banner.className = "survey-banner";
+        banner.innerHTML = `
+      <p class="survey-banner__text">Большой опрос «Состояние ландшафта 1С 2026» — расскажите, какими инструментами пользуетесь</p>
+      <div class="survey-banner__actions">
+        <a href="https://t.me/stateOf1c_bot" target="_blank" rel="noopener">Ответить в Telegram →</a>
+        <a href="https://max.ru/se13951546_bot" target="_blank" rel="noopener">Ответить в MAX →</a>
+      </div>
+      <button type="button" class="survey-banner__close" aria-label="Закрыть">✕</button>`;
+        banner
+            .querySelector(".survey-banner__close")
+            .addEventListener("click", () => {
+                banner.remove();
+                localStorage.setItem(DISMISS_KEY, "true");
+            });
+        masthead.after(banner);
+    }
+
     // ── Старт ─────────────────────────────────
     const numEl = $(".masthead__num");
     if (numEl) numEl.textContent = D.items.length; // живое число инструментов
@@ -397,4 +426,5 @@
     readUrl();
     syncControls();
     apply();
+    initSurveyBanner();
 })();

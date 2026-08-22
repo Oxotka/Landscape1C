@@ -90,6 +90,65 @@ a {
     background: var(--paper);
 }
 
+/* ── Баннер опроса (флаг SURVEY_BANNER_ENABLED в app.js) ── */
+.survey-banner {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 24px;
+    padding: 14px clamp(20px, 4vw, 40px);
+    padding-right: 56px;
+    background: var(--ink);
+    color: var(--paper);
+    border-bottom: 2px solid var(--ink);
+}
+.survey-banner__text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+.survey-banner__actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.survey-banner__actions a {
+    display: inline-block;
+    padding: 7px 14px;
+    border: 1.5px solid var(--paper);
+    color: var(--paper);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition:
+        background 0.12s ease,
+        color 0.12s ease;
+}
+.survey-banner__actions a:hover {
+    background: var(--paper);
+    color: var(--ink);
+}
+.survey-banner__close {
+    position: absolute;
+    top: 14px;
+    right: clamp(20px, 4vw, 40px);
+    background: none;
+    border: none;
+    color: var(--paper);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+}
+@media (max-width: 720px) {
+    .survey-banner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
 /* ── Кнопка меню (бургер) ─────────────────── */
 .menu-toggle {
     /* по вертикали — на строке кикера (надзаголовка): паддинг шапки 20px + центр кикера */
