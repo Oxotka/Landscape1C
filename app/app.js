@@ -406,8 +406,8 @@
         banner.innerHTML = `
       <p class="survey-banner__text">Большой опрос «Состояние ландшафта 1С 2026» — расскажите, какими инструментами пользуетесь</p>
       <div class="survey-banner__actions">
-        <a href="https://t.me/stateOf1c_bot" target="_blank" rel="noopener">Ответить в Telegram →</a>
-        <a href="https://max.ru/se13951546_bot" target="_blank" rel="noopener">Ответить в MAX →</a>
+        <a href="https://t.me/stateOf1c_bot" target="_blank" rel="noopener">Telegram →</a>
+        <a href="https://max.ru/se13951546_bot" target="_blank" rel="noopener">MAX →</a>
       </div>
       <button type="button" class="survey-banner__close" aria-label="Закрыть">✕</button>`;
         banner
