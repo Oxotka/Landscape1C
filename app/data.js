@@ -1,6 +1,6 @@
 // Данные ландшафта (Вариант B). Сгенерировано редактором разметки (editor.html).
 window.LANDSCAPE = {
-  "updated": "13 июля 2026",
+  "updated": "26 августа 2026",
   "categories": [
     "Прототипирование",
     "Диаграммы",
@@ -9742,6 +9742,54 @@ window.LANDSCAPE = {
         "протобаф",
         "protocol buffers",
         "gRPC"
+      ]
+    },
+    {
+      "name": "Unica",
+      "added": "2026-08-26",
+      "updated": "2026-08-26",
+      "category": "ИИ-ассистенты",
+      "subcategory": "CLI-агенты",
+      "logo": "unica.svg",
+      "description": "Плагин Codex и Claude Code с навыками и MCP-сервером для разработки на платформе 1С:Предприятие",
+      "why": "Позволяет ИИ-агенту создавать и проверять метаданные, формы, роли, СКД, внешние обработки и отчеты, запускать 1С и искать BSL-код",
+      "homepage": "https://github.com/IngvarConsulting/unica",
+      "repo": "https://github.com/IngvarConsulting/unica",
+      "start": [
+        {
+          "label": "Установка для Codex",
+          "url": "https://github.com/IngvarConsulting/unica#codex"
+        },
+        {
+          "label": "Установка для Claude Code",
+          "url": "https://github.com/IngvarConsulting/unica#claude-code"
+        },
+        {
+          "label": "Каталог навыков Unica",
+          "url": "https://github.com/IngvarConsulting/unica/tree/main/plugins/unica/skills"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик"
+      ],
+      "contexts": [
+        "продукты",
+        "проекты",
+        "инхаус"
+      ],
+      "aliases": [
+        "уника",
+        "unica 1c",
+        "unica 1с",
+        "плагин unica"
+      ],
+      "depends": [
+        "Claude Code",
+        "Codex"
       ]
     }
   ]
