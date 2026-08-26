@@ -9783,6 +9783,7 @@ window.LANDSCAPE = {
       ],
       "aliases": [
         "уника",
+        "юника",
         "unica 1c",
         "unica 1с",
         "плагин unica"
