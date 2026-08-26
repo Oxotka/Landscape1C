@@ -9753,7 +9753,7 @@ window.LANDSCAPE = {
       "logo": "unica.svg",
       "description": "Плагин Codex и Claude Code с навыками и MCP-сервером для разработки на платформе 1С:Предприятие",
       "why": "Позволяет ИИ-агенту создавать и проверять метаданные, формы, роли, СКД, внешние обработки и отчеты, запускать 1С и искать BSL-код",
-      "homepage": "https://github.com/IngvarConsulting/unica",
+      "homepage": "https://ingvar.pro/products/unica",
       "repo": "https://github.com/IngvarConsulting/unica",
       "start": [
         {
