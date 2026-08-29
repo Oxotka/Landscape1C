@@ -108,6 +108,10 @@ a {
     font-size: 14px;
     line-height: 1.4;
 }
+.survey-banner__more {
+    color: inherit;
+    text-underline-offset: 3px;
+}
 .survey-banner__actions {
     display: flex;
     gap: 10px;

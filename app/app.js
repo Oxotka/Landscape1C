@@ -19,8 +19,8 @@
     };
 
     // Баннер опроса «Состояние ландшафта 1С 2026» — включаем одним флагом
-    // в день анонса боевой волны (см. docs/superpowers/specs/2026-08-22-survey-banner-design.md)
-    const SURVEY_BANNER_ENABLED = false;
+    // флаг боевой волны (см. docs/superpowers/specs/2026-08-22-survey-banner-design.md)
+    const SURVEY_BANNER_ENABLED = true;
 
     // Состояние фильтров: для каждой оси — Set выбранных значений
     const state = {};
@@ -404,7 +404,7 @@
         const banner = document.createElement("div");
         banner.className = "survey-banner";
         banner.innerHTML = `
-      <p class="survey-banner__text">Большой опрос «Состояние ландшафта 1С 2026» — расскажите, какими инструментами пользуетесь</p>
+      <p class="survey-banner__text">Большой опрос «Состояние ландшафта 1С 2026» — расскажите, какими инструментами пользуетесь<br><a class="survey-banner__more" href="survey2026.html">Подробнее и предварительные итоги →</a></p>
       <div class="survey-banner__actions">
         <a href="https://t.me/stateOf1c_bot" target="_blank" rel="noopener">Telegram →</a>
         <a href="https://max.ru/se13951546_bot" target="_blank" rel="noopener">MAX →</a>
