@@ -1,6 +1,6 @@
 <!doctype html>
-<!-- Итоги опроса популярности — волна 2026 (п.13 ТЗ). Публичная витрина
-     промежуточного опроса (в меню, sitemap, индексируется); данные
+<!-- Опрос популярности — волна 2026 (п.13 ТЗ). Посадочная боевой волны и
+     публичная витрина предварительного этапа (sitemap, индексируется); данные
      app/survey2026.js генерит node bot/aggregate.js (агрегаты без ПДн).
      Дальше на этой же странице поверх витрины вырастет отчет-лонгрид
      «Итоги 2026». -->
@@ -8,7 +8,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Итоги промежуточного опроса · Ландшафт 1С</title>
+        <title>Состояние ландшафта 1С 2026 · Большой опрос</title>
         <script>
             (function () {
                 try {
@@ -32,18 +32,18 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
         <meta
             name="description"
-            content="Итоги промежуточного опроса сообщества 1С: узнаваемость, использование и лояльность инструментов ландшафта"
+            content="Пройдите большой опрос об инструментах экосистемы 1С. Результаты об использовании, узнаваемости и интересе опубликуем открыто"
         />
         <link rel="canonical" href="https://landscape1c.ru/survey2026.html" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Ландшафт технологий 1С" />
         <meta
             property="og:title"
-            content="Итоги промежуточного опроса · Ландшафт технологий 1С"
+            content="Состояние ландшафта 1С 2026 · Большой опрос"
         />
         <meta
             property="og:description"
-            content="Итоги промежуточного опроса сообщества 1С: узнаваемость, использование и лояльность инструментов ландшафта"
+            content="Расскажите, какими инструментами 1С вы действительно пользуетесь. Пройти можно в Telegram или MAX"
         />
         <meta
             property="og:url"
@@ -51,7 +51,7 @@
         />
         <meta
             property="og:image"
-            content="https://landscape1c.ru/og-image.png"
+            content="https://landscape1c.ru/og-survey2026.png"
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -128,6 +128,151 @@
                 --series-soft: #38678f;
                 --cat-3: #2fa383;
                 --cat-4: #d4a935;
+            }
+            .sv-landing {
+                display: grid;
+                grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
+                border-bottom: 2px solid var(--ink);
+                background: var(--paper);
+            }
+            .sv-landing__main {
+                padding: clamp(28px, 5vw, 68px) clamp(20px, 5vw, 72px);
+            }
+            .sv-landing__eyebrow {
+                margin: 0 0 18px;
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: var(--m-adv);
+            }
+            .sv-landing__lead {
+                max-width: 880px;
+                margin: 0;
+                font-family: var(--display);
+                font-size: clamp(23px, 3.4vw, 44px);
+                font-weight: 700;
+                line-height: 1.15;
+                letter-spacing: -0.04em;
+            }
+            .sv-landing__copy {
+                max-width: 720px;
+                margin: 20px 0 0;
+                font-size: clamp(15px, 1.7vw, 19px);
+                line-height: 1.55;
+                color: var(--ink-soft);
+            }
+            .sv-landing__actions {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 32px;
+            }
+            .sv-landing__action {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 220px;
+                min-height: 58px;
+                padding: 0 28px;
+                border: 2px solid var(--ink);
+                background: var(--ink);
+                color: var(--paper);
+                font-size: 16px;
+                font-weight: 700;
+                text-decoration: none;
+            }
+            .sv-landing__action + .sv-landing__action {
+                background: transparent;
+                color: var(--ink);
+            }
+            .sv-landing__action:hover {
+                background: var(--m-adv);
+                border-color: var(--m-adv);
+                color: #fff;
+            }
+            .sv-landing__deck {
+                position: relative;
+                min-height: 410px;
+                overflow: hidden;
+                border-left: 2px solid var(--ink);
+                background: var(--card);
+            }
+            .sv-answer {
+                position: absolute;
+                width: min(76%, 300px);
+                padding: 18px;
+                border: 2px solid var(--ink);
+                background: var(--paper);
+                box-shadow: 8px 8px 0 var(--ink);
+                font-family: var(--display);
+                font-size: clamp(16px, 2vw, 22px);
+                font-weight: 700;
+                line-height: 1.2;
+                transition:
+                    transform 180ms ease,
+                    box-shadow 180ms ease;
+            }
+            .sv-answer small {
+                display: block;
+                margin-bottom: 32px;
+                font-family: var(--body);
+                font-size: 10px;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--ink-soft);
+            }
+            .sv-answer:nth-child(1) {
+                top: 12%;
+                left: 9%;
+                transform: rotate(-7deg);
+            }
+            .sv-answer:nth-child(2) {
+                top: 35%;
+                right: 7%;
+                transform: rotate(6deg);
+                background: var(--m-adv);
+                color: #fff;
+            }
+            .sv-answer:nth-child(2) small {
+                color: rgba(255, 255, 255, 0.72);
+            }
+            .sv-answer:nth-child(3) {
+                bottom: 8%;
+                left: 14%;
+                transform: rotate(-2deg);
+            }
+            @media (hover: hover) {
+                .sv-answer:hover {
+                    z-index: 2;
+                    box-shadow: 12px 12px 0 var(--ink);
+                }
+                .sv-answer:nth-child(1):hover {
+                    transform: rotate(-2deg) scale(1.06);
+                }
+                .sv-answer:nth-child(2):hover {
+                    transform: rotate(1deg) scale(1.06);
+                }
+                .sv-answer:nth-child(3):hover {
+                    transform: rotate(3deg) scale(1.06);
+                }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .sv-answer {
+                    transition: none;
+                }
+            }
+            .sv-stage {
+                padding: 11px clamp(16px, 3vw, 24px);
+                border-bottom: 2px solid var(--ink);
+                background: var(--ink);
+                color: var(--paper);
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
             }
             .sv-content {
                 flex: 1;
@@ -349,6 +494,24 @@
                 white-space: nowrap;
             }
             @media (max-width: 720px) {
+                .sv-landing {
+                    display: block;
+                }
+                .sv-landing__main {
+                    padding: 28px 16px 30px;
+                }
+                .sv-landing__actions,
+                .sv-landing__action {
+                    width: 100%;
+                }
+                .sv-landing__action {
+                    justify-content: center;
+                }
+                .sv-landing__deck {
+                    min-height: 300px;
+                    border-top: 2px solid var(--ink);
+                    border-left: 0;
+                }
                 .survey .sv-who {
                     grid-template-columns: 1fr;
                 }
@@ -866,7 +1029,7 @@
                 ></span
             >
             <span class="topbar__search" style="font-size: 13px; color: #999"
-                >Итоги</span
+                >Опрос 2026</span
             >
         </div>
 
@@ -875,14 +1038,54 @@
                 <p class="kicker">
                     <a href="index.html" class="back">← Ландшафт</a>
                 </p>
-                <h1 class="title">Итоги промежуточного опроса</h1>
+                <h1 class="title">Состояние ландшафта 1С 2026</h1>
             </div>
         </header>
 
-        <main class="survey">
-            <div class="body">
-                <aside class="filters" id="filters" aria-label="Отборы"></aside>
+        <section class="sv-landing" aria-labelledby="survey-lead">
+            <div class="sv-landing__main">
+                <p class="sv-landing__eyebrow">Большой опрос сообщества</p>
+                <p class="sv-landing__lead" id="survey-lead">
+                    Какими инструментами 1С пользуются на самом деле
+                </p>
+                <p class="sv-landing__copy">
+                    Расскажите, с чем работали, о чем слышали и что готовы
+                    использовать снова<br />Бот подберет вопросы по роли,
+                    результаты появятся прямо в карточках ландшафта
+                </p>
+                <div class="sv-landing__actions">
+                    <a
+                        class="sv-landing__action"
+                        href="https://t.me/stateOf1c_bot"
+                        target="_blank"
+                        rel="noopener"
+                        >Пройти в Telegram →</a
+                    >
+                    <a
+                        class="sv-landing__action"
+                        href="https://max.ru/se13951546_bot"
+                        target="_blank"
+                        rel="noopener"
+                        >Пройти в MAX →</a
+                    >
+                </div>
+            </div>
+            <div class="sv-landing__deck" aria-hidden="true">
+                <div class="sv-answer">
+                    <small>Инструмент 047</small>Работал
+                </div>
+                <div class="sv-answer"><small>Инструмент 128</small>Слышал</div>
+                <div class="sv-answer">
+                    <small>Инструмент 201</small>Впервые вижу
+                </div>
+            </div>
+        </section>
 
+        <main class="survey">
+            <div class="sv-stage">
+                Предварительный этап · 247 участников · базовые инструменты
+            </div>
+            <div class="body">
                 <div class="sv-content">
                     <div class="sv-card">
                         <h2><span class="sv-h__n">01</span>Респонденты</h2>
@@ -968,7 +1171,7 @@
         <script src="data.js?v=00f03495"></script>
         <script src="shared.js?v=644e4aee"></script>
         <script src="survey2026.js?v=f66b77a1"></script>
-        <script src="nav.js?v=e707cea1"></script>
+        <script src="nav.js?v=f0836b4d"></script>
         <script>
             "use strict";
             const S = window.SURVEY;
@@ -1046,57 +1249,13 @@
                 window.LandscapeUI.logoMarkup(ITEM.get(name) || {}, "sv-logo");
             const fmtN = (n) => n.toLocaleString("ru-RU");
 
-            // ── Отборы: разметка и классы главной (.fgroup/.chips/.chip) —
-            // вид 1:1 с сайдбаром ландшафта (панель, оси линиями, чип-строка) ──
-            // Порядок значений — канонический (как на ландшафте): роль и контекст
-            // из осей data.js, уровень — от начинающего к эксперту. S.dims идут
-            // по числу ответивших, поэтому храним исходный индекс для ячеек
+            // Порядок значений в интерактивных диаграммах — канонический:
+            // роль и контекст из осей data.js, уровень — от начинающего к эксперту
             const ORDER = {
                 role: window.LANDSCAPE.axes.role.values,
                 context: window.LANDSCAPE.axes.context.values,
                 level: ["начинающий", "опытный", "эксперт"],
             };
-            const orderedIx = (d) => {
-                const ord = ORDER[d] || [];
-                const rank = (i) => {
-                    const p = ord.indexOf(S.dims[d][i]);
-                    return p < 0 ? 99 : p;
-                };
-                return S.dims[d]
-                    .map((_, i) => i)
-                    .sort((a, b) => rank(a) - rank(b));
-            };
-            function filters() {
-                const any = DIMS.some(([d]) => sel[d].size);
-                $("#filters").innerHTML =
-                    DIMS.map(
-                        ([d, label]) =>
-                            `<div class="fgroup"><p class="fgroup__head">${label}</p>` +
-                            `<div class="chips">` +
-                            orderedIx(d)
-                                .map(
-                                    (i) =>
-                                        `<button class="chip" data-d="${d}" data-i="${i}" aria-pressed="${sel[d].has(i)}">${S.dims[d][i]}</button>`,
-                                )
-                                .join("") +
-                            `</div></div>`,
-                    ).join("") +
-                    (any
-                        ? `<button class="sv-reset" id="reset">сбросить отбор</button>`
-                        : "");
-            }
-            $("#filters").addEventListener("click", (e) => {
-                if (e.target.id === "reset") {
-                    for (const [d] of DIMS) sel[d].clear();
-                    return render();
-                }
-                const b = e.target.closest(".chip");
-                if (!b) return;
-                const i = +b.dataset.i;
-                const set = sel[b.dataset.d];
-                set.has(i) ? set.delete(i) : set.add(i);
-                render();
-            });
 
             // ── Заголовок-предложение: крупная сводка с акцентными числами ──
             const Pl = window.LandscapeUI.plural;
@@ -1726,10 +1885,17 @@
                     if (!S) return;
                     const k = b.dataset.dl;
                     if (k === "tools")
-                        dlFile("stateof1c-test-tools.csv", toolsCSV());
+                        dlFile("stateof1c-preliminary-tools.csv", toolsCSV());
                     else if (k === "segments")
-                        dlFile("stateof1c-test-segments.csv", segmentsCSV());
-                    else dlFile("stateof1c-test-respondents.csv", respCSV());
+                        dlFile(
+                            "stateof1c-preliminary-segments.csv",
+                            segmentsCSV(),
+                        );
+                    else
+                        dlFile(
+                            "stateof1c-preliminary-respondents.csv",
+                            respCSV(),
+                        );
                 }),
             );
 
@@ -2007,7 +2173,6 @@
             }
 
             function render() {
-                filters();
                 headline();
                 whoCharts();
                 whoSelState();
@@ -2018,28 +2183,6 @@
                 ranges();
                 growth();
             }
-            // ── Мобильный: «Отборы» уезжают в бургер, открываются попапом
-            // (как на главной; nav.js подключен выше — window.NAV доступен) ──
-            if (window.NAV) {
-                const filtersEl = $("#filters");
-                const openFilters = (on) =>
-                    filtersEl.classList.toggle("is-open", on);
-                const btn = document.createElement("button");
-                btn.type = "button";
-                btn.className = "menu__pa-item";
-                btn.textContent = "Отборы";
-                btn.addEventListener("click", () => {
-                    NAV.closeMenu();
-                    openFilters(true);
-                });
-                NAV.pageActions([btn]);
-                NAV.dismissOnOutside(
-                    () => filtersEl.classList.contains("is-open"),
-                    [filtersEl, ".menu__pa-item"],
-                    () => openFilters(false),
-                );
-            }
-
             // Данные гитигнорены: на свежем клоне их нет — подсказка вместо
             // падения на S.wave
             if (S) {

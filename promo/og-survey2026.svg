@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+    <rect width="1200" height="630" fill="#f7f5f0" />
+    <path d="M60 58H1140" stroke="#d4cfc7" stroke-width="2" />
+
+    <text x="68" y="105" fill="#1a4f8a" font-family="Inter, sans-serif" font-size="20" font-weight="700" letter-spacing="4">БОЛЬШОЙ ОПРОС СООБЩЕСТВА</text>
+
+    <text x="66" y="280" fill="#1a1a1a" font-family="Unbounded, sans-serif" font-size="68" font-weight="900" letter-spacing="-3">СОСТОЯНИЕ</text>
+    <text x="66" y="365" fill="#1a1a1a" font-family="Unbounded, sans-serif" font-size="68" font-weight="900" letter-spacing="-3">ЛАНДШАФТА 1С</text>
+    <text x="66" y="480" fill="#1a1a1a" font-family="Unbounded, sans-serif" font-size="92" font-weight="900" letter-spacing="-3">2026</text>
+
+    <g transform="translate(880 174) scale(13.5)">
+        <path d="M5.2 3.5V18.8H20.5" fill="none" stroke="#1a1a1a" stroke-width="2.2" />
+        <path d="M5.2 16.8L9.6 9.8L12.4 12.6L16.6 5.8L20.5 11.8" fill="none" stroke="#1a1a1a" stroke-width="2.2" stroke-linejoin="round" />
+        <circle cx="16.6" cy="5.8" r="2.1" fill="#a83e18" />
+    </g>
+</svg>

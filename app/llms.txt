@@ -10,7 +10,7 @@
 - [Путь](https://landscape1c.ru/path.html): маршрут освоения инструментов по роли, от базы к специализации
 - [Схема](https://landscape1c.ru/scheme.html): постер-древо ландшафта с экспортом в SVG/PNG/PDF
 - [Граф](https://landscape1c.ru/graph.html): связи инструментов: аналоги и зависимости
-- [Итоги опроса](https://landscape1c.ru/survey2026.html): узнаваемость, использование и лояльность инструментов по опросу сообщества
+- [Большой опрос](https://landscape1c.ru/survey2026.html): инструменты 1С и итоги предварительного этапа
 - [Эксперты](https://landscape1c.ru/council.html): кураторы, выверяющие разметку
 - [Методология](https://landscape1c.ru/methodology.html): правила разметки осей
 

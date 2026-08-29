@@ -8,6 +8,7 @@
         ["path.html", "Путь"],
         ["scheme.html", "Схема"],
         ["graph.html", "Граф"],
+        ["survey2026.html", "Опрос 2026"],
         ["council.html", "Эксперты"],
         ["methodology.html", "Методология"],
     ];
