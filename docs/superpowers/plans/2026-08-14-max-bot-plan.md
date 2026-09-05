@@ -1,5 +1,7 @@
 # Бот опроса в MAX — Implementation Plan
 
+> **Архив реализации; статус на 05.09.2026.** MAX-бот реализован и участвует в текущей волне вместе с Telegram. Живой прогон описан в конце плана; `--platform` в remind/notify и документация MAX тоже уже реализованы. Ниже сохранён исходный план: его чекбоксы и формулировки описывают ход реализации, а не текущий список задач. Актуальные планы — в [ТЗ](../../TZ.md), §13 и §15.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Продублировать опросного телеграм-бота (`bot/`) в мессенджере MAX без изменения его поведения в телеграме, с регрессионным тестовым покрытием, страхующим боевой телеграм-бот от рефакторинга.

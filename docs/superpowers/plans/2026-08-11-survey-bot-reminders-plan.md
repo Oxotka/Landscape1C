@@ -1,5 +1,7 @@
 # Напоминания брошенным сессиям опроса — Implementation Plan
 
+> **Архив реализации; статус на 05.09.2026.** Напоминания реализованы; `remind.js` поддерживает Telegram и MAX через `--platform`. Фактические отправки и расписание проверяются на сервере. Ниже сохранён исходный план: его чекбоксы и формулировки описывают ход реализации, а не текущий список задач. Актуальные планы — в [ТЗ](../../TZ.md), §13 и §15.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Добавить в `@stateOf1c_bot` автоматические напоминания тем, кто ответил хотя бы на один вопрос опроса, но давно не возвращался — до двух напоминаний на человека, без гонки с работающим ботом.

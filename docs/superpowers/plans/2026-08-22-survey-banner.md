@@ -1,5 +1,7 @@
 # Баннер опроса на главной — Implementation Plan
 
+> **Архив реализации; статус на 05.09.2026.** Баннер реализован и включён (`SURVEY_BANNER_ENABLED = true`); основная волна уже идёт. Ниже сохранён исходный план: его чекбоксы и формулировки описывают ход реализации, а не текущий список задач. Актуальные планы — в [ТЗ](../../TZ.md), §13 и §15.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Показать на главной странице ландшафта тёмную плашку-баннер со ссылками на боты опроса (Telegram, MAX), включаемую одним флагом в день открытия боевой волны сентября 2026.
