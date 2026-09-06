@@ -1,5 +1,6 @@
 // Агрегация ответов опроса в статические данные для витрины:
-//   node bot/aggregate.js [путь к answers.jsonl]  →  app/survey2026.js
+//   node bot/aggregate.js [путь к answers.jsonl] [--out файл]
+//   По умолчанию результат пишется в app/survey2026.js
 // Формат вывода — window.SURVEY (тот же паттерн, что app/data.js: подключается
 // тегом <script>, работает через file://). Смотреть — app/survey2026.html
 // (до публикации итогов страница и данные исключены из dist/гита).
@@ -15,13 +16,18 @@ const path = require("path");
 const { byName } = require("./lib/quiz");
 
 const FILE = process.argv[2] || path.join(__dirname, "answers.jsonl");
-const OUT = path.join(__dirname, "..", "app", "survey2026.js");
-if (!fs.existsSync(FILE)) {
+const outArg = process.argv.indexOf("--out");
+const OUT =
+    outArg >= 0 && process.argv[outArg + 1]
+        ? path.resolve(process.argv[outArg + 1])
+        : path.join(__dirname, "..", "app", "survey2026.js");
+if (FILE !== "-" && !fs.existsSync(FILE)) {
     console.error(`Не найден журнал ответов: ${FILE}`);
     process.exit(1);
 }
-const rows = fs
-    .readFileSync(FILE, "utf8")
+const source =
+    FILE === "-" ? fs.readFileSync(0, "utf8") : fs.readFileSync(FILE, "utf8");
+const rows = source
     .split("\n")
     .filter(Boolean)
     .map((l) => JSON.parse(l));
@@ -42,12 +48,16 @@ rows.forEach((r) => {
 const count = (map, key) => map.set(key, (map.get(key) || 0) + 1);
 const DIMS = ["role", "level", "context"];
 const vals = { role: new Map(), level: new Map(), context: new Map() };
-rows.forEach((r) => DIMS.forEach((d) => vals[d].has(r[d]) || vals[d].set(r[d], 0)));
+rows.forEach((r) =>
+    DIMS.forEach((d) => vals[d].has(r[d]) || vals[d].set(r[d], 0)),
+);
 for (const p of profile.values()) DIMS.forEach((d) => count(vals[d], p[d]));
 const dims = {};
 const ix = {};
 for (const d of DIMS) {
-    dims[d] = [...vals[d].entries()].sort((a, b) => b[1] - a[1]).map(([v]) => v);
+    dims[d] = [...vals[d].entries()]
+        .sort((a, b) => b[1] - a[1])
+        .map(([v]) => v);
     ix[d] = new Map(dims[d].map((v, i) => [v, i]));
 }
 const keyOf = (r) => DIMS.map((d) => ix[d].get(r[d])).join("|");

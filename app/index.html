@@ -198,11 +198,24 @@
 
         <script src="data.js?v=00f03495"></script>
         <script src="survey2026.js?v=f66b77a1"></script>
-        <script src="shared.js?v=644e4aee"></script>
+        <script>
+            window.SURVEY_JULY = window.SURVEY;
+        </script>
+        <script src="survey2026-current.js?v=03e0b920"></script>
+        <script src="survey-merge.js?v=11d024e9"></script>
+        <script src="survey-preview.js?v=6e655e04"></script>
+        <script>
+            if (window.SURVEY) {
+                window.SURVEY = window.SURVEY
+                    ? mergeSurvey(window.SURVEY, window.SURVEY_JULY)
+                    : window.SURVEY_CARD_PREVIOUS;
+            }
+        </script>
+        <script src="shared.js?v=5c1e9745"></script>
         <script src="repostats.js?v=648f5c5e"></script>
-        <script src="detail.js?v=b067f67d"></script>
+        <script src="detail.js?v=5ca0addc"></script>
         <script src="nav.js?v=f0836b4d"></script>
-        <script src="app.js?v=e83b0861"></script>
+        <script src="app.js?v=1ffc448b"></script>
         <script src="onboarding.js?v=c016d508"></script>
         <script>
             // ── Два поля поиска синхронизированы; фильтрацию ведет app.js (#search) ──

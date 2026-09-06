@@ -17,10 +17,10 @@ assert.match(page, /Какими инструментами 1С пользуют
 assert.match(page, /https:\/\/t\.me\/stateOf1c_bot/);
 assert.match(page, /https:\/\/max\.ru\/se13951546_bot/);
 assert.match(page, /https:\/\/landscape1c\.ru\/og-survey2026\.png/);
-assert.match(page, /Предварительный этап/);
+assert.match(page, /Промежуточные результаты опроса 2026/);
 assert.doesNotMatch(page, /sv-landing__facts/);
 assert.doesNotMatch(page, /<aside class="filters"/);
-assert.match(page, /предварительный этап/i);
+assert.match(page, /survey2026-current/);
 assert.match(page, /\$\("#who"\)\.addEventListener\("click"/);
 assert.doesNotMatch(page, /stateof1c-test-/);
 

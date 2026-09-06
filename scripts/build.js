@@ -12,6 +12,7 @@ const DIST = path.join(ROOT, "dist");
 // Не нужно на публичном хостинге (только локальная разработка / артефакты).
 const EXCLUDE = new Set([
   "editor.html", "editor.js", "editor.css",   // редактор разметки — пишет в data.js, только локально
+  "survey2026-live.js", "survey2026-live.js.tmp", // локальные агрегаты боевой волны
   ".DS_Store",
 ]);
 // 1. Целостность данных — мусор на хостинг не выкладываем.

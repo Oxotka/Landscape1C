@@ -336,7 +336,7 @@
         const sv = surveyOf(i.name);
         const svBar =
             sv && sv.used !== null
-                ? `<div class="srange card__srange" title="Опрос: слышали или работали ${sv.known}%, работали ${sv.used}%${sv.loyal !== null ? `, взяли бы снова ${sv.loyal}%` : ""}"><span class="sr-known" style="width:${sv.known}%"></span><span class="sr-used" style="width:${sv.used}%"></span>${sv.loyal !== null ? `<span class="sr-tick" style="left:${(sv.used * sv.loyal) / 100}%"></span>` : ""}</div>`
+                ? `<div class="srange card__srange" title="${sv.source} · ${sv.n} ответов. Слышали или работали ${sv.known}%, работали ${sv.used}%${sv.loyal !== null ? `, взяли бы снова ${sv.loyal}%` : ""}"><span class="sr-known" style="width:${sv.known}%"></span><span class="sr-used" style="width:${sv.used}%"></span>${sv.loyal !== null ? `<span class="sr-tick" style="left:${(sv.used * sv.loyal) / 100}%"></span>` : ""}</div>`
                 : "";
         el.innerHTML = `
       <div class="card__media">${logoMarkup(i, "card__logo")}</div>

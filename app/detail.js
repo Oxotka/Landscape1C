@@ -122,8 +122,9 @@
           <div class="detail__stip" hidden>
             ${sLine("known", "Слышали или работали", sv.known)}
             ${sLine("used", "Работали", sv.used)}
-            ${sLine("loyal", "Взяли бы снова", sv.loyal, "из работавших")}
-            ${sLine("want", "Хотят попробовать", sv.want, "из слышавших")}
+            ${sLine("loyal", "Взяли бы снова", sv.loyal, `ответов: ${sv.loyalN}`)}
+            ${sLine("want", "Хотят попробовать", sv.want, `ответов: ${sv.wantN}`)}
+            <div class="stip-n">${sv.source}</div>
             <div class="stip-n">${sv.n} ${plural(sv.n, "ответ", "ответа", "ответов")} в опросе</div>
           </div>
         </div>`

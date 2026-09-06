@@ -66,7 +66,7 @@
     // Считаются лениво из window.SURVEY (если скрипт подключен на странице)
     // и кэшируются. Метрика видна от SURVEY_MIN оценок, иначе null — малые
     // выборки не показываем. Имена инструментов совпадают с data.js.
-    const SURVEY_MIN = 10;
+    const SURVEY_MIN = 3;
     let surveyCache = null;
     const surveyOf = (name) => {
         const S = window.SURVEY;
@@ -91,6 +91,11 @@
                 const n = u + h + x;
                 surveyCache.set(t.name, {
                     n, // всего ответивших по инструменту
+                    source:
+                        t.july === false
+                            ? "Опрос продолжается · " +
+                              new Date(S.generated).toLocaleDateString("ru-RU")
+                            : "Июль 2026",
                     known: pct(u + h, n), // узнаваемость: слышали или работали
                     used: pct(u, n), // доля работавших
                     loyal: pct(ag, ag + no), // «взял бы снова» среди работавших

@@ -264,6 +264,13 @@
                     transition: none;
                 }
             }
+            .sv-source {
+                display: block;
+                font-size: 11px;
+                font-weight: 400;
+                opacity: 0.7;
+                margin-top: 4px;
+            }
             .sv-stage {
                 padding: 11px clamp(16px, 3vw, 24px);
                 border-bottom: 2px solid var(--ink);
@@ -1044,7 +1051,9 @@
 
         <section class="sv-landing" aria-labelledby="survey-lead">
             <div class="sv-landing__main">
-                <p class="sv-landing__eyebrow">Большой опрос сообщества</p>
+                <p class="sv-landing__eyebrow">
+                    Опрос продолжается · до 1 октября 2026
+                </p>
                 <p class="sv-landing__lead" id="survey-lead">
                     Какими инструментами 1С пользуются на самом деле
                 </p>
@@ -1081,14 +1090,19 @@
             </div>
         </section>
 
-        <main class="survey">
+        <main class="survey" id="results">
             <div class="sv-stage">
-                Предварительный этап · 247 участников · базовые инструменты
+                <span id="surveyStage"
+                    >Промежуточные результаты опроса 2026</span
+                >
             </div>
             <div class="body">
                 <div class="sv-content">
                     <div class="sv-card">
-                        <h2><span class="sv-h__n">01</span>Респонденты</h2>
+                        <h2>
+                            <span class="sv-h__n">01</span
+                            ><span id="respondentsTitle">Респонденты</span>
+                        </h2>
                         <div class="sv-body">
                             <div class="sv-headline" id="headline"></div>
                             <div class="sv-who" id="who"></div>
@@ -1169,12 +1183,47 @@
         <div id="tip"></div>
 
         <script src="data.js?v=00f03495"></script>
-        <script src="shared.js?v=644e4aee"></script>
+        <script src="shared.js?v=5c1e9745"></script>
         <script src="survey2026.js?v=f66b77a1"></script>
+        <script>
+            window.SURVEY_JULY = window.SURVEY;
+        </script>
+        <script src="survey2026-current.js?v=03e0b920"></script>
+        <script src="survey-merge.js?v=11d024e9"></script>
+        <script>
+            window.SURVEY_PUBLISHED = window.SURVEY;
+            window.SURVEY_PREVIOUS = window.SURVEY_JULY;
+            window.SURVEY_LIVE =
+                (new URLSearchParams(location.search).get("data") === "live" ||
+                    new URLSearchParams(location.search).get("preview") ===
+                        "1") &&
+                ["127.0.0.1", "localhost", ""].includes(location.hostname);
+            if (window.SURVEY_LIVE) window.SURVEY = null;
+            if (window.SURVEY_LIVE)
+                document.write(
+                    '<script src="survey2026-live.js?t=' +
+                        Date.now() +
+                        '"><\/script>',
+                );
+        </script>
         <script src="nav.js?v=f0836b4d"></script>
         <script>
             "use strict";
-            const S = window.SURVEY;
+            const LIVE = true;
+            if (!window.SURVEY) window.SURVEY = window.SURVEY_PUBLISHED;
+            const S =
+                LIVE && window.SURVEY
+                    ? mergeSurvey(window.SURVEY, window.SURVEY_PREVIOUS)
+                    : window.SURVEY;
+            const julyNames = new Set(
+                S ? S.tools.filter((t) => t.july).map((t) => t.name) : [],
+            );
+            const sourceLabel = (name) =>
+                julyNames.has(name) ? "Июль 2026" : "Текущий опрос";
+            const sourceBadge = (name) =>
+                julyNames.has(name)
+                    ? '<small class="sv-source">Июль 2026</small>'
+                    : "";
             const $ = (s) => document.querySelector(s);
             // Рабочие пороги: малые выборки приглушаем/скрываем, чтобы в узких
             // отборах не светились шумные 0%/100% от единичных оценок.
@@ -1248,6 +1297,21 @@
             const logo = (name) =>
                 window.LandscapeUI.logoMarkup(ITEM.get(name) || {}, "sv-logo");
             const fmtN = (n) => n.toLocaleString("ru-RU");
+            if (LIVE && S) {
+                const generated = new Date(S.generated).toLocaleString(
+                    "ru-RU",
+                    {
+                        day: "numeric",
+                        month: "long",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                    },
+                );
+                $("#surveyStage").textContent =
+                    `Опрос продолжается · данные на ${generated}`;
+                document.title = "Результаты опроса · Ландшафт 1С";
+                $("#respondentsTitle").textContent = "Кто участвует сейчас";
+            }
 
             // Порядок значений в интерактивных диаграммах — канонический:
             // роль и контекст из осей data.js, уровень — от начинающего к эксперту
@@ -1260,7 +1324,10 @@
             // ── Заголовок-предложение: крупная сводка с акцентными числами ──
             const Pl = window.LandscapeUI.plural;
             function headline() {
-                const ts = S.tools.map(counters).filter(Boolean);
+                const ts = S.tools
+                    .filter((t) => !t.july)
+                    .map(counters)
+                    .filter(Boolean);
                 const sum = (k) => ts.reduce((s, t) => s + t[k], 0);
                 const used = sum("used"),
                     heard = sum("heard"),
@@ -1503,6 +1570,9 @@
                     `<div class="m-exp">${exp}</div></div>`;
                 return (
                     `<div class="tip-head">${logo(r.name)}<b>${r.name}</b></div>` +
+                    (LIVE
+                        ? `<span class="tip-sub">${sourceLabel(r.name)}</span>`
+                        : "") +
                     `<span class="tip-sub">${fmtN(r.total)} ${Pl(r.total, "ответ", "ответа", "ответов")} об инструменте</span>` +
                     `<div class="tip-verdict ${v.cls}">${v.t}</div>` +
                     `<div class="tip-metrics">` +
@@ -1591,7 +1661,7 @@
                                 .map(
                                     (r) =>
                                         `<div class="rng-row${r.total < MIN_N ? " low" : ""}" data-name="${r.name}" style="--blk:var(--blk-${g.bi + 1})">` +
-                                        `<div class="rng-name">${logo(r.name)}<span>${r.name}</span></div>` +
+                                        `<div class="rng-name">${logo(r.name)}<span>${r.name}${sourceBadge(r.name)}</span></div>` +
                                         bar(r) +
                                         `</div>`,
                                 )
@@ -1704,7 +1774,7 @@
                     .map(
                         (r) =>
                             `<div class="grow-row" data-name="${r.name}">` +
-                            `<div class="grow-name">${logo(r.name)}<span>${r.name}</span></div>` +
+                            `<div class="grow-name">${logo(r.name)}<span>${r.name}${sourceBadge(r.name)}</span></div>` +
                             `<div class="grow-bar">` +
                             `<span class="grow-pool" style="width:${(100 * r.pool) / maxPool}%"></span>` +
                             `<span class="grow-want" style="width:${(100 * r.want) / maxPool}%"></span>` +
@@ -1779,6 +1849,7 @@
                         "Инструмент",
                         "Категория",
                         "Зрелость",
+                        "Источник",
                         "Ответов",
                         "Работали",
                         "Слышали",
@@ -1813,6 +1884,7 @@
                         t.name,
                         t.category,
                         t.maturity,
+                        LIVE ? sourceLabel(t.name) : "Июль 2026",
                         total,
                         used,
                         heard,
@@ -1835,6 +1907,7 @@
                         "Инструмент",
                         "Категория",
                         "Зрелость",
+                        "Источник",
                         "Роль",
                         "Уровень",
                         "Контекст",
@@ -1853,6 +1926,7 @@
                             t.name,
                             t.category,
                             t.maturity,
+                            LIVE ? sourceLabel(t.name) : "Июль 2026",
                             S.dims.role[c[0]],
                             S.dims.level[c[1]],
                             S.dims.context[c[2]],
@@ -1884,18 +1958,13 @@
                 b.addEventListener("click", () => {
                     if (!S) return;
                     const k = b.dataset.dl;
-                    if (k === "tools")
-                        dlFile("stateof1c-preliminary-tools.csv", toolsCSV());
+                    const prefix = LIVE
+                        ? "stateof1c-live-"
+                        : "stateof1c-preliminary-";
+                    if (k === "tools") dlFile(prefix + "tools.csv", toolsCSV());
                     else if (k === "segments")
-                        dlFile(
-                            "stateof1c-preliminary-segments.csv",
-                            segmentsCSV(),
-                        );
-                    else
-                        dlFile(
-                            "stateof1c-preliminary-respondents.csv",
-                            respCSV(),
-                        );
+                        dlFile(prefix + "segments.csv", segmentsCSV());
+                    else dlFile(prefix + "respondents.csv", respCSV());
                 }),
             );
 
@@ -2188,8 +2257,9 @@
             if (S) {
                 render();
             } else {
-                $("#headline").textContent =
-                    "Нет данных: сгенерируй витрину — node bot/aggregate.js → app/survey2026.js";
+                $("#headline").textContent = LIVE
+                    ? "Нет локальных данных: запустите survey-live.command"
+                    : "Нет данных: сгенерируй витрину — node bot/aggregate.js → app/survey2026.js";
             }
         </script>
     </body>
