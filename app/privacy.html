@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Политика конфиденциальности · Ландшафт 1С</title>
+        <script>
+            (function () {
+                try {
+                    var t = localStorage.getItem("theme");
+                    if (!t)
+                        t = matchMedia("(prefers-color-scheme: dark)").matches
+                            ? "dark"
+                            : "light";
+                    document.documentElement.dataset.theme = t;
+                } catch (e) {}
+            })();
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css?v=de495174" />
+        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+        <meta
+            name="description"
+            content="Как Ландшафт технологий 1С работает с локальными настройками и данными Яндекс Метрики"
+        />
+        <link rel="canonical" href="https://landscape1c.ru/privacy.html" />
+    </head>
+    <body class="page-doc">
+        <div class="topbar" id="topbar">
+            <span class="topbar__brand"
+                ><a
+                    href="index.html"
+                    style="text-decoration: none; color: inherit"
+                    >Ландшафт</a
+                ></span
+            >
+            <span
+                class="topbar__search"
+                style="font-size: 13px; color: #999; cursor: pointer"
+                >Конфиденциальность</span
+            >
+        </div>
+
+        <header class="masthead">
+            <div class="masthead__main">
+                <p class="kicker">
+                    <a href="index.html" class="back">← Ландшафт</a>
+                </p>
+                <h1 class="title">Конфиденциальность</h1>
+            </div>
+        </header>
+
+        <main class="page doc">
+            <p class="lead">
+                Сайт не запрашивает имя, телефон или почту. Для аналитики
+                посещений используется Яндекс Метрика только с разрешения
+                посетителя
+            </p>
+
+            <section>
+                <h2>Локальные настройки</h2>
+                <p>
+                    Тема оформления, выбранные фильтры и отметки на странице
+                    «Путь» сохраняются в браузере, чтобы не сбрасываться между
+                    посещениями
+                </p>
+            </section>
+
+            <section>
+                <h2>Яндекс Метрика</h2>
+                <p>
+                    После разрешения Метрика сохраняет cookie и автоматически
+                    получает технические данные о посещении: IP-адрес, сведения
+                    о браузере и устройстве, открытую страницу, источник и время
+                    посещения. Яндекс считает эти сведения персональными данными
+                    и обрабатывает их по поручению владельца сайта
+                </p>
+                <p>
+                    Вебвизор, карта кликов и электронная коммерция отключены.
+                    Подробнее — в
+                    <a href="https://yandex.ru/legal/metrica_termsofuse/ru/"
+                        >условиях Яндекс Метрики</a
+                    >
+                    и
+                    <a href="https://yandex.ru/legal/confidential/ru/"
+                        >политике конфиденциальности Яндекса</a
+                    >
+                </p>
+            </section>
+
+            <section>
+                <h2>Как отказаться</h2>
+                <p>
+                    Выбор хранится в браузере. Чтобы изменить его, очистите
+                    данные сайта landscape1c.ru, откройте сайт снова и выберите
+                    «Без аналитики». Владелец сайта — Никита Арипов. Вопросы об
+                    обработке данных:
+                    <a href="mailto:aripovn@yandex.ru">aripovn@yandex.ru</a>
+                </p>
+                <p>Последнее обновление: 7 сентября 2026 года</p>
+            </section>
+        </main>
+
+        <footer class="foot">
+            <nav class="foot__links"></nav>
+        </footer>
+
+        <script src="nav.js?v=0cb6ba80"></script>
+        <script src="analytics.js?v=21783b74"></script>
+    </body>
+</html>

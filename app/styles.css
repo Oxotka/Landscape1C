@@ -153,6 +153,79 @@ a {
     }
 }
 
+/* ── Согласие на аналитику ───────────────── */
+.analytics-consent {
+    position: fixed;
+    left: 50%;
+    bottom: 58px;
+    z-index: 50;
+    width: min(760px, calc(100vw - 32px));
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    background: var(--card);
+    border: 1.5px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--ink);
+    transform: translateX(-50%);
+}
+.analytics-consent__copy {
+    min-width: 0;
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+}
+.analytics-consent__title {
+    display: block;
+    margin-bottom: 2px;
+    font-family: var(--display);
+    font-size: 12px;
+    line-height: 1.35;
+    color: var(--ink);
+}
+.analytics-consent__copy a {
+    color: inherit;
+}
+.analytics-consent button {
+    appearance: none;
+    min-height: 38px;
+    padding: 8px 13px;
+    border: 1.5px solid var(--ink);
+    border-radius: 0;
+    font: 600 12px/1 var(--body);
+    cursor: pointer;
+}
+.analytics-consent .analytics-consent__deny {
+    background: transparent;
+    color: var(--ink);
+    border-color: transparent;
+}
+.analytics-consent__allow {
+    background: var(--ink);
+    color: var(--paper);
+}
+.analytics-consent button:hover {
+    box-shadow: inset 3px 0 0 var(--brand);
+}
+.analytics-consent .analytics-consent__deny:hover {
+    border-color: var(--ink);
+    box-shadow: none;
+}
+.analytics-consent .analytics-consent__deny:focus-visible {
+    border-color: var(--ink);
+}
+@media (max-width: 720px) {
+    .analytics-consent {
+        bottom: 12px;
+        width: calc(100vw - 24px);
+        grid-template-columns: 1fr 1fr;
+    }
+    .analytics-consent__copy {
+        grid-column: 1 / -1;
+    }
+}
+
 /* ── Кнопка меню (бургер) ─────────────────── */
 .menu-toggle {
     /* по вертикали — на строке кикера (надзаголовка): паддинг шапки 20px + центр кикера */

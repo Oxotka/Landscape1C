@@ -32,6 +32,7 @@ const PAGES = [
     ],
     ["council.html", "Эксперты — кураторы, выверяющие разметку"],
     ["methodology.html", "Методология — правила разметки осей"],
+    ["privacy.html", "Конфиденциальность — как сайт работает с данными"],
 ];
 
 // ── Слаги карточек (транслит имени, уникальность обязательна) ──
@@ -116,8 +117,11 @@ const cssHash = crypto
     .update(fs.readFileSync(path.join(APP, "styles.css")))
     .digest("hex")
     .slice(0, 8);
-
-const METRIKA = `<script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=109810369","ym");ym(109810369,"init",{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});</script>`;
+const analyticsHash = crypto
+    .createHash("md5")
+    .update(fs.readFileSync(path.join(APP, "analytics.js")))
+    .digest("hex")
+    .slice(0, 8);
 
 const relLinks = (names) =>
     (names || [])
@@ -218,7 +222,6 @@ function toolPage(i) {
 .tp ul { margin: 0; padding-left: 18px; }
 .tp__cta { margin-top: 30px; }
 </style>
-${METRIKA}
 <script type="application/ld+json">${JSON.stringify(ld)}</script>
 </head>
 <body>
@@ -237,6 +240,7 @@ ${section("Зависимости", depends ? `<p>${depends}</p>` : "")}
 <p class="tp__cta"><a class="empty__btn" href="../?tool=${slugs.get(i.name)}">Открыть на карте →</a></p>
 </div>
 </main>
+<script src="../analytics.js?v=${analyticsHash}"></script>
 </body>
 </html>
 `;

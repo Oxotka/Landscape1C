@@ -44,6 +44,7 @@
         '" target="_blank" rel="noopener">Предложить инструмент ↗︎</a>';
     var githubLink =
         '<a href="https://github.com/Oxotka/Landscape1C" target="_blank" rel="noopener">GitHub ↗︎</a>';
+    var privacyLink = '<a href="privacy.html">Конфиденциальность</a>';
 
     // ── 0. Знак проекта («рельеф на осях») в обеих шапках ──
     // Цвета из темы: линии — currentColor (--ink), пик — --m-niche (CSS).
@@ -101,6 +102,7 @@
         proposeLink +
         ext(" ↗︎") +
         githubLink +
+        privacyLink +
         '<div class="menu__sep"></div>' +
         '<div class="menu__theme">' +
         '<button type="button" class="menu__theme-head" aria-expanded="false">' +
@@ -117,7 +119,7 @@
 
     // ── 3. Подвал (если на странице есть контейнер) ──
     var footLinks = document.querySelector(".foot__links");
-    if (footLinks) footLinks.innerHTML = navLinks + ext("");
+    if (footLinks) footLinks.innerHTML = navLinks + ext("") + privacyLink;
 
     // ── Открытие/закрытие меню ──
     var toggles = document.querySelectorAll(".menu-toggle");

@@ -75,6 +75,7 @@
             localStorage.setItem(KEY, "true");
         } catch (e) {}
         cleanup();
+        document.dispatchEvent(new Event("landscape:onboarding-finished"));
     }
     function show(html, placer, cls) {
         clearExtra(); // снять слушатели прошлого шага
