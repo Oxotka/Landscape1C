@@ -194,27 +194,25 @@ function toolPage(i) {
     const section = (title, body) =>
         body ? `<h2 class="tp__h">${title}</h2>\n${body}` : "";
     const survey = surveyOf(i.name);
-    const surveyLine = (label, value, hint = "") =>
+    const surveyLine = (key, label, value, hint = "") =>
         value === null
             ? ""
-            : `<div><span>${label}${hint ? ` <em>${hint}</em>` : ""}</span><b>${value}%</b></div>`;
+            : `<div data-k="${key}"><span>${label}${hint ? ` <em>${hint}</em>` : ""}</span><b>${value}%</b></div>`;
     const surveyBlock =
         survey && survey.used !== null
-            ? `<h2 class="tp__h">Результаты опроса</h2>
-<div class="srange tp__srange" tabindex="0" role="img" aria-label="Слышали или работали ${survey.known}%, работали ${survey.used}%${survey.loyal !== null ? `, взяли бы снова ${survey.loyal}%` : ""}">
+            ? `<div class="srange tp__srange" tabindex="0" role="img" data-known="${survey.known}" data-used="${survey.used}" data-loyal="${survey.loyal ?? ""}" aria-label="Слышали или работали ${survey.known}%, работали ${survey.used}%${survey.loyal !== null ? `, взяли бы снова ${survey.loyal}%` : ""}">
 <span class="sr-known" style="width:${survey.known}%"></span>
 <span class="sr-used" style="width:${survey.used}%"></span>
 ${survey.loyal !== null ? `<span class="sr-tick" style="left:${(survey.used * survey.loyal) / 100}%"></span>` : ""}
 <div class="detail__stip tp__stip">
-${surveyLine("Слышали или работали", survey.known)}
-${surveyLine("Работали", survey.used)}
-${surveyLine("Взяли бы снова", survey.loyal, `ответов: ${survey.loyalN}`)}
-${surveyLine("Хотят попробовать", survey.want, `ответов: ${survey.wantN}`)}
+${surveyLine("known", "Слышали или работали", survey.known)}
+${surveyLine("used", "Работали", survey.used)}
+${surveyLine("loyal", "Взяли бы снова", survey.loyal, `ответов: ${survey.loyalN}`)}
+${surveyLine("want", "Хотят попробовать", survey.want, `ответов: ${survey.wantN}`)}
 <div class="stip-n">${h(survey.source)}</div>
 <div class="stip-n">${survey.n} ${plural(survey.n, "ответ", "ответа", "ответов")} в опросе</div>
 </div>
-</div>
-<p class="tp__survey-note">${h(survey.source)} · ${survey.n} ${plural(survey.n, "ответ", "ответа", "ответов")} в опросе</p>`
+</div>`
             : "";
 
     return `<!doctype html>
@@ -251,10 +249,9 @@ ${surveyLine("Хотят попробовать", survey.want, `ответов: 
 .tp__h { font-family: var(--display); font-weight: 700; font-size: 15px; margin: 26px 0 8px; }
 .tp p, .tp li { font-size: 14px; line-height: 1.55; }
 .tp ul { margin: 0; padding-left: 18px; }
-.tp__srange { height: 14px; margin: 4px 0 0; cursor: help; }
+.tp__srange { height: 14px; margin: 26px 0 20px; cursor: help; }
 .tp__srange .tp__stip { display: none; }
-.tp__srange:hover .tp__stip, .tp__srange:focus .tp__stip { display: block; }
-.tp__survey-note { color: var(--ink-soft); margin: 8px 0 0; font-size: 12px !important; }
+.tp__srange:hover .tp__stip, .tp__srange:focus .tp__stip, .tp__srange.is-open .tp__stip { display: block; }
 .tp__cta { margin-top: 30px; }
 </style>
 <script type="application/ld+json">${JSON.stringify(ld)}</script>
@@ -276,6 +273,36 @@ ${surveyBlock}
 <p class="tp__cta"><a class="empty__btn" href="../?tool=${slugs.get(i.name)}">Открыть на карте →</a></p>
 </div>
 </main>
+<script>
+(() => {
+    const srange = document.querySelector(".tp__srange");
+    if (!srange) return;
+    const stip = srange.querySelector(".tp__stip");
+    const used = +srange.dataset.used;
+    const known = +srange.dataset.known;
+    const loyal = srange.dataset.loyal === "" ? null : +srange.dataset.loyal;
+    const hi = (key) => stip.querySelectorAll("[data-k]").forEach((row) => row.classList.toggle("is-hi", row.dataset.k === key));
+    srange.addEventListener("mousemove", (event) => {
+        const rect = srange.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const percent = (x / rect.width) * 100;
+        let key = null;
+        if (loyal !== null && Math.abs(x - (rect.width * used * loyal) / 10000) <= 7) key = "loyal";
+        else if (percent <= used) key = "used";
+        else if (percent <= known) key = "known";
+        hi(key);
+    });
+    srange.addEventListener("mouseleave", () => hi(null));
+    if (matchMedia("(pointer: coarse)").matches)
+        srange.addEventListener("click", (event) => {
+            event.stopPropagation();
+            const opening = !srange.classList.contains("is-open");
+            srange.classList.toggle("is-open", opening);
+            if (!opening) srange.blur();
+            hi(null);
+        });
+})();
+</script>
 <script src="../analytics.js?v=${analyticsHash}"></script>
 </body>
 </html>
