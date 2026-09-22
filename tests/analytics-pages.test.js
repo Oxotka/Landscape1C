@@ -59,8 +59,17 @@ test("генератор создает страницы инструменто�
         "utf8",
     );
     assert.match(surveyPage, />Результаты опроса</);
+    assert.match(surveyPage, /class="srange tp__srange"/);
+    assert.match(surveyPage, /class="sr-known" style="width:45%"/);
+    assert.match(surveyPage, /class="sr-used" style="width:8%"/);
+    assert.match(surveyPage, /class="sr-tick" style="left:8%"/);
+    assert.match(
+        surveyPage,
+        /aria-label="Слышали или работали 45%, работали 8%, взяли бы снова 100%"/,
+    );
     assert.match(surveyPage, />Работали<\/span><b>8%<\/b>/);
-    assert.match(surveyPage, />Взяли бы снова<\/span><b>100%<\/b>/);
+    assert.match(surveyPage, />Взяли бы снова .*<\/span><b>100%<\/b>/);
+    assert.doesNotMatch(surveyPage, /tp__survey-metric/);
     assert.match(surveyPage, /71 ответ в опросе/);
 
     const pageWithoutSurvey = fs.readFileSync(
