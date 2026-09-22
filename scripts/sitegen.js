@@ -12,6 +12,14 @@ const APP = path.join(__dirname, "..", "app");
 
 global.window = {};
 require(path.join(APP, "data.js"));
+require(path.join(APP, "survey2026.js"));
+const previousSurvey = global.window.SURVEY;
+require(path.join(APP, "survey2026-current.js"));
+const currentSurvey = global.window.SURVEY;
+global.window.SURVEY = require(path.join(APP, "survey-merge.js"))(
+    currentSurvey,
+    previousSurvey,
+);
 require(path.join(APP, "shared.js")); // slugOf — общий с дип-линками сайта
 const D = global.window.LANDSCAPE;
 
@@ -36,7 +44,7 @@ const PAGES = [
 ];
 
 // ── Слаги карточек (транслит имени, уникальность обязательна) ──
-const { slugOf } = global.window.LandscapeUI;
+const { plural, slugOf, surveyOf } = global.window.LandscapeUI;
 const slugs = new Map(); // name → slug
 D.items.forEach((i) => {
     const s = slugOf(i.name);
@@ -185,6 +193,22 @@ function toolPage(i) {
     const depends = relLinks(i.depends);
     const section = (title, body) =>
         body ? `<h2 class="tp__h">${title}</h2>\n${body}` : "";
+    const survey = surveyOf(i.name);
+    const surveyMetric = (label, value) =>
+        value === null
+            ? ""
+            : `<div class="tp__survey-metric"><span>${label}</span><b>${value}%</b></div>`;
+    const surveyBlock =
+        survey && survey.used !== null
+            ? `<h2 class="tp__h">Результаты опроса</h2>
+<div class="tp__survey">
+${surveyMetric("Слышали или работали", survey.known)}
+${surveyMetric("Работали", survey.used)}
+${surveyMetric("Взяли бы снова", survey.loyal)}
+${surveyMetric("Хотят попробовать", survey.want)}
+</div>
+<p class="tp__survey-note">${h(survey.source)} · ${survey.n} ${plural(survey.n, "ответ", "ответа", "ответов")} в опросе</p>`
+            : "";
 
     return `<!doctype html>
 <html lang="ru">
@@ -220,6 +244,10 @@ function toolPage(i) {
 .tp__h { font-family: var(--display); font-weight: 700; font-size: 15px; margin: 26px 0 8px; }
 .tp p, .tp li { font-size: 14px; line-height: 1.55; }
 .tp ul { margin: 0; padding-left: 18px; }
+.tp__survey { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.tp__survey-metric { display: flex; justify-content: space-between; gap: 12px; border: 1px solid var(--card-line); padding: 9px 10px; font-size: 13px; }
+.tp__survey-metric b { color: var(--brand); }
+.tp__survey-note { color: var(--ink-soft); margin: 8px 0 0; font-size: 12px !important; }
 .tp__cta { margin-top: 30px; }
 </style>
 <script type="application/ld+json">${JSON.stringify(ld)}</script>
@@ -237,6 +265,7 @@ ${section("С чего начать", starts ? `<ul>${starts}</ul>` : "")}
 ${section("Ссылки", links ? `<ul>${links}</ul>` : "")}
 ${section("Аналоги", analogs ? `<p>${analogs}</p>` : "")}
 ${section("Зависимости", depends ? `<p>${depends}</p>` : "")}
+${surveyBlock}
 <p class="tp__cta"><a class="empty__btn" href="../?tool=${slugs.get(i.name)}">Открыть на карте →</a></p>
 </div>
 </main>

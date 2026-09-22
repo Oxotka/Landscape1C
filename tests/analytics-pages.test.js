@@ -49,6 +49,21 @@ test("генератор создает страницы инструменто�
         fs.readFileSync(path.join(root, "app/llms.txt"), "utf8"),
         /undefined/,
     );
+
+    const surveyPage = fs.readFileSync(
+        path.join(root, "app/tools/simple-kafka-adapter.html"),
+        "utf8",
+    );
+    assert.match(surveyPage, />Результаты опроса</);
+    assert.match(surveyPage, />Работали<\/span><b>8%<\/b>/);
+    assert.match(surveyPage, />Взяли бы снова<\/span><b>100%<\/b>/);
+    assert.match(surveyPage, /71 ответ в опросе/);
+
+    const pageWithoutSurvey = fs.readFileSync(
+        path.join(root, "app/tools/bash.html"),
+        "utf8",
+    );
+    assert.doesNotMatch(pageWithoutSurvey, />Результаты опроса</);
 });
 
 test("политика доступна отдельной публичной страницей", () => {

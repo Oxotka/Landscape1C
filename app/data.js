@@ -9326,7 +9326,7 @@ window.LANDSCAPE = {
     {
       "name": "Simple Kafka Adapter",
       "added": "2026-06-15",
-      "updated": "2026-06-15",
+      "updated": "2026-09-22",
       "category": "Интеграции",
       "subcategory": "Брокеры и шины",
       "logo": null,
@@ -9334,7 +9334,12 @@ window.LANDSCAPE = {
       "why": "Позволяет из встроенного языка 1С отправлять и читать сообщения Kafka без промежуточных сервисов и коннекторов",
       "homepage": null,
       "repo": "https://github.com/NuclearAPK/Simple-Kafka_Adapter",
-      "start": [],
+      "start": [
+        {
+          "label": "Статья «Kafka — ещё доступнее через open source компоненту»",
+          "url": "https://infostart.ru/1c/articles/2491990/"
+        }
+      ],
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
