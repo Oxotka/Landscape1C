@@ -14,10 +14,10 @@ const analyticsSource = fs.readFileSync(
     "utf8",
 );
 
-function page() {
+function page(initialValues = {}) {
     const documentListeners = new Map();
     const nodes = [];
-    const values = new Map();
+    const values = new Map(Object.entries(initialValues));
     const skip = node("button");
     const next = node("button");
 
@@ -96,7 +96,10 @@ function page() {
         querySelector(selector) {
             if (selector === ".onb")
                 return nodes.find(
-                    (item) => item.className.startsWith("onb") && !item.removed,
+                    (item) =>
+                        (item.className === "onb" ||
+                            item.className.startsWith("onb ")) &&
+                        !item.removed,
                 );
             return null;
         },
@@ -138,10 +141,66 @@ function page() {
     };
     context.window = context;
 
-    return { context, nodes, skip };
+    return { context, nodes, skip, next, values };
 }
 
-test("после пропуска онбординга появляется выбор аналитики", () => {
+test("первый онбординг заканчивается после роли и контекста", () => {
+    const current = page();
+    vm.runInNewContext(onboardingSource, current.context, {
+        filename: "onboarding.js",
+    });
+
+    current.next.click();
+    current.next.click();
+
+    assert.equal(current.values.get("onboarding_stage"), "base");
+    assert.equal(current.values.get("onboarding_done"), undefined);
+    assert.equal(
+        current.nodes.filter(
+            (item) =>
+                (item.className === "onb" ||
+                    item.className.startsWith("onb ")) &&
+                !item.removed,
+        ).length,
+        0,
+    );
+});
+
+test("повторный заход знакомит с другими представлениями", () => {
+    const current = page({ onboarding_stage: "base" });
+    vm.runInNewContext(onboardingSource, current.context, {
+        filename: "onboarding.js",
+    });
+
+    const tip = current.nodes.find(
+        (item) =>
+            (item.className === "onb" || item.className.startsWith("onb ")) &&
+            !item.removed,
+    );
+    assert.match(tip.innerHTML, /Путь/);
+    assert.match(tip.innerHTML, /Схема/);
+    assert.match(tip.innerHTML, /Граф/);
+
+    current.next.click();
+    assert.equal(current.values.get("onboarding_stage"), "done");
+});
+
+test("старый завершенный онбординг не запускается повторно", () => {
+    const current = page({ onboarding_done: "true" });
+    vm.runInNewContext(onboardingSource, current.context, {
+        filename: "onboarding.js",
+    });
+
+    assert.equal(
+        current.nodes.some(
+            (item) =>
+                item.className === "onb" || item.className.startsWith("onb "),
+        ),
+        false,
+    );
+});
+
+test("аналитика ждет закрытия карточки независимо от онбординга", () => {
     const current = page();
     vm.runInNewContext(onboardingSource, current.context, {
         filename: "onboarding.js",
@@ -150,11 +209,14 @@ test("после пропуска онбординга появляется вы
         filename: "analytics.js",
     });
 
+    current.skip.click();
     assert.equal(
         current.nodes.some((node) => node.className === "analytics-consent"),
         false,
     );
-    current.skip.click();
+    current.context.document.dispatchEvent(
+        new current.context.Event("landscape:detail-closed"),
+    );
     assert.equal(
         current.nodes.some((node) => node.className === "analytics-consent"),
         true,

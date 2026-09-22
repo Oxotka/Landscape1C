@@ -24,9 +24,13 @@ test("публичные страницы не запускают встроен
     });
 });
 
-test("главная подключает согласие после онбординга", () => {
+test("главная подключает согласие после карточек и онбординга", () => {
     const html = fs.readFileSync(path.join(root, "app/index.html"), "utf8");
 
+    assert.ok(
+        html.indexOf("detail.js") < html.indexOf("analytics.js"),
+        "analytics.js должен идти после detail.js",
+    );
     assert.ok(
         html.indexOf("onboarding.js") < html.indexOf("analytics.js"),
         "analytics.js должен идти после onboarding.js",

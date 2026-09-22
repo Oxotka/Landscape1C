@@ -4,6 +4,7 @@
     const COUNTER = 109810369;
     const scriptPath = document.currentScript?.src;
     let loaded = false;
+    let shown = false;
 
     function loadMetrika() {
         if (loaded) return;
@@ -45,6 +46,8 @@
     }
 
     function showBanner() {
+        if (shown) return;
+        shown = true;
         const banner = document.createElement("section");
         banner.className = "analytics-consent";
         banner.setAttribute("aria-label", "Настройка аналитики");
@@ -97,14 +100,8 @@
     if (saved === "allow") {
         loadMetrika();
     } else if (saved !== "deny") {
-        if (document.querySelector(".onb")) {
-            document.addEventListener(
-                "landscape:onboarding-finished",
-                showBanner,
-                { once: true },
-            );
-        } else {
-            showBanner();
-        }
+        document.addEventListener("landscape:detail-closed", showBanner, {
+            once: true,
+        });
     }
 })();

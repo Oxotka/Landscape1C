@@ -1,10 +1,12 @@
-// Онбординг главной: цепочка из 4 тултипов при первом визите.
+// Онбординг главной: роль и контекст при первом визите, другие виды — при следующем.
 // Подсвечивает целевой элемент «дыркой» в затемнении и показывает яркий бабл.
 // Фильтры применяет кликом по реальным чипам сайдбара — app.js сам обновит URL/доску.
 (() => {
-    const KEY = "onboarding_done";
+    const LEGACY_KEY = "onboarding_done";
+    const STAGE_KEY = "onboarding_stage";
+    const stage = localStorage.getItem(STAGE_KEY);
 
-    if (localStorage.getItem(KEY)) return;
+    if (localStorage.getItem(LEGACY_KEY) || stage === "done") return;
     // Только десктоп: на мобильном сайдбар скрыт (фильтры открываются попапом)
     if (window.matchMedia("(max-width: 720px)").matches) return;
 
@@ -70,9 +72,9 @@
         removeEventListener("scroll", reposition, true);
         removeEventListener("resize", reposition);
     }
-    function finish() {
+    function finish(nextStage) {
         try {
-            localStorage.setItem(KEY, "true");
+            localStorage.setItem(STAGE_KEY, nextStage);
         } catch (e) {}
         cleanup();
         document.dispatchEvent(new Event("landscape:onboarding-finished"));
@@ -94,15 +96,15 @@
         place();
     }
 
-    // Низ тултипа: счетчик N/4 + «Пропустить» + основная кнопка
-    const foot = (n, btn) =>
-        `<div class="onb__foot"><span class="onb__count">${n}/4</span>` +
+    // Низ тултипа: счетчик шага + «Пропустить» + основная кнопка
+    const foot = (n, total, btn) =>
+        `<div class="onb__foot"><span class="onb__count">${n}/${total}</span>` +
         `<span class="onb__foot-r">` +
         `<button class="onb__skip" data-skip>Пропустить</button>` +
         `<button class="onb__next" data-next>${btn}</button>` +
         `</span></div>`;
-    function wireFoot(next) {
-        tip.querySelector("[data-skip]").addEventListener("click", finish);
+    function wireFoot(next, skip = next) {
+        tip.querySelector("[data-skip]").addEventListener("click", skip);
         tip.querySelector("[data-next]").addEventListener("click", next);
     }
 
@@ -138,7 +140,7 @@
         show(
             `<p class="onb__q">${q}</p>` +
                 `<p class="onb__text">${text}</p>` +
-                `<div class="onb__opts">${axisButtons(axis)}</div>${foot(n, "Дальше →")}`,
+                `<div class="onb__opts">${axisButtons(axis)}</div>${foot(n, 2, n === 2 ? "Готово" : "Дальше →")}`,
             placeRightOf(g),
             "is-left is-wide",
         );
@@ -165,10 +167,12 @@
             extraOff.push(() => c.removeEventListener("click", syncOpts));
         });
         syncOpts(); // отразить уже выбранное (например, из URL)
-        wireFoot(next);
+        wireFoot(next, finishBase);
     }
 
-    // ── Шаг 1: роль ───────────────────────────
+    const finishBase = () => finish("base");
+
+    // ── Первый визит: роль и контекст ─────────
     function step1() {
         optStep(
             1,
@@ -184,49 +188,20 @@
         optStep(
             2,
             "context",
-            step3,
+            finishBase,
             "Где работаешь?",
             "Франчайзи, инхаус, продукт или проект - набор инструментов заметно отличается",
         );
     }
 
-    // ── Шаг 3: открыть карточку ────────────────
-    function step3() {
-        target = document.querySelector("#board .card");
-        const t = target;
-        show(
-            `<p class="onb__q">Открой карточку инструмента</p>` +
-                `<p class="onb__text">Кликни по любой карточке - внутри подробное описание, ссылки «с чего начать», аналоги и зависимости инструмента</p>` +
-                foot(3, "Дальше →"),
-            () => {
-                const r = (
-                    t || document.getElementById("board")
-                ).getBoundingClientRect();
-                tip.style.right = tip.style.bottom = "";
-                tip.style.left = clampLeft(r.left) + "px";
-                tip.style.top = r.bottom + 14 + "px";
-            },
-            "is-up",
-        );
-        // Открытие карточки (клик по любой) тоже выполняет шаг
-        const onCard = (e) => {
-            if (e.target.closest("#board .card")) step4();
-        };
-        document.addEventListener("click", onCard, true);
-        extraOff.push(() =>
-            document.removeEventListener("click", onCard, true),
-        );
-        wireFoot(step4);
-    }
-
-    // ── Шаг 4: подвал — другие представления ───
-    function step4() {
+    // ── Следующий визит: другие представления ──
+    function viewsStep() {
         target = document.querySelector(".foot");
         const t = target;
         show(
             `<p class="onb__q">Это не единственный вид</p>` +
                 `<p class="onb__text">Еще есть «Путь», «Схема» и «Граф»: те же инструменты в другом представлении. Загляни при желании</p>` +
-                foot(4, "Понятно!"),
+                foot(1, 1, "Понятно!"),
             () => {
                 const r = (t || document.body).getBoundingClientRect();
                 tip.style.top = tip.style.right = "";
@@ -239,9 +214,9 @@
             },
             "is-down",
         );
-        tip.querySelector("[data-skip]").addEventListener("click", finish);
-        tip.querySelector("[data-next]").addEventListener("click", finish);
+        wireFoot(() => finish("done"));
     }
 
-    step1();
+    if (stage === "base") viewsStep();
+    else step1();
 })();

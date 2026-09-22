@@ -7,7 +7,7 @@ const vm = require("node:vm");
 const root = path.join(__dirname, "..");
 const source = fs.readFileSync(path.join(root, "app/analytics.js"), "utf8");
 
-function runAnalytics({ choice = null, onboarding = false } = {}) {
+function runAnalytics({ choice = null } = {}) {
     const values = new Map();
     if (choice) values.set("landscapeAnalytics", choice);
 
@@ -49,8 +49,8 @@ function runAnalytics({ choice = null, onboarding = false } = {}) {
         body,
         head,
         createElement: makeNode,
-        querySelector(selector) {
-            return selector === ".onb" && onboarding ? {} : null;
+        querySelector() {
+            return null;
         },
         addEventListener(type, fn) {
             listeners.set(type, fn);
@@ -99,6 +99,7 @@ test("загружает Метрику при сохраненном разре
 
 test("первый выбор разрешает или запрещает аналитику", () => {
     const denied = runAnalytics();
+    denied.dispatch("landscape:detail-closed");
     const denyButton = denied
         .banner()
         .children.find((node) => node.dataset.analytics === "deny");
@@ -108,6 +109,7 @@ test("первый выбор разрешает или запрещает ан�
     assert.equal(denied.banner().removed, true);
 
     const allowed = runAnalytics();
+    allowed.dispatch("landscape:detail-closed");
     const allowButton = allowed
         .banner()
         .children.find((node) => node.dataset.analytics === "allow");
@@ -118,7 +120,9 @@ test("первый выбор разрешает или запрещает ан�
 });
 
 test("показывает разрешение перед отказом", () => {
-    const buttons = runAnalytics()
+    const page = runAnalytics();
+    page.dispatch("landscape:detail-closed");
+    const buttons = page
         .banner()
         .children.filter((node) => node.tagName === "BUTTON");
 
@@ -128,10 +132,19 @@ test("показывает разрешение перед отказом", () =
     );
 });
 
-test("ждет завершения онбординга перед показом плашки", () => {
-    const page = runAnalytics({ onboarding: true });
+test("показывает запрос только после первого закрытия карточки", () => {
+    const page = runAnalytics();
 
     assert.equal(page.banner(), undefined);
     page.dispatch("landscape:onboarding-finished");
+    assert.equal(page.banner(), undefined);
+    page.dispatch("landscape:detail-closed");
     assert.ok(page.banner());
+
+    page.dispatch("landscape:detail-closed");
+    assert.equal(
+        page.nodes.filter((node) => node.className === "analytics-consent")
+            .length,
+        1,
+    );
 });

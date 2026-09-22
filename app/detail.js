@@ -245,7 +245,10 @@
             if (e.target.id === "detail") dlg.close();
         });
         // «close» ловит все пути закрытия (крестик, подложка, Esc)
-        dlg.addEventListener("close", () => writeTool(null));
+        dlg.addEventListener("close", () => {
+            writeTool(null);
+            document.dispatchEvent(new Event("landscape:detail-closed"));
+        });
         // Пришли по дип-линку — сразу открываем карточку.
         // Понимаем и слаг, и имя (старые ссылки ?tool=Накидка продолжают жить)
         const wanted = new URLSearchParams(location.search).get("tool");
