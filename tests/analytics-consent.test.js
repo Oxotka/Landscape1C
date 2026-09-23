@@ -33,6 +33,7 @@ function runAnalytics({ choice = null } = {}) {
         addEventListener(type, fn) {
             this[`on${type}`] = fn;
         },
+        focus() {},
         click() {
             this.onclick?.();
         },
@@ -48,6 +49,7 @@ function runAnalytics({ choice = null } = {}) {
     const document = {
         body,
         head,
+        contains: (item) => !item.removed,
         createElement: makeNode,
         querySelector() {
             return null;

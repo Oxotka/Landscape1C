@@ -48,6 +48,7 @@
     function showBanner() {
         if (shown) return;
         shown = true;
+        const previousFocus = document.activeElement;
         const banner = document.createElement("section");
         banner.className = "analytics-consent";
         banner.setAttribute("aria-label", "Настройка аналитики");
@@ -82,26 +83,42 @@
         allow.dataset.analytics = "allow";
         allow.textContent = "Разрешить";
 
+        const dismiss = () => {
+            banner.remove();
+            if (previousFocus && document.contains(previousFocus))
+                previousFocus.focus({ preventScroll: true });
+        };
         deny.addEventListener("click", () => {
             remember("deny");
-            banner.remove();
+            dismiss();
         });
         allow.addEventListener("click", () => {
             remember("allow");
-            banner.remove();
+            dismiss();
             loadMetrika();
         });
 
         banner.append(copy, allow, deny);
         document.body.append(banner);
+        more.focus({ preventScroll: true });
     }
 
     const saved = choice();
     if (saved === "allow") {
         loadMetrika();
     } else if (saved !== "deny") {
-        document.addEventListener("landscape:detail-closed", showBanner, {
-            once: true,
-        });
+        document.addEventListener(
+            "landscape:detail-closed",
+            () => {
+                if (document.querySelector(".onb"))
+                    document.addEventListener(
+                        "landscape:onboarding-finished",
+                        showBanner,
+                        { once: true },
+                    );
+                else showBanner();
+            },
+            { once: true },
+        );
     }
 })();

@@ -20,6 +20,8 @@ function page(initialValues = {}) {
     const values = new Map(Object.entries(initialValues));
     const skip = node("button");
     const next = node("button");
+    const opt = node("button");
+    let document;
 
     function node(tagName) {
         const listeners = new Map();
@@ -45,16 +47,30 @@ function page(initialValues = {}) {
             click() {
                 listeners.get("click")?.({ target: this });
             },
+            focus() {
+                document.activeElement = this;
+            },
+            contains(target) {
+                return target === this || target.parent === this;
+            },
             remove() {
                 this.removed = true;
             },
             querySelector(selector) {
-                if (selector === "[data-skip]") return skip;
-                if (selector === "[data-next]") return next;
-                return null;
+                const found =
+                    selector === "[data-skip]"
+                        ? skip
+                        : selector === "[data-next]"
+                          ? next
+                          : selector === "[data-val]"
+                            ? opt
+                            : null;
+                if (found) found.parent = this;
+                return found;
             },
             querySelectorAll(selector) {
-                if (selector === "[data-val]") return [node("button")];
+                if (selector === "[data-val]") return [opt];
+                if (selector === "button") return [opt, skip, next];
                 return [];
             },
             getBoundingClientRect() {
@@ -88,9 +104,11 @@ function page(initialValues = {}) {
     body.append = (...children) => nodes.push(...children);
     const head = node("head");
     head.append = (...children) => nodes.push(...children);
-    const document = {
+    document = {
         body,
         head,
+        activeElement: body,
+        contains: (item) => !item.removed,
         createElement: node,
         getElementById: (id) => (id === "filters" ? filters : null),
         querySelector(selector) {
@@ -141,7 +159,7 @@ function page(initialValues = {}) {
     };
     context.window = context;
 
-    return { context, nodes, skip, next, values };
+    return { context, nodes, skip, next, opt, roleChip, values };
 }
 
 test("первый онбординг заканчивается после роли и контекста", () => {
@@ -221,4 +239,67 @@ test("аналитика ждет закрытия карточки незави
         current.nodes.some((node) => node.className === "analytics-consent"),
         true,
     );
+});
+
+test("запрос аналитики ждет завершения открытого онбординга", () => {
+    const current = page();
+    vm.runInNewContext(onboardingSource, current.context, {
+        filename: "onboarding.js",
+    });
+    vm.runInNewContext(analyticsSource, current.context, {
+        filename: "analytics.js",
+    });
+
+    current.context.document.dispatchEvent(
+        new current.context.Event("landscape:detail-closed"),
+    );
+    assert.equal(
+        current.nodes.some((node) => node.className === "analytics-consent"),
+        false,
+    );
+
+    current.skip.click();
+    assert.equal(
+        current.nodes.filter((node) => node.className === "analytics-consent")
+            .length,
+        1,
+    );
+    assert.equal(current.context.document.activeElement.tagName, "A");
+    current.nodes
+        .find((node) => node.className === "analytics-consent")
+        .children.find((node) => node.dataset.analytics === "deny")
+        .click();
+    assert.equal(current.context.document.activeElement, current.roleChip);
+});
+
+test("немодальная подсказка пропускает Tab и не перехватывает чужой Escape", () => {
+    const current = page();
+    vm.runInNewContext(onboardingSource, current.context, {
+        filename: "onboarding.js",
+    });
+    const key = (key, target, shiftKey = false) => {
+        let prevented = false;
+        current.context.document.dispatchEvent({
+            type: "keydown",
+            key,
+            target,
+            shiftKey,
+            preventDefault() {
+                prevented = true;
+            },
+            stopPropagation() {},
+        });
+        return prevented;
+    };
+
+    assert.equal(current.context.document.activeElement, current.opt);
+    assert.equal(key("Tab", current.opt, true), true);
+    assert.equal(current.context.document.activeElement, current.roleChip);
+    assert.equal(key("Tab", current.roleChip), true);
+    assert.equal(current.context.document.activeElement, current.opt);
+    assert.equal(key("Tab", current.next), false);
+    assert.equal(key("Escape", current.roleChip), false);
+    assert.equal(current.values.get("onboarding_stage"), undefined);
+    assert.equal(key("Escape", current.opt), true);
+    assert.equal(current.values.get("onboarding_stage"), "base");
 });

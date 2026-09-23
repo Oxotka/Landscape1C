@@ -43,6 +43,8 @@
         extraOff.forEach((f) => f());
         extraOff = [];
     };
+    let escFn = null; // действие Escape на текущем шаге (= «Пропустить»)
+    const prevFocus = document.activeElement; // куда вернуть фокус после завершения
     function placeHole() {
         if (!hole) return;
         const r = target && target.getBoundingClientRect();
@@ -71,6 +73,8 @@
         tip = hole = place = target = null;
         removeEventListener("scroll", reposition, true);
         removeEventListener("resize", reposition);
+        document.removeEventListener("keydown", onKey, true);
+        restoreFocus();
     }
     function finish(nextStage) {
         try {
@@ -85,15 +89,63 @@
             hole = document.createElement("div");
             hole.className = "onb-hole";
             tip = document.createElement("div");
+            // role=dialog без aria-modal: фон под «дыркой» осознанно кликабелен
+            // (чипы сайдбара — часть сценария), поэтому диалог не-модальный
+            tip.setAttribute("role", "dialog");
+            tip.setAttribute("aria-labelledby", "onb-title");
             document.body.append(hole, tip);
             addEventListener("scroll", reposition, true);
             addEventListener("resize", reposition);
+            document.addEventListener("keydown", onKey, true);
         }
         tip.className = "onb" + (cls ? " " + cls : ""); // is-left/up/down (+ is-wide)
         tip.innerHTML = html;
         place = placer;
         placeHole();
         place();
+        // фокус на первый вариант (или на кнопку «Дальше» на финальном шаге)
+        const first =
+            tip.querySelector("[data-val]") || tip.querySelector("[data-next]");
+        if (first && typeof first.focus === "function")
+            first.focus({ preventScroll: true });
+    }
+
+    // Подсказка немодальная. Между вариантами и подсвеченными чипами есть
+    // короткий путь по Tab; остальные элементы страницы остаются доступны.
+    // Escape работает как «Пропустить» только при фокусе внутри подсказки.
+    function onKey(e) {
+        if (e.key === "Tab" && tip && target) {
+            const chips = [...target.querySelectorAll(".chip")];
+            const lastChip = chips[chips.length - 1];
+            const firstOpt = tip.querySelector("[data-val]");
+            if (lastChip && firstOpt) {
+                if (e.shiftKey && e.target === firstOpt) {
+                    e.preventDefault();
+                    lastChip.focus();
+                } else if (!e.shiftKey && e.target === lastChip) {
+                    e.preventDefault();
+                    firstOpt.focus();
+                }
+            }
+            return;
+        }
+        if (e.key !== "Escape" || !tip?.contains(e.target)) return;
+        e.preventDefault();
+        e.stopPropagation();
+        escFn && escFn();
+    }
+    // После завершения — фокус туда, где был до онбординга; на первой загрузке
+    // (фокус на body) — на первый чип роли: это ближайший к только настроенным
+    // отборам интерактивный элемент.
+    function restoreFocus() {
+        const el =
+            prevFocus &&
+            prevFocus !== document.body &&
+            document.contains?.(prevFocus)
+                ? prevFocus
+                : chipsOf("role")[0];
+        if (el && typeof el.focus === "function")
+            el.focus({ preventScroll: true });
     }
 
     // Низ тултипа: счетчик шага + «Пропустить» + основная кнопка
@@ -104,6 +156,7 @@
         `<button class="onb__next" data-next>${btn}</button>` +
         `</span></div>`;
     function wireFoot(next, skip = next) {
+        escFn = skip; // Escape на шаге = «Пропустить»
         tip.querySelector("[data-skip]").addEventListener("click", skip);
         tip.querySelector("[data-next]").addEventListener("click", next);
     }
@@ -138,7 +191,7 @@
         const g = groupFor(D.axes[axis].label);
         target = g;
         show(
-            `<p class="onb__q">${q}</p>` +
+            `<p class="onb__q" id="onb-title">${q}</p>` +
                 `<p class="onb__text">${text}</p>` +
                 `<div class="onb__opts">${axisButtons(axis)}</div>${foot(n, 2, n === 2 ? "Готово" : "Дальше →")}`,
             placeRightOf(g),
@@ -199,7 +252,7 @@
         target = document.querySelector(".foot");
         const t = target;
         show(
-            `<p class="onb__q">Это не единственный вид</p>` +
+            `<p class="onb__q" id="onb-title">Это не единственный вид</p>` +
                 `<p class="onb__text">Еще есть «Путь», «Схема» и «Граф»: те же инструменты в другом представлении. Загляни при желании</p>` +
                 foot(1, 1, "Понятно!"),
             () => {
