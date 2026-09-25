@@ -60,22 +60,22 @@ test("генератор создает страницы инструменто�
     );
     assert.doesNotMatch(surveyPage, />Результаты опроса</);
     assert.match(surveyPage, /class="srange tp__srange"/);
-    assert.match(surveyPage, /class="sr-known" style="width:45%"/);
-    assert.match(surveyPage, /class="sr-used" style="width:8%"/);
-    assert.match(surveyPage, /class="sr-tick" style="left:8%"/);
-    assert.match(surveyPage, /data-known="45" data-used="8" data-loyal="100"/);
+    assert.match(surveyPage, /class="sr-known" style="width:43%"/);
+    assert.match(surveyPage, /class="sr-used" style="width:9%"/);
+    assert.match(surveyPage, /class="sr-tick" style="left:9%"/);
+    assert.match(surveyPage, /data-known="43" data-used="9" data-loyal="100"/);
     assert.match(surveyPage, /data-k="used"/);
     assert.match(surveyPage, /data-k="loyal"/);
     assert.match(surveyPage, /addEventListener\("mousemove"/);
     assert.match(surveyPage, /classList\.toggle\("is-hi"/);
     assert.match(
         surveyPage,
-        /aria-label="Слышали или работали 45%, работали 8%, взяли бы снова 100%"/,
+        /aria-label="Слышали или работали 43%, работали 9%, взяли бы снова 100%"/,
     );
-    assert.match(surveyPage, />Работали<\/span><b>8%<\/b>/);
+    assert.match(surveyPage, />Работали<\/span><b>9%<\/b>/);
     assert.match(surveyPage, />Взяли бы снова .*<\/span><b>100%<\/b>/);
     assert.doesNotMatch(surveyPage, /tp__survey-metric/);
-    assert.match(surveyPage, /71 ответ в опросе/);
+    assert.match(surveyPage, /76 ответов в опросе/);
     assert.doesNotMatch(surveyPage, /tp__survey-note/);
 
     const pageWithoutSurvey = fs.readFileSync(
