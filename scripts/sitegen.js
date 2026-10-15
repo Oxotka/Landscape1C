@@ -13,13 +13,6 @@ const APP = path.join(__dirname, "..", "app");
 global.window = {};
 require(path.join(APP, "data.js"));
 require(path.join(APP, "survey2026.js"));
-const previousSurvey = global.window.SURVEY;
-require(path.join(APP, "survey2026-current.js"));
-const currentSurvey = global.window.SURVEY;
-global.window.SURVEY = require(path.join(APP, "survey-merge.js"))(
-    currentSurvey,
-    previousSurvey,
-);
 require(path.join(APP, "shared.js")); // slugOf — общий с дип-линками сайта
 const D = global.window.LANDSCAPE;
 

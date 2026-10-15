@@ -62,6 +62,18 @@ assert.equal(
     "дефис должен читать журнал из stdin",
 );
 
+// Агрегатор по умолчанию не должен перезаписывать опубликованные итоги.
+const published = path.join(tmp, "app", "survey2026.js");
+fs.writeFileSync(published, "published sentinel");
+const defaultRun = spawnSync(
+    process.execPath,
+    [path.join(tmp, "bot", "aggregate.js"), answers],
+    { encoding: "utf8" },
+);
+assert.equal(defaultRun.status, 0, defaultRun.stderr || defaultRun.stdout);
+assert.equal(fs.existsSync(path.join(tmp, "app", "survey2026-live.js")), true);
+assert.equal(fs.readFileSync(published, "utf8"), "published sentinel");
+
 const page = fs.readFileSync(path.join(root, "app", "survey2026.html"), "utf8");
 const build = fs.readFileSync(path.join(root, "scripts", "build.js"), "utf8");
 const ignore = fs.readFileSync(path.join(root, ".gitignore"), "utf8");

@@ -1,5 +1,5 @@
 const assert = require("node:assert/strict");
-const merge = require("../app/survey-merge.js");
+const merge = require("../scripts/lib/survey-merge.js");
 const current = {
     dims: { role: ["разработчик", "аналитик"], level: ["эксперт"], context: ["инхаус"] },
     respondents: { total: 8, cells: [[0, 0, 0, 8]] },

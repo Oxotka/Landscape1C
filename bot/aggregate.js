@@ -1,9 +1,9 @@
 // Агрегация ответов опроса в статические данные для витрины:
 //   node bot/aggregate.js [путь к answers.jsonl] [--out файл]
-//   По умолчанию результат пишется в app/survey2026.js
+//   По умолчанию результат пишется в app/survey2026-live.js (локальный предпросмотр)
 // Формат вывода — window.SURVEY (тот же паттерн, что app/data.js: подключается
 // тегом <script>, работает через file://). Смотреть — app/survey2026.html
-// (до публикации итогов страница и данные исключены из dist/гита).
+// Опубликованные данные готовит scripts/survey-publish.js; агрегатор их не перезаписывает.
 // Никакой персоналки в выводе нет: только агрегаты по инструментам и срезам.
 //
 // Счетчики лежат по ячейкам роль×уровень×контекст (cells): витрина складывает
@@ -20,7 +20,7 @@ const outArg = process.argv.indexOf("--out");
 const OUT =
     outArg >= 0 && process.argv[outArg + 1]
         ? path.resolve(process.argv[outArg + 1])
-        : path.join(__dirname, "..", "app", "survey2026.js");
+        : path.join(__dirname, "..", "app", "survey2026-live.js");
 if (FILE !== "-" && !fs.existsSync(FILE)) {
     console.error(`Не найден журнал ответов: ${FILE}`);
     process.exit(1);

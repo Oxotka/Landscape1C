@@ -948,16 +948,10 @@
         <div id="tip"></div>
 
         <script src="data.js?v=6b86ccf2"></script>
-        <script src="shared.js?v=beb40e14"></script>
-        <script src="survey2026.js?v=f66b77a1"></script>
-        <script>
-            window.SURVEY_JULY = window.SURVEY;
-        </script>
-        <script src="survey2026-current.js?v=5a8aaf20"></script>
-        <script src="survey-merge.js?v=11d024e9"></script>
+        <script src="shared.js?v=c3413f89"></script>
+        <script src="survey2026.js?v=0505dab2"></script>
         <script>
             window.SURVEY_PUBLISHED = window.SURVEY;
-            window.SURVEY_PREVIOUS = window.SURVEY_JULY;
             window.SURVEY_LIVE =
                 (new URLSearchParams(location.search).get("data") === "live" ||
                     new URLSearchParams(location.search).get("preview") ===
@@ -974,12 +968,7 @@
         <script src="nav.js?v=ef1a3dab"></script>
         <script>
             "use strict";
-            const LIVE = true;
-            if (!window.SURVEY) window.SURVEY = window.SURVEY_PUBLISHED;
-            const S =
-                LIVE && window.SURVEY
-                    ? mergeSurvey(window.SURVEY, window.SURVEY_PREVIOUS)
-                    : window.SURVEY;
+            const S = window.SURVEY || window.SURVEY_PUBLISHED;
             const julyNames = new Set(
                 S ? S.tools.filter((t) => t.july).map((t) => t.name) : [],
             );
@@ -1062,7 +1051,7 @@
             const logo = (name) =>
                 window.LandscapeUI.logoMarkup(ITEM.get(name) || {}, "sv-logo");
             const fmtN = (n) => n.toLocaleString("ru-RU");
-            if (LIVE && S) {
+            if (S) {
                 document.title = "Итоги опроса 2026 · Ландшафт 1С";
                 $("#respondentsTitle").textContent = "Участники опроса";
             }
@@ -1649,7 +1638,7 @@
                         t.name,
                         t.category,
                         t.maturity,
-                        LIVE ? sourceLabel(t.name) : "Июль 2026",
+                        sourceLabel(t.name),
                         total,
                         used,
                         heard,
@@ -1691,7 +1680,7 @@
                             t.name,
                             t.category,
                             t.maturity,
-                            LIVE ? sourceLabel(t.name) : "Июль 2026",
+                            sourceLabel(t.name),
                             S.dims.role[c[0]],
                             S.dims.level[c[1]],
                             S.dims.context[c[2]],
@@ -2015,14 +2004,12 @@
                 ranges();
                 growth();
             }
-            // Данные гитигнорены: на свежем клоне их нет — подсказка вместо
-            // падения на S.wave
+            // Подсказка при отсутствии опубликованного файла данных.
             if (S) {
                 render();
             } else {
-                $("#headline").textContent = LIVE
-                    ? "Нет локальных данных: запустите survey-live.command"
-                    : "Нет данных: сгенерируй витрину — node bot/aggregate.js → app/survey2026.js";
+                $("#headline").textContent =
+                    "Нет данных: выполните node scripts/survey-publish.js";
             }
         </script>
         <script src="analytics.js?v=7e5ef8b4"></script>

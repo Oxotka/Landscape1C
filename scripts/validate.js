@@ -170,10 +170,16 @@ D.items.forEach((i) => {
   if (fs.existsSync(surveyFile)) {
     require(surveyFile);
     const S = global.window.SURVEY;
+    const surveyNames = new Set();
     ((S && S.tools) || []).forEach((t) => {
+      if (surveyNames.has(t.name)) E(`опрос: повтор инструмента «${t.name}»`);
+      surveyNames.add(t.name);
+      if (typeof t.july !== "boolean") E(`опрос: у «${t.name}» не указан источник (july)`);
       if (!names.has(t.name))
         E(`опрос: инструмент «${t.name}» не найден среди карточек data.js (карточку переименовали или удалили?)`);
     });
+  } else {
+    E("опрос: отсутствует app/survey2026.js — выполните node scripts/survey-publish.js");
   }
 }
 

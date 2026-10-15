@@ -15,6 +15,9 @@ const EXCLUDE = new Set([
   "survey2026-live.js", "survey2026-live.js.tmp", // локальные агрегаты боевой волны
   ".DS_Store",
 ]);
+// Итоговый набор опроса всегда собирается из архивных источников.
+execFileSync("node", [path.join(__dirname, "survey-publish.js")], { stdio: "inherit" });
+
 // 1. Целостность данных — мусор на хостинг не выкладываем.
 execFileSync("node", [path.join(__dirname, "validate.js")], { stdio: "inherit" });
 

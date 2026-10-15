@@ -1,5 +1,4 @@
-// Сгенерировано bot/aggregate.js — не править руками
-window.SURVEY = {
+{
   "wave": 2026,
   "generated": "2026-09-30T17:56:42.096Z",
   "dims": {
@@ -4844,4 +4843,4 @@ window.SURVEY = {
       ]
     }
   ]
-};
+}
