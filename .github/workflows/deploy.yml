@@ -1,4 +1,4 @@
-# Публикация фронтенда на GitHub Pages.
+# Публикация фронтенда на GitHub Pages после успешных проверок.
 name: Deploy to GitHub Pages
 
 on:
@@ -16,28 +16,33 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Публикуем dist/: build.js прогоняет валидатор данных и копирует статику
-  # из app/, выкидывая редактор (editor.*) и .DS_Store.
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7.1.0
         with:
-          node-version: 20
-      - name: Build dist (validate + copy without editor)
+          node-version-file: .node-version
+          package-manager-cache: false
+      - name: Validate catalog
+        run: node scripts/validate.js
+      - name: Validate survey bot
+        run: node bot/validate.js
+      - name: Run regression tests
+        run: node --test bot/test/*.test.js tests/*.test.js
+      - name: Build public site
         run: node scripts/build.js
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6.0.0
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: ./dist
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5.0.1
