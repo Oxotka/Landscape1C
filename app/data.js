@@ -1,6 +1,6 @@
 // Данные ландшафта (Вариант B). Сгенерировано редактором разметки (editor.html).
 window.LANDSCAPE = {
-  "updated": "26 августа 2026",
+  "updated": "15 октября 2026",
   "categories": [
     "Прототипирование",
     "Диаграммы",
@@ -516,7 +516,7 @@ window.LANDSCAPE = {
     {
       "name": "Visual Studio Code (VSCode)",
       "added": "2026-06-07",
-      "updated": "2026-06-10",
+      "updated": "2026-10-15",
       "category": "Разработка",
       "subcategory": "IDE",
       "logo": "vscode.svg",
@@ -534,7 +534,7 @@ window.LANDSCAPE = {
           "url": "https://github.com/1c-syntax/vsc-language-1c-bsl"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "базовое",
       "origin": "зарубежное",
       "license": "open-source",
       "availability": "доступен",
@@ -1328,7 +1328,7 @@ window.LANDSCAPE = {
     {
       "name": "Language 1C (BSL)",
       "added": "2026-06-10",
-      "updated": "2026-06-13",
+      "updated": "2026-10-15",
       "category": "Плагины и расширения",
       "subcategory": "Для VSCode",
       "logo": "bsl-language-server.png",
@@ -1337,7 +1337,20 @@ window.LANDSCAPE = {
       "why": "Превращает VSCode в полноценный редактор кода 1С: подсветка, автодополнение и переход к определению",
       "homepage": "https://marketplace.visualstudio.com/items?itemName=1c-syntax.language-1c-bsl",
       "repo": null,
-      "start": [],
+      "start": [
+        {
+          "label": "Установить Language 1C (BSL) в VS Code",
+          "url": "https://marketplace.visualstudio.com/items?itemName=1c-syntax.language-1c-bsl"
+        },
+        {
+          "label": "Настроить VS Code для языка 1С и OneScript",
+          "url": "https://oscript.io/learn/dev-tools"
+        },
+        {
+          "label": "Настроить проверки кода через BSL Language Server",
+          "url": "https://github.com/1c-syntax/vsc-language-1c-bsl/wiki/Настройка-BSL-Language-Server"
+        }
+      ],
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
@@ -1925,7 +1938,7 @@ window.LANDSCAPE = {
     {
       "name": "git",
       "added": "2026-06-07",
-      "updated": "2026-07-13",
+      "updated": "2026-10-15",
       "category": "Системы хранения версий",
       "subcategory": "Системы контроля версий",
       "logo": "git.svg",
@@ -1947,7 +1960,7 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/1c/articles/310640/"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "базовое",
       "origin": "зарубежное",
       "license": "open-source",
       "availability": "доступен",
@@ -2348,7 +2361,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Тестировщик",
       "added": "2026-06-08",
-      "updated": "2026-06-12",
+      "updated": "2026-10-15",
       "category": "Автоматизированное тестирование",
       "subcategory": "Функциональные тесты",
       "logo": "1c.png",
@@ -2366,7 +2379,7 @@ window.LANDSCAPE = {
           "url": "https://uc1.1c.ru/course/znakomstvo-s-1s-testirovschikom/"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
       "availability": "доступен",
@@ -2583,7 +2596,7 @@ window.LANDSCAPE = {
     {
       "name": "YAxUnit",
       "added": "2026-06-08",
-      "updated": "2026-06-16",
+      "updated": "2026-10-15",
       "category": "Автоматизированное тестирование",
       "subcategory": "Юнит-тесты",
       "logo": "yaxunit.svg",
@@ -2593,20 +2606,24 @@ window.LANDSCAPE = {
       "repo": "https://github.com/bia-technologies/yaxunit",
       "start": [
         {
-          "label": "https://bia-technologies.github.io/yaxunit/docs/getting-started/install/",
+          "label": "Установить YAxUnit в тестовую базу",
           "url": "https://bia-technologies.github.io/yaxunit/docs/getting-started/install/"
         },
         {
-          "label": "https://github.com/bia-technologies/edt-test-runner",
+          "label": "Написать и запустить первый тест в 1С",
+          "url": "https://bia-technologies.github.io/yaxunit/docs/getting-started/first-test/"
+        },
+        {
+          "label": "Старт в юнит-тестах — практический опыт команды 1С",
+          "url": "https://infostart.ru/1c/articles/2204036/"
+        },
+        {
+          "label": "Запускать тесты из EDT — плагин edt-test-runner",
           "url": "https://github.com/bia-technologies/edt-test-runner"
         },
         {
-          "label": "https://github.com/bia-technologies/edt-test-runner/blob/develop/docs/Установка.md",
+          "label": "Установить и настроить плагин запуска тестов для EDT",
           "url": "https://github.com/bia-technologies/edt-test-runner/blob/develop/docs/Установка.md"
-        },
-        {
-          "label": "https://bia-technologies.github.io/yaxunit/docs/getting-started/first-test",
-          "url": "https://bia-technologies.github.io/yaxunit/docs/getting-started/first-test"
         }
       ],
       "maturity": "продвинутое",
@@ -2883,7 +2900,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:СППР",
       "added": "2026-06-08",
-      "updated": "2026-06-13",
+      "updated": "2026-10-15",
       "category": "Моделирование и архитектура",
       "subcategory": "Архитектура",
       "logo": "1c.png",
@@ -2905,7 +2922,7 @@ window.LANDSCAPE = {
           "url": "https://t.me/s/SPPR1c"
         }
       ],
-      "maturity": "нишевое",
+      "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
       "availability": "доступен",
@@ -3011,7 +3028,7 @@ window.LANDSCAPE = {
     {
       "name": "Review Board",
       "added": "2026-06-09",
-      "updated": "2026-06-12",
+      "updated": "2026-10-15",
       "category": "Код-ревью",
       "subcategory": null,
       "logo": "reviewboard.png",
@@ -3040,6 +3057,8 @@ window.LANDSCAPE = {
         "ревью борд",
         "review board"
       ],
+      "hidden": true,
+      "hiddenReason": "По итогам опроса сообщества 2026 ни один из 86 ответивших не работал с инструментом, узнаваемость — 10,5%. Карточка и исходные сведения сохранены.",
       "analogs": [
         "Crucible",
         "Collaborator",
@@ -3052,7 +3071,7 @@ window.LANDSCAPE = {
     {
       "name": "Collaborator",
       "added": "2026-06-09",
-      "updated": "2026-06-12",
+      "updated": "2026-10-15",
       "category": "Код-ревью",
       "subcategory": null,
       "logo": "collaborator.png",
@@ -3081,6 +3100,8 @@ window.LANDSCAPE = {
         "коллаборатор",
         "collaborator"
       ],
+      "hidden": true,
+      "hiddenReason": "По итогам опроса сообщества 2026 с инструментом работал 1 из 85 ответивших (1,2%), узнаваемость — 7,1%. Карточка и исходные сведения сохранены.",
       "analogs": [
         "Crucible",
         "Review Board",
@@ -3284,7 +3305,7 @@ window.LANDSCAPE = {
     {
       "name": "GitHub Actions",
       "added": "2026-06-08",
-      "updated": "2026-06-12",
+      "updated": "2026-10-15",
       "category": "CI/CD",
       "subcategory": "CI-серверы",
       "logo": "github-actions.svg",
@@ -3300,6 +3321,10 @@ window.LANDSCAPE = {
         {
           "label": "Секреты, кэш и артефакты в Github Actions",
           "url": "https://infostart.ru/1c/articles/2075473/"
+        },
+        {
+          "label": "Установить OneScript в GitHub Actions — пример workflow",
+          "url": "https://github.com/otymko/setup-onescript"
         }
       ],
       "maturity": "продвинутое",
@@ -3615,7 +3640,7 @@ window.LANDSCAPE = {
     {
       "name": "Allure",
       "added": "2026-06-07",
-      "updated": "2026-06-11",
+      "updated": "2026-10-15",
       "category": "Автоматизированное тестирование",
       "subcategory": "Отчеты о тестах",
       "logo": "allure.png",
@@ -3641,7 +3666,7 @@ window.LANDSCAPE = {
           "url": "https://t.me/allure_ru"
         }
       ],
-      "maturity": "нишевое",
+      "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
       "availability": "доступен",
@@ -3869,7 +3894,7 @@ window.LANDSCAPE = {
     {
       "name": "Telegram бот",
       "added": "2026-06-08",
-      "updated": "2026-06-11",
+      "updated": "2026-10-15",
       "category": "Интеграции",
       "subcategory": "Внешние API",
       "logo": "telegram.png",
@@ -3899,7 +3924,7 @@ window.LANDSCAPE = {
           "url": "https://habr.com/ru/post/543676/"
         }
       ],
-      "maturity": "нишевое",
+      "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "бесплатное",
       "availability": "доступен",
@@ -4051,7 +4076,7 @@ window.LANDSCAPE = {
     {
       "name": "Объектное хранилище S3",
       "added": "2026-06-08",
-      "updated": "2026-06-14",
+      "updated": "2026-10-15",
       "category": "Интеграции",
       "subcategory": null,
       "logo": "s3.png",
@@ -4073,7 +4098,7 @@ window.LANDSCAPE = {
           "url": "https://github.com/ValentinKozlov/1c-s3connector"
         }
       ],
-      "maturity": "нишевое",
+      "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "проприетарное",
       "availability": "доступен",
@@ -4833,7 +4858,7 @@ window.LANDSCAPE = {
     {
       "name": "IIS",
       "added": "2026-06-11",
-      "updated": "2026-06-12",
+      "updated": "2026-10-15",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Веб-серверы и прокси",
       "logo": "iis.png",
@@ -4852,7 +4877,7 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/1c/articles/1434014/"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "базовое",
       "origin": "зарубежное",
       "license": "проприетарное",
       "availability": "ограничен",
@@ -6117,7 +6142,7 @@ window.LANDSCAPE = {
     {
       "name": "YouTrack",
       "added": "2026-06-08",
-      "updated": "2026-06-15",
+      "updated": "2026-10-15",
       "category": "Задачи",
       "subcategory": "Трекеры задач",
       "logo": "youtrack.png",
@@ -6131,7 +6156,7 @@ window.LANDSCAPE = {
           "url": "https://www.jetbrains.com/help/youtrack/"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "бесплатное",
       "availability": "ограничен",
@@ -6595,7 +6620,7 @@ window.LANDSCAPE = {
     {
       "name": "PerfExpert",
       "added": "2026-06-10",
-      "updated": "2026-06-12",
+      "updated": "2026-10-15",
       "category": "Мониторинг",
       "subcategory": "Мониторинг 1С",
       "logo": "perfexpert.png",
@@ -6613,7 +6638,7 @@ window.LANDSCAPE = {
           "url": "https://softpoint.ru/articles/1c-journal-perfomance/"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
       "availability": "доступен",
@@ -6642,7 +6667,7 @@ window.LANDSCAPE = {
     {
       "name": "Умный мониторинг",
       "added": "2026-06-10",
-      "updated": "2026-06-27",
+      "updated": "2026-10-15",
       "category": "Мониторинг",
       "subcategory": "Мониторинг 1С",
       "logo": "umnyy-monitoring.svg",
@@ -6667,6 +6692,8 @@ window.LANDSCAPE = {
         "ит-экспертиза мониторинг",
         "it-expertise"
       ],
+      "hidden": true,
+      "hiddenReason": "По итогам опроса сообщества 2026 с инструментом не работал никто из 42 ответивших, узнаваемость — 2%. Карточка и исходные сведения сохранены.",
       "analogs": [
         "PerfDog",
         "PerfExpert",
@@ -6766,7 +6793,7 @@ window.LANDSCAPE = {
     {
       "name": "MosHub",
       "added": "2026-06-10",
-      "updated": "2026-06-11",
+      "updated": "2026-10-15",
       "category": "Системы хранения версий",
       "subcategory": "Git-хостинги",
       "logo": "moshub.png",
@@ -6793,6 +6820,8 @@ window.LANDSCAPE = {
         "мос хаб",
         "moshub"
       ],
+      "hidden": true,
+      "hiddenReason": "По итогам опроса сообщества 2026 с инструментом работал 1 из 89 ответивших (1,1%), узнаваемость — 9%. Карточка и исходные сведения сохранены.",
       "analogs": [
         "GitVerse",
         "GitFlic"
@@ -6885,7 +6914,7 @@ window.LANDSCAPE = {
     {
       "name": "Angie",
       "added": "2026-06-11",
-      "updated": "2026-06-12",
+      "updated": "2026-10-15",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Веб-серверы и прокси",
       "logo": "angie.svg",
@@ -6899,7 +6928,7 @@ window.LANDSCAPE = {
           "url": "https://angie.software/angie/docs/"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
       "availability": "доступен",
@@ -7260,7 +7289,7 @@ window.LANDSCAPE = {
     {
       "name": "Алькир",
       "added": "2026-06-11",
-      "updated": "2026-06-11",
+      "updated": "2026-10-15",
       "category": "Мониторинг",
       "subcategory": "Мониторинг 1С",
       "logo": "alkir.png",
@@ -7286,6 +7315,8 @@ window.LANDSCAPE = {
         "digilabs",
         "диджилабс"
       ],
+      "hidden": true,
+      "hiddenReason": "По итогам опроса сообщества 2026 с инструментом не работал никто из 42 ответивших, узнаваемость — 9,5%. Карточка и исходные сведения сохранены.",
       "analogs": [
         "Оркестратор 1С",
         "PerfExpert",
@@ -7537,7 +7568,7 @@ window.LANDSCAPE = {
     {
       "name": "Mermaid",
       "added": "2026-06-11",
-      "updated": "2026-06-13",
+      "updated": "2026-10-15",
       "category": "Диаграммы",
       "subcategory": null,
       "logo": "mermaid.svg",
@@ -7549,6 +7580,10 @@ window.LANDSCAPE = {
         {
           "label": "Введение в Mermaid — официальная документация",
           "url": "https://mermaid.js.org/intro/"
+        },
+        {
+          "label": "Описать архитектуру 1С — пример C4 на Mermaid",
+          "url": "https://github.com/ivanmolodec/c4-1c-example#дополнительные-инструменты-визуализации-диаграмм"
         }
       ],
       "maturity": "продвинутое",
@@ -8193,7 +8228,7 @@ window.LANDSCAPE = {
     {
       "name": "KOT for 1C",
       "added": "2026-06-11",
-      "updated": "2026-06-12",
+      "updated": "2026-10-15",
       "category": "Плагины и расширения",
       "subcategory": "Для VSCode",
       "logo": "kot-for-1c.png",
@@ -8221,6 +8256,8 @@ window.LANDSCAPE = {
         "кот фор 1с",
         "kotfor1c"
       ],
+      "hidden": true,
+      "hiddenReason": "По итогам опроса сообщества 2026 с инструментом не работал никто из 94 ответивших, узнаваемость — 14%. При этом попробовать его хотели 12 из 13 ответивших, знакомых с ним. Карточка и исходные сведения сохранены.",
       "depends": [
         "Vanessa-Automation",
         "1С:СППР"
@@ -8624,7 +8661,7 @@ window.LANDSCAPE = {
     {
       "name": "Dendron",
       "added": "2026-06-13",
-      "updated": "2026-06-13",
+      "updated": "2026-10-15",
       "category": "База знаний",
       "subcategory": "Личные базы знаний",
       "logo": "dendron.svg",
@@ -8650,6 +8687,8 @@ window.LANDSCAPE = {
         "дендрон",
         "dendron"
       ],
+      "hidden": true,
+      "hiddenReason": "По итогам опроса сообщества 2026 с инструментом работали 2 из 125 ответивших (1,6%), узнаваемость — 5,6%. Активная разработка прекращена. Карточка и исходные сведения сохранены.",
       "analogs": [
         "Obsidian"
       ]
@@ -8964,7 +9003,7 @@ window.LANDSCAPE = {
     {
       "name": "Deckhouse Prom++",
       "added": "2026-06-15",
-      "updated": "2026-06-15",
+      "updated": "2026-10-15",
       "category": "Мониторинг",
       "subcategory": "Мониторинг инфраструктуры",
       "logo": "prompp.svg",
@@ -8994,8 +9033,11 @@ window.LANDSCAPE = {
         "промплюсплюс",
         "prompp",
         "prom++",
-        "деккхаус"
+        "деккхаус",
+        "декхаус пром"
       ],
+      "hidden": true,
+      "hiddenReason": "По итогам опроса сообщества 2026 с инструментом не работал никто из 43 ответивших, узнаваемость — 11,6%. Карточка и исходные сведения сохранены.",
       "analogs": [
         "Prometheus",
         "Zabbix"
@@ -9533,7 +9575,7 @@ window.LANDSCAPE = {
     {
       "name": "Double Commander",
       "added": "2026-06-27",
-      "updated": "2026-06-27",
+      "updated": "2026-10-15",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Терминал и доступ к серверам",
       "logo": "double-commander.svg",
@@ -9542,7 +9584,7 @@ window.LANDSCAPE = {
       "homepage": "https://doublecmd.sourceforge.io",
       "repo": "https://github.com/doublecmd/doublecmd",
       "start": [],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
       "availability": "доступен",

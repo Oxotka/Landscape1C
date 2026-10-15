@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://landscape1c.ru/</loc><lastmod>2026-09-30</lastmod></url>
-  <url><loc>https://landscape1c.ru/path.html</loc><lastmod>2026-09-30</lastmod></url>
-  <url><loc>https://landscape1c.ru/scheme.html</loc><lastmod>2026-09-30</lastmod></url>
-  <url><loc>https://landscape1c.ru/graph.html</loc><lastmod>2026-09-30</lastmod></url>
-  <url><loc>https://landscape1c.ru/survey2026.html</loc><lastmod>2026-09-30</lastmod></url>
-  <url><loc>https://landscape1c.ru/council.html</loc><lastmod>2026-09-30</lastmod></url>
-  <url><loc>https://landscape1c.ru/methodology.html</loc><lastmod>2026-09-30</lastmod></url>
-  <url><loc>https://landscape1c.ru/privacy.html</loc><lastmod>2026-09-30</lastmod></url>
+  <url><loc>https://landscape1c.ru/</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://landscape1c.ru/path.html</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://landscape1c.ru/scheme.html</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://landscape1c.ru/graph.html</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://landscape1c.ru/survey2026.html</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://landscape1c.ru/council.html</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://landscape1c.ru/methodology.html</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://landscape1c.ru/privacy.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/vstroennyi-yazyk-programmirovaniya-1s-predpriyatiya.html</loc><lastmod>2026-06-10</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/yazyk-zaprosov.html</loc><lastmod>2026-06-10</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/sistema-komponovki-dannyh-skd.html</loc><lastmod>2026-06-12</lastmod></url>
@@ -16,7 +16,7 @@
   <url><loc>https://landscape1c.ru/tools/onescript.html</loc><lastmod>2026-06-10</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/konfigurator.html</loc><lastmod>2026-06-10</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/1c-enterprise-development-tools-edt.html</loc><lastmod>2026-06-10</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/visual-studio-code-vscode.html</loc><lastmod>2026-06-10</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/visual-studio-code-vscode.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/biblioteka-standartnyh-podsistem-bsp.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/turboconf.html</loc><lastmod>2026-06-11</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/podsistema-instrumenty-razrabotchika.html</loc><lastmod>2026-06-11</lastmod></url>
@@ -35,7 +35,7 @@
   <url><loc>https://landscape1c.ru/tools/autumn-osen.html</loc><lastmod>2026-06-14</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/bsl-language-server.html</loc><lastmod>2026-06-13</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/onescript-debug-bsl.html</loc><lastmod>2026-06-11</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/language-1c-bsl.html</loc><lastmod>2026-06-13</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/language-1c-bsl.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/cucumber-gherkin-full-support.html</loc><lastmod>2026-06-11</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/gherkin-table-align.html</loc><lastmod>2026-06-11</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/allure-support.html</loc><lastmod>2026-06-11</lastmod></url>
@@ -49,7 +49,7 @@
   <url><loc>https://landscape1c.ru/tools/oracle-database.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/ibm-db2.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/hranilische.html</loc><lastmod>2026-07-03</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/git.html</loc><lastmod>2026-07-13</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/git.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/gitlab.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/github.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/gitverse.html</loc><lastmod>2026-07-03</lastmod></url>
@@ -59,45 +59,45 @@
   <url><loc>https://landscape1c.ru/tools/balsamiq.html</loc><lastmod>2026-06-13</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/maker-studio.html</loc><lastmod>2026-06-14</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/nakidka.html</loc><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/1s-testirovschik.html</loc><lastmod>2026-06-12</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/1s-testirovschik.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/1s-scenarnoe-testirovanie.html</loc><lastmod>2026-06-11</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/vanessa-automation.html</loc><lastmod>2026-06-11</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/vanessa-add.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/tester.html</loc><lastmod>2026-06-11</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/yaxunit.html</loc><lastmod>2026-06-16</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/yaxunit.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/coverage41c.html</loc><lastmod>2026-06-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/ibcmdrunner.html</loc><lastmod>2026-06-17</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/1testrunner.html</loc><lastmod>2026-06-11</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/sintaksicheskaya-proverka-konfiguracii.html</loc><lastmod>2026-06-14</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/1s-avtomatizirovannaya-proverka-konfiguracii-apk.html</loc><lastmod>2026-06-10</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/sonarqube.html</loc><lastmod>2026-06-15</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/1s-sppr.html</loc><lastmod>2026-06-13</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/1s-sppr.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/standarty-razrabotki.html</loc><lastmod>2026-06-16</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/crucible.html</loc><lastmod>2026-06-12</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/review-board.html</loc><lastmod>2026-06-12</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/collaborator.html</loc><lastmod>2026-06-12</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/review-board.html</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/collaborator.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/coderabbit.html</loc><lastmod>2026-06-14</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/ai-review.html</loc><lastmod>2026-06-14</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/jenkins.html</loc><lastmod>2026-06-11</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/gitlab-ci.html</loc><lastmod>2026-06-11</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/github-actions.html</loc><lastmod>2026-06-12</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/github-actions.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/travis-ci.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/vanessa-runner.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/teamcity.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/ansible.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/vagrant.html</loc><lastmod>2026-06-11</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/docker.html</loc><lastmod>2026-07-03</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/allure.html</loc><lastmod>2026-06-11</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/allure.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/testops.html</loc><lastmod>2026-06-11</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/1s-konvertaciya-dannyh.html</loc><lastmod>2026-06-11</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/enterprisedata.html</loc><lastmod>2026-06-11</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/1s-shina.html</loc><lastmod>2026-06-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/otkrytyi-paket-integracii.html</loc><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/telegram-bot.html</loc><lastmod>2026-06-11</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/telegram-bot.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/curlone.html</loc><lastmod>2026-06-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/rabbitmq.html</loc><lastmod>2026-06-11</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/kafka.html</loc><lastmod>2026-06-11</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/obektnoe-hranilische-s3.html</loc><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/obektnoe-hranilische-s3.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/fiddler.html</loc><lastmod>2026-06-13</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/bruno.html</loc><lastmod>2026-06-13</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/insomnia.html</loc><lastmod>2026-06-13</lastmod></url>
@@ -114,7 +114,7 @@
   <url><loc>https://landscape1c.ru/tools/ibcmd.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/konsol-administrirovaniya-serverov-1s.html</loc><lastmod>2026-06-24</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/apache-http-server.html</loc><lastmod>2026-06-12</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/iis.html</loc><lastmod>2026-06-12</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/iis.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/nginx.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/klaster-serverov-1s-predpriyatie.html</loc><lastmod>2026-06-14</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/oneswiss.html</loc><lastmod>2026-06-14</lastmod></url>
@@ -144,7 +144,7 @@
   <url><loc>https://landscape1c.ru/tools/jira.html</loc><lastmod>2026-06-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/trello.html</loc><lastmod>2026-06-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/yandeks-treker.html</loc><lastmod>2026-06-15</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/youtrack.html</loc><lastmod>2026-06-15</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/youtrack.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/redmine.html</loc><lastmod>2026-06-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/kaiten.html</loc><lastmod>2026-06-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/weeek.html</loc><lastmod>2026-06-15</lastmod></url>
@@ -155,14 +155,14 @@
   <url><loc>https://landscape1c.ru/tools/tantor-se-1c.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/monitor-1smonitor.html</loc><lastmod>2026-06-11</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/perfdog.html</loc><lastmod>2026-06-12</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/perfexpert.html</loc><lastmod>2026-06-12</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/umnyi-monitoring.html</loc><lastmod>2026-06-27</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/perfexpert.html</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/umnyi-monitoring.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/plantuml.html</loc><lastmod>2026-06-13</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/gitflic.html</loc><lastmod>2026-06-12</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/moshub.html</loc><lastmod>2026-06-11</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/moshub.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/papi.html</loc><lastmod>2026-06-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/haproxy.html</loc><lastmod>2026-06-12</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/angie.html</loc><lastmod>2026-06-12</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/angie.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/terraform.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/hashicorp-vault.html</loc><lastmod>2026-06-13</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/kriptopro.html</loc><lastmod>2026-06-12</lastmod></url>
@@ -171,14 +171,14 @@
   <url><loc>https://landscape1c.ru/tools/selectel.html</loc><lastmod>2026-06-13</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/platform-v-pangolin.html</loc><lastmod>2026-06-13</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/orkestrator-1s.html</loc><lastmod>2026-06-11</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/alkir.html</loc><lastmod>2026-06-11</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/alkir.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/harbor.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/gramax.html</loc><lastmod>2026-06-13</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/keycloak.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/multifactor.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/vipnet.html</loc><lastmod>2026-06-11</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/kontinent.html</loc><lastmod>2026-06-11</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/mermaid.html</loc><lastmod>2026-06-13</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/mermaid.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/stormbpmn.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/bpmn-io.html</loc><lastmod>2026-06-13</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/camunda-modeler.html</loc><lastmod>2026-06-17</lastmod></url>
@@ -196,7 +196,7 @@
   <url><loc>https://landscape1c.ru/tools/vaultwarden.html</loc><lastmod>2026-06-11</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/notebooklm.html</loc><lastmod>2026-06-12</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/git-code-review.html</loc><lastmod>2026-06-11</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/kot-for-1c.html</loc><lastmod>2026-06-12</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/kot-for-1c.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/kafka-ui.html</loc><lastmod>2026-06-14</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/vneshnie-istochniki-dannyh.html</loc><lastmod>2026-06-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/1s-gotovoe-rabochee-mesto-1s-grm.html</loc><lastmod>2026-06-13</lastmod></url>
@@ -207,7 +207,7 @@
   <url><loc>https://landscape1c.ru/tools/opencode.html</loc><lastmod>2026-06-13</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/dochub.html</loc><lastmod>2026-06-13</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/vitepress.html</loc><lastmod>2026-06-13</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/dendron.html</loc><lastmod>2026-06-13</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/dendron.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/holst.html</loc><lastmod>2026-06-14</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/bash.html</loc><lastmod>2026-06-14</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/putty.html</loc><lastmod>2026-06-14</lastmod></url>
@@ -216,7 +216,7 @@
   <url><loc>https://landscape1c.ru/tools/winscp.html</loc><lastmod>2026-06-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/apache-superset.html</loc><lastmod>2026-06-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/oneunit.html</loc><lastmod>2026-06-15</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/deckhouse-prom.html</loc><lastmod>2026-06-15</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/deckhouse-prom.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/pixso.html</loc><lastmod>2026-06-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/datareon.html</loc><lastmod>2026-06-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/evawiki.html</loc><lastmod>2026-06-15</lastmod></url>
@@ -230,7 +230,7 @@
   <url><loc>https://landscape1c.ru/tools/sonarqube-bsl-community-plugin.html</loc><lastmod>2026-06-17</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/openbpm.html</loc><lastmod>2026-06-17</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/far-manager.html</loc><lastmod>2026-06-27</lastmod></url>
-  <url><loc>https://landscape1c.ru/tools/double-commander.html</loc><lastmod>2026-06-27</lastmod></url>
+  <url><loc>https://landscape1c.ru/tools/double-commander.html</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/1cfilesconverter.html</loc><lastmod>2026-06-27</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/cpdb.html</loc><lastmod>2026-06-27</lastmod></url>
   <url><loc>https://landscape1c.ru/tools/yard.html</loc><lastmod>2026-06-27</lastmod></url>

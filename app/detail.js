@@ -87,7 +87,7 @@
             (names || [])
                 .map((n) => {
                     const t = byName(n);
-                    if (!t) return "";
+                    if (!t || t.hidden) return "";
                     const logo = t.logo
                         ? `<img class="detail__rel-logo${t.logoInvert ? " is-invert" : ""}" src="logos/${t.logo}" alt="">`
                         : `<span class="detail__rel-logo detail__rel-logo--ph">1С</span>`;
@@ -102,6 +102,11 @@
                 .join("");
         const analogsInner = relLinks(i.analogs, true);
         const dependsInner = relLinks(i.depends);
+        const hiddenNotice = i.hiddenReason
+            ? `<div class="detail__hidden" role="note">
+                <span class="badge badge--hidden">Скрыта с карты</span><p>${i.hiddenReason}</p>
+              </div>`
+            : "";
 
         // Опрос: одна bullet-полоса, как на витрине результатов. Фон полосы =
         // узнаваемость, заливка = использование, риска делит заливку по
@@ -142,6 +147,7 @@
       </header>
       <div class="detail__scroll">
         <div class="detail__content">
+          ${hiddenNotice}
           ${row("Зачем нужно", i.why ? `<p>${i.why}</p>` : "")}
           ${row("С чего начать", startInner)}
           ${row("Аналоги", analogsInner ? `<div class="detail__rels">${analogsInner}</div>` : "")}
@@ -159,7 +165,11 @@
         const shareBtn = dlg.querySelector(".detail__share");
         shareBtn.addEventListener("click", async () => {
             const url =
-                location.origin + location.pathname + "?tool=" + slugOf(i.name);
+                location.origin +
+                location.pathname +
+                (i.hidden
+                    ? "?q=" + encodeURIComponent(i.name)
+                    : "?tool=" + slugOf(i.name));
             if (navigator.share && matchMedia("(pointer: coarse)").matches) {
                 try {
                     await navigator.share({ title: i.name, url });
@@ -253,10 +263,17 @@
         const wanted = new URLSearchParams(location.search).get("tool");
         if (wanted) {
             const w = wanted.toLowerCase();
+            const params = new URLSearchParams(location.search);
+            const q = (params.get("q") || "").toLowerCase();
             const it = D.items.find(
                 (x) => slugOf(x.name) === w || x.name.toLowerCase() === w,
             );
-            if (it) openDetail(it);
+            const foundBySearch =
+                it &&
+                [it.name, ...(it.aliases || [])].some((s) =>
+                    s.toLowerCase().includes(q),
+                );
+            if (it && (!it.hidden || (q && foundBySearch))) openDetail(it);
         }
     }
 })();

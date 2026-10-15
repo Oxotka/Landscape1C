@@ -131,7 +131,8 @@
     function apply() {
         const board = $("#board");
         board.innerHTML = "";
-        const matched = D.items.filter(matches);
+        const pool = query ? D.items : D.items.filter((i) => !i.hidden);
+        const matched = pool.filter(matches);
         const axisActive = AXES.some((a) => state[a].size);
         // Поиск с отборами ничего не дал, но без отборов совпадения есть —
         // показываем их и поясняем строкой сверху (отборы при этом не сбрасываем).
@@ -139,8 +140,8 @@
             matched.length === 0 &&
             !!query &&
             axisActive &&
-            D.items.some(matchesQuery);
-        const visible = fallback ? D.items.filter(matchesQuery) : matched;
+            pool.some(matchesQuery);
+        const visible = fallback ? pool.filter(matchesQuery) : matched;
 
         // Сетка карточек одной (под)группы — отдельная, чтобы рамки nth-child(3n) считались внутри неё
         const cardsGrid = (items) => {
@@ -201,20 +202,20 @@
         $("#empty").hidden = !noResults;
         if (noResults) updateEmptyMail();
         $("#count").textContent =
-            `${visible.length} из ${D.items.length} ${plural(visible.length, "инструмент", "инструмента", "инструментов")}`;
+            `${visible.length} из ${pool.length} ${plural(visible.length, "инструмент", "инструмента", "инструментов")}`;
         const active = axisActive || query;
         $("#reset").hidden = !active;
         // Дубль счётчика/сброса в прилипающей верхней строке — только при активном отборе
         const c2 = $("#count2"),
             r2 = $("#reset2");
         if (c2) {
-            c2.textContent = `${visible.length} из ${D.items.length}`;
+            c2.textContent = `${visible.length} из ${pool.length}`;
             c2.hidden = !active;
         }
         if (r2) r2.hidden = !active;
         const fa = $("#filters-apply");
         if (fa)
-            fa.textContent = `Показать ${visible.length} из ${D.items.length}`;
+            fa.textContent = `Показать ${visible.length} из ${pool.length}`;
         renderActiveChips();
         writeUrl();
         syncSubTops();
@@ -345,6 +346,7 @@
         <div class="card__desc">${i.description}</div>
         ${svBar}
         <div class="card__meta">
+          ${i.hidden ? `<span class="badge badge--hidden">Скрыта с карты</span>` : ""}
           <span class="badge badge--mat">${i.maturity}</span>
           <span class="badge badge--ghost">${i.origin}</span>
           <span class="badge badge--ghost">${i.license}</span>
@@ -421,7 +423,8 @@
 
     // ── Старт ─────────────────────────────────
     const numEl = $(".masthead__num");
-    if (numEl) numEl.textContent = D.items.length; // живое число инструментов
+    if (numEl)
+        numEl.textContent = D.items.filter((i) => !i.hidden).length; // видимые на карте инструменты
     renderFilters();
     readUrl();
     syncControls();

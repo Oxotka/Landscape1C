@@ -30,6 +30,7 @@
     /* фирменный акцент (точка знака, «выбрано», «освоено»). Сейчас совпадает
      с «нишевым», но красим через --brand — развести можно одной строкой */
     --brand: var(--m-niche);
+    --hidden: #b42318;
 
     --display: "Unbounded", sans-serif;
     --body: "Inter", sans-serif;
@@ -57,6 +58,7 @@
     --m-base: #5aaa40; /* базовое */
     --m-adv: #4a8acc; /* продвинутое */
     --m-niche: #e06030; /* нишевое */
+    --hidden: #ffb4ab;
 }
 
 * {
@@ -1103,6 +1105,13 @@ a {
     border-color: var(--edge);
 }
 
+.badge--hidden {
+    color: var(--card);
+    background: var(--hidden);
+    border-color: var(--hidden);
+    font-weight: 600;
+}
+
 [data-mat="базовое"] {
     --mat: var(--m-base);
 }
@@ -1300,6 +1309,20 @@ a {
 }
 .detail__content {
     padding: 22px clamp(20px, 4vw, 32px);
+}
+.detail__hidden {
+    margin: 0 0 20px;
+    padding: 14px 16px;
+    border-left: 3px solid var(--hidden);
+    background: color-mix(in srgb, var(--hidden) 7%, var(--card));
+}
+.detail__hidden .badge {
+    margin-bottom: 8px;
+}
+.detail__hidden p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
 }
 
 .detail__row {

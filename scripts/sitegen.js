@@ -52,6 +52,9 @@ D.items.forEach((i) => {
         throw new Error(`слаг «${s}» не уникален (${i.name})`);
     slugs.set(i.name, s);
 });
+const hiddenNames = new Set(
+    D.items.filter((i) => i.hidden).map((i) => i.name),
+);
 
 // ── sitemap.xml (страницы сайта + страницы карточек) ──
 const today = new Date().toISOString().slice(0, 10);
@@ -133,7 +136,7 @@ const analyticsHash = crypto
 
 const relLinks = (names) =>
     (names || [])
-        .filter((n) => slugs.has(n))
+        .filter((n) => slugs.has(n) && !hiddenNames.has(n))
         .map((n) => `<a href="${slugs.get(n)}.html">${h(n)}</a>`)
         .join(", ");
 
@@ -153,6 +156,7 @@ function toolPage(i) {
     const seoTitle = titled.length > 70 ? `${i.name} — ${hook}` : titled;
     const seoDesc = [
         `${desc}.`,
+        i.hiddenReason ? i.hiddenReason : "",
         analogs3.length ? `Аналоги: ${analogs3.join(", ")}.` : "",
         `${i.category} в ландшафте технологий 1С`,
     ]
@@ -244,6 +248,9 @@ ${surveyLine("want", "Хотят попробовать", survey.want, `отве
 .tp__meta { color: var(--ink-soft); font-size: 13px; margin: 0 0 14px; }
 .tp__badges { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 22px; }
 .tp__badge { border: 1px solid var(--line, currentColor); padding: 3px 8px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+.tp__hidden { margin: 0 0 22px; padding: 14px 16px; border-left: 3px solid var(--hidden); background: color-mix(in srgb, var(--hidden) 7%, var(--card)); }
+.tp__hidden .badge { margin-bottom: 8px; }
+.tp__hidden p { margin: 0; }
 .tp__lead { font-size: 16px; margin: 0 0 8px; }
 .tp__h { font-family: var(--display); font-weight: 700; font-size: 15px; margin: 26px 0 8px; }
 .tp p, .tp li { font-size: 14px; line-height: 1.55; }
@@ -262,6 +269,7 @@ ${surveyLine("want", "Хотят попробовать", survey.want, `отве
 <h1 class="tp__name">${h(i.name)}</h1>
 <p class="tp__meta">${h(meta)}</p>
 <div class="tp__badges">${badges}</div>
+${i.hiddenReason ? `<aside class="tp__hidden"><span class="badge badge--hidden">Скрыта с карты</span><p>${h(i.hiddenReason)}</p></aside>` : ""}
 <p class="tp__lead">${h(desc)}</p>
 ${section("Зачем", i.why ? `<p>${h(esc(i.why))}</p>` : "")}
 ${section("С чего начать", starts ? `<ul>${starts}</ul>` : "")}
@@ -269,7 +277,7 @@ ${section("Ссылки", links ? `<ul>${links}</ul>` : "")}
 ${section("Аналоги", analogs ? `<p>${analogs}</p>` : "")}
 ${section("Зависимости", depends ? `<p>${depends}</p>` : "")}
 ${surveyBlock}
-<p class="tp__cta"><a class="empty__btn" href="../?tool=${slugs.get(i.name)}">Открыть на карте →</a></p>
+<p class="tp__cta"><a class="empty__btn" href="../${i.hidden ? `?q=${encodeURIComponent(i.name)}` : `?tool=${slugs.get(i.name)}`}">${i.hidden ? "Найти на карте →" : "Открыть на карте →"}</a></p>
 </div>
 </main>
 <script>

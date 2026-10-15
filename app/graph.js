@@ -69,33 +69,35 @@
         }
         return c;
     }
-    const nodes = D.items.map((it) => {
-        const an = anchorOf(it); // стартуем рядом с якорем блока — кластеры сразу разнесены
-        const n = {
-            id: it.name,
-            item: it,
-            ax: an.x,
-            ay: an.y,
-            x: an.x + (Math.random() - 0.5) * 100,
-            y: an.y + (Math.random() - 0.5) * 100,
-            vx: 0,
-            vy: 0,
-            r: R_BASE,
-            deg: 0,
-        };
-        if (it.logo) {
-            const img = new Image();
-            img.src = "logos/" + it.logo;
-            n.img = img;
-            // Инвертированную версию печем заранее (см. invertedLogo)
-            if (it.logoInvert) {
-                const bake = () => (n.imgInv = invertedLogo(img));
-                if (img.complete && img.naturalWidth) bake();
-                else img.addEventListener("load", bake);
+    const nodes = D.items
+        .filter((it) => !it.hidden)
+        .map((it) => {
+            const an = anchorOf(it); // стартуем рядом с якорем блока — кластеры сразу разнесены
+            const n = {
+                id: it.name,
+                item: it,
+                ax: an.x,
+                ay: an.y,
+                x: an.x + (Math.random() - 0.5) * 100,
+                y: an.y + (Math.random() - 0.5) * 100,
+                vx: 0,
+                vy: 0,
+                r: R_BASE,
+                deg: 0,
+            };
+            if (it.logo) {
+                const img = new Image();
+                img.src = "logos/" + it.logo;
+                n.img = img;
+                // Инвертированную версию печем заранее (см. invertedLogo)
+                if (it.logoInvert) {
+                    const bake = () => (n.imgInv = invertedLogo(img));
+                    if (img.complete && img.naturalWidth) bake();
+                    else img.addEventListener("load", bake);
+                }
             }
-        }
-        return n;
-    });
+            return n;
+        });
     const byName = {};
     nodes.forEach((n) => (byName[n.id] = n));
 

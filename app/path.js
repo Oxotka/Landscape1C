@@ -80,10 +80,12 @@
     // Пусто = весь маршрут; иначе — инструменты хотя бы одной выбранной роли
     const roleItems = () =>
         selected.length
-            ? D.items.filter((i) =>
-                  (i.roles || []).some((r) => selected.includes(r)),
+            ? D.items.filter(
+                  (i) =>
+                      !i.hidden &&
+                      (i.roles || []).some((r) => selected.includes(r)),
               )
-            : D.items.filter((i) => (i.roles || []).length);
+            : D.items.filter((i) => !i.hidden && (i.roles || []).length);
 
     // ── Слоты: аналоги внутри ступени — один пункт «на выбор» ──
     // Знаешь GitLab CI — GitHub Actions осваивать не обязательно. Компоненты

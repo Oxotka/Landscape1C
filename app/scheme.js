@@ -67,6 +67,7 @@
 
     // Текущее дерево с учётом всех отборов: [{block, cats:[{cat, items}]}]
     const itemVisible = (it) =>
+        !it.hidden &&
         (!roleActive() || (it.roles && it.roles.some((r) => selRole.has(r)))) &&
         (!matActive() || selMat.has(it.maturity));
     function currentTree() {
