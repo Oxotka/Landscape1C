@@ -1,5 +1,5 @@
 // Валидатор данных ландшафта. Запуск: node scripts/validate.js
-// Ловит дрейф между app/data.js и инвариантами движка (см. CLAUDE.md).
+// Ловит дрейф между app/data.js и инвариантами движка (см. AGENTS.md).
 const fs = require("fs");
 const path = require("path");
 
@@ -182,6 +182,18 @@ D.items.forEach((i) => {
     E("опрос: отсутствует app/survey2026.js — выполните node scripts/survey-publish.js");
   }
 }
+
+// 13. Скрытие: булев флаг и непустая причина только для скрытых карточек.
+D.items.forEach((i) => {
+  if ("hidden" in i && typeof i.hidden !== "boolean")
+    E(`«${i.name}»: hidden должен иметь тип boolean`);
+  if (i.hidden === true) {
+    if (typeof i.hiddenReason !== "string" || !i.hiddenReason.trim())
+      E(`«${i.name}»: hiddenReason должен быть непустой строкой для скрытой карточки`);
+  } else if ("hiddenReason" in i) {
+    E(`«${i.name}»: hiddenReason допустим только при hidden: true`);
+  }
+});
 
 if (errors.length) {
   console.error(`✗ Найдено проблем: ${errors.length}`);
