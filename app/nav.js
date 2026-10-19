@@ -12,8 +12,6 @@
         ["council.html", "Эксперты"],
         ["methodology.html", "Методология"],
     ];
-    var BOOSTY =
-        "https://boosty.to/1cnik/purchase/3363092?ssource=DIRECT&share=subscription_link";
     var TG = "https://t.me/AriN1C";
     // Форма «Предложить инструмент» (GitHub issue form; работает после открытия репозитория)
     var PROPOSE =
@@ -25,11 +23,6 @@
     }).join("");
     var ext = function (suffix) {
         return (
-            '<a href="' +
-            BOOSTY +
-            '" target="_blank" rel="noopener">Поддержать' +
-            suffix +
-            "</a>" +
             '<a href="' +
             TG +
             '" target="_blank" rel="noopener">Telegram' +
