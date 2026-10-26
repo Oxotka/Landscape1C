@@ -8,7 +8,7 @@
             ? `<span class="${cls}"><img class="${i.logoInvert ? "is-invert" : ""}" src="logos/${i.logo}" alt="" loading="lazy"></span>`
             : `<span class="${cls} ${cls}--ph">1С</span>`;
     // Порядок карточек внутри категории (главная и схема сортируют одинаково):
-    // доступные в РФ раньше → по зрелости → происхождению → лицензии
+    // доступные в РФ раньше → по зрелости → происхождению → лицензии → названию
     const MAT_ORDER = { базовое: 0, продвинутое: 1, нишевое: 2 };
     const ORIGIN_ORDER = { отечественное: 0, зарубежное: 1 };
     const LICENSE_ORDER = { "open-source": 0, проприетарное: 1, бесплатное: 2 };
@@ -16,7 +16,8 @@
         (a.availability === "ограничен") - (b.availability === "ограничен") ||
         (MAT_ORDER[a.maturity] ?? 99) - (MAT_ORDER[b.maturity] ?? 99) ||
         (ORIGIN_ORDER[a.origin] ?? 99) - (ORIGIN_ORDER[b.origin] ?? 99) ||
-        (LICENSE_ORDER[a.license] ?? 99) - (LICENSE_ORDER[b.license] ?? 99);
+        (LICENSE_ORDER[a.license] ?? 99) - (LICENSE_ORDER[b.license] ?? 99) ||
+        a.name.localeCompare(b.name, "ru", { numeric: true, sensitivity: "base" });
 
     // Группировка карточек по подкатегории; без подкатегории («») — первой группой.
     // Главная и схема выводят подкатегории одинаково.
