@@ -822,7 +822,7 @@ window.LANDSCAPE = {
     {
       "name": "Плагин 1С:Напарник",
       "added": "2026-06-08",
-      "updated": "2026-06-14",
+      "updated": "2026-10-26",
       "category": "ИИ-ассистенты",
       "subcategory": "Автодополнение в IDE",
       "logo": "1c.png",
@@ -849,7 +849,8 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "проекты",
-        "продукты"
+        "продукты",
+        "инхаус"
       ],
       "aliases": [
         "напарник",
