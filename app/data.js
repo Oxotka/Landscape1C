@@ -2500,7 +2500,7 @@ window.LANDSCAPE = {
     {
       "name": "Vanessa-ADD",
       "added": "2026-06-08",
-      "updated": "2026-06-12",
+      "updated": "2026-10-26",
       "category": "Автоматизированное тестирование",
       "subcategory": "Функциональные тесты",
       "logo": "vanessa-add.png",
@@ -2523,8 +2523,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "availability": "доступен",
       "roles": [
-        "тестировщик",
-        "разработчик"
+        "тестировщик"
       ],
       "contexts": [
         "инхаус",
@@ -2545,7 +2544,7 @@ window.LANDSCAPE = {
     {
       "name": "Тестер",
       "added": "2026-06-08",
-      "updated": "2026-06-11",
+      "updated": "2026-10-26",
       "category": "Автоматизированное тестирование",
       "subcategory": "Функциональные тесты",
       "logo": null,
@@ -2576,8 +2575,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "availability": "доступен",
       "roles": [
-        "тестировщик",
-        "разработчик"
+        "тестировщик"
       ],
       "contexts": [
         "инхаус",
