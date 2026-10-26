@@ -1377,7 +1377,7 @@ window.LANDSCAPE = {
     {
       "name": "Cucumber (Gherkin) Full Support",
       "added": "2026-06-10",
-      "updated": "2026-06-11",
+      "updated": "2026-10-26",
       "category": "Плагины и расширения",
       "subcategory": "Для VSCode",
       "logo": "cucumber.png",
@@ -1396,7 +1396,6 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "продукты",
-        "проекты",
         "инхаус"
       ],
       "aliases": [
@@ -1412,7 +1411,7 @@ window.LANDSCAPE = {
     {
       "name": "Gherkin Table Align",
       "added": "2026-06-10",
-      "updated": "2026-06-11",
+      "updated": "2026-10-26",
       "category": "Плагины и расширения",
       "subcategory": "Для VSCode",
       "logo": "gherkin-table-align.png",
@@ -1431,7 +1430,6 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "продукты",
-        "проекты",
         "инхаус"
       ],
       "aliases": [
@@ -3695,7 +3693,7 @@ window.LANDSCAPE = {
     {
       "name": "ТестОпс",
       "added": "2026-06-10",
-      "updated": "2026-06-11",
+      "updated": "2026-10-26",
       "category": "Автоматизированное тестирование",
       "subcategory": "Отчеты о тестах",
       "logo": "testops.png",
@@ -3719,8 +3717,7 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "инхаус",
-        "продукты",
-        "проекты"
+        "продукты"
       ],
       "aliases": [
         "тестопс",
