@@ -1377,7 +1377,7 @@ window.LANDSCAPE = {
     {
       "name": "Cucumber (Gherkin) Full Support",
       "added": "2026-06-10",
-      "updated": "2026-10-26",
+      "updated": "2026-10-27",
       "category": "Плагины и расширения",
       "subcategory": "Для VSCode",
       "logo": "cucumber.png",
@@ -1396,7 +1396,8 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "продукты",
-        "инхаус"
+        "инхаус",
+        "проекты"
       ],
       "aliases": [
         "cucumber",
@@ -1411,7 +1412,7 @@ window.LANDSCAPE = {
     {
       "name": "Gherkin Table Align",
       "added": "2026-06-10",
-      "updated": "2026-10-26",
+      "updated": "2026-10-27",
       "category": "Плагины и расширения",
       "subcategory": "Для VSCode",
       "logo": "gherkin-table-align.png",
@@ -1430,7 +1431,8 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "продукты",
-        "инхаус"
+        "инхаус",
+        "проекты"
       ],
       "aliases": [
         "gherkin table align",
@@ -2360,7 +2362,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Тестировщик",
       "added": "2026-06-08",
-      "updated": "2026-10-15",
+      "updated": "2026-10-27",
       "category": "Автоматизированное тестирование",
       "subcategory": "Функциональные тесты",
       "logo": "1c.png",
@@ -2388,7 +2390,8 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "продукты",
-        "инхаус"
+        "инхаус",
+        "проекты"
       ],
       "aliases": [
         "тестировщик",
@@ -2403,7 +2406,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Сценарное тестирование",
       "added": "2026-06-08",
-      "updated": "2026-06-11",
+      "updated": "2026-10-27",
       "category": "Автоматизированное тестирование",
       "subcategory": "Функциональные тесты",
       "logo": "1c.png",
@@ -2431,7 +2434,8 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "инхаус",
-        "продукты"
+        "продукты",
+        "проекты"
       ],
       "aliases": [
         "сценарное тестирование",
@@ -2449,7 +2453,7 @@ window.LANDSCAPE = {
     {
       "name": "Vanessa-Automation",
       "added": "2026-06-08",
-      "updated": "2026-06-11",
+      "updated": "2026-10-27",
       "category": "Автоматизированное тестирование",
       "subcategory": "Функциональные тесты",
       "logo": "vanessa.png",
@@ -2477,7 +2481,8 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "инхаус",
-        "продукты"
+        "продукты",
+        "проекты"
       ],
       "aliases": [
         "ванесса",
@@ -2499,7 +2504,7 @@ window.LANDSCAPE = {
     {
       "name": "Vanessa-ADD",
       "added": "2026-06-08",
-      "updated": "2026-10-26",
+      "updated": "2026-10-27",
       "category": "Автоматизированное тестирование",
       "subcategory": "Функциональные тесты",
       "logo": "vanessa-add.png",
@@ -2526,7 +2531,8 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "инхаус",
-        "продукты"
+        "продукты",
+        "проекты"
       ],
       "aliases": [
         "ванесса адд",
@@ -2543,7 +2549,7 @@ window.LANDSCAPE = {
     {
       "name": "Тестер",
       "added": "2026-06-08",
-      "updated": "2026-10-26",
+      "updated": "2026-10-27",
       "category": "Автоматизированное тестирование",
       "subcategory": "Функциональные тесты",
       "logo": null,
@@ -2578,7 +2584,8 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "инхаус",
-        "продукты"
+        "продукты",
+        "проекты"
       ],
       "aliases": [
         "тестер",
@@ -3693,7 +3700,7 @@ window.LANDSCAPE = {
     {
       "name": "ТестОпс",
       "added": "2026-06-10",
-      "updated": "2026-10-26",
+      "updated": "2026-10-27",
       "category": "Автоматизированное тестирование",
       "subcategory": "Отчеты о тестах",
       "logo": "testops.png",
@@ -3712,12 +3719,12 @@ window.LANDSCAPE = {
       "license": "проприетарное",
       "availability": "доступен",
       "roles": [
-        "тестировщик",
-        "разработчик"
+        "тестировщик"
       ],
       "contexts": [
         "инхаус",
-        "продукты"
+        "продукты",
+        "проекты"
       ],
       "aliases": [
         "тестопс",

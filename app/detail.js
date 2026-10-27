@@ -104,7 +104,7 @@
         const dependsInner = relLinks(i.depends);
         const hiddenNotice = i.hiddenReason
             ? `<div class="detail__hidden" role="note">
-                <span class="badge badge--hidden">Скрыта с карты</span><p>${i.hiddenReason}</p>
+                <span class="badge badge--hidden">Скрыт с карты</span><p>${i.hiddenReason}</p>
               </div>`
             : "";
 

@@ -214,8 +214,7 @@
         }
         if (r2) r2.hidden = !active;
         const fa = $("#filters-apply");
-        if (fa)
-            fa.textContent = `Показать ${visible.length} из ${pool.length}`;
+        if (fa) fa.textContent = `Показать ${visible.length} из ${pool.length}`;
         renderActiveChips();
         writeUrl();
         syncSubTops();
@@ -346,7 +345,7 @@
         <div class="card__desc">${i.description}</div>
         ${svBar}
         <div class="card__meta">
-          ${i.hidden ? `<span class="badge badge--hidden">Скрыта с карты</span>` : ""}
+          ${i.hidden ? `<span class="badge badge--hidden">Скрыт с карты</span>` : ""}
           <span class="badge badge--mat">${i.maturity}</span>
           <span class="badge badge--ghost">${i.origin}</span>
           <span class="badge badge--ghost">${i.license}</span>
@@ -423,8 +422,7 @@
 
     // ── Старт ─────────────────────────────────
     const numEl = $(".masthead__num");
-    if (numEl)
-        numEl.textContent = D.items.filter((i) => !i.hidden).length; // видимые на карте инструменты
+    if (numEl) numEl.textContent = D.items.filter((i) => !i.hidden).length; // видимые на карте инструменты
     renderFilters();
     readUrl();
     syncControls();

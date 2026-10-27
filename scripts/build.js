@@ -18,6 +18,10 @@ const EXCLUDE = new Set([
 // Итоговый набор опроса всегда собирается из архивных источников.
 execFileSync("node", [path.join(__dirname, "survey-publish.js")], { stdio: "inherit" });
 
+// В репозитории история пересобирается из полной Git-истории и текущих данных.
+// В копии без Git используется сохраненный app/changes.js.
+execFileSync("node", [path.join(__dirname, "changes.js"), "--if-available"], { stdio: "inherit" });
+
 // 1. Целостность данных — мусор на хостинг не выкладываем.
 execFileSync("node", [path.join(__dirname, "validate.js")], { stdio: "inherit" });
 

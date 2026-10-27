@@ -70,11 +70,13 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             body = self.rfile.read(n)
             with open(DATA, "wb") as f:
                 f.write(body)
+            # После записи каталога обновляем историю до пересчета версий ассетов.
+            history_code, _ = run_node("changes.js")
             # data.js изменился — обновляем ?v= на страницах и sitemap/llms.txt
             # (не критично при сбое)
             run_node("cachebust.js")
             run_node("sitegen.js")
-            self._respond(200, "saved")
+            self._respond(200, "saved" if history_code == 0 else "history-warning")
         elif path == "/build":
             # build.js сам гоняет validate, sitegen и cachebust
             code, text = run_node("build.js")

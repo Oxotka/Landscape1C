@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>История изменений · Ландшафт 1С</title>
+        <script>
+            (function () {
+                try {
+                    var t = localStorage.getItem("theme");
+                    if (!t)
+                        t = matchMedia("(prefers-color-scheme: dark)").matches
+                            ? "dark"
+                            : "light";
+                    document.documentElement.dataset.theme = t;
+                } catch (e) {}
+            })();
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css?v=aaec152a" />
+        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+        <link rel="canonical" href="https://landscape1c.ru/updates.html" />
+        <link rel="stylesheet" href="updates.css?v=cd237dc7" />
+    </head>
+    <body class="page-doc page-updates">
+        <div class="topbar" id="topbar">
+            <span class="topbar__brand"
+                ><a
+                    href="index.html"
+                    style="color: inherit; text-decoration: none"
+                    >Ландшафт</a
+                ></span
+            ><span class="updates-top-title">История</span>
+            <div class="topbar__search">
+                <input
+                    id="updates-search-top"
+                    type="search"
+                    aria-label="Поиск по инструментам"
+                    placeholder="Поиск инструмента…"
+                    autocomplete="off"
+                    spellcheck="false"
+                />
+            </div>
+        </div>
+        <header class="masthead">
+            <div class="masthead__main">
+                <p class="kicker">
+                    <a href="index.html" class="back">← Ландшафт</a>
+                </p>
+                <h1 class="title">История изменений</h1>
+            </div>
+        </header>
+        <main class="updates-page">
+            <div class="updates-controls">
+                <div
+                    class="graph-filters updates-filters"
+                    role="group"
+                    aria-label="Тип изменений"
+                >
+                    <div class="graph-fgroup">
+                        <span class="graph-flabel">Изменения</span>
+                        <div class="chips">
+                            <button
+                                class="chip"
+                                type="button"
+                                data-update-filter="maturity"
+                                aria-label="Изменения в зрелости"
+                                aria-pressed="false"
+                            >
+                                Зрелость
+                            </button>
+                            <button
+                                class="chip"
+                                type="button"
+                                data-update-filter="contexts"
+                                aria-label="Изменения в контексте"
+                                aria-pressed="false"
+                            >
+                                Контекст
+                            </button>
+                            <button
+                                class="chip"
+                                type="button"
+                                data-update-filter="roles"
+                                aria-label="Изменения в роли"
+                                aria-pressed="false"
+                            >
+                                Роли
+                            </button>
+                        </div>
+                    </div>
+                    <div
+                        class="graph-fgroup"
+                        role="group"
+                        aria-label="Показать"
+                    >
+                        <span class="graph-flabel">Показать</span>
+                        <div class="chips">
+                            <button
+                                class="chip"
+                                type="button"
+                                data-update-filter="added"
+                                aria-pressed="false"
+                            >
+                                Новые
+                            </button>
+                            <button
+                                class="chip"
+                                type="button"
+                                data-update-filter="updated"
+                                aria-pressed="false"
+                            >
+                                Обновленные
+                            </button>
+                            <button
+                                class="chip"
+                                type="button"
+                                data-update-filter="hidden"
+                                aria-pressed="false"
+                            >
+                                Скрытые
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="search">
+                    <input
+                        id="updates-search"
+                        type="search"
+                        aria-label="Поиск по инструментам"
+                        placeholder="Поиск инструмента…"
+                        autocomplete="off"
+                        spellcheck="false"
+                    />
+                </div>
+            </div>
+            <div id="updates-list"></div>
+            <div class="updates-bottom">
+                <button
+                    type="button"
+                    id="updates-more"
+                    class="updates-more"
+                    aria-controls="updates-list"
+                >
+                    Показать все
+                </button>
+                <p id="updates-count" role="status"></p>
+            </div>
+        </main>
+        <footer class="foot"><nav class="foot__links"></nav></footer>
+        <dialog id="detail" class="detail">
+            <div class="detail__body"></div>
+        </dialog>
+        <script src="data.js?v=912d65d9"></script>
+        <script src="survey2026.js?v=0505dab2"></script>
+        <script src="shared.js?v=dc532eed"></script>
+        <script src="repostats.js?v=648f5c5e"></script>
+        <script src="detail.js?v=170ed7f1"></script>
+        <script src="nav.js?v=e10d7a94"></script>
+        <script src="changes.js?v=731af3c9"></script>
+        <script src="updates.js?v=05575ac2"></script>
+        <script src="analytics.js?v=7e5ef8b4"></script>
+    </body>
+</html>

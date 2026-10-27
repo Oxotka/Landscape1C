@@ -82,8 +82,13 @@
                 body: dataJS(),
             });
             if (!res.ok) throw new Error("HTTP " + res.status);
+            const status = await res.text();
             markSaved();
-            toast("Сохранено в data.js");
+            toast(
+                status === "history-warning"
+                    ? "Сохранено в data.js, но история не обновлена. Проверьте доступность Git и полную историю репозитория"
+                    : "Сохранено в data.js",
+            );
             return true;
         } catch (e) {
             toast(

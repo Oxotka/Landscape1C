@@ -11,6 +11,7 @@
         ["survey2026.html", "Опрос 2026"],
         ["council.html", "Эксперты"],
         ["methodology.html", "Методология"],
+        ["updates.html", "История"],
     ];
     var TG = "https://t.me/AriN1C";
     // Форма «Предложить инструмент» (GitHub issue form; работает после открытия репозитория)

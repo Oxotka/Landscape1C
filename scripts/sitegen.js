@@ -33,6 +33,7 @@ const PAGES = [
     ],
     ["council.html", "Эксперты — кураторы, выверяющие разметку"],
     ["methodology.html", "Методология — правила разметки осей"],
+    ["updates.html", "История изменений — новые и обновленные инструменты"],
     ["privacy.html", "Конфиденциальность — как сайт работает с данными"],
 ];
 
@@ -262,7 +263,7 @@ ${surveyLine("want", "Хотят попробовать", survey.want, `отве
 <h1 class="tp__name">${h(i.name)}</h1>
 <p class="tp__meta">${h(meta)}</p>
 <div class="tp__badges">${badges}</div>
-${i.hiddenReason ? `<aside class="tp__hidden"><span class="badge badge--hidden">Скрыта с карты</span><p>${h(i.hiddenReason)}</p></aside>` : ""}
+${i.hiddenReason ? `<aside class="tp__hidden"><span class="badge badge--hidden">Скрыт с карты</span><p>${h(i.hiddenReason)}</p></aside>` : ""}
 <p class="tp__lead">${h(desc)}</p>
 ${section("Зачем", i.why ? `<p>${h(esc(i.why))}</p>` : "")}
 ${section("С чего начать", starts ? `<ul>${starts}</ul>` : "")}

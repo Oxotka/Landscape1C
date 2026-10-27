@@ -13,6 +13,7 @@
 - [Итоги опроса 2026](https://landscape1c.ru/survey2026.html): финальные результаты по инструментам 1С
 - [Эксперты](https://landscape1c.ru/council.html): кураторы, выверяющие разметку
 - [Методология](https://landscape1c.ru/methodology.html): правила разметки осей
+- [История изменений](https://landscape1c.ru/updates.html): новые и обновленные инструменты
 - [Конфиденциальность](https://landscape1c.ru/privacy.html): как сайт работает с данными
 
 ## Инструменты
