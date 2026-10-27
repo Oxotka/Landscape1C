@@ -14,7 +14,7 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 14px 24px;
-    margin-bottom: 36px;
+    margin-bottom: 8px;
 }
 .updates-controls .search {
     flex: 1 1 190px;
@@ -73,6 +73,9 @@
 .updates-filters .chip:focus-visible {
     outline: 2px solid var(--brand);
     outline-offset: 2px;
+}
+.updates-fallback-note {
+    margin-bottom: 20px;
 }
 @media (max-width: 380px) {
     .updates-filters .chip {
@@ -194,24 +197,33 @@ button.update-main:focus-visible {
         padding-left: 12px;
     }
     .update-row {
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 12px;
+        display: block;
+        position: relative;
         padding: 18px 12px;
     }
     .update-main {
+        display: grid;
         grid-template-columns: 32px minmax(0, 1fr);
         gap: 12px;
     }
-    .update-logo {
-        width: 32px;
-        height: 32px;
+    .update-content {
+        display: contents;
     }
     .update-content strong {
-        font-size: 15px;
-    }
-    .update-badge {
         grid-column: 2;
-        justify-self: start;
+        grid-row: 1;
+        align-self: center;
+        font-size: 15px;
+        padding-right: 30px;
+    }
+    .update-content > :not(strong) {
+        grid-column: 1 / -1;
+    }
+    .update-logo {
+        grid-column: 1;
+        grid-row: 1;
+        width: 32px;
+        height: 32px;
     }
 }
 .update-meta {
@@ -316,6 +328,14 @@ button.update-main:focus-visible {
     color: var(--ink-soft);
 }
 @media (max-width: 720px) {
+    .update-meta {
+        position: absolute;
+        top: 18px;
+        right: 12px;
+    }
+    .update-change {
+        gap: 2px;
+    }
     .update-meta__toggle {
         display: flex;
         align-items: center;

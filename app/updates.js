@@ -92,7 +92,7 @@
     }
     function changeLine(change) {
         const line = span("update-change", "");
-        line.append(span("update-field", `${labels[change.field]}: `));
+        line.append(span("update-field", `${labels[change.field]}:`));
         const values = (v) => (Array.isArray(v) ? v : v ? [v] : []);
         if (change.field === "maturity") {
             if (change.before)
@@ -319,6 +319,7 @@
     updateSearchPlaceholder();
     searchMedia.addEventListener("change", updateSearchPlaceholder);
     const filters = document.querySelectorAll("[data-update-filter]");
+    const fallbackNote = document.querySelector("#updates-fallback-note");
     const selected = new Set();
     let events = allEvents;
     let shown = 0;
@@ -343,14 +344,17 @@
     }
     function render() {
         const query = clean(search.value.trim().toLocaleLowerCase("ru"));
-        events = allEvents.filter((event) => {
+        const matchingQuery = allEvents.filter((event) => {
             const item = items.get(event.name);
             const names = [event.name, ...(item?.aliases || [])];
-            const found =
+            return (
                 !query ||
                 names.some((name) =>
                     clean(name.toLocaleLowerCase("ru")).includes(query),
-                );
+                )
+            );
+        });
+        const filtered = matchingQuery.filter((event) => {
             const kinds = ["added", "updated", "hidden"].filter((kind) =>
                 selected.has(kind),
             );
@@ -362,8 +366,16 @@
             const matchesField =
                 !fields.length ||
                 event.changes.some((change) => fields.includes(change.field));
-            return found && matchesKind && matchesField;
+            return matchesKind && matchesField;
         });
+        const hasFilters = selected.size > 0;
+        const fallback =
+            filtered.length === 0 &&
+            !!query &&
+            hasFilters &&
+            matchingQuery.length > 0;
+        events = fallback ? matchingQuery : filtered;
+        fallbackNote.hidden = !fallback;
         list.replaceChildren();
         shown = 0;
         lastGroup = undefined;
