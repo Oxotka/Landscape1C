@@ -144,10 +144,9 @@ function toolPage(i) {
     // На саму страницу это не влияет: h1 и og-теги остаются прежними.
     const analogs3 = (i.analogs || []).slice(0, 3);
     const hook = analogs3.length ? "аналоги и обзор" : "обзор и применение";
-    // Яндекс режет заголовок примерно на 70 знаках. Если бренд туда не
-    // влезает, жертвуем им: ключевые слова в начале строки важнее.
-    const titled = `${i.name} — ${hook} · Ландшафт 1С`;
-    const seoTitle = titled.length > 70 ? `${i.name} — ${hook}` : titled;
+    // В длинных заголовках опускаем уточнение и сохраняем название сайта.
+    const titled = `${i.name} — ${hook} · Ландшафт технологий 1С`;
+    const seoTitle = titled.length > 70 ? `${i.name} · Ландшафт технологий 1С` : titled;
     const seoDesc = [
         `${desc}.`,
         i.hiddenReason ? i.hiddenReason : "",
